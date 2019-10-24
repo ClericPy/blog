@@ -1,0 +1,29 @@
+baseURL = "https://clericpy.github.io/blog/"
+languageCode = "en-us"
+title = "Clericpy"
+theme = "yinyang"
+DefaultContentLanguage = "cn"
+publishDir = "docs"
+
+[author]
+  name = "Clericpy"
+  homepage = "https://github.com/ClericPy"
+
+[languages]
+  [languages.cn]
+    contentDir = "content"
+    languageName = "Chinese"
+    weight = 1
+
+[params]
+mainSections = ["posts"]
+headTitle = "Clericpy"
+disqus = "clericpy"
+description = "Hello world?"
+extraHead = ""
+[[params.socials]]
+name = "Github"
+link = "https://github.com/ClericPy"
+[[params.socials]]
+name = "Theme"
+link = "https://github.com/joway/hugo-theme-yinyang"
