@@ -1,0 +1,54 @@
+---
+title: "通过 Python + Chrome cURL 重放 HTTP 请求"
+date: 2019-10-24T22:09:23+08:00
+draft: false
+---
+
+> 众所周知, 一条完整 cURL 命令, 基本可以完整涵盖一次 HTTP 请求的全部信息, 所以, 只要有一句 Curl 命令, 就足以向服务器发起一次完全一样的请求.
+
+### 一个 HTTP 请求有多常见?
+
+1. 百度知道答案的点赞
+2. 斗鱼直播的一次弹幕
+3. github issues 的一次评论
+
+换句话说, 只要拿到一段 cURL 命令, 就能够将类似上面的各路请求再次复现.
+
+更进一步地说, 既然拿到了命令, 略微修改里面的参数便足以发起与上次请求内容相异的同类请求.
+
+### 手把手做个实验
+
+#### 实验准备
+
+1. 安装 Python, 并搞一个可以解析 cURL 的库
+
+   > pip install torequests -U
+   >
+   > **torequests  >= 4.8.18**, 刚修复了一个 \n 导致提交出错的 bug
+
+2. 安装一个 Chrome 浏览器
+
+####  实验步骤
+
+```python
+from torequests.utils import curlparse
+import requests
+
+curlstring = r'''curl 'https://github.com/ClericPy/blog/issue_comments' -H 'Connection: keep-alive' -H 'Origin: https://github.com'[这里省略很多字符串]测试第一次发送[这里省略很多字符串] --compressed'''
+
+requests.request(**curlparse(curlstring))
+
+```
+
+7. 为了安全起见, 整段 cURL String 被我省略大部分内容, 大体代码如上
+8. 现在把 **测试第一次发送** 这几个字改为 **测试第二次发送** , 然后执行 Python 脚本
+   1. 如果需要, 也可以把 Response 的 text 打印出来看看
+9. 现在在网页上查看该 issue, 下面多了一个 comment, 内容为 **测试第二次发送**
+
+### 总结
+
+1. 在网页上和对方服务器的每次交互, 多数情况下借助的是 HTTP 请求 (少数情况 WebSocket 以后再说), 通过 cURL 命令可以将该请求再次发送给服务器.
+2. 重放 HTTP 请求是最常见的爬虫手段
+   1. 比如想用代码发弹幕, 只需要截取流量然后修改提交的一点代码即可.
+3. 直接使用 cURL 发送请求的最大好处是, 在不确定对方是否有根据 User-Agent / Referer / Custom Header 等方式来反爬的情况下, 这种请求一般都是安全的.
+4. 如果使用过程中 curlparse 这个函数有 issue, 欢迎来提
