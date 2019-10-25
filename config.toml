@@ -25,7 +25,7 @@ favicon = "favicon.ico"
 
 [[params.socials]]
 name = "RSS"
-link = "/index.xml"
+link = "/blog/index.xml"
 
 [[params.socials]]
 name = "Theme"
