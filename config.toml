@@ -21,7 +21,7 @@ headTitle = "Clericpy"
 disqus = "clericpy"
 description = "Hello world?"
 extraHead = ""
-favicon = "/favicon.ico"
+favicon = "favicon.ico"
 [[params.socials]]
 name = "Github"
 link = "https://github.com/ClericPy"
