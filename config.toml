@@ -1,6 +1,6 @@
 baseURL = "https://clericpy.github.io/blog/"
 languageCode = "en-us"
-title = "Clericpy"
+title = "Clericpy's Blog"
 theme = "yinyang"
 DefaultContentLanguage = "cn"
 publishDir = "docs"
@@ -17,14 +17,20 @@ publishDir = "docs"
 
 [params]
 mainSections = ["posts"]
-headTitle = "Clericpy"
+headTitle = "Clericpy's Blog"
 disqus = "clericpy"
 description = "Hello world?"
 extraHead = ""
 favicon = "favicon.ico"
-[[params.socials]]
-name = "Github"
-link = "https://github.com/ClericPy"
+
 [[params.socials]]
 name = "Theme"
 link = "https://github.com/joway/hugo-theme-yinyang"
+
+[[params.socials]]
+name = "Newspaper"
+link = "https://www.clericpy.top/newspaper/articles.query.html"
+
+[[params.socials]]
+name = "Github"
+link = "https://github.com/ClericPy"
