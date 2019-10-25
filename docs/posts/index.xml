@@ -6,17 +6,30 @@
     <description>Recent content in Posts on Clericpy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 24 Oct 2019 22:09:23 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 25 Oct 2019 18:32:22 +0800</lastBuildDate>
     
 	<atom:link href="https://clericpy.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>爬虫常用代码片段合集 - [torequests.utils]</title>
+      <link>https://clericpy.github.io/blog/posts/20191025183222/</link>
+      <pubDate>Fri, 25 Oct 2019 18:32:22 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/20191025183222/</guid>
+      <description>前言 此处省略 150 字引言, 假装以后会补.
+正文 以下功能均已收入 torequests
+ pip install torequests -U
+  查看当前进程的内存占用. 借助 psutil
+ def print_mem(unit=&amp;quot;MB&amp;quot;): &amp;quot;&amp;quot;&amp;quot;Show the proc-mem-cost with psutil, use this only for lazinesssss. :param unit: B, KB, MB, GB. &amp;quot;&amp;quot;&amp;quot; try: import psutil, os B = float(psutil.Process(os.getpid()).memory_info().vms) KB = B / 1024 MB = KB / 1024 GB = MB / 1024 result = vars()[unit] print(&amp;quot;memory usage: %.2f(%s)&amp;quot; % (result, unit)) return result except ImportError: print(&amp;quot;pip install psutil first.</description>
+    </item>
+    
+    <item>
       <title>通过 Python &#43; Chrome cURL 重放 HTTP 请求</title>
-      <link>https://clericpy.github.io/blog/posts/1/</link>
+      <link>https://clericpy.github.io/blog/posts/20191024220923/</link>
       <pubDate>Thu, 24 Oct 2019 22:09:23 +0800</pubDate>
       
-      <guid>https://clericpy.github.io/blog/posts/1/</guid>
+      <guid>https://clericpy.github.io/blog/posts/20191024220923/</guid>
       <description>众所周知, 一条完整 cURL 命令, 基本可以完整涵盖一次 HTTP 请求的全部信息, 所以, 只要有一句 Curl 命令, 就足以向服务器发起一次完全一样的请求.
  一个 HTTP 请求有多常见?  百度知道答案的点赞 斗鱼直播的一次弹幕 github issues 的一次评论  换句话说, 只要拿到一段 cURL 命令, 就能够将类似上面的各路请求再次复现.
 更进一步地说, 既然拿到了命令, 略微修改里面的参数便足以发起与上次请求内容相异的同类请求.
