@@ -1820,7 +1820,11 @@ StressTest('http://localhost:8080', n=100, timeout=2).x
 <li><p>净化一个复杂的请求, 只保留最简洁的参数</p>
 
 <ol>
-<li><p>这个也不多提了, 实现起来有些脏, 不是很优雅, 虽然还是可以用</p>
+<li><p>源代码有些脏, 就不展示了, 不是很优雅, 不过可以用</p></li>
+
+<li><p>怕反爬就限制一下频率</p></li>
+
+<li><p>实现原理就是得到全部 Request 参数, 然后一个个去掉, 如果去掉了某个导致 callback 结果 (默认是 md5 resp.content) 发生变化, 则该参数不是可忽略的参数</p>
 
 <pre><code class="language-python">from torequests.crawlers import CleanRequest
 request = '''curl 'https://p.3.cn?skuIds=1&amp;nonsense=1&amp;nonce=0' -H 'Pragma: no-cache' -H 'DNT: 1' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: zh-CN,zh;q=0.9' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' -H 'Cache-Control: no-cache' -H 'Referer: https://p.3.cn?skuIds=1&amp;nonsense=1&amp;nonce=0' -H 'Cookie: ASPSESSIONIDSQRRSADB=MLHDPOPCAMBDGPFGBEEJKLAF' -H 'Connection: keep-alive' --compressed'''
