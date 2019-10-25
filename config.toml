@@ -24,6 +24,10 @@ extraHead = ""
 favicon = "favicon.ico"
 
 [[params.socials]]
+name = "RSS"
+link = "/index.xml"
+
+[[params.socials]]
 name = "Theme"
 link = "https://github.com/joway/hugo-theme-yinyang"
 
