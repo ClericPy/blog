@@ -1,1 +1,1 @@
-hugo.exe
+hugo
