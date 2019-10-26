@@ -4,6 +4,7 @@ title = "Clericpy's Blog"
 theme = "yinyang"
 DefaultContentLanguage = "cn"
 publishDir = "docs"
+googleAnalytics = "UA-150991415-1"
 
 [author]
   name = "Clericpy"
@@ -20,8 +21,9 @@ mainSections = ["posts"]
 headTitle = "Clericpy's Blog"
 disqus = "clericpy"
 description = "Hello world?"
-extraHead = ""
 favicon = "favicon.ico"
+googleAnalytics = "UA-150991415-1"
+extraHead = '<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150991415-1"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag("js", new Date());  gtag("config", "UA-150991415-1");</script>'
 
 [[params.socials]]
 name = "RSS"

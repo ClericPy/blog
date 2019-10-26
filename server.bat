@@ -1,1 +1,2 @@
-hugo.exe server
+hugo
+hugo server
