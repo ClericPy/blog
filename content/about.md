@@ -14,5 +14,7 @@ draft: false
 
 ### About Me
 
-> [My Github](https://github.com/ClericPy)
+[My Github](https://github.com/ClericPy)
+
+Email: clericpy@gmail.com
 
