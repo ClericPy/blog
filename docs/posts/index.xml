@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Clericpy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 25 Oct 2019 18:32:22 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 27 Oct 2019 11:34:40 +0800</lastBuildDate>
     
 	<atom:link href="https://clericpy.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python 中文教程在 2019 年的选择</title>
+      <link>https://clericpy.github.io/blog/posts/20191027113439/</link>
+      <pubDate>Sun, 27 Oct 2019 11:34:40 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/20191027113439/</guid>
+      <description>本文不会太大篇幅讲东西, 只是把必要信息罗列一下, 节省 Python 入门时间, 少走弯路.
+ 前言 Python 的入门中文教程, 如果放在三四年前, 那可以选择的太多了
+ 廖雪峰 Python3 教程  那个年头确实最好的选择  在线阅读 保持更新新特性 作者知识面比较广   Python 之旅  这个是很后期才看到的, 质量意外的不错  Head First Python  我当年买的入门第一本书, 实际上看完更迷了&amp;hellip;  Learn Python the Hard Way (笨方法学 Python)  曾经稍微看过, 只能说类似于应试教育的刷题培养肌肉记忆的好书  Think Python  图书馆借来看的, 有点旧, 信息量也不算大 但是内容质量非常高  陪孩子学 Python 之类的儿童读物  这种东西&amp;hellip; 不是说不好, 标题让我讨厌  各种网站上的视频教程  说实话, 我真正培养入门兴趣的还正是 B 站已经有的小甲鱼零基础学 Python 视频 视频类型的不枯燥, 有些老师还会讲段子发散思维便于记忆 但是一个视频的信息量真的太少了, 时间充裕的可以试试   但进入 2019 年以来, 以上教程基本已经不算第一梯队的选择了.</description>
+    </item>
     
     <item>
       <title>爬虫常用代码片段合集 - [torequests.utils]</title>
