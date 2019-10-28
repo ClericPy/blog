@@ -8,7 +8,7 @@ draft: false
 
 [My Blog](/blog)
 
-[Python Newspaper]( https://www.clericpy.top/newspaper/articles.query.html )
+[Python News]( https://www.clericpy.top/newspaper/articles.query.html )
 
 ### About Me
 
