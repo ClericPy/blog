@@ -14,7 +14,7 @@ draft: false
 
 **Github**: https://github.com/ClericPy
 
-**Email**: clericpy@gmail.com
+**Email**: <clericpy@gmail.com>
 
 ### Blog Theme
 
