@@ -30,16 +30,8 @@ name = "RSS"
 link = "/blog/index.xml"
 
 [[params.socials]]
-name = "Theme"
-link = "https://github.com/joway/hugo-theme-yinyang"
-
-[[params.socials]]
 name = "Newspaper"
 link = "https://www.clericpy.top/newspaper/articles.query.html"
-
-[[params.socials]]
-name = "Github"
-link = "https://github.com/ClericPy"
 
 [[params.socials]]
 name = "About"
