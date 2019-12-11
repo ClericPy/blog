@@ -9,20 +9,22 @@
                 {{ partial "header.html" . }}
                 <section>
                     <ul>
-                        <h1>Categories</h1>
+                        <h1><a href="/blog/categories/">Categories</a></h1>
                         {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
                         <ul>
                             {{ range $key, $value := $taxonomy }}
+                            {{if (or (eq (title $key) ($.Page.Title)) (eq ($.Page.Title) ("Categories"))) }}
+
                             <li>
-                                <h4><a href="/blog/categories/{{ $key | urlize }}" target="_blank"
-                                        rel="noopener noreferrer">{{ $key }} ({{ .Count }})</a>
+                                <h4><a href="/blog/categories/{{ $key | urlize }}/"
+                                        rel="noopener noreferrer">{{ $key | humanize | title}} ({{ .Count }})</a>
                                 </h4>
                                 <ul>
                                     {{ range $value.Pages }}
                                     <li hugo-nav="{{ .RelPermalink}}" class="col-xs-12">
                                         {{ if .Date }}
                                         <time class="col-xs-2" datetime="{{ .Date.Format "2006-01-02 15:04:05 MST" }}">
-                                            {{ .Date.Format "02 Jan 2006" }}
+                                            {{ .Date.Format "2006-01-02" }}
                                         </time>
                                         {{ end }}
                                         <a href="{{ .Permalink}}" class="col-xs-10"> <span>{{ .LinkTitle }}</span> </a>
@@ -30,6 +32,7 @@
                                     {{ end }}
                                 </ul>
                             </li>
+                            {{ end }}
                             {{ end }}
                         </ul>
                         {{ end }}

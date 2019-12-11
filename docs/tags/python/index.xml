@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on Clericpy&#39;s Blog</title>
+    <link>https://clericpy.github.io/blog/tags/python/</link>
+    <description>Recent content in python on Clericpy&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 25 Oct 2019 18:32:22 +0800</lastBuildDate>
+    
+	<atom:link href="https://clericpy.github.io/blog/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>爬虫常用代码片段合集 - [torequests.utils]</title>
+      <link>https://clericpy.github.io/blog/posts/20191025183222/</link>
+      <pubDate>Fri, 25 Oct 2019 18:32:22 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/20191025183222/</guid>
+      <description>前言 此处省略 150 字引言, 假装以后会补.
+正文 以下功能均已收入 torequests
+ pip install torequests -U
+  查看当前进程的内存占用. 借助 psutil
+ 代码
+def print_mem(unit=&amp;quot;MB&amp;quot;): &amp;quot;&amp;quot;&amp;quot;Show the proc-mem-cost with psutil, use this only for lazinesssss. :param unit: B, KB, MB, GB. &amp;quot;&amp;quot;&amp;quot; try: import psutil, os B = float(psutil.Process(os.getpid()).memory_info().vms) KB = B / 1024 MB = KB / 1024 GB = MB / 1024 result = vars()[unit] print(&amp;quot;memory usage: %.2f(%s)&amp;quot; % (result, unit)) return result except ImportError: print(&amp;quot;pip install psutil first.</description>
+    </item>
+    
+  </channel>
+</rss>

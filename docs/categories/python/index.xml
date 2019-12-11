@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Clericpy&#39;s Blog</title>
+    <link>https://clericpy.github.io/blog/categories/python/</link>
+    <description>Recent content in Python on Clericpy&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 27 Oct 2019 11:34:40 +0800</lastBuildDate>
+    
+	<atom:link href="https://clericpy.github.io/blog/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python 中文教程在 2019 年的选择</title>
+      <link>https://clericpy.github.io/blog/posts/20191027113439/</link>
+      <pubDate>Sun, 27 Oct 2019 11:34:40 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/20191027113439/</guid>
+      <description>本文不会太大篇幅讲东西, 只是把必要信息罗列一下, 节省 Python 入门时间, 少走弯路.
+ 前言 Python 的入门中文教程, 如果放在三四年前, 那可以选择的太多了
+ 廖雪峰 Python3 教程  那个年头确实最好的选择  在线阅读 保持更新新特性 作者知识面比较广   Python 之旅  这个是很后期才看到的, 质量意外的不错  Head First Python  我当年买的入门第一本书, 实际上看完更迷了&amp;hellip;  Learn Python the Hard Way (笨方法学 Python)  曾经稍微看过, 只能说类似于应试教育的刷题培养肌肉记忆的好书  Think Python  图书馆借来看的, 有点旧, 信息量也不算大 但是内容质量非常高  陪孩子学 Python 之类的儿童读物  这种东西&amp;hellip; 不是说不好, 标题让我讨厌  各种网站上的视频教程  说实话, 我真正培养入门兴趣的还正是 B 站已经有的小甲鱼零基础学 Python 视频 视频类型的不枯燥, 有些老师还会讲段子发散思维便于记忆 但是一个视频的信息量真的太少了, 时间充裕的可以试试   但进入 2019 年以来, 以上教程基本已经不算第一梯队的选择了.</description>
+    </item>
+    
+    <item>
+      <title>爬虫常用代码片段合集 - [torequests.utils]</title>
+      <link>https://clericpy.github.io/blog/posts/20191025183222/</link>
+      <pubDate>Fri, 25 Oct 2019 18:32:22 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/20191025183222/</guid>
+      <description>前言 此处省略 150 字引言, 假装以后会补.
+正文 以下功能均已收入 torequests
+ pip install torequests -U
+  查看当前进程的内存占用. 借助 psutil
+ 代码
+def print_mem(unit=&amp;quot;MB&amp;quot;): &amp;quot;&amp;quot;&amp;quot;Show the proc-mem-cost with psutil, use this only for lazinesssss. :param unit: B, KB, MB, GB. &amp;quot;&amp;quot;&amp;quot; try: import psutil, os B = float(psutil.Process(os.getpid()).memory_info().vms) KB = B / 1024 MB = KB / 1024 GB = MB / 1024 result = vars()[unit] print(&amp;quot;memory usage: %.2f(%s)&amp;quot; % (result, unit)) return result except ImportError: print(&amp;quot;pip install psutil first.</description>
+    </item>
+    
+    <item>
+      <title>通过 Python &#43; Chrome cURL 重放 HTTP 请求</title>
+      <link>https://clericpy.github.io/blog/posts/20191024220923/</link>
+      <pubDate>Thu, 24 Oct 2019 22:09:23 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/20191024220923/</guid>
+      <description>众所周知, 一条完整 cURL 命令, 基本可以完整涵盖一次 HTTP 请求的全部信息, 所以, 只要有一句 Curl 命令, 就足以向服务器发起一次完全一样的请求.
+ 一个 HTTP 请求有多常见?  百度知道答案的点赞 斗鱼直播的一次弹幕 github issues 的一次评论  换句话说, 只要拿到一段 cURL 命令, 就能够将类似上面的各路请求再次复现.
+更进一步地说, 既然拿到了命令, 略微修改里面的参数便足以发起与上次请求内容相异的同类请求.
+手把手做个实验 实验准备  安装 Python, 并搞一个可以解析 cURL 的库   pip install torequests -U
+torequests &amp;gt;= 4.8.18, 刚修复了一个 \n 导致提交出错的 bug
+  安装一个 Chrome 浏览器  实验步骤 from torequests.utils import curlparse import requests curlstring = r&#39;&#39;&#39;curl &#39;https://github.</description>
+    </item>
+    
+  </channel>
+</rss>
