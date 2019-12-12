@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.59.0" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Clericpy" />
+  <meta property="og:url" content="https://clericpy.github.io/blog/posts/20191212204259/" />
+  <link rel="canonical" href="https://clericpy.github.io/blog/posts/20191212204259/" /><link rel="shortcut icon" href="/blog/favicon.ico" type="image/x-png" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/clericpy.github.io\/blog\/"
+      },
+      "articleSection" : "posts",
+      "name" : "回顾软件设计的原则",
+      "headline" : "回顾软件设计的原则",
+      "description" : "鉴于最近又写出大量低质量代码, 所以需要重新回顾一下这些有用的编码哲学.",
+      "inLanguage" : "en-US",
+      "author" : "Clericpy",
+      "creator" : "Clericpy",
+      "publisher": "Clericpy",
+      "accountablePerson" : "Clericpy",
+      "copyrightHolder" : "Clericpy",
+      "copyrightYear" : "2019",
+      "datePublished": "2019-12-12 20:43:00 \x2b0800 CST",
+      "dateModified" : "2019-12-12 20:43:00 \x2b0800 CST",
+      "url" : "https:\/\/clericpy.github.io\/blog\/posts\/20191212204259\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>回顾软件设计的原则 - Clericpy&#39;s Blog</title>
+  <meta property="og:title" content="回顾软件设计的原则 - Clericpy&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="鉴于最近又写出大量低质量代码, 所以需要重新回顾一下这些有用的编码哲学." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/blog/css/index.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Clericpy&#39;s Blog">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150991415-1"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag("js", new Date());  gtag("config", "UA-150991415-1");</script>
+</head>
+
+
+<body>
+    <article class="post Chinese" id="article">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                <div class="site-header">
+                    
+<header>
+  <div class="signatures site-title">
+    <a href="/blog/">Clericpy&#39;s Blog</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+                </div>
+                <header class="post-header">
+                    <h1 class="post-title">回顾软件设计的原则</h1>
+                    
+                    <div class="row post-desc">
+                        <div class="col-xs-2">
+                            
+                            <time class="post-date" datetime="2019-12-12 20:43:00 CST">
+                                12 Dec 2019
+                            </time>
+                            
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="/blog/categories/python"><b
+                                    style="text-decoration:underline">Python</b></a>
+                        </div>
+                        <div class="col-xs-6">
+                            
+                            <div class="post-author">
+                                <a target="_blank" href="https://github.com/ClericPy">@Clericpy</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </header>
+
+                <div class="post-content markdown-body">
+                    
+
+<blockquote>
+<p>鉴于最近又写出大量低质量代码, 所以需要重新回顾一下这些有用的编码哲学.</p>
+</blockquote>
+
+<p>主要参照 &lt;<a href="https://coolshell.cn/articles/4535.html">一些软件设计的原则</a>&gt; &ndash; 酷壳, 做一下简单理解的笔记.
+<a name="Ij6rG"></a></p>
+
+<h3 id="1-一句话总结">1. 一句话总结:</h3>
+
+<ol>
+<li>大段重复代码要提取函数, 方便复用和统一修改</li>
+<li>高层依赖抽象, 抽象去依赖底层实现. 因为高层抽象逻辑很少变, 而底层实现却经常要变</li>
+<li>功能之间相互依赖越少越好, 逻辑越独立越好, 不要过度优化和过早优化</li>
+<li>底层的每个函数职责尽量单一, 每个类只做好一件事, 功能粒度越细越好</li>
+
+<li><p>多用接口少用继承. 由上层抽象来统一组合调配, 进而实现完整功能
+<a name="twiVh"></a></p>
+
+<h3 id="2-设计原则明细">2. 设计原则明细</h3>
+
+<p><a name="3rT6Z"></a></p>
+
+<h4 id="don-t-repeat-yourself-dry">Don’t Repeat Yourself (DRY)</h4>
+
+<p>相似代码抽取共性, 构造复用函数
+<a name="scgs7"></a></p>
+
+<h4 id="keep-it-simple-stupid-kiss">Keep It Simple, Stupid (KISS)</h4>
+
+<p>不要把事情搞复杂, 围绕要解决的问题保持简洁
+<a name="QE6Re"></a></p>
+
+<h4 id="program-to-an-interface-not-an-implementation">Program to an interface, not an implementation</h4>
+
+<p>多依靠抽象接口解决问题, 少依赖具体实现, 方便后期修改时保持独立
+<a name="H129o"></a></p>
+
+<h4 id="command-query-separation-cqs-命令-查询分离原则">Command-Query Separation (CQS)  – 命令-查询分离原则</h4>
+
+<p>Query 功能和 Command 功能不要合并到一起写. 主要考虑到 安全性, 性能, 可维护性, 功能唯一原则等因素
+<a name="zHTJE"></a></p>
+
+<h4 id="you-ain-t-gonna-need-it-yagni">You Ain’t Gonna Need It (YAGNI)</h4>
+
+<p>只实现目前需要的功能，在以后您需要更多功能时，可以再进行添加
+<a name="eXPfu"></a></p>
+
+<h4 id="law-of-demeter-迪米特法则">Law of Demeter – 迪米特法则</h4>
+
+<p>解耦合. 每个功能对其他功能的了解越少越好, 越独立越好, 不要太多复合依赖
+<a name="JnhR3"></a></p>
+
+<h4 id="面向对象的s-o-l-i-d-原则">面向对象的S.O.L.I.D 原则</h4></li>
+
+<li><p>Single Responsibility Principle (SRP) – 职责单一原则</p>
+
+<ol>
+<li>一个&rdquo;类&rdquo;只做好一件事, 尽量不要做太多事</li>
+</ol></li>
+
+<li><p>Open/Closed Principle (OCP) – 开闭原则</p>
+
+<ol>
+<li>依赖抽象，而不是实现, 所以修改的时候底层重新套新版实现类即可, 业务层功能不变的情况下, 依赖的抽象也就不需要修改</li>
+<li>对扩展是开放的，而对修改是封闭的</li>
+</ol></li>
+
+<li><p>Liskov substitution principle (LSP) – 里氏代换原则</p>
+
+<ol>
+<li>任何基类可以出现的地方，子类一定可以出现</li>
+<li>类的继承不要割裂, 一般情况下, 多考虑新增功能, 而不是覆盖父类同名方法</li>
+</ol></li>
+
+<li><p>Interface Segregation Principle (ISP) – 接口隔离原则</p>
+
+<ol>
+<li>把功能实现在接口中，而不是类中. 对 python 来说, 多用 mixin 类, 而不是继承</li>
+</ol></li>
+
+<li><p>Dependency Inversion Principle (DIP) – 依赖倒置原则</p>
+
+<ol>
+<li>基本等同于上面提到的 &ldquo;Program to an interface, not an implementation&rdquo;</li>
+<li>主要解决的问题是: 一般依赖的功能抽象变化比较少, 而底层实现经常会改变
+
+<ol>
+<li>增加复用的安全性, 减少修改成本</li>
+</ol></li>
+<li>高层抽象尽量不变, 迫使底层做改变</li>
+
+<li><p>功能标准化, 设计一致性
+<a name="UGjQd"></a></p>
+
+<h4 id="common-closure-principle-ccp-共同封闭原则">Common Closure Principle（CCP）– 共同封闭原则</h4>
+
+<p>开闭原则的延伸<br />将相关联的修改控制在一个 &ldquo;包&rdquo;, 甚至一个 &ldquo;类&rdquo; 中, 不要做跨包/跨类修改操作<br />有点类似 git 每个文件一个 commit 的想法
+<a name="T17i3"></a></p>
+
+<h4 id="common-reuse-principle-crp-共同重用原则">Common Reuse Principle (CRP) – 共同重用原则</h4>
+
+<p>包内的类应该一起被重用(reuse). 感觉 python 用到不多<br />CCP 让包尽可能大, 把关联的放到一起; CRP 让包尽可能小, 只放用到的类
+<a name="D8Lov"></a></p>
+
+<h4 id="hollywood-principle-好莱坞原则">Hollywood Principle – 好莱坞原则</h4>
+
+<p>允许低层组件将自己挂钩到系统上，但是由高层组件来决定什么时候使用这些低层组件<br />大致是说, 底层只负责基础功能, 把基础功能如何组合去用, 交给调用方来解决
+<a name="2vt6A"></a></p>
+
+<h4 id="high-cohesion-low-loose-coupling-高内聚-低耦合">High Cohesion &amp; Low/Loose coupling &amp; – 高内聚， 低耦合</h4>
+
+<p>高内聚: 重用性高, 功能完整<br />低耦合: 相互独立, 减少相互依赖
+<a name="anyYU"></a></p>
+
+<h4 id="convention-over-configuration-coc-惯例优于配置原则">Convention over Configuration（CoC）– 惯例优于配置原则</h4>
+
+<p>使用惯例(约定)代替详细的配置文件.<br />比如 get_ 开头的函数代表取值操作, 而 get<em>obj</em> 开头代表取得一个对象的操作, 对 python 来说, 可以通过 globals 一次列出过滤, 而不必一个个添加到 list 里面, 节省代码, 而且方便增删
+<a name="THXmn"></a></p>
+
+<h4 id="separation-of-concerns-soc-关注点分离">Separation of Concerns (SoC) – 关注点分离</h4>
+
+<p>复杂问题拆分为最小的独立问题, 更易于解决<br />有点类似于超过 5 行代码的逻辑都抽离成单独函数
+<a name="t15iK"></a></p>
+
+<h4 id="design-by-contract-dbc-契约式设计">Design by Contract (DbC) – 契约式设计</h4>
+
+<p>类继承的方法, 参数/返回 要和基类一致
+<a name="GLOH1"></a></p>
+
+<h4 id="acyclic-dependencies-principle-adp-无环依赖原则">Acyclic Dependencies Principle (ADP) – 无环依赖原则</h4>
+
+<p>杜绝循环依赖</p></li>
+</ol></li>
+</ol>
+
+<p><a name="Hx1CJ"></a></p>
+
+<h3 id="3-总结">3. 总结</h3>
+
+<p>目前看来, 设计原则基本围绕的是每个函数的功能越单一越好, 类与类之间越独立越好; 业务层面依赖抽象, 尽量不要去关心具体的实现.<br /><strong>高内聚, 低耦合</strong>.</p>
+
+                </div>
+                
+
+                
+
+
+                
+                
+                <div style="height: 50px;"></div>
+                
+                <div class="post-comments">
+                    <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://clericpy.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+                </div>
+                
+                
+
+                <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="/blog/categories/" target="_blank">Categories</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/ClericPy/blog/issues" target="_blank">Issue</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/index.xml" target="_blank">RSS</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://www.clericpy.top/newspaper/articles.query.html" target="_blank">News</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/about" target="_blank">About</a>
+  </div>
+  
+  
+</div>
+
+            </div>
+        </div>
+    </article>
+
+    <script src="/blog/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+    
+
+</body>
+
+</html>
