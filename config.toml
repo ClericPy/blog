@@ -6,6 +6,9 @@ DefaultContentLanguage = "cn"
 publishDir = "docs"
 googleAnalytics = "UA-150991415-1"
 
+[taxonomies]
+  category = "categories"
+
 [author]
   name = "Clericpy"
   homepage = "https://github.com/ClericPy"
