@@ -29,20 +29,20 @@ googleAnalytics = "UA-150991415-1"
 extraHead = '<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150991415-1"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag("js", new Date());  gtag("config", "UA-150991415-1");</script>'
 
 [[params.socials]]
-name = "Categories"
-link = "/blog/categories/"
-
-[[params.socials]]
-name = "Issue"
-link = "https://github.com/ClericPy/blog/issues"
+name = "News"
+link = "https://www.clericpy.top/newspaper/articles.query.html"
 
 [[params.socials]]
 name = "RSS"
 link = "/blog/index.xml"
 
 [[params.socials]]
-name = "News"
-link = "https://www.clericpy.top/newspaper/articles.query.html"
+name = "Categories"
+link = "/blog/categories/"
+
+[[params.socials]]
+name = "Issue"
+link = "https://github.com/ClericPy/blog/issues"
 
 [[params.socials]]
 name = "About"
