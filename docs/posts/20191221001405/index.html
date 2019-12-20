@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.59.0" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Clericpy" />
+  <meta property="og:url" content="https://clericpy.github.io/blog/posts/20191221001405/" />
+  <link rel="canonical" href="https://clericpy.github.io/blog/posts/20191221001405/" /><link rel="shortcut icon" href="/blog/favicon.ico" type="image/x-png" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/clericpy.github.io\/blog\/"
+      },
+      "articleSection" : "posts",
+      "name" : "设计模式拾遗",
+      "headline" : "设计模式拾遗",
+      "description" : "没有什么 \x22新瓶装旧酒\x22, 只希望温故而知新吧",
+      "inLanguage" : "en-US",
+      "author" : "Clericpy",
+      "creator" : "Clericpy",
+      "publisher": "Clericpy",
+      "accountablePerson" : "Clericpy",
+      "copyrightHolder" : "Clericpy",
+      "copyrightYear" : "2019",
+      "datePublished": "2019-12-21 00:14:06 \x2b0800 CST",
+      "dateModified" : "2019-12-21 00:14:06 \x2b0800 CST",
+      "url" : "https:\/\/clericpy.github.io\/blog\/posts\/20191221001405\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>设计模式拾遗 - Clericpy&#39;s Blog</title>
+  <meta property="og:title" content="设计模式拾遗 - Clericpy&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="没有什么 &#34;新瓶装旧酒&#34;, 只希望温故而知新吧" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/blog/css/index.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Clericpy&#39;s Blog">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150991415-1"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag("js", new Date());  gtag("config", "UA-150991415-1");</script>
+</head>
+
+
+<body>
+    <article class="post Chinese" id="article">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                <div class="site-header">
+                    
+<header>
+  <div class="signatures site-title">
+    <a href="/blog/">Clericpy&#39;s Blog</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+                </div>
+                <header class="post-header">
+                    <h1 class="post-title">设计模式拾遗</h1>
+                    
+                    <div class="row post-desc">
+                        <div class="col-xs-2">
+                            
+                            <time class="post-date" datetime="2019-12-21 00:14:06 CST">
+                                21 Dec 2019
+                            </time>
+                            
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="/blog/categories/coding"><b
+                                    style="text-decoration:underline">Coding</b></a>
+                        </div>
+                        <div class="col-xs-6">
+                            
+                            <div class="post-author">
+                                <a target="_blank" href="https://github.com/ClericPy">@Clericpy</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="toc" class="well col-md-12 col-sm-10" style="font-size: 0.8em; border: 1px dashed rgb(194, 194, 194); margin: 15px; padding: 15px;">
+                        <h3>Table of Contents</h3>
+                        <nav id="TableOfContents">
+<ul>
+<li><a href="#设计模式简介">设计模式简介</a>
+<ul>
+<li><a href="#1-简单工厂-simple-factory">1 简单工厂 Simple Factory</a></li>
+<li><a href="#2-工厂方法-factory-method">2 工厂方法 Factory Method</a></li>
+<li><a href="#3-抽象工厂-abstract-factory">3 抽象工厂 Abstract Factory</a></li>
+<li><a href="#4-建造者-builder">4 建造者 Builder</a></li>
+<li><a href="#5-原型-prototype">5 原型 Prototype</a></li>
+<li><a href="#6-适配器-adapter">6 适配器 Adapter</a></li>
+<li><a href="#7-装饰器-decorator">7 装饰器 Decorator</a></li>
+<li><a href="#8-外观-facade">8 外观 Facade</a></li>
+<li><a href="#9-享元-flyweight">9 享元 Flyweight</a></li>
+<li><a href="#10-代理-proxy">10 代理 Proxy</a></li>
+<li><a href="#11-责任链-chain-of-responsibility">11 责任链 Chain of Responsibility</a></li>
+<li><a href="#12-命令-command">12 命令 Command</a></li>
+<li><a href="#13-观察者-observer">13 观察者 Observer</a></li>
+<li><a href="#14-状态-state">14 状态 State</a></li>
+<li><a href="#15-策略-strategy">15 策略 Strategy</a></li>
+<li><a href="#16-模板-template">16 模板 Template</a></li>
+<li><a href="#17-混入-mixin">17 混入 Mixin</a></li>
+<li><a href="#18-单例-singleton">18 单例 Singleton</a></li>
+<li><a href="#19-备忘录-memento">19 备忘录 Memento</a></li>
+<li><a href="#20-空对象-null-object">20 空对象 Null Object</a></li>
+<li><a href="#21-解释器-interpreter">21 解释器 Interpreter</a></li>
+</ul></li>
+<li><a href="#概括">概括</a></li>
+<li><a href="#总结">总结</a></li>
+</ul>
+</nav>
+                    </div>
+                </header>
+                <div class="post-content markdown-body">
+                    
+
+<blockquote>
+<p>没有什么 &ldquo;新瓶装旧酒&rdquo;, 只希望温故而知新吧</p>
+</blockquote>
+
+<p>快速回顾, 具体细节不多讲, 可能有理解不对的地方, 请留言指正<br />示例代码: Python</p>
+
+<h1 id="设计模式简介">设计模式简介</h1>
+
+<h2 id="1-简单工厂-simple-factory">1 简单工厂 Simple Factory</h2>
+
+<p>&ldquo;工厂&rdquo; 顾名思义就是负责生产产品(对象)的地方, 简单工厂则主要处理单一产品等级结构的情况<br />由一个工厂类来决定创建哪个 / 哪些对象, 将创建对象的操作集中在一起, 使之与对象的使用解耦<br />将<strong>对象的创建与使用解耦</strong>, 也就是俗称的:** **要什么就造什么<br />现实案例: 宠物店新增宠物</p>
+
+<pre><code class="language-python">class AnimalFactory(object):
+    &quot;&quot;&quot;动物工厂, 负责产生动物&quot;&quot;&quot;
+
+    @staticmethod
+    def create_animal(name):
+        if name == 'Cat':
+            return Cat()
+        elif name == 'Dog':
+            return Dog()
+
+
+def main():
+    dog = AnimalFactory.create_animal('Dog')
+    cat = AnimalFactory.create_animal('Cat')
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+
+</code></pre>
+
+<h2 id="2-工厂方法-factory-method">2 工厂方法 Factory Method</h2>
+
+<p>基类负责抽象一个工厂方法(<strong>接口</strong>), 而不用关心具体如何实现, 具体实现让子类来负责<br />现实案例: 动物园新增动物</p>
+
+<pre><code class="language-python">import abc
+
+
+class AnimalFactory(metaclass=abc.ABCMeta):
+    &quot;&quot;&quot;相当于定义了一个接口, 所有类型的工厂都要继承这个类, 并覆盖抽象方法 create_animal&quot;&quot;&quot;
+
+    @abc.abstractmethod
+    def create_animal(self):
+        # 将工厂方法抽象出来
+        pass
+
+
+class CatFactory(AnimalFactory):
+
+    def create_animal(self):
+        # 具体的工厂方法, 用来创建一个猫对象
+        return Cat()
+
+
+class DogFactory(AnimalFactory):
+
+    def create_animal(self):
+        # 具体的工厂方法, 用来创建一个狗对象
+        return Dog()
+
+
+def main():
+    cat = CatFactory().create_animal()
+    dog = DogFactory().create_animal()
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+
+</code></pre>
+
+<h2 id="3-抽象工厂-abstract-factory">3 抽象工厂 Abstract Factory</h2>
+
+<p>在工厂方法的基础上, 产品之间具有超过一层的<strong>复杂</strong>逻辑关系, 比如多种业务品种 / 功能分类<br />因此可以将它们聚集到同一个地方一起管理, 也就是按照特殊的分类角度将各种工厂方法聚合在一起<br />现实案例: 键盘工厂生产不同品牌的有线键盘和无线键盘</p>
+
+<pre><code class="language-python">from abc import ABC, abstractmethod
+
+
+class KeyboardFactory(ABC):
+    &quot;&quot;&quot;抽象键盘工厂, 负责生产有线和无线键盘&quot;&quot;&quot;
+
+    @abstractmethod
+    def produce_wired_keyboard(self):
+        pass
+
+    @abstractmethod
+    def produce_wireless_keyboard(self):
+        pass
+
+
+class IKBCFactory(KeyboardFactory):
+
+    def produce_wired_keyboard(self):
+        return IKBC_C87()
+
+    def produce_wireless_keyboard(self):
+        return IKBC_W200()
+
+
+def main():
+    ikbc = IKBCFactory()
+    kb = ikbc.produce_wired_keyboard()
+    # 如果需要支持 Flico 品牌键盘, 添加好商品, 然后模仿 IKBCFactory 实现一个具体工厂类即可
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+
+</code></pre>
+
+<h2 id="4-建造者-builder">4 建造者 Builder</h2>
+
+<p>将对象的创建过程独立出来, 使同样的过程可以创造出不同的表达<br />简而言之, 将一个对象的构造过程单独<strong>抽离</strong>出来, 可变部分用变量表示</p>
+
+<pre><code class="language-python">import PySimpleGUI as sg
+
+
+class WindowBuilder(object):
+
+    def __init__(self):
+        self.layout = []
+
+    def build(self, text):
+        return self.build1(text).build2(text)
+
+    def build1(self, text):
+        self.layout.append([sg.Text(text)])
+        return self
+
+    def build2(self, text):
+        self.layout.append([sg.Text(text)])
+        return self
+
+    def show(self):
+        window = sg.Window('Test', layout=self.layout)
+        window.Show()
+
+
+if __name__ == &quot;__main__&quot;:
+    window = WindowBuilder()
+    window.build('Test title').show()
+    window.build('Test title 2').show()
+
+</code></pre>
+
+<ul>
+<li>这里类的链式调用不是必须的</li>
+</ul>
+
+<h2 id="5-原型-prototype">5 原型 Prototype</h2>
+
+<p>对已有对象创建一个完整副本时, 这个<strong>副本的修改与原型是相互独立</strong>的<br />之所以借助 copy 而不是重新初始化一个对象, 大概是为了避开 <code>__init__</code> 方法的开支<br />所以有的地方也叫 clone 模式</p>
+
+<pre><code class="language-python">import copy
+
+
+class Prototype(object):
+
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+        print('init')
+
+    def shallow_clone(self):
+        return copy.copy(self)
+
+    def deep_clone(self):
+        return copy.deepcopy(self)
+
+    def __str__(self):
+        return str([self.a, self.b])
+
+
+if __name__ == &quot;__main__&quot;:
+    a = Prototype(1, 1)
+    b = a.shallow_clone()
+    b.a = 2
+    print(a, b)
+
+</code></pre>
+
+<h2 id="6-适配器-adapter">6 适配器 Adapter</h2>
+
+<p>通过适配器转换一个对象, 在不改变原始对象的前提下, 令它与所期望的<strong>接口兼容</strong></p>
+
+<pre><code class="language-python">class Computer(object):
+
+    def __init__(self, name):
+        self.name = name
+
+    def show_name(self):
+        return self.name
+
+
+class Adapter(object):
+
+    def __init__(self, obj, kwargs):
+        self.obj = obj
+        self.__dict__.update(kwargs)
+
+
+class MobilePhone(object):
+
+    def __init__(self, name):
+        self.name = name
+
+    def show_nick(self):
+        return self.name
+
+
+if __name__ == &quot;__main__&quot;:
+    computer = Computer('PC')
+    print(computer.show_name())
+    mb = MobilePhone('iPhone')
+    computer2 = Adapter(mb, {'show_name': mb.show_nick})
+    print(computer2.show_name())
+
+</code></pre>
+
+<h2 id="7-装饰器-decorator">7 装饰器 Decorator</h2>
+
+<p>从 Python 语言角度比较容易理解, 就是把函数(或者类)对象外面套上一层函数(或者类), 使其在<strong>保留原有功能</strong>的基础上, 还可以做一些<strong>额外的操作</strong></p>
+
+<pre><code class="language-python">def wrapper(function):
+    &quot;&quot;&quot;包装函数的前后打印信息&quot;&quot;&quot;
+    print('before wrapping function')
+    function.arg = 'test'
+    print('after wrapping function')
+    return function
+
+
+def raw_function(num):
+    return num
+
+
+# 使用 @ 语法表示原函数以后不会被用到, 而如果还会用到原函数, 则使用显式转换
+new_function = wrapper(raw_function)
+# 经过 wrap 后, 新函数可以保留原有功能, 但也包含了 arg 属性
+print(new_function.arg)
+print(new_function(1))
+# before wrapping function
+# after wrapping function
+# test
+# 1
+
+</code></pre>
+
+<h2 id="8-外观-facade">8 外观 Facade</h2>
+
+<p>外观模式有助于<strong>隐藏系统的内部复杂性</strong>，并通过一个简化的接口向客户端暴露必要的部分<br />客户端只需要操作业务层对象和其抽象, 而不需要关心它的具体实现<br /></p>
+
+<pre><code class="language-python">class Client(object):
+
+    def __init__(self):
+        self.a = StepA()
+        self.b = StepB()
+
+    def _start(self):
+        pass
+
+    def _prepare(self):
+        self.a.prepare_something()
+        self.b.prepare_something()
+
+    def start(self):
+        self._prepare()
+        self._start()
+
+
+class StepA(object):
+
+    def prepare_something(self):
+        pass
+
+
+class StepB(object):
+
+    def prepare_something(self):
+        pass
+
+
+if __name__ == &quot;__main__&quot;:
+    c = Client()
+    c.start()
+
+</code></pre>
+
+<h2 id="9-享元-flyweight">9 享元 Flyweight</h2>
+
+<p>使用<strong>对象池</strong>来避免重复对象的创建, 节省创建对象的开销<br />比较类似缓存的原理</p>
+
+<pre><code class="language-python">import time
+
+
+class Example(object):
+    _a = None
+
+    @property
+    def a(self):
+        if self._a is None:
+            self._a = A()
+        return self._a
+
+
+class A(object):
+
+    def __init__(self):
+        time.sleep(3)
+
+
+if __name__ == &quot;__main__&quot;:
+    e = Example()
+    for _ in range(2):
+        start_time = time.time()
+        a = e.a
+        print(f'cost {time.time()-start_time} seconds.')
+# cost 3.0013318061828613 seconds.
+# cost 0.0 seconds.
+
+</code></pre>
+
+<h2 id="10-代理-proxy">10 代理 Proxy</h2>
+
+<p>常见于网络代理模式, 正向代理, 反向代理等, 即通过代理层控制网络请求的收发<br />也用于<strong>限权</strong>, 即只对用户开放部分需要的权限, 保护敏感对象的访问<br />也用于延迟初始化, 比如只在真正第一次用到的时候, 才做比较耗时的初始化操作<br />还被用于在对象被访问时执行一些额外操作, 可以看作一个装饰器, 如引用计数等</p>
+
+<pre><code class="language-python">class Base(object):
+
+    def normal_operation(self):
+        print(f'{self.user_type} calls normal_operation success')
+
+    def admin_operation(self):
+        print(f'{self.user_type} calls admin_operation success')
+
+
+class Proxy(Base):
+
+    def __init__(self, user_type):
+        self.user_type = user_type
+
+    def normal_operation(self):
+        return super().normal_operation()
+
+    def admin_operation(self):
+        if self.user_type == 'admin':
+            return super().admin_operation()
+        else:
+            raise TypeError('Only admin role can use admin_operation')
+
+
+if __name__ == &quot;__main__&quot;:
+    admin = Proxy('admin')
+    admin.normal_operation()
+    admin.admin_operation()
+    normal = Proxy('normal')
+    normal.normal_operation()
+    normal.admin_operation()
+    # admin calls normal_operation success
+    # admin calls admin_operation success
+    # normal calls normal_operation success
+    # ...
+    # TypeError: Only admin role can use admin_operation
+
+</code></pre>
+
+<h2 id="11-责任链-chain-of-responsibility">11 责任链 Chain of Responsibility</h2>
+
+<p>对象的一系列操作是<strong>链式结构</strong>, 比如有一个过滤器链, 入口函数接收一段数据, 然后依次经历每个过滤器, 最后输出过滤后的结果, 或抛出错误<br />责任链的价值在于<strong>解耦那些复杂的分支逻辑</strong>, 如 if-else 地狱, 以及 switch-case 的多层嵌套</p>
+
+<pre><code class="language-python">class CashRegister(object):
+    &quot;&quot;&quot;超市收款机, 收到纸币分面额存放&quot;&quot;&quot;
+    handle_5_yuan_list = []
+    handle_1_yuan_list = []
+    handle_10_yuan_list = []
+
+    def __init__(self, money):
+        self.money = money
+
+    def handle_yuan(self):
+        &quot;&quot;&quot;函数柯里化. 这里也可以考虑链式调用的设计: self.xx().yy().zz()&quot;&quot;&quot;
+        return self.handle_5_yuan
+
+    def handle_5_yuan(self):
+        if self.money == 5:
+            self.handle_5_yuan_list.append(self.money)
+        return self.handle_1_yuan
+
+    def handle_1_yuan(self):
+        if self.money == 1:
+            self.handle_1_yuan_list.append(self.money)
+        return self.handle_10_yuan
+
+    def handle_10_yuan(self):
+        if self.money == 10:
+            self.handle_10_yuan_list.append(self.money)
+        return [
+            self.handle_1_yuan_list, self.handle_5_yuan_list,
+            self.handle_10_yuan_list
+        ]
+
+
+if __name__ == &quot;__main__&quot;:
+    # 柯里化
+    print(CashRegister(5).handle_yuan()()()())
+    # [[], [5], []]
+
+</code></pre>
+
+<h2 id="12-命令-command">12 命令 Command</h2>
+
+<p>通过将<strong>请求</strong>封装并记录下来, 以便可以实现撤销、重做、复制、粘贴等操作<br />如下代码所示, 对象封装的是一次操作请求, 而不是一种功能, 只有封装请求, 才能把请求需要的参数记录下来, 方便后续撤销</p>
+
+<pre><code class="language-python">import os
+
+
+class RenameFile:
+
+    def __init__(self, src, dest):
+        self.src, self.dest = src, dest
+
+    def do(self):
+        # equals redo
+        os.rename(self.src, self.dest)
+
+    def undo(self):
+        os.rename(self.dest, self.src)
+
+
+if __name__ == &quot;__main__&quot;:
+    a, b = '111.txt', '222.txt'
+    print(os.path.exists(a), os.path.exists(b))
+    # True False
+    rf = RenameFile(a, b)
+    rf.do()
+    print(os.path.exists(a), os.path.exists(b))
+    # False True
+    rf.undo()
+    print(os.path.exists(a), os.path.exists(b))
+    # True False
+
+</code></pre>
+
+<h2 id="13-观察者-observer">13 观察者 Observer</h2>
+
+<p>当观察对象发生变化, 所有订阅的观察者都会被通知到<br />观察对象与观察者之间属于<strong>发布-订阅</strong>关系<br />可以参考 python 内置的 <a href="https://docs.python.org/3/library/threading.html#condition-objects">threading.Condition</a> 对象的文档, Condition.notify 就是观察者模式的经典用法</p>
+
+<pre><code class="language-python">class Publisher:
+
+    def __init__(self):
+        self.observers = []
+
+    def add(self, observer):
+        if observer not in self.observers:
+            self.observers.append(observer)
+
+    def remove(self, observer):
+        if observer in self.observers:
+            self.observers.remove(observer)
+
+    def notify(self):
+        for ob in self.observers:
+            ob.notify(self)
+
+
+class Observer(object):
+
+    def __init__(self, name):
+        self.name = name
+
+    def notify(self, publisher):
+        print('received notify from', publisher)
+
+    def sub(self, publisher):
+        publisher.add(self)
+
+
+if __name__ == &quot;__main__&quot;:
+    ob = Observer('test')
+    pub = Publisher()
+    ob.sub(pub)
+    pub.notify()
+    # received notify from &lt;__main__.Publisher object at 0x000001A2771897F0&gt;
+
+</code></pre>
+
+<h2 id="14-状态-state">14 状态 State</h2>
+
+<p>假定有一个状态机对象, 它在创建以后可能会处于数个不同状态, 并具备在不同状态之间<strong>切换</strong>的能力<br />一般会在状态转换的时候绑定一个<strong>回调</strong>(callback)<br />一定程度上解耦了大量复杂的 if-else 和 switch-case 关系, 并把某个状态的所有行为封装到了一起, 达到高内聚低耦合<br />参考有限状态机<br />Python 的<a href="https://github.com/python/cpython/blob/dec367261e7e2bb4dd42feeb58031abed2ade683/Lib/asyncio/futures.py"> Future</a> 体现了一些状态的理念, 具体参考一些状态搭配的 <strong>done_callback</strong></p>
+
+<pre><code class="language-python">_PENDING = base_futures._PENDING
+_CANCELLED = base_futures._CANCELLED
+_FINISHED = base_futures._FINISHED
+</code></pre>
+
+<h2 id="15-策略-strategy">15 策略 Strategy</h2>
+
+<p>定义一系列算法, 在<strong>运行时</strong>可按照对应策略灵活切换, 进而得到想要的结果<br />可以参考 Python 里 list 的 sort 方法的 key 参数</p>
+
+<pre><code class="language-python">class VIPStrategy(object):
+
+    def calculate(self, origin_price):
+        &quot;&quot;&quot;江湖上俗称的会员打八折, 非会员七五折&quot;&quot;&quot;
+        return origin_price * 0.8
+
+
+class NONVIPStrategy(object):
+
+    def calculate(self, origin_price):
+        return origin_price * 0.75
+
+
+class User(object):
+
+    def __init__(self, name, user_type='normal'):
+        self.name, self.user_type = name, user_type
+        if self.user_type == 'VIP':
+            self.pricing_strategy = VIPStrategy()
+        else:
+            self.pricing_strategy = NONVIPStrategy()
+
+    def pricing(self, origin_price):
+        return self.pricing_strategy.calculate(origin_price)
+
+
+if __name__ == &quot;__main__&quot;:
+    user = User('Tom', 'normal')
+    print(user.pricing(100))
+    # 75.0
+    user = User('Tom', 'VIP')
+    print(user.pricing(100))
+    # 80.0
+
+</code></pre>
+
+<h2 id="16-模板-template">16 模板 Template</h2>
+
+<p><strong>提取不变</strong>部分, 将<strong>可变</strong>部分交给<strong>扩展</strong>实现<br />父类将整个骨架抽象出来, 子类继承后将血肉填充进去, 胖瘦随心<br />体现了&rdquo;依赖抽象, 而不是实现&rdquo;的设计原则, 父类知道<strong>做什么</strong>, 子类知道<strong>怎么做</strong></p>
+
+<pre><code class="language-python">from abc import ABC, abstractmethod
+
+
+class DrinkBase(ABC):
+
+    def __init__(self):
+        self.water = []
+
+    @abstractmethod
+    def get_water(self):
+        pass
+
+    @abstractmethod
+    def drink(self):
+        pass
+
+
+class Drink(DrinkBase):
+
+    def __init__(self):
+        super().__init__()
+
+    def get_water(self):
+        self.water.append(1)
+
+    def drink(self):
+        self.water.pop(0)
+
+
+if __name__ == &quot;__main__&quot;:
+    d = Drink()
+    print(d.water)
+    d.get_water()
+    d.get_water()
+    print(d.water)
+    d.drink()
+    print(d.water)
+    d.drink()
+    print(d.water)
+
+</code></pre>
+
+<h2 id="17-混入-mixin">17 混入 Mixin</h2>
+
+<p>通过多个<strong>零散的功能合并</strong>成完整功能的一种继承方式<br />体现了<strong>迪米特法则</strong>, 每个功能对其他功能了解的越少越好, 越独立越好, 也就是解耦<br />体现了<strong>职责单一</strong>原则, 将紧耦合的面向对象转为更清晰的面向接口, 即鸭子类型<br />体现了<strong>关注点分离</strong>原则, 复杂的问题拆分成独立的小问题, 更容易维护~~</p>
+
+<pre><code class="language-python">class Human(object):
+
+    def __init__(self, name):
+        self.name = name
+
+
+class EatMixin(object):
+
+    def eat(self, food):
+        pass
+
+
+class WalkMixin(object):
+
+    def walk(self, destination):
+        pass
+
+
+class Male(Human, EatMixin, WalkMixin):
+
+    def __init__(self, name):
+        super().__init__(name)
+
+
+if __name__ == &quot;__main__&quot;:
+    male = Male('Tom')
+    male.eat('food')
+    male.walk('beach')
+
+</code></pre>
+
+<h2 id="18-单例-singleton">18 单例 Singleton</h2>
+
+<p>保证一个类<strong>只产生一个</strong>实例<br />对 Python 来说, 重载构造函数 <code>__new__</code> 来复用已有对象, 以减轻多次实例化时的额外开销<br />之前也见过很多讲 Python 的地方提到, 绝大多数单例模式适用的场景, 可以用 Borg 模式代替, 不过也出现了很多反对 Borg 模式的声音, 这里就不再多提了, 感兴趣的 google 之: <a href="https://www.google.com/search?q=Borg+Design+singleton">https://www.google.com/search?q=Borg+Design+singleton</a></p>
+
+<pre><code class="language-python">class Singleton(object):
+    conn = None
+
+    def __new__(cls, *args, **kwds):
+        if cls.conn is None:
+            cls.conn = Object()
+        return cls.conn
+
+</code></pre>
+
+<h2 id="19-备忘录-memento">19 备忘录 Memento</h2>
+
+<p>通过一个&rdquo;备忘录&rdquo;, 在<strong>不破坏封装</strong>的前提下, <strong>记录</strong>对象<strong>状态</strong>的变化, 以便在不同状态之间灵活地<strong>转换</strong><br />数据库事务管理机制的回滚操作, 就是这种模式</p>
+
+<pre><code class="language-python">class Browser(object):
+
+    def __init__(self, states):
+        self.states = states
+        self.index = 0
+
+    def back(self):
+        if len(self.states) &gt; self.index &gt; 0:
+            self.index -= 1
+
+    def forward(self):
+        if len(self.states) &gt; self.index + 1:
+            self.index += 1
+
+
+if __name__ == &quot;__main__&quot;:
+    b = Browser([1, 2, 3, 4])
+    for i in range(3):
+        print(b.forward() or b.index, end=' ')
+    for i in range(3):
+        print(b.back() or b.index, end=' ')
+    # 1 2 3 2 1 0 
+
+</code></pre>
+
+<h2 id="20-空对象-null-object">20 空对象 Null Object</h2>
+
+<p>一个空对象可以看作某个<strong>数据类型的零值</strong><br />空对象的好处是, 验证返回值的时候, 可以简化** EAFP 和 LBYL 两种防御性编程风格**的复杂逻辑, 返回一个合法空值</p>
+
+<pre><code class="language-python">
+class Null(object):
+    &quot;&quot;&quot;Null instance will return self when be called, and it will alway be False.&quot;&quot;&quot;
+
+    def __init__(self, *args, **kwargs):
+        return
+
+    def __call__(self, *args, **kwargs):
+        return self
+
+    def __getattr__(self, mname):
+        return self
+
+    def __setattr__(self, name, value):
+        return self
+
+    def __getitem__(self, key):
+        return self
+
+    def __delattr__(self, name):
+        return self
+
+    def __repr__(self):
+        return &quot;&quot;
+
+    def __str__(self):
+        return &quot;&quot;
+
+    def __bool__(self):
+        return False
+
+    def __nonzero__(self):
+        return False
+</code></pre>
+
+<h2 id="21-解释器-interpreter">21 解释器 Interpreter</h2>
+
+<p>常用在领域特定语言（Domain Specific Language，DSL）的场景<br />需要构建语法树, 定义终结符与非终结符<br /><strong>文法</strong>的设计非常考验能力<br />等用到再学也来得及, 不多赘述</p>
+
+<h1 id="概括">概括</h1>
+
+<p><strong>三种工厂模式:</strong></p>
+
+<ol>
+<li>将对象的<strong>创建与使用</strong>隔离开来</li>
+<li>联想到汽车工厂, 开车的人不需要学会怎样造车</li>
+<li>切忌修改抽象基类, 遵循开闭原则, 可以考虑新建或者扩展. 毕竟依赖于抽象的接口而不是具体实现, 如果接口一变, 所有子类全要修改.</li>
+</ol>
+
+<p><strong>建造者模式:</strong></p>
+
+<ol>
+<li>将对象的创建过程中, <strong>不变的部分抽离</strong>出来, 剩下的用变量来补</li>
+<li>联想到一个车间流水线, 按部就班造产品</li>
+<li>有选择地造所需要的东西, 整个建造流程标准化</li>
+</ol>
+
+<p>**原型模式: **</p>
+
+<ol>
+<li><strong>clone 模式</strong></li>
+<li>联想到有丝分裂 &ndash; 我生我自己</li>
+<li>按自己的需要灵活调整 clone 策略, 深浅自选, 必要时候就算实例化一个新对象也没问题</li>
+</ol>
+
+<p><strong>适配器模式:</strong></p>
+
+<ol>
+<li>通过一个适配器的包装, 在不改变原有源代码的前提下, 使一个类符合所期望的<strong>接口</strong></li>
+<li>联想到插头的转接头, 来适配不同标准的插座; 或者手机数据线的转接头; 或者同时支持多种货币的支付系统</li>
+<li>切忌削足适履, 破坏了原有的基础功能</li>
+</ol>
+
+<p><strong>装饰器模式:</strong></p>
+
+<ol>
+<li>与适配器模式类似, 都可以被称为 <strong>包装(wrapper)</strong> 模式, 并都不影响原有功能</li>
+<li>与适配器不完全相同, 适配器的目的是实现接口兼容, 功能并没有变化, 装饰器则是在原有功能基础上增加其他操作</li>
+<li>装饰器模式好用但不能滥用, 就像 Python 里的函数, 外面如果包裹一层装饰器, 尽管可以配合 functools.wrap 保留函数名, 栈深度还是会发生变化, 导致原有的一些结构特性遭到破坏</li>
+</ol>
+
+<p><strong>外观模式:</strong></p>
+
+<ol>
+<li>业务层与底层实现相隔离, 提供人类友好的客户端</li>
+<li>联想到键盘, 工作原理不需要暴露给用户, 用户只要知道如何按键</li>
+<li>为了避免底层出现破坏完整性的修改, 最好依赖抽象而不是具体的实现</li>
+</ol>
+
+<p><strong>享元模式:</strong></p>
+
+<ol>
+<li>当有大量<strong>重复对象</strong>要创建时, 可以直接从已缓存的对象池里直接取, 来节省重新创建对象的开销</li>
+<li>联想到 python 的 -5 到 256, 这个范围里的整数初始化的时候, 不需要重新申请内存</li>
+<li>较倾向缓存思想, 所以缓存失效的相关风险同样要考虑; 此外要确认操作真的是重复对象, 而不会有意外情况</li>
+</ol>
+
+<p><strong>责任链模式:</strong></p>
+
+<ol>
+<li>解耦复杂的多层<strong>嵌套</strong>逻辑判断</li>
+<li>联想到了超市收银台机器里一个个不同面额纸币的槽</li>
+<li>责任链基于链式结构, 所以与之相关的一些约束也同样有效, 比如逻辑上的有序和连续值得注意</li>
+</ol>
+
+<p><strong>命令模式:</strong></p>
+
+<ol>
+<li>最经典的就是撤销(undo)和重做(redo)的场景</li>
+<li>联想到编辑器里的 CTRL-Z 和 CTRL-Y</li>
+<li>撤销和重做功能的实现牵扯到一些一致性问题, 所以要提前设计好相关功能, 有些场景反而可以考虑备忘录模式</li>
+</ol>
+
+<p><strong>观察者模式:</strong></p>
+
+<ol>
+<li>观察对象如果发生<strong>变化</strong>, 所有观察者都会知晓并执行相应 callback</li>
+<li>联想到火车站候车, 如果检票口状态从候车中变为正在检票, 所有乘客进入检票环节</li>
+<li>观察者和观察对象之间避免循环依赖</li>
+<li>观察者模式和发布-订阅模式经常被放在一起说
+
+<ol>
+<li>两者实际上都是在讲发布-订阅关系, 有不少地方对两者的区别概括为&rdquo;别名&rdquo;, 也就是两种模式实质上没有区别, 都可以包含以下所有特性</li>
+<li>观察者与观察对象之间是紧耦合同步通知的, 两者直接对话</li>
+<li>发布者和订阅者之间是通过发布渠道和订阅渠道解耦, 中间件的存在使整个通知过程可以在异步模型中实现, 也就是说发布者不用关心订阅者是谁, 只要通知到发布渠道, 由后者再发送到订阅者即可; 同理, 订阅者也不需要直接联系到发布者本尊, 只需要与订阅接口打交道, 做好订阅与退订环节</li>
+<li>发布者和订阅者之间的环节可以放在同一个调度中心, 也可以分别实现一个调度中心</li>
+<li>提到同步通知和异步通知的实现, 很容易就联想到了 RPC 和消息队列两种通信方式</li>
+</ol></li>
+</ol>
+
+<p><strong>状态模式:</strong></p>
+
+<ol>
+<li>一个对象具有多种状态, 并可以在这些状态之间转换, 转换时也会产生一定的影响</li>
+<li>联想到了事件循环中, 注册对象各种状态的转换, 会触发绑定的回调函数; 也会想到 Bottle 框架的那些 route 装饰器</li>
+<li>状态的定义要足够典型, 如果原本逻辑关系足够清晰, 状态行为也不复杂, 则没有必要强行拆开条件/分支语句, 犯过度设计的错误</li>
+</ol>
+
+<p><strong>策略模式:</strong></p>
+
+<ol>
+<li>对象拥有多种可能行为, 具体行为在<strong>运行时</strong>确定</li>
+<li>联想到购物网站的定价策略和打折策略</li>
+<li>如果是复合型策略, 要注意优先级(权重)的区分
+
+<ol>
+<li>共享性质的策略, 要有优先级的顺序之分, 比如折上折的情况, 一般是按最大折扣的策略, 先计算大折扣</li>
+<li>排他性质的策略, 要定好精确的权重, 比如某个人既是会员又有打折优惠券, 而会员减免比优惠券的权重高, 所以只执行会员定价策略</li>
+</ol></li>
+</ol>
+
+<p><strong>模板模式:</strong></p>
+
+<ol>
+<li>父类决定要做什么, 子类决定怎样去做</li>
+<li>联想到了英语考试的完形填空题; 想到 jinja2 模版库</li>
+<li>如果改动了抽象父类, 可能会导致完整性被破坏, 所以要遵循开闭原则</li>
+</ol>
+
+<p><strong>混入模式:</strong></p>
+
+<ol>
+<li>尽可能地将功能拆分成职责单一的类来进行继承, 功能间解耦</li>
+<li>联想到了拼积木, 每个积木都是独立微小的存在, 却可以拼成高楼大厦汽车火箭</li>
+<li>分的太零碎, 代码会到处都是, 有时候还不如按合并放到同一个类下的静态方法里去</li>
+</ol>
+
+<p><strong>单例模式:</strong></p>
+
+<ol>
+<li>确保了一个类只有一个实例化对象</li>
+<li>联想到生活中多次拨打客服电话, 实际每次接电话的都是同一个人</li>
+<li>复用的对象一般不会有影响使用的不好的变化</li>
+</ol>
+
+<p><strong>备忘录模式:</strong></p>
+
+<ol>
+<li>不破坏封装的前提下保存状态, 并可以在状态之间转换</li>
+<li>联想到象棋游戏里的悔棋; 仙剑奇侠传的 S&amp;L 大法</li>
+<li>存储的状态如果过多, 会额外占用很多资源</li>
+<li>有的历史状态如果回滚, 会导致意想不到的坏事发生, 比如破坏一致性/连续性</li>
+</ol>
+
+<p><strong>空对象模式:</strong></p>
+
+<ol>
+<li>空即是不色, 色不是空</li>
+<li>联想到 go 语言里的零值</li>
+<li>有时候默认值使用一个自定义的空对象比 None 更好, 因为这样就可以在传入 None 时保留 None 的原意</li>
+<li>空对象的处理要达成共识, 有时候可以自定义一些对应方法在该对象中, 这时候就需要依赖抽象接口来保证一致性</li>
+</ol>
+
+<p><strong>解释器模式:</strong></p>
+
+<ol>
+<li>需要设计合适的文法, 构建语法树, 定义终结符与非终结符</li>
+<li>联想到五线谱; SQL 语法</li>
+<li>平时非 DSL 情景下, 没必要用到也不要强行去用</li>
+</ol>
+
+<p><strong>其他设计模式:</strong></p>
+
+<p>就不一一列举了, 比如</p>
+
+<ol>
+<li>MVC 模式, 也是关注点分离原则的具体体现</li>
+<li>迭代器模式, 直接就可以联想到链表结构, 也就是每次操作不需要知道整个对象集有多少, 只需要实现 has_next 和 next 接口即可</li>
+<li>中介者模式, 主要就是在多个对象之间提供一个松耦合的通信渠道, 降低多个对象之间通信的复杂性</li>
+<li>桥接模式, 也是讲抽象与实现分离, 遵循的也是依赖抽象而不依赖具体实现的原则</li>
+<li>访问者模式, 简单的说, 就是在一个对象 A 里用一个变量存下另一个对象 B, 从而 A 可以对 B 做一些想做的事情. 但是切忌产生循环依赖的问题</li>
+</ol>
+
+<h1 id="总结">总结</h1>
+
+<p>就像某个编程语言的崛起是为了<strong>解决问题</strong>, 设计模式的出现, 也是对以往特定问题解决思路的一种经典归纳. 因此, 设计模式可以被看作是一种常识性答案, 却不是那种真理性质的答案, 它可能是在某个时期解决问题的最佳选择, 却不一定永远都是最佳, 永远也不要迷信设计模式, 甚至为了用而用. 正如<a href="https://stackoverflow.com/a/153565"> TDD 之父 Kent Beck 谈到测试驱动开发时的态度一样</a> &ndash; <strong>不要过度测试</strong>. 而设计模式也是这个道理, 更何况, 为炫技却影响代码的可读性, 从来都不是一件靠谱的事情.<br />一句话, &ldquo;<strong>软件工程没有银弹</strong>&rdquo;.</p>
+
+                </div>
+                
+
+                
+
+
+                
+                
+                <div style="height: 50px;"></div>
+                
+                <div class="post-comments">
+                    <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://clericpy.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+                </div>
+                
+                
+
+                <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="/blog/categories/" target="_blank">Categories</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/ClericPy/blog/issues" target="_blank">Issue</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/index.xml" target="_blank">RSS</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://www.clericpy.top/newspaper/articles.query.html" target="_blank">News</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/about" target="_blank">About</a>
+  </div>
+  
+  
+</div>
+
+            </div>
+        </div>
+    </article>
+
+    <script src="/blog/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+    
+
+</body>
+
+</html>

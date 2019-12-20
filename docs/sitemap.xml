@@ -4,26 +4,31 @@
   
   <url>
     <loc>https://clericpy.github.io/blog/categories/</loc>
-    <lastmod>2019-12-12T20:48:24+08:00</lastmod>
+    <lastmod>2019-12-21T00:14:06+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://clericpy.github.io/blog/</loc>
-    <lastmod>2019-12-12T20:48:24+08:00</lastmod>
+    <lastmod>2019-12-21T00:14:06+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://clericpy.github.io/blog/categories/coding/</loc>
+    <lastmod>2019-12-21T00:14:06+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://clericpy.github.io/blog/posts/</loc>
-    <lastmod>2019-12-12T20:48:24+08:00</lastmod>
+    <lastmod>2019-12-21T00:14:06+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://clericpy.github.io/blog/posts/20191221001405/</loc>
+    <lastmod>2019-12-21T00:14:06+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://clericpy.github.io/blog/posts/20191212204823/</loc>
-    <lastmod>2019-12-12T20:48:24+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://clericpy.github.io/blog/categories/%E7%BC%96%E7%A0%81/</loc>
     <lastmod>2019-12-12T20:48:24+08:00</lastmod>
   </url>
   
@@ -50,10 +55,6 @@
   <url>
     <loc>https://clericpy.github.io/blog/posts/20191024220923/</loc>
     <lastmod>2019-10-24T22:09:23+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://clericpy.github.io/blog/tags/</loc>
   </url>
   
 </urlset>

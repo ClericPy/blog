@@ -6,10 +6,26 @@
     <description>Recent content on Clericpy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 12 Dec 2019 20:48:24 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 21 Dec 2019 00:14:06 +0800</lastBuildDate>
     
 	<atom:link href="https://clericpy.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>设计模式拾遗</title>
+      <link>https://clericpy.github.io/blog/posts/20191221001405/</link>
+      <pubDate>Sat, 21 Dec 2019 00:14:06 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/20191221001405/</guid>
+      <description>没有什么 &amp;ldquo;新瓶装旧酒&amp;rdquo;, 只希望温故而知新吧
+ 快速回顾, 具体细节不多讲, 可能有理解不对的地方, 请留言指正
+示例代码: Python
+设计模式简介 1 简单工厂 Simple Factory &amp;ldquo;工厂&amp;rdquo; 顾名思义就是负责生产产品(对象)的地方, 简单工厂则主要处理单一产品等级结构的情况
+由一个工厂类来决定创建哪个 / 哪些对象, 将创建对象的操作集中在一起, 使之与对象的使用解耦
+将对象的创建与使用解耦, 也就是俗称的:** **要什么就造什么
+现实案例: 宠物店新增宠物
+class AnimalFactory(object): &amp;quot;&amp;quot;&amp;quot;动物工厂, 负责产生动物&amp;quot;&amp;quot;&amp;quot; @staticmethod def create_animal(name): if name == &#39;Cat&#39;: return Cat() elif name == &#39;Dog&#39;: return Dog() def main(): dog = AnimalFactory.create_animal(&#39;Dog&#39;) cat = AnimalFactory.create_animal(&#39;Cat&#39;) if __name__ == &amp;quot;__main__&amp;quot;: main()  2 工厂方法 Factory Method 基类负责抽象一个工厂方法(接口), 而不用关心具体如何实现, 具体实现让子类来负责</description>
+    </item>
     
     <item>
       <title>回顾软件设计的原则</title>
@@ -19,7 +35,7 @@
       <guid>https://clericpy.github.io/blog/posts/20191212204823/</guid>
       <description>鉴于最近又写出大量低质量代码, 所以需要重新回顾一下这些有用的编码哲学.
  主要参照 &amp;lt;一些软件设计的原则&amp;gt; &amp;ndash; 酷壳, 做一下简单理解的笔记.
-1. 一句话总结:  大段重复代码要提取函数, 方便复用和统一修改 高层依赖抽象, 抽象去依赖底层实现. 因为高层抽象逻辑很少变, 而底层实现却经常要变 功能之间相互依赖越少越好, 逻辑越独立越好, 不要过度优化和过早优化 底层的每个函数职责尽量单一, 每个类只做好一件事, 功能粒度越细越好 多用接口少用继承. 由上层抽象来统一组合调配, 进而实现完整功能  2. 设计原则明细 面向对象的S.O.L.I.D 原则  Single Responsibility Principle (SRP) – 职责单一原则  一个&amp;rdquo;类&amp;rdquo;只做好一件事, 一个函数只实现一个功能 纯面向过程写代码会导致逻辑不够清晰, 更容易出错  Open/Closed Principle (OCP) – 开闭原则  依赖抽象，而不是实现 对扩展是开放的，而对修改是封闭的 一方面要保证业务层对底层具体实现相隔离, 避免随意修改导致原有功能遭到破坏 另一方面避免修改底层代码而导致未知引用遭到破坏, 产生不期结果  Liskov substitution principle (LSP) – 里氏代换原则  任何基类可以出现的地方，子类一定可以出现 类的继承不要割裂, 一般情况下, 多考虑新增功能, 而不是覆盖父类同名方法 (抽象方法除外)  Interface Segregation Principle (ISP) – 接口隔离原则  把功能实现在接口中，而不是类中 对 python 来说, 将多重继承改为 Mixin 类的组合, 使功能更加内聚, 也避免了方法解析顺序 (MRO) 的混乱  Dependency Inversion Principle (DIP) – 依赖倒置原则  基本等同于上面提到的 &amp;ldquo;Program to an interface, not an implementation&amp;rdquo; 主要解决的问题是: 一般依赖的功能抽象变化比较少, 而底层实现经常会改变 增加复用的安全性, 减少修改成本 高层抽象尽量不变, 迫使底层做改变 功能标准化, 设计一致性   Don’t Repeat Yourself (DRY)  相似代码抽取共性, 构造复用函数 避免出现大坨重复代码, 导致每次逻辑改变时遗漏一些修改 配合正确的函数名, 可读性优于一段段注释  Keep It Simple, Stupid (KISS)  不要把事情搞复杂, 围绕要解决的问题保持简洁 不要臆想出一些不存在的问题而过早优化  Program to an interface, not an implementation  多依靠抽象接口解决问题, 少依赖具体实现, 方便后期修改时保持独立 因为底层常变, 而上层抽象逻辑一般不太改变, 此外, 上层逻辑之间独立性比较强, 而底层的实现容易牵一发而动全身  Command-Query Separation (CQS) – 命令-查询分离原则  Query 功能和 Command 功能不要合并到一起写.</description>
+1. 一句话总结:  大段重复代码要提取函数, 方便复用和统一修改 高层依赖抽象, 抽象去依赖底层实现. 因为高层抽象逻辑很少变, 而底层实现却经常要变 功能之间相互依赖越少越好, 逻辑越独立越好, 不要过度优化和过早优化 底层的每个函数职责尽量单一, 每个类只做好一件事, 功能粒度越细越好 多用接口少用继承. 由上层抽象来统一组合调配, 进而实现完整功能  2. 设计原则明细 面向对象的S.O.L.I.D 原则  Single Responsibility Principle (SRP) – 职责单一原则  一个&amp;rdquo;类&amp;rdquo;只做好一件事, 一个函数只实现一个功能 纯面向过程写代码会导致逻辑不够清晰, 更容易出错  Open/Closed Principle (OCP) – 开闭原则  依赖抽象，而不是实现 对扩展是开放的，而对修改是封闭的 一方面要保证业务层对底层具体实现相隔离, 避免随意修改导致原有功能遭到破坏 另一方面避免修改底层代码而导致未知引用遭到破坏, 产生不期结果  Liskov substitution principle (LSP) – 里氏代换原则  任何基类可以出现的地方，子类一定可以出现 类的继承不要割裂, 一般情况下, 多考虑新增功能, 而不是覆盖父类同名方法 (抽象方法除外)  Interface Segregation Principle (ISP) – 接口隔离原则  把功能实现在接口中，而不是类中 对 python 来说, 将多重继承改为 Mixin 类的组合, 使功能更加内聚, 也避免了方法解析顺序 (MRO) 的混乱  Dependency Inversion Principle (DIP) – 依赖倒置原则  基本等同于上面提到的 &amp;ldquo;Program to an interface, not an implementation&amp;rdquo; 主要解决的问题是: 一般依赖的功能抽象变化比较少, 而底层实现经常会改变  增加复用的安全性, 减少修改成本  高层抽象尽量不变, 迫使底层做改变 功能标准化, 设计一致性   Don’t Repeat Yourself (DRY)  相似代码抽取共性, 构造复用函数 避免出现大坨重复代码, 导致每次逻辑改变时遗漏一些修改 配合正确的函数名, 可读性优于一段段注释  Keep It Simple, Stupid (KISS)  不要把事情搞复杂, 围绕要解决的问题保持简洁 不要臆想出一些不存在的问题而过早优化  Program to an interface, not an implementation  多依靠抽象接口解决问题, 少依赖具体实现, 方便后期修改时保持独立 因为底层常变, 而上层抽象逻辑一般不太改变, 此外, 上层逻辑之间独立性比较强, 而底层的实现容易牵一发而动全身  Command-Query Separation (CQS) – 命令-查询分离原则  Query 功能和 Command 功能不要合并到一起写.</description>
     </item>
     
     <item>
