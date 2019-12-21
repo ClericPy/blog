@@ -6,10 +6,22 @@
     <description>Recent content on Clericpy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Dec 2019 00:14:06 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 21 Dec 2019 14:36:47 +0800</lastBuildDate>
     
 	<atom:link href="https://clericpy.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>闲谈 Python 打包发布</title>
+      <link>https://clericpy.github.io/blog/posts/20191221143647/</link>
+      <pubDate>Sat, 21 Dec 2019 14:36:47 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/20191221143647/</guid>
+      <description>1 发布到 pypi setup.py 这套东西已经很成熟了, 不再赘述, 当前主流的是 twine + wheel 的方式, 好处很简单, 就是 pip install 安装方式省心省力
+目前也比较流行 poetry 这个库的 publish 功能进行发布
+2 作为 pyz 发布 Shiv 有 PEP441 的加成, 目前 Shiv 在这方面做的已经非常熟练了:
+ 通过 pip 收集所需要的第三方库 通过 shebang 来指定 Python 解释器路径 通过 zipapp 相关功能把整个 package 打包成一个 pyz 压缩文件(实质是zip文件换了个扩展名) 通过 _bootstrap 指定执行条件 module:app 通过命令行执行整个打包过程  优点:  单文件上传下载简单方便 可以直接使用 python xxx.pyz 来执行 package 里的 main.py 也可以将 xxx.pyz 当作一个环境, 来执行其它的 py 脚本, 比如 python xxx.</description>
+    </item>
     
     <item>
       <title>设计模式拾遗</title>
