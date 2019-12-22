@@ -22,7 +22,6 @@ googleAnalytics = "UA-150991415-1"
 [params]
 mainSections = ["posts"]
 headTitle = "Clericpy's Blog"
-disqus = "clericpy"
 description = "Hello world?"
 favicon = "/blog/favicon.ico"
 googleAnalytics = "UA-150991415-1"
