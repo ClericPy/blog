@@ -6,10 +6,23 @@
     <description>Recent content on Clericpy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Dec 2019 14:36:47 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jan 2020 15:11:38 +0800</lastBuildDate>
     
 	<atom:link href="https://clericpy.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>深入浅出 CDP (Chrome DevTools Protocol)</title>
+      <link>https://clericpy.github.io/blog/posts/20200114151137/</link>
+      <pubDate>Tue, 14 Jan 2020 15:11:38 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/20200114151137/</guid>
+      <description>背景 自从 Chrome 59 发布支持 &amp;ndash;headless 启动参数以后 (Windows 上是 60 版本), 轻量级浏览器内核就不再是 webdriver 一家独大, 甚至 phantomjs 作者也发文表示不再维护该项目, 国外也有越来越多的文章推荐使用 headless Chrome 代替过去 selenium + webdriver 的方式进行 Web 测试或者爬虫相关工作.
+目前国内实际上使用 headless Chrome 的并不少, 只不过目前大量营销号的存在, 导致为了点击量频繁刷文, 进而把早年间 selenium 用作爬虫的旧文章重新翻到读者眼前, 所以遇到各种稀奇古怪的问题, 初学者使用体验较差.
+selenium 作为老牌 Web 测试手段闻名已久, 在高级功能 API 层面非常成熟, 后来也加强了对 Chrome headless 模式下 CDP 的支持, 目前依然拥有大量用户在使用.
+简单提一下 webdriver 方式的一些不足:
+ 默认参数启动时很容易被服务端发现 性能与 Chrome headless 相比, 较差 存在了无数年的内存泄漏问题 不像 Chrome 有大厂在背后支撑, 上千 issues 解决不完 无法作为完整浏览器使用和调试  简而言之, 都 2020 年了, 不要再抱着 selenium 一根筋不放了</description>
+    </item>
     
     <item>
       <title>闲谈 Python 打包发布</title>
