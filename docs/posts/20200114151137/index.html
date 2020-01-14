@@ -273,12 +273,15 @@ if __name__ == &quot;__main__&quot;:
 <p>以上代码负责启动 chrome 调试模式的守护进程, 具体参数如下:</p>
 
 <ol>
-<li><p><strong>chrome_path: </strong>表示 chrome 的可执行路径 / 命令, 默认为 None 的时候, 会自动根据操作系统去尝试找寻 chrome 路径, 如 linux 下的 google-chrome 和 google-chrome-stable, macOS 下的 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome, 或者 Windows 下的
-&gt;   1. C:/Program Files (x86)/Google/Chrome/Application/chrome.exe
-&gt;   1. C:/Program Files/Google/Chrome/Application/chrome.exe
-&gt;   1. &ldquo;%s\AppData\Local\Google\Chrome\Application\chrome.exe&rdquo; %
-&gt;
-               os.getenv(&ldquo;USERPROFILE&rdquo;)</p></li>
+<li><p><strong>chrome_path: </strong>表示 chrome 的可执行路径 / 命令, 默认为 None 的时候, 会自动根据操作系统去尝试找寻 chrome 路径, 如 linux 下的 google-chrome 和 google-chrome-stable, macOS 下的 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome, 或者 Windows 下的</p>
+
+<blockquote>
+<ol>
+<li>C:/Program Files (x86)/Google/Chrome/Application/chrome.exe</li>
+<li>C:/Program Files/Google/Chrome/Application/chrome.exe</li>
+<li>&rdquo;%s\AppData\Local\Google\Chrome\Application\chrome.exe&rdquo; % os.getenv(&ldquo;USERPROFILE&rdquo;)</li>
+</ol>
+</blockquote></li>
 
 <li><p><strong>host: </strong> 默认为 127.0.0.1, 之所以不用 localhost, 是因为很多 Windows / macOS 的 etc/hosts 文件里被强制绑定到了 ipv6 地址上</p></li>
 
