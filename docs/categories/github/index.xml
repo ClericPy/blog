@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Github on Clericpy&#39;s Blog</title>
+    <link>https://clericpy.github.io/blog/categories/github/</link>
+    <description>Recent content in Github on Clericpy&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 31 Mar 2020 17:12:12 +0800</lastBuildDate>
+    
+	<atom:link href="https://clericpy.github.io/blog/categories/github/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>watchdogs: 随时关注网络世界的变化</title>
+      <link>https://clericpy.github.io/blog/posts/20200331171211/</link>
+      <pubDate>Tue, 31 Mar 2020 17:12:12 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/20200331171211/</guid>
+      <description>做爬虫的, 要有自己的工具来发现网络世界的动态, 对信息保持一份敏感, 对数据存有一颗敬畏之心.
+ 项目名称: ClericPy/watchdogs
+项目初衷   统一关注.
+ 平时可能会追剧追小说追综艺, 关注疫情实况, 订阅一些博客, 但是网站多了太分散, 所以需要一份 Timeline 方便浏览.
+   解放双手.
+ 满足对日常信息变化的订阅, 并提供主动提醒功能, 从不断刷网页判断更新中解放双手. 简而言之, 信息索取由被动转为主动.
+   体验新事物.
+ 而归根结底的初衷, 还是想试试去年就大火的 fastapi, 体验之后, 果然比原生 starlette 要优雅很多.
+   主要功能  适用于: 追剧, 追星, 追小说漫画, steam 降价, 博客更新, 服务翻车, 疫情实况, 定向新闻或搜索结果等场景的提醒. 根据定制解析规则, 关注网页特定数据的变化, 记录更新时间与历史数据, 并提供对应 URL 进行跳转. 所有爬虫执行在协程环境下, 抓取 / 存储 / 回调与整个 Web 服务相互独立不阻塞.</description>
+    </item>
+    
+  </channel>
+</rss>

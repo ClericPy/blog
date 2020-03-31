@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.65.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -102,45 +102,38 @@
                     <div id="toc" class="well col-md-12 col-sm-10" style="font-size: 0.8em; border: 1px dashed rgb(194, 194, 194); margin: 15px; padding: 15px;">
                         <h3>Table of Contents</h3>
                         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#1-一句话总结">1. 一句话总结:</a></li>
-<li><a href="#2-设计原则明细">2. 设计原则明细</a>
-<ul>
-<li><a href="#面向对象的s-o-l-i-d-原则">面向对象的S.O.L.I.D 原则</a></li>
-<li><a href="#don-t-repeat-yourself-dry">Don’t Repeat Yourself (DRY)</a></li>
-<li><a href="#keep-it-simple-stupid-kiss">Keep It Simple, Stupid (KISS)</a></li>
-<li><a href="#program-to-an-interface-not-an-implementation">Program to an interface, not an implementation</a></li>
-<li><a href="#command-query-separation-cqs-命令-查询分离原则">Command-Query Separation (CQS)  – 命令-查询分离原则</a></li>
-<li><a href="#you-ain-t-gonna-need-it-yagni">You Ain’t Gonna Need It (YAGNI)</a></li>
-<li><a href="#law-of-demeter-迪米特法则">Law of Demeter – 迪米特法则</a></li>
-<li><a href="#common-closure-principle-ccp-共同封闭原则">Common Closure Principle（CCP）– 共同封闭原则</a></li>
-<li><a href="#common-reuse-principle-crp-共同重用原则">Common Reuse Principle (CRP) – 共同重用原则</a></li>
-<li><a href="#hollywood-principle-好莱坞原则">Hollywood Principle – 好莱坞原则</a></li>
-<li><a href="#high-cohesion-low-loose-coupling-高内聚-低耦合">High Cohesion &amp; Low/Loose coupling – 高内聚， 低耦合</a></li>
-<li><a href="#convention-over-configuration-coc-惯例优于配置原则">Convention over Configuration（CoC）– 惯例优于配置原则</a></li>
-<li><a href="#separation-of-concerns-soc-关注点分离">Separation of Concerns (SoC) – 关注点分离</a></li>
-<li><a href="#design-by-contract-dbc-契约式设计">Design by Contract (DbC) – 契约式设计</a></li>
-<li><a href="#acyclic-dependencies-principle-adp-无环依赖原则">Acyclic Dependencies Principle (ADP) – 无环依赖原则</a></li>
-</ul></li>
-<li><a href="#3-总结">3. 总结</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#1-一句话总结">1. 一句话总结:</a></li>
+    <li><a href="#2-设计原则明细">2. 设计原则明细</a>
+      <ul>
+        <li><a href="#面向对象的solid-原则">面向对象的S.O.L.I.D 原则</a></li>
+        <li><a href="#dont-repeat-yourself-dry">Don’t Repeat Yourself (DRY)</a></li>
+        <li><a href="#keep-it-simple-stupid-kiss">Keep It Simple, Stupid (KISS)</a></li>
+        <li><a href="#program-to-an-interface-not-an-implementation">Program to an interface, not an implementation</a></li>
+        <li><a href="#command-query-separation-cqs-命令-查询分离原则">Command-Query Separation (CQS)  – 命令-查询分离原则</a></li>
+        <li><a href="#you-aint-gonna-need-it-yagni">You Ain’t Gonna Need It (YAGNI)</a></li>
+        <li><a href="#law-of-demeter-迪米特法则">Law of Demeter – 迪米特法则</a></li>
+        <li><a href="#common-closure-principleccp-共同封闭原则">Common Closure Principle（CCP）– 共同封闭原则</a></li>
+        <li><a href="#common-reuse-principle-crp-共同重用原则">Common Reuse Principle (CRP) – 共同重用原则</a></li>
+        <li><a href="#hollywood-principle-好莱坞原则">Hollywood Principle – 好莱坞原则</a></li>
+        <li><a href="#high-cohesion--lowloose-coupling--高内聚-低耦合">High Cohesion & Low/Loose coupling – 高内聚， 低耦合</a></li>
+        <li><a href="#convention-over-configurationcoc-惯例优于配置原则">Convention over Configuration（CoC）– 惯例优于配置原则</a></li>
+        <li><a href="#separation-of-concerns-soc-关注点分离">Separation of Concerns (SoC) – 关注点分离</a></li>
+        <li><a href="#design-by-contract-dbc-契约式设计">Design by Contract (DbC) – 契约式设计</a></li>
+        <li><a href="#acyclic-dependencies-principle-adp-无环依赖原则">Acyclic Dependencies Principle (ADP) – 无环依赖原则</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-总结">3. 总结</a></li>
+  </ul>
 </nav>
                     </div>
                 </header>
                 <div class="post-content markdown-body">
-                    
-
-<blockquote>
+                    <blockquote>
 <p>鉴于最近又写出大量低质量代码, 所以需要重新回顾一下这些有用的编码哲学.</p>
 </blockquote>
-
 <p>主要参照 &lt;<a href="https://coolshell.cn/articles/4535.html">一些软件设计的原则</a>&gt; &ndash; 酷壳, 做一下简单理解的笔记.</p>
-
 <h2 id="1-一句话总结">1. 一句话总结:</h2>
-
 <ol>
 <li>大段重复代码要提取函数, 方便复用和统一修改</li>
 <li>高层依赖抽象, 抽象去依赖底层实现. 因为高层抽象逻辑很少变, 而底层实现却经常要变</li>
@@ -148,159 +141,110 @@
 <li>底层的每个函数职责尽量单一, 每个类只做好一件事, 功能粒度越细越好</li>
 <li>多用接口少用继承. 由上层抽象来统一组合调配, 进而实现完整功能</li>
 </ol>
-
 <h2 id="2-设计原则明细">2. 设计原则明细</h2>
-
-<h3 id="面向对象的s-o-l-i-d-原则">面向对象的S.O.L.I.D 原则</h3>
-
+<h3 id="面向对象的solid-原则">面向对象的S.O.L.I.D 原则</h3>
 <ol>
-<li>Single Responsibility Principle (SRP) – 职责单一原则
-
-<ol>
-<li>一个&rdquo;类&rdquo;只做好一件事, 一个函数只实现一个功能</li>
+<li>Single Responsibility Principle (SRP) – 职责单一原则</li>
+<li>一个&quot;类&quot;只做好一件事, 一个函数只实现一个功能</li>
 <li>纯面向过程写代码会导致逻辑不够清晰, 更容易出错</li>
-</ol></li>
-<li>Open/Closed Principle (OCP) – 开闭原则
-
-<ol>
+<li>Open/Closed Principle (OCP) – 开闭原则</li>
 <li>依赖抽象，而不是实现</li>
 <li>对扩展是开放的，而对修改是封闭的</li>
 <li>一方面要保证业务层对底层具体实现相隔离, 避免随意修改导致原有功能遭到破坏</li>
 <li>另一方面避免修改底层代码而导致未知引用遭到破坏, 产生不期结果</li>
-</ol></li>
-<li>Liskov substitution principle (LSP) – 里氏代换原则
-
-<ol>
+<li>Liskov substitution principle (LSP) – 里氏代换原则</li>
 <li>任何基类可以出现的地方，子类一定可以出现</li>
 <li>类的继承不要割裂, 一般情况下, 多考虑新增功能, 而不是覆盖父类同名方法 (抽象方法除外)</li>
-</ol></li>
-<li>Interface Segregation Principle (ISP) – 接口隔离原则
-
-<ol>
+<li>Interface Segregation Principle (ISP) – 接口隔离原则</li>
 <li>把功能实现在接口中，而不是类中</li>
 <li>对 python 来说, 将多重继承改为 Mixin 类的组合, 使功能更加内聚, 也避免了方法解析顺序 (MRO) 的混乱</li>
-</ol></li>
-<li>Dependency Inversion Principle (DIP) – 依赖倒置原则
-
-<ol>
+<li>Dependency Inversion Principle (DIP) – 依赖倒置原则</li>
 <li>基本等同于上面提到的 &ldquo;Program to an interface, not an implementation&rdquo;</li>
 <li>主要解决的问题是: 一般依赖的功能抽象变化比较少, 而底层实现经常会改变
-
 <ol>
 <li>增加复用的安全性, 减少修改成本</li>
-</ol></li>
+</ol>
+</li>
 <li>高层抽象尽量不变, 迫使底层做改变</li>
 <li>功能标准化, 设计一致性</li>
-</ol></li>
 </ol>
-
-<h3 id="don-t-repeat-yourself-dry">Don’t Repeat Yourself (DRY)</h3>
-
+<h3 id="dont-repeat-yourself-dry">Don’t Repeat Yourself (DRY)</h3>
 <ol>
 <li>相似代码抽取共性, 构造复用函数</li>
 <li>避免出现大坨重复代码, 导致每次逻辑改变时遗漏一些修改</li>
 <li>配合正确的函数名, 可读性优于一段段注释</li>
 </ol>
-
 <h3 id="keep-it-simple-stupid-kiss">Keep It Simple, Stupid (KISS)</h3>
-
 <ol>
 <li>不要把事情搞复杂, 围绕要解决的问题保持简洁</li>
 <li>不要臆想出一些不存在的问题而过早优化</li>
 </ol>
-
 <h3 id="program-to-an-interface-not-an-implementation">Program to an interface, not an implementation</h3>
-
 <ol>
 <li>多依靠抽象接口解决问题, 少依赖具体实现, 方便后期修改时保持独立</li>
 <li>因为底层常变, 而上层抽象逻辑一般不太改变, 此外, 上层逻辑之间独立性比较强, 而底层的实现容易牵一发而动全身</li>
 </ol>
-
 <h3 id="command-query-separation-cqs-命令-查询分离原则">Command-Query Separation (CQS)  – 命令-查询分离原则</h3>
-
 <ol>
 <li>Query 功能和 Command 功能不要合并到一起写. 主要考虑到 安全性, 性能, 可维护性, 功能唯一原则等因素</li>
 <li>增删改查之中, 查是频率最高的操作, 却又不会影响原始数据, 所以像数据库做读-写分离一样, 代码结构也相互隔离, 更有利于后期维护</li>
 </ol>
-
-<h3 id="you-ain-t-gonna-need-it-yagni">You Ain’t Gonna Need It (YAGNI)</h3>
-
+<h3 id="you-aint-gonna-need-it-yagni">You Ain’t Gonna Need It (YAGNI)</h3>
 <ol>
 <li>只实现目前需要的功能，在以后您需要更多功能时，可以再进行添加</li>
 </ol>
-
 <h3 id="law-of-demeter-迪米特法则">Law of Demeter – 迪米特法则</h3>
-
 <ol>
 <li>每个功能对其他功能的了解越少越好, 越独立越好, 不要太多复合依赖</li>
 <li>也就是常说的解耦合</li>
 </ol>
-
-<h3 id="common-closure-principle-ccp-共同封闭原则">Common Closure Principle（CCP）– 共同封闭原则</h3>
-
+<h3 id="common-closure-principleccp-共同封闭原则">Common Closure Principle（CCP）– 共同封闭原则</h3>
 <ol>
 <li>开闭原则的延伸</li>
 <li>将相关联的修改控制在一个 &ldquo;包&rdquo;, 甚至一个 &ldquo;类&rdquo; 中, 不要做跨包/跨类修改操作</li>
 <li>我的理解是, 有点类似 git 每个文件一个 commit 的想法, 但又不一样, 这种代码结构将所有相关联的修改内聚起来, 避免过于分散对后期维护造成不必要的成本</li>
 </ol>
-
 <h3 id="common-reuse-principle-crp-共同重用原则">Common Reuse Principle (CRP) – 共同重用原则</h3>
-
 <ol>
 <li>包内的类应该一起被重用 (reuse)</li>
 <li>CCP 让包尽可能大, 把关联的放到一起; CRP 让包尽可能小, 只放用到的类</li>
 <li>我的理解是, 该原则对 Java 用处比较大, 而对 python 这类动态语言来说, 通过优雅的代码结构, 也可以避免在 import 导入的时候初始化太多无用的函数或类, 进而提高性能, 毕竟无用的还要再次被 GC 掉. 举个例子, 把 C 和 D 两个功能分开放到模块 A.C 和 A.D 两个部 分, 这样需要用单独某个功能的时候, from A.C import C 就不会构建 A.D 里的代码.</li>
 </ol>
-
 <h3 id="hollywood-principle-好莱坞原则">Hollywood Principle – 好莱坞原则</h3>
-
 <ol>
 <li>允许低层组件将自己挂钩到系统上，但是由高层组件来决定什么时候使用这些低层组件</li>
 <li>大致是说, 底层只负责基础功能, 把基础功能如何组合起来被使用这件事, 交给调用方来解决</li>
 </ol>
-
-<h3 id="high-cohesion-low-loose-coupling-高内聚-低耦合">High Cohesion &amp; Low/Loose coupling – 高内聚， 低耦合</h3>
-
+<h3 id="high-cohesion--lowloose-coupling--高内聚-低耦合">High Cohesion &amp; Low/Loose coupling – 高内聚， 低耦合</h3>
 <ol>
 <li>高内聚: 重用性高, 功能完整</li>
 <li>低耦合: 相互独立, 减少相互依赖</li>
 <li>代码不是量子纠缠, 没必要扯那么玄乎</li>
 </ol>
-
-<h3 id="convention-over-configuration-coc-惯例优于配置原则">Convention over Configuration（CoC）– 惯例优于配置原则</h3>
-
+<h3 id="convention-over-configurationcoc-惯例优于配置原则">Convention over Configuration（CoC）– 惯例优于配置原则</h3>
 <ol>
 <li>使用惯例(约定)代替详细的配置文件.</li>
 <li>比如 get_ 开头的函数代表取值操作, 而 get_obj_ 开头代表取得一个对象的操作, 对 python 来说, 可以通过 globals 一次列出过滤, 而不必一个个添加到 list 里面, 节省代码, 而且方便增删</li>
 <li>不过也不是绝对的, 部分动态配置使用配置文件与代码隔离还是有必要的</li>
 </ol>
-
 <h3 id="separation-of-concerns-soc-关注点分离">Separation of Concerns (SoC) – 关注点分离</h3>
-
 <ol>
 <li>复杂问题拆分为最小的独立问题, 更易于解决</li>
 <li>常见于 MVC 模式</li>
 <li>有点像超过 5 行代码都抽离成单独函数</li>
 <li>也有点像动态规划, 一个大问题的答案比较难求, 拆成子问题却会简单很多</li>
 </ol>
-
 <h3 id="design-by-contract-dbc-契约式设计">Design by Contract (DbC) – 契约式设计</h3>
-
 <ol>
 <li>类继承的方法, 参数/返回 要和基类一致</li>
 </ol>
-
 <h3 id="acyclic-dependencies-principle-adp-无环依赖原则">Acyclic Dependencies Principle (ADP) – 无环依赖原则</h3>
-
 <ol>
 <li>杜绝循环依赖</li>
 <li>就算 python 之类的语言做了循环依赖的优化, 也要杜绝这种坏习惯, 因为它不但对可读性相当不利, 也给重构带来了巨大成本</li>
 </ol>
-
 <h2 id="3-总结">3. 总结</h2>
-
 <p>目前看来, 设计原则基本围绕的是每个函数的功能越<strong>单一</strong>越好, 类与类之间越<strong>独立</strong>越好; 业务层面依赖<strong>抽象,</strong> 尽量不要去关心具体的实现.</p>
-
 <p>也就是所谓的: <strong>高内聚, 低耦合</strong>.</p>
 
                 </div>
