@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.65.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "posts",
       "name" : "通过 Python \x2b Chrome cURL 重放 HTTP 请求",
       "headline" : "通过 Python \x2b Chrome cURL 重放 HTTP 请求",
-      "description" : "众所周知, 一条完整 cURL 命令, 基本可以完整涵盖一次 HTTP 请求的全部信息, 所以, 只要有一句 Curl 命令, 就足以向服务器发起一次完全一样的请求.\n 一个 HTTP 请求有多常见?  百度知道答案的点赞 斗鱼直播的一次弹幕 github issues 的一次评论  换句话说, 只要拿到一段 cURL 命令, 就能够将类似上面的各路请求再次复现.\n更进一步地说, 既然拿到了命令, 略微修改里面的参数便足以发起与上次请求内容相异的同类请求.\n手把手做个实验 实验准备  安装 Python, 并搞一个可以解析 cURL 的库   pip install torequests -U\ntorequests \x26gt;= 4.8.18, 刚修复了一个 \\n 导致提交出错的 bug\n  安装一个 Chrome 浏览器  实验步骤 from torequests.utils import curlparse import requests curlstring = r\x27\x27\x27curl \x27https:\/\/github.",
+      "description" : "众所周知, 一条完整 cURL 命令, 基本可以完整涵盖一次 HTTP 请求的全部信息, 所以, 只要有一句 Curl 命令, 就足以向服务器发起一次完全一样的请求.\n 一个 HTTP 请求有多常见?  百度知道答案的点赞 斗鱼直播的一次弹幕 github issues 的一次评论  换句话说, 只要拿到一段 cURL 命令, 就能够将类似上面的各路请求再次复现.\n更进一步地说, 既然拿到了命令, 略微修改里面的参数便足以发起与上次请求内容相异的同类请求.\n手把手做个实验 实验准备   安装 Python, 并搞一个可以解析 cURL 的库\n pip install torequests -U\ntorequests \x26gt;= 4.8.18, 刚修复了一个 \\n 导致提交出错的 bug\n   安装一个 Chrome 浏览器\n  实验步骤 from torequests.utils import curlparse import requests curlstring = r\x26#39;\x26#39;\x26#39;curl \x26#39;https:\/\/github.",
       "inLanguage" : "en-US",
       "author" : "Clericpy",
       "creator" : "Clericpy",
@@ -39,9 +39,11 @@
   <meta name="description" content="众所周知, 一条完整 cURL 命令, 基本可以完整涵盖一次 HTTP 请求的全部信息, 所以, 只要有一句 Curl 命令, 就足以向服务器发起一次完全一样的请求.
  一个 HTTP 请求有多常见?  百度知道答案的点赞 斗鱼直播的一次弹幕 github issues 的一次评论  换句话说, 只要拿到一段 cURL 命令, 就能够将类似上面的各路请求再次复现.
 更进一步地说, 既然拿到了命令, 略微修改里面的参数便足以发起与上次请求内容相异的同类请求.
-手把手做个实验 实验准备  安装 Python, 并搞一个可以解析 cURL 的库   pip install torequests -U
+手把手做个实验 实验准备   安装 Python, 并搞一个可以解析 cURL 的库
+ pip install torequests -U
 torequests &gt;= 4.8.18, 刚修复了一个 \n 导致提交出错的 bug
-  安装一个 Chrome 浏览器  实验步骤 from torequests.utils import curlparse import requests curlstring = r&#39;&#39;&#39;curl &#39;https://github." />
+   安装一个 Chrome 浏览器
+  实验步骤 from torequests.utils import curlparse import requests curlstring = r&#39;&#39;&#39;curl &#39;https://github." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -107,91 +109,69 @@ torequests &gt;= 4.8.18, 刚修复了一个 \n 导致提交出错的 bug
                     <div id="toc" class="well col-md-12 col-sm-10" style="font-size: 0.8em; border: 1px dashed rgb(194, 194, 194); margin: 15px; padding: 15px;">
                         <h3>Table of Contents</h3>
                         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#一个-http-请求有多常见">一个 HTTP 请求有多常见?</a></li>
-<li><a href="#手把手做个实验">手把手做个实验</a>
-<ul>
-<li><a href="#实验准备">实验准备</a></li>
-<li><a href="#实验步骤">实验步骤</a></li>
-</ul></li>
-<li><a href="#总结">总结</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一个-http-请求有多常见">一个 HTTP 请求有多常见?</a></li>
+        <li><a href="#手把手做个实验">手把手做个实验</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
                     </div>
                 </header>
                 <div class="post-content markdown-body">
-                    
-
-<blockquote>
+                    <blockquote>
 <p>众所周知, 一条完整 cURL 命令, 基本可以完整涵盖一次 HTTP 请求的全部信息, 所以, 只要有一句 Curl 命令, 就足以向服务器发起一次完全一样的请求.</p>
 </blockquote>
-
 <h3 id="一个-http-请求有多常见">一个 HTTP 请求有多常见?</h3>
-
 <ol>
 <li>百度知道答案的点赞</li>
 <li>斗鱼直播的一次弹幕</li>
 <li>github issues 的一次评论</li>
 </ol>
-
 <p>换句话说, 只要拿到一段 cURL 命令, 就能够将类似上面的各路请求再次复现.</p>
-
 <p>更进一步地说, 既然拿到了命令, 略微修改里面的参数便足以发起与上次请求内容相异的同类请求.</p>
-
 <h3 id="手把手做个实验">手把手做个实验</h3>
-
 <h4 id="实验准备">实验准备</h4>
-
 <ol>
-<li>安装 Python, 并搞一个可以解析 cURL 的库</li>
-</ol>
-
+<li>
+<p>安装 Python, 并搞一个可以解析 cURL 的库</p>
 <blockquote>
 <p>pip install torequests -U</p>
-
 <p><strong>torequests  &gt;= 4.8.18</strong>, 刚修复了一个 \n 导致提交出错的 bug</p>
 </blockquote>
-
-<ol>
-<li>安装一个 Chrome 浏览器</li>
+</li>
+<li>
+<p>安装一个 Chrome 浏览器</p>
+</li>
 </ol>
-
 <h4 id="实验步骤">实验步骤</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> torequests.utils <span style="color:#f92672">import</span> curlparse
+<span style="color:#f92672">import</span> requests
 
-<pre><code class="language-python">from torequests.utils import curlparse
-import requests
+curlstring <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;&#39;&#39;curl &#39;https://github.com/ClericPy/blog/issue_comments&#39; -H &#39;Connection: keep-alive&#39; -H &#39;Origin: https://github.com&#39;[这里省略很多字符串]测试第一次发送[这里省略很多字符串] --compressed&#39;&#39;&#39;</span>
 
-curlstring = r'''curl 'https://github.com/ClericPy/blog/issue_comments' -H 'Connection: keep-alive' -H 'Origin: https://github.com'[这里省略很多字符串]测试第一次发送[这里省略很多字符串] --compressed'''
+requests<span style="color:#f92672">.</span>request(<span style="color:#f92672">**</span>curlparse(curlstring))
 
-requests.request(**curlparse(curlstring))
-
-</code></pre>
-
-<ol>
+</code></pre></div><ol start="7">
 <li>为了安全起见, 整段 cURL String 被我省略大部分内容, 大体代码如上</li>
 <li>现在把 <strong>测试第一次发送</strong> 这几个字改为 <strong>测试第二次发送</strong> , 然后执行 Python 脚本
-
 <ol>
 <li>如果需要, 也可以把 Response 的 text 打印出来看看</li>
-</ol></li>
+</ol>
+</li>
 <li>现在在网页上查看该 issue, 下面多了一个 comment, 内容为 <strong>测试第二次发送</strong></li>
 </ol>
-
 <h3 id="总结">总结</h3>
-
 <ol>
 <li>在网页上和对方服务器的每次交互, 多数情况下借助的是 HTTP 请求 (少数情况 WebSocket 以后再说), 通过 cURL 命令可以将该请求再次发送给服务器.</li>
 <li>重放 HTTP 请求是最常见的爬虫手段
-
 <ol>
 <li>比如想用代码发弹幕, 只需要截取流量然后修改提交的一点代码即可.</li>
-</ol></li>
+</ol>
+</li>
 <li>直接使用 cURL 发送请求的最大好处是, 在不确定对方是否有根据 User-Agent / Referer / Custom Header 等方式来反爬的情况下, 这种请求一般都是安全的.</li>
 <li>使用 curlparse 可以将多数(少数不兼容情况还缺少测试案例) cURL 命令转为 requests 库可用的 dict 参数</li>
 <li>如果使用过程中遇到问题, 欢迎来提 <a href="https://github.com/ClericPy/torequests/issues">issue</a></li>
