@@ -18,7 +18,8 @@
       
       <guid>https://clericpy.github.io/blog/posts/20191221001405/</guid>
       <description>没有什么 &amp;ldquo;新瓶装旧酒&amp;rdquo;, 只希望温故而知新吧
- 快速回顾, 具体细节不多讲, 可能有理解不对的地方, 请留言指正示例代码: Python
+ 快速回顾, 具体细节不多讲, 可能有理解不对的地方, 请留言指正
+示例代码: Python
 设计模式简介 1 简单工厂 Simple Factory &amp;ldquo;工厂&amp;rdquo; 顾名思义就是负责生产产品(对象)的地方, 简单工厂则主要处理单一产品等级结构的情况由一个工厂类来决定创建哪个 / 哪些对象, 将创建对象的操作集中在一起, 使之与对象的使用解耦将对象的创建与使用解耦, 也就是俗称的:** **要什么就造什么现实案例: 宠物店新增宠物
 class AnimalFactory(object): &amp;#34;&amp;#34;&amp;#34;动物工厂, 负责产生动物&amp;#34;&amp;#34;&amp;#34; @staticmethod def create_animal(name): if name == &amp;#39;Cat&amp;#39;: return Cat() elif name == &amp;#39;Dog&amp;#39;: return Dog() def main(): dog = AnimalFactory.create_animal(&amp;#39;Dog&amp;#39;) cat = AnimalFactory.create_animal(&amp;#39;Cat&amp;#39;) if __name__ == &amp;#34;__main__&amp;#34;: main() 2 工厂方法 Factory Method 基类负责抽象一个工厂方法(接口), 而不用关心具体如何实现, 具体实现让子类来负责现实案例: 动物园新增动物
 import abc class AnimalFactory(metaclass=abc.ABCMeta): &amp;#34;&amp;#34;&amp;#34;相当于定义了一个接口, 所有类型的工厂都要继承这个类, 并覆盖抽象方法 create_animal&amp;#34;&amp;#34;&amp;#34; @abc.</description>
