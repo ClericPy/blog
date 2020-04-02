@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Clericpy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 Mar 2020 17:12:12 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 02 Apr 2020 14:22:24 +0800</lastBuildDate>
     
 	<atom:link href="https://clericpy.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>随手试了下 B 站的滑块验证码</title>
+      <link>https://clericpy.github.io/blog/posts/20200402142224/</link>
+      <pubDate>Thu, 02 Apr 2020 14:22:24 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/20200402142224/</guid>
+      <description>没什么意思, 就是随手试试, 记录下代码
+ 思路  通过 chrome cdp 截图, 省去根据各种偏移值自己拼图的过程, 所见即所得 根据目标方框位置的边角特征, 投票选出最可能的左边界  特征图包括左侧边/左上角/左下角得到左边界, 右侧边/右上角/右下角剪掉方框宽度 42px 得到右边界 特征图比较小 (2 * 5 左右), 直接用 b64 就够了 左边界结果还要额外 -5, 因为滑块并不在 0 的位置 按照 3px 的误差分组, 间隔 3px 以内的算一组, 最后取中位数作为该组结果 按组投票, 票数最多的三组最接近实际结果, 按顺序一个个拖拽即可   如果三组拖完依然没成功, 则刷新页面重新来过. 考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口, 网上其他人用的是 selenium 里的 drag offset 方面的东西, 可能支持后台 Headless 拖拽.  代码 import asyncio import base64 import json import numpy as np import pyautogui from ichrome import AsyncChrome, AsyncChromeDaemon, AsyncTab from pyscreeze import locateAll import cv2 def get_image_b64(): names = ( (&amp;#39;zuo&amp;#39;, 1), (&amp;#39;zuoxiazuo&amp;#39;, 1), (&amp;#39;zuoxiaxia&amp;#39;, 1), (&amp;#39;zuoshangshang&amp;#39;, 1), (&amp;#39;zuoshangzuo&amp;#39;, 1), (&amp;#39;you&amp;#39;, 1), (&amp;#39;you2&amp;#39;, 1), (&amp;#39;youxiaxia&amp;#39;, 9), (&amp;#39;youxiayou&amp;#39;, 1), ) for name, offset in names: # print(name, offset) b64_string = &amp;#39;&amp;#39; with open(f&amp;#39;{name}.</description>
+    </item>
     
     <item>
       <title>watchdogs: 随时关注网络世界的变化</title>

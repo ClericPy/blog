@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.65.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Clericpy" />
+  <meta property="og:url" content="https://clericpy.github.io/blog/posts/20200402142224/" />
+  <link rel="canonical" href="https://clericpy.github.io/blog/posts/20200402142224/" /><link rel="shortcut icon" href="/blog/favicon.ico" type="image/x-png" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/clericpy.github.io\/blog\/"
+      },
+      "articleSection" : "posts",
+      "name" : "随手试了下 B 站的滑块验证码",
+      "headline" : "随手试了下 B 站的滑块验证码",
+      "description" : "没什么意思, 就是随手试试, 记录下代码\n 思路  通过 chrome cdp 截图, 省去根据各种偏移值自己拼图的过程, 所见即所得 根据目标方框位置的边角特征, 投票选出最可能的左边界  特征图包括左侧边\/左上角\/左下角得到左边界, 右侧边\/右上角\/右下角剪掉方框宽度 42px 得到右边界 特征图比较小 (2 * 5 左右), 直接用 b64 就够了 左边界结果还要额外 -5, 因为滑块并不在 0 的位置 按照 3px 的误差分组, 间隔 3px 以内的算一组, 最后取中位数作为该组结果 按组投票, 票数最多的三组最接近实际结果, 按顺序一个个拖拽即可   如果三组拖完依然没成功, 则刷新页面重新来过. 考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口, 网上其他人用的是 selenium 里的 drag offset 方面的东西, 可能支持后台 Headless 拖拽.  代码 import asyncio import base64 import json import numpy as np import pyautogui from ichrome import AsyncChrome, AsyncChromeDaemon, AsyncTab from pyscreeze import locateAll import cv2 def get_image_b64(): names = ( (\x26#39;zuo\x26#39;, 1), (\x26#39;zuoxiazuo\x26#39;, 1), (\x26#39;zuoxiaxia\x26#39;, 1), (\x26#39;zuoshangshang\x26#39;, 1), (\x26#39;zuoshangzuo\x26#39;, 1), (\x26#39;you\x26#39;, 1), (\x26#39;you2\x26#39;, 1), (\x26#39;youxiaxia\x26#39;, 9), (\x26#39;youxiayou\x26#39;, 1), ) for name, offset in names: # print(name, offset) b64_string = \x26#39;\x26#39; with open(f\x26#39;{name}.",
+      "inLanguage" : "en-US",
+      "author" : "Clericpy",
+      "creator" : "Clericpy",
+      "publisher": "Clericpy",
+      "accountablePerson" : "Clericpy",
+      "copyrightHolder" : "Clericpy",
+      "copyrightYear" : "2020",
+      "datePublished": "2020-04-02 14:22:24 \x2b0800 CST",
+      "dateModified" : "2020-04-02 14:22:24 \x2b0800 CST",
+      "url" : "https:\/\/clericpy.github.io\/blog\/posts\/20200402142224\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>随手试了下 B 站的滑块验证码 - Clericpy&#39;s Blog</title>
+  <meta property="og:title" content="随手试了下 B 站的滑块验证码 - Clericpy&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="没什么意思, 就是随手试试, 记录下代码
+ 思路  通过 chrome cdp 截图, 省去根据各种偏移值自己拼图的过程, 所见即所得 根据目标方框位置的边角特征, 投票选出最可能的左边界  特征图包括左侧边/左上角/左下角得到左边界, 右侧边/右上角/右下角剪掉方框宽度 42px 得到右边界 特征图比较小 (2 * 5 左右), 直接用 b64 就够了 左边界结果还要额外 -5, 因为滑块并不在 0 的位置 按照 3px 的误差分组, 间隔 3px 以内的算一组, 最后取中位数作为该组结果 按组投票, 票数最多的三组最接近实际结果, 按顺序一个个拖拽即可   如果三组拖完依然没成功, 则刷新页面重新来过. 考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口, 网上其他人用的是 selenium 里的 drag offset 方面的东西, 可能支持后台 Headless 拖拽.  代码 import asyncio import base64 import json import numpy as np import pyautogui from ichrome import AsyncChrome, AsyncChromeDaemon, AsyncTab from pyscreeze import locateAll import cv2 def get_image_b64(): names = ( (&#39;zuo&#39;, 1), (&#39;zuoxiazuo&#39;, 1), (&#39;zuoxiaxia&#39;, 1), (&#39;zuoshangshang&#39;, 1), (&#39;zuoshangzuo&#39;, 1), (&#39;you&#39;, 1), (&#39;you2&#39;, 1), (&#39;youxiaxia&#39;, 9), (&#39;youxiayou&#39;, 1), ) for name, offset in names: # print(name, offset) b64_string = &#39;&#39; with open(f&#39;{name}." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/blog/css/index.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Clericpy&#39;s Blog">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150991415-1"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag("js", new Date());  gtag("config", "UA-150991415-1");</script>
+</head>
+
+
+<body>
+    <article class="post Chinese" id="article">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                <div class="site-header">
+                    
+<header>
+  <div class="signatures site-title">
+    <a href="/blog/">Clericpy&#39;s Blog</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+                </div>
+                <header class="post-header">
+                    <h1 class="post-title">随手试了下 B 站的滑块验证码</h1>
+                    
+                    <div class="row post-desc">
+                        <div class="col-xs-2">
+                            
+                            <time class="post-date" datetime="2020-04-02 14:22:24 CST">
+                                02 Apr 2020
+                            </time>
+                            
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="/blog/categories/python"><b
+                                    style="text-decoration:underline">Python</b></a>
+                        </div>
+                        <div class="col-xs-6">
+                            
+                            <div class="post-author">
+                                <a target="_blank" href="https://github.com/ClericPy">@Clericpy</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="toc" class="well col-md-12 col-sm-10" style="font-size: 0.8em; border: 1px dashed rgb(194, 194, 194); margin: 15px; padding: 15px;">
+                        <h3>Table of Contents</h3>
+                        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#思路">思路</a></li>
+    <li><a href="#代码">代码</a></li>
+    <li><a href="#小结">小结</a></li>
+  </ul>
+</nav>
+                    </div>
+                </header>
+                <div class="post-content markdown-body">
+                    <blockquote>
+<p>没什么意思, 就是随手试试, 记录下代码</p>
+</blockquote>
+<p><img src="/blog/images/bilibili_demo.gif" alt=""></p>
+<h2 id="思路">思路</h2>
+<ol>
+<li>通过 chrome cdp 截图, 省去根据各种偏移值自己拼图的过程, 所见即所得</li>
+<li>根据目标方框位置的边角特征, 投票选出最可能的左边界
+<ol>
+<li>特征图包括左侧边/左上角/左下角得到左边界, 右侧边/右上角/右下角剪掉方框宽度 42px 得到右边界</li>
+<li>特征图比较小 (2 * 5 左右), 直接用 b64 就够了</li>
+<li>左边界结果还要额外 -5, 因为滑块并不在 0 的位置</li>
+<li>按照 3px 的误差分组, 间隔 3px 以内的算一组, 最后取中位数作为该组结果</li>
+<li>按组投票, 票数最多的三组最接近实际结果, 按顺序一个个拖拽即可</li>
+</ol>
+</li>
+<li>如果三组拖完依然没成功, 则刷新页面重新来过.</li>
+<li>考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口, 网上其他人用的是 selenium 里的 drag offset 方面的东西, 可能支持后台 Headless 拖拽.</li>
+</ol>
+<h2 id="代码">代码</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> asyncio
+<span style="color:#f92672">import</span> base64
+<span style="color:#f92672">import</span> json
+
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> pyautogui
+<span style="color:#f92672">from</span> ichrome <span style="color:#f92672">import</span> AsyncChrome, AsyncChromeDaemon, AsyncTab
+<span style="color:#f92672">from</span> pyscreeze <span style="color:#f92672">import</span> locateAll
+
+<span style="color:#f92672">import</span> cv2
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_image_b64</span>():
+    names <span style="color:#f92672">=</span> (
+        (<span style="color:#e6db74">&#39;zuo&#39;</span>, <span style="color:#ae81ff">1</span>),
+        (<span style="color:#e6db74">&#39;zuoxiazuo&#39;</span>, <span style="color:#ae81ff">1</span>),
+        (<span style="color:#e6db74">&#39;zuoxiaxia&#39;</span>, <span style="color:#ae81ff">1</span>),
+        (<span style="color:#e6db74">&#39;zuoshangshang&#39;</span>, <span style="color:#ae81ff">1</span>),
+        (<span style="color:#e6db74">&#39;zuoshangzuo&#39;</span>, <span style="color:#ae81ff">1</span>),
+        (<span style="color:#e6db74">&#39;you&#39;</span>, <span style="color:#ae81ff">1</span>),
+        (<span style="color:#e6db74">&#39;you2&#39;</span>, <span style="color:#ae81ff">1</span>),
+        (<span style="color:#e6db74">&#39;youxiaxia&#39;</span>, <span style="color:#ae81ff">9</span>),
+        (<span style="color:#e6db74">&#39;youxiayou&#39;</span>, <span style="color:#ae81ff">1</span>),
+    )
+    <span style="color:#66d9ef">for</span> name, offset <span style="color:#f92672">in</span> names:
+        <span style="color:#75715e"># print(name, offset)</span>
+        b64_string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+        <span style="color:#66d9ef">with</span> open(f<span style="color:#e6db74">&#39;{name}.png&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+            b64_string <span style="color:#f92672">=</span> base64<span style="color:#f92672">.</span>b64encode(f<span style="color:#f92672">.</span>read())
+        <span style="color:#66d9ef">print</span>((name, offset, b64_string))
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_most_common</span>(items, diff<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>):
+    <span style="color:#75715e"># 按误差为 5 像素来简单分组, 并按组内元素数量排序, 实际上就是一种简单的投票策略</span>
+    result <span style="color:#f92672">=</span> []
+    chunk <span style="color:#f92672">=</span> []
+    s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> sorted(items):
+        <span style="color:#66d9ef">if</span> i <span style="color:#f92672">-</span> s <span style="color:#f92672">&gt;</span> diff:
+            result<span style="color:#f92672">.</span>append(chunk)
+            chunk <span style="color:#f92672">=</span> []
+        chunk<span style="color:#f92672">.</span>append(i)
+        s <span style="color:#f92672">=</span> i
+    result<span style="color:#f92672">.</span>sort(key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x: len(x), reverse<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;坐标分组:&#39;</span>, result)
+    <span style="color:#75715e"># 每个分组取中位数, 并减去 5 像素起始偏差</span>
+    result <span style="color:#f92672">=</span> [i[len(i) <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">5</span> <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> result <span style="color:#66d9ef">if</span> i]
+    result <span style="color:#f92672">=</span> [i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> result <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>]
+    <span style="color:#66d9ef">return</span> result
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_x_positions</span>(pic<span style="color:#f92672">=</span>None):
+    <span style="color:#66d9ef">if</span> pic:
+        np_data <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>frombuffer(base64<span style="color:#f92672">.</span>b64decode(pic), np<span style="color:#f92672">.</span>uint8)
+        bg <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imdecode(np_data, cv2<span style="color:#f92672">.</span>IMREAD_UNCHANGED)
+    <span style="color:#66d9ef">else</span>:
+        bg <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;bg.png&#39;</span>)
+    bg <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>cvtColor(bg, cv2<span style="color:#f92672">.</span>COLOR_BGR2GRAY)
+    ret, bg <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>threshold(bg, <span style="color:#ae81ff">150</span>, <span style="color:#ae81ff">255</span>, cv2<span style="color:#f92672">.</span>THRESH_BINARY)
+    items <span style="color:#f92672">=</span> []
+    <span style="color:#75715e"># 以下图片实际都是判断黑方框位置的边角特征图, 好奇的自己在浏览器上带 data:image/png;base64,</span>
+    <span style="color:#75715e"># 以图找图, 坐标加上偏移就是实际的正方形左侧竖线位置</span>
+    <span style="color:#66d9ef">for</span> name, offset, b64_string <span style="color:#f92672">in</span> (
+        (
+            <span style="color:#e6db74">&#39;zuo&#39;</span>,
+            <span style="color:#ae81ff">1</span>,
+            <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;iVBORw0KGgoAAAANSUhEUgAAAAIAAAAICAYAAADTLS5CAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAAXSURBVAiZY/j///9/BgaG/0wMUEAeAwBW+QUKzThPQQAAAABJRU5ErkJggg==&#39;</span>,
+        ),
+        (
+            <span style="color:#e6db74">&#39;zuoxiazuo&#39;</span>,
+            <span style="color:#ae81ff">1</span>,
+            <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;iVBORw0KGgoAAAANSUhEUgAAAAIAAAAKCAYAAACe5Y9JAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAAbSURBVAiZY/j///9/BgaG/0wMUEANxv///xkAutoICy4BHW8AAAAASUVORK5CYII=&#39;</span>,
+        ),
+        (
+            <span style="color:#e6db74">&#39;zuoxiaxia&#39;</span>,
+            <span style="color:#ae81ff">1</span>,
+            <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;iVBORw0KGgoAAAANSUhEUgAAAA4AAAACCAYAAABoiu2qAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAAeSURBVAiZY/z///9/RkZGBlIBCwMDA8P///9J1ggAV9MHAkyrA+YAAAAASUVORK5CYII=&#39;</span>,
+        ),
+        (
+            <span style="color:#e6db74">&#39;zuoshangshang&#39;</span>,
+            <span style="color:#ae81ff">1</span>,
+            <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;iVBORw0KGgoAAAANSUhEUgAAABIAAAAFCAYAAABIHbx0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAAmSURBVBiVrc4BDQAgAMOwnuDf8hHBJ6BZ2tags0DgQpJvaHY0gx6xZAQL5ARySgAAAABJRU5ErkJggg==&#39;</span>,
+        ),
+        (
+            <span style="color:#e6db74">&#39;zuoshangzuo&#39;</span>,
+            <span style="color:#ae81ff">1</span>,
+            <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;iVBORw0KGgoAAAANSUhEUgAAAAIAAAAKCAYAAACe5Y9JAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAAfSURBVAiZY/z///9/BgYGBiYGBgYGRkZGCAMuQj4DAGFwBBPQx9kIAAAAAElFTkSuQmCC&#39;</span>,
+        ),
+    ):
+        <span style="color:#75715e"># front = cv2.imread(f&#39;{name}.png&#39;)</span>
+        np_data <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>frombuffer(base64<span style="color:#f92672">.</span>b64decode(b64_string), np<span style="color:#f92672">.</span>uint8)
+        front <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imdecode(np_data, cv2<span style="color:#f92672">.</span>IMREAD_UNCHANGED)
+        front <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>cvtColor(front, cv2<span style="color:#f92672">.</span>COLOR_BGR2GRAY)
+        result <span style="color:#f92672">=</span> locateAll(front, bg)
+        xs <span style="color:#f92672">=</span> set((i<span style="color:#f92672">.</span>left <span style="color:#f92672">+</span> offset <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> result))
+        items<span style="color:#f92672">.</span>extend(xs)
+        <span style="color:#75715e"># print(name, xs)</span>
+    <span style="color:#66d9ef">for</span> name, offset, b64_string <span style="color:#f92672">in</span> (
+        (
+            <span style="color:#e6db74">&#39;you&#39;</span>,
+            <span style="color:#ae81ff">1</span>,
+            <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;iVBORw0KGgoAAAANSUhEUgAAAAMAAAAMCAYAAACnfgdqAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAAbSURBVAiZY2RgYPj///9/BgYGBgYmBiQw8BwAX7AEFGOnJnMAAAAASUVORK5CYII=&#39;</span>,
+        ),
+        (
+            <span style="color:#e6db74">&#39;you2&#39;</span>,
+            <span style="color:#ae81ff">1</span>,
+            <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;iVBORw0KGgoAAAANSUhEUgAAAAIAAAAXCAYAAAAhrZ4MAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAAXSURBVAiZY2RgYPj///9/BiYGKBjSDAA2bwQqmibIMQAAAABJRU5ErkJggg==&#39;</span>,
+        ),
+        (
+            <span style="color:#e6db74">&#39;youxiaxia&#39;</span>,
+            <span style="color:#ae81ff">9</span>,
+            <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;iVBORw0KGgoAAAANSUhEUgAAAAsAAAACCAYAAACOoybuAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAAYSURBVAiZY2RgYPjPQAD8/w9RwgJjEAMAcwQG/zbp0osAAAAASUVORK5CYII=&#39;</span>,
+        ),
+        (
+            <span style="color:#e6db74">&#39;youxiayou&#39;</span>,
+            <span style="color:#ae81ff">1</span>,
+            <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;iVBORw0KGgoAAAANSUhEUgAAAAIAAAAICAYAAADTLS5CAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAAeSURBVAiZlcYxAQAwDMAgOv+e06cGxsWgynP+UoEFIHgHCV1SfSIAAAAASUVORK5CYII=&#39;</span>,
+        ),
+    ):
+        <span style="color:#75715e"># front = cv2.imread(f&#39;{name}.png&#39;)</span>
+        np_data <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>frombuffer(base64<span style="color:#f92672">.</span>b64decode(b64_string), np<span style="color:#f92672">.</span>uint8)
+        front <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imdecode(np_data, cv2<span style="color:#f92672">.</span>IMREAD_UNCHANGED)
+        front <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>cvtColor(front, cv2<span style="color:#f92672">.</span>COLOR_BGR2GRAY)
+        result <span style="color:#f92672">=</span> locateAll(front, bg)
+        xs <span style="color:#f92672">=</span> set((i<span style="color:#f92672">.</span>left <span style="color:#f92672">-</span> <span style="color:#ae81ff">42</span> <span style="color:#f92672">+</span> offset <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> result))
+        items<span style="color:#f92672">.</span>extend(xs)
+        <span style="color:#75715e"># print(name, xs)</span>
+    items <span style="color:#f92672">=</span> [i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> items <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>]
+    items<span style="color:#f92672">.</span>sort()
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;全部坐标:&#39;</span>, items)
+    results <span style="color:#f92672">=</span> get_most_common(items, <span style="color:#ae81ff">3</span>)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;坐标列表:&#39;</span>, results)
+    <span style="color:#75715e"># cv2.imshow(&#39;&#39;, bg)</span>
+    <span style="color:#75715e"># cv2.waitKey(0)</span>
+    <span style="color:#66d9ef">return</span> results
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">drag</span>(x):
+    <span style="color:#75715e"># 像人类一样拖拽, 先快后慢, 速度控制</span>
+    button_position <span style="color:#f92672">=</span> pyautogui<span style="color:#f92672">.</span>locateOnScreen(<span style="color:#e6db74">&#39;button.png&#39;</span>)
+    pyautogui<span style="color:#f92672">.</span>moveTo(button_position)
+    pyautogui<span style="color:#f92672">.</span>mouseDown()
+    pyautogui<span style="color:#f92672">.</span>moveRel(x, duration<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>)
+    pyautogui<span style="color:#f92672">.</span>moveRel(<span style="color:#f92672">-</span><span style="color:#ae81ff">10</span>, duration<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>)
+    pyautogui<span style="color:#f92672">.</span>moveRel(<span style="color:#ae81ff">11</span>, duration<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>)
+    pyautogui<span style="color:#f92672">.</span>moveRel(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, duration<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>)
+    pyautogui<span style="color:#f92672">.</span>mouseUp()
+
+
+async <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bilibili</span>(user<span style="color:#f92672">=</span><span style="color:#ae81ff">123</span>, password<span style="color:#f92672">=</span><span style="color:#ae81ff">123</span>, close_after_checking<span style="color:#f92672">=</span>True):
+    async <span style="color:#66d9ef">with</span> AsyncChrome() <span style="color:#66d9ef">as</span> chrome:
+        tabs <span style="color:#f92672">=</span> await chrome<span style="color:#f92672">.</span>tabs
+        tab: AsyncTab <span style="color:#f92672">=</span> tabs[<span style="color:#ae81ff">0</span>]
+        async <span style="color:#66d9ef">with</span> tab():
+            <span style="color:#66d9ef">while</span> <span style="color:#ae81ff">1</span>:
+                await tab<span style="color:#f92672">.</span>set_url(<span style="color:#e6db74">&#39;https://passport.bilibili.com/login&#39;</span>)
+                <span style="color:#75715e"># 填入帐号密码, 并触发 input 事件</span>
+                await tab<span style="color:#f92672">.</span>js(
+                    <span style="color:#e6db74">&#34;var u = document.querySelector(&#39;.username &gt;input&#39;);u.value = &#39;&#34;</span>
+                    <span style="color:#f92672">+</span> str(user) <span style="color:#f92672">+</span>
+                    <span style="color:#e6db74">&#34;&#39;;var p=document.querySelector(&#39;.password &gt;input&#39;);p.value = &#39;&#34;</span>
+                    <span style="color:#f92672">+</span> str(password) <span style="color:#f92672">+</span>
+                    <span style="color:#e6db74">&#34;&#39;;var event = new Event(&#39;input&#39;, { bubbles: true });u.dispatchEvent(event);p.dispatchEvent(event);setTimeout(()=&gt;{document.querySelector(&#39;.btn-login&#39;).click()}, 1000)&#34;</span>
+                )
+                <span style="color:#66d9ef">while</span> <span style="color:#ae81ff">1</span>:
+                    <span style="color:#75715e"># 等待验证码出来</span>
+                    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;geetest_canvas_slice&#39;</span> <span style="color:#f92672">in</span> (await tab<span style="color:#f92672">.</span>html):
+                        <span style="color:#66d9ef">break</span>
+                    await asyncio<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">1</span>)
+                <span style="color:#75715e"># 隐藏滑块方便给背景截图, 拿到背景图的位置范围才可以截图.</span>
+                rect <span style="color:#f92672">=</span> (await tab<span style="color:#f92672">.</span>js(
+                    <span style="color:#e6db74">&#39;document.querySelector(&#34;.geetest_canvas_bg&#34;).hidden = false;document.querySelector(&#34;.geetest_canvas_slice&#34;).hidden = true;JSON.stringify(document.querySelector(&#34;.geetest_canvas_bg&#34;).getBoundingClientRect())&#39;</span>
+                ))[<span style="color:#e6db74">&#39;result&#39;</span>][<span style="color:#e6db74">&#39;result&#39;</span>][<span style="color:#e6db74">&#39;value&#39;</span>]
+                rect <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(rect)
+                <span style="color:#75715e"># print(rect)</span>
+                <span style="color:#75715e"># 截图为 base64 格式</span>
+                pic <span style="color:#f92672">=</span> (await tab<span style="color:#f92672">.</span>send(
+                    <span style="color:#e6db74">&#39;Page.captureScreenshot&#39;</span>,
+                    clip<span style="color:#f92672">=</span>dict(
+                        x<span style="color:#f92672">=</span>rect[<span style="color:#e6db74">&#39;x&#39;</span>],
+                        y<span style="color:#f92672">=</span>rect[<span style="color:#e6db74">&#39;y&#39;</span>],
+                        width<span style="color:#f92672">=</span>rect[<span style="color:#e6db74">&#39;width&#39;</span>],
+                        height<span style="color:#f92672">=</span>rect[<span style="color:#e6db74">&#39;height&#39;</span>],
+                        scale<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,
+                    )))[<span style="color:#e6db74">&#39;result&#39;</span>][<span style="color:#e6db74">&#39;data&#39;</span>]
+                <span style="color:#75715e"># 这里存为文件是为了后期调试, 实际使用中直接丢 base64 在内存里计算就够了</span>
+                <span style="color:#75715e"># with open(&#39;bg.png&#39;, &#39;wb&#39;) as f:</span>
+                <span style="color:#75715e">#     f.write(base64.b64decode(pic))</span>
+                <span style="color:#75715e"># 通过图像识别得到偏移值</span>
+                offsets <span style="color:#f92672">=</span> get_x_positions(pic)
+                <span style="color:#75715e"># 等待 1 秒, 截图会有残影</span>
+                await asyncio<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">1</span>)
+                <span style="color:#75715e"># 只要前三个就够了</span>
+                <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> offsets[:<span style="color:#ae81ff">3</span>]:
+                    <span style="color:#75715e"># 判断下 chrome 还在不在</span>
+                    <span style="color:#66d9ef">assert</span> (await chrome<span style="color:#f92672">.</span>ok)
+                    <span style="color:#75715e"># 有偏移值则拖拽</span>
+                    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;尝试坐标:&#39;</span>, x)
+                    drag(x)
+                    <span style="color:#75715e"># 通过流量判断一下是否成功, 成功时会发送一个 passport.bilibili.com/login 请求</span>
+                    ok <span style="color:#f92672">=</span> await tab<span style="color:#f92672">.</span>wait_response(
+                        filter_function<span style="color:#f92672">=</span>
+                        <span style="color:#66d9ef">lambda</span> r: <span style="color:#e6db74">&#39;passport.bilibili.com/login&#39;</span> <span style="color:#f92672">in</span> r[<span style="color:#e6db74">&#39;params&#39;</span>][<span style="color:#e6db74">&#39;response&#39;</span>][<span style="color:#e6db74">&#39;url&#39;</span>],
+                        timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+                    <span style="color:#66d9ef">if</span> ok:
+                        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;验证成功&#39;</span>)
+                        <span style="color:#75715e"># 优雅地关闭浏览器</span>
+                        <span style="color:#66d9ef">if</span> close_after_checking:
+                            await chrome<span style="color:#f92672">.</span>close_browser()
+                        <span style="color:#66d9ef">return</span>
+                <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;验证失败, 重新尝试&#39;</span>)
+
+
+async <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bilibili_with_daemon</span>(user, password):
+    async <span style="color:#66d9ef">with</span> AsyncChromeDaemon():
+        await bilibili(user, password)
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main_with_daemon</span>():
+    asyncio<span style="color:#f92672">.</span>run(bilibili_with_daemon(<span style="color:#e6db74">&#39;user&#39;</span>, <span style="color:#e6db74">&#39;password&#39;</span>))
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main_without_daemon</span>():
+    <span style="color:#75715e"># 可以在外面启动守护进程, 方便调试</span>
+    <span style="color:#75715e"># python -m ichrome --extra_config=&#34;--window-size=1212,1212&#34;</span>
+    asyncio<span style="color:#f92672">.</span>run(bilibili(<span style="color:#e6db74">&#39;user&#39;</span>, <span style="color:#e6db74">&#39;password&#39;</span>))
+
+
+<span style="color:#75715e"># get_image_b64()</span>
+<span style="color:#75715e"># get_x_positions()</span>
+<span style="color:#75715e"># 捎带着启动 chrome 守护进程, 如果平时调试, 则使用 main_without_daemon</span>
+main_with_daemon()
+<span style="color:#75715e"># main_without_daemon()</span>
+
+</code></pre></div><p>日志:</p>
+<pre><code>全部坐标: [1, 2, 42, 42, 46, 57, 57, 68, 71, 71, 71, 72, 82, 91, 96, 96, 108, 108, 123, 123, 124, 124, 148, 175, 180, 185, 187, 196, 202, 215, 215, 220, 225, 225, 225]
+坐标分组: [[68, 71, 71, 71, 72], [123, 123, 124, 124], [1, 2], [42, 42], [57, 57], [96, 96], [108, 108], [185, 187], [215, 215], [46], [82], [91], [148], [175], [180], [196], [202], [220]]
+坐标列表: [66, 119, 37, 52, 91, 103, 182, 210, 41, 77, 86, 143, 170, 175, 191, 197, 215]
+尝试坐标: 66
+尝试坐标: 119
+验证成功
+</code></pre><h2 id="小结">小结</h2>
+<p>没什么意义, 识别率不算太高, 一次成功率(一般三次滑动, 第一次的坐标就正确)大概七成, 二次成功率九成左右, 遇到干扰直线太多的时候, 也可能三次都失败, 刷新重来. 和网上其他人的套路比不算太先进, 毕竟就是昨晚上摸索了五个小时写着玩的, 胜在简单吧.</p>
+<p>代码学习使用, 请勿商用, 毕竟网上随手能搜到准确率更高的代码, 如有侵权, 请 issue 联系删掉本文.</p>
+
+                </div>
+                
+
+                
+
+
+                
+                
+                <div style="height: 50px;"></div>
+                
+                
+
+                <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="https://www.clericpy.top/newspaper/articles.query.html" target="_blank">News</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/index.xml" target="_blank">RSS</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/categories/" target="_blank">Categories</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/ClericPy/blog/issues" target="_blank">Issue</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/about" target="_blank">About</a>
+  </div>
+  
+  
+</div>
+
+            </div>
+        </div>
+    </article>
+
+    <script src="/blog/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+    
+
+</body>
+
+</html>
