@@ -6,21 +6,10 @@
     <description>Recent content in Posts on Clericpy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Apr 2020 14:22:24 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 31 Mar 2020 17:12:12 +0800</lastBuildDate>
     
 	<atom:link href="https://clericpy.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>随手试了下 B 站的滑块验证码</title>
-      <link>https://clericpy.github.io/blog/posts/20200402142224/</link>
-      <pubDate>Thu, 02 Apr 2020 14:22:24 +0800</pubDate>
-      
-      <guid>https://clericpy.github.io/blog/posts/20200402142224/</guid>
-      <description>没什么意思, 就是随手试试, 记录下代码, 顺便看看 cdp 代替 selenium
-  特意截了个先失败一次的图 https://clericpy.github.io/blog/images/bilibili_demo.gif
- 思路  根据目标方框位置的边角特征, 投票选出最可能的左边界  特征图包括左侧边/左上角/左下角得到左边界, 右侧边/右上角/右下角剪掉方框宽度 42px 得到右边界 特征图比较小 (2 * 5 左右), 直接用 b64 就够了 左边界结果还要额外 -5, 因为滑块并不在 0 的位置 按照 3px 的误差分组, 间隔 3px 以内的算一组, 最后取中位数作为该组结果 按组投票, 票数最多的三组最接近实际结果, 按顺序一个个拖拽即可   如果三组偏移拖完依然没成功, 则刷新页面重新来过. 考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口, 网上其他人用的是 selenium 里的 drag offset 方面的东西, 可能支持后台 Headless 拖拽.  用 chrome cdp 里其实也有, https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchMouseEvent 不过 ichrome 里还没集成上, 现写原生代码会有点麻烦, 这两天把功能加进去, 然后看看模仿人类轨迹实现出来    代码 import asyncio import base64 import json import numpy as np import pyautogui from ichrome import AsyncChrome, AsyncChromeDaemon, AsyncTab from pyscreeze import locateAll import cv2 BUTTON_IMG_B64 = b&amp;#39;iVBORw0KGgoAAAANSUhEUgAAACMAAAAdCAYAAAAgqdWEAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAJ6SURBVEiJ7ZdNaxNRFIafM5nJ2LQpljZSKtpWqIgiuBN3bsS9/8GVv8KV+BN0405B8GulgkLVXVV0YSmtFDREtF8G6XQSm4/jopNk7sydkp1Z5IXAPee999x35j3MvZFms6kMCJz/LSCOoZgsuNrtmM5AAEWMbBSJ9qbFIdFEIcGbCbGn0Sh209XVkAZQDX+xE1Yo+OOUCrN4uXyX2wrKbIcVJgszHBub6+Zb7QYbu9/Za1SZGj3BxMg0qedOxH3Z9LHygicrt3n97Q5BY8fg3qw/4OHyTRYr94x8rRHwcu0uj1du8XnzeT/b9CdmeXORteAtn4JHhK2qwS39eEp5f4n3u/eNfL0Z8uHnM9b/vmM1fNWXGFe142XangNvhbD1m7a/R+hXacs+oKgerNptbOCM7xPkyyiKRAWUJnu6hTdap+ZtoFFzSlTT7NFIDKi1J3vKFEQRV3G8NgiodklwQDxFvDYk+9sBx1Vwe1ljbeLx3SwdBiTSLxlc9LNxZHEWDN53pqtc469PUOsTqem/QR0UU02UitbZIVHNTs9Y5/UaQDsftITe5KZqTNDMeVkiB8qmoZgsuJptphWqvQa2cbaxLbZhoN5MX2Jy4iIIOXySXz7XyUfHv3/IOq8vMQmbUhcSAGaKp9muf2HKL5F3CsYrnz96gbL8Ye7IOSPvis/J8fMEzjrT+bMWm9J7JY4Du68Xj19jMpyiNDZLMVcyuCunrvO1vsDCxCUjP+IVuTp/g+32KmeKly1V03tJrVYb/juwwVXVWEuKecsQ6F0xpBMC0ZUkxsRODANGvW4Qy8aGbnxOamQYqMkwxRzmt32tebANlE1DMVn4Bx8DGiTD+XldAAAAAElFTkSuQmCC&amp;#39; BUTTON_IMG_DATA = np.</description>
-    </item>
     
     <item>
       <title>watchdogs: 随时关注网络世界的变化</title>
