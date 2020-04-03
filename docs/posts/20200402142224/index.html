@@ -322,15 +322,9 @@ async <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bilibil
                 rect <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(rect)
                 <span style="color:#75715e"># print(rect)</span>
                 <span style="color:#75715e"># 截图为 base64 格式</span>
-                pic <span style="color:#f92672">=</span> (await tab<span style="color:#f92672">.</span>send(
-                    <span style="color:#e6db74">&#39;Page.captureScreenshot&#39;</span>,
-                    clip<span style="color:#f92672">=</span>dict(
-                        x<span style="color:#f92672">=</span>rect[<span style="color:#e6db74">&#39;x&#39;</span>],
-                        y<span style="color:#f92672">=</span>rect[<span style="color:#e6db74">&#39;y&#39;</span>],
-                        width<span style="color:#f92672">=</span>rect[<span style="color:#e6db74">&#39;width&#39;</span>],
-                        height<span style="color:#f92672">=</span>rect[<span style="color:#e6db74">&#39;height&#39;</span>],
-                        scale<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,
-                    )))[<span style="color:#e6db74">&#39;result&#39;</span>][<span style="color:#e6db74">&#39;data&#39;</span>]
+                pic <span style="color:#f92672">=</span> (await tab<span style="color:#f92672">.</span>get_variable(
+                    <span style="color:#e6db74">&#34;document.querySelector(&#39;.geetest_canvas_bg &#39;).toDataURL(&#39;image/png&#39;)&#34;</span>
+                ))[<span style="color:#ae81ff">22</span>:]
                 <span style="color:#75715e"># 这里存为文件是为了后期调试, 实际使用中直接丢 base64 在内存里计算就够了</span>
                 <span style="color:#75715e"># with open(&#39;bg.png&#39;, &#39;wb&#39;) as f:</span>
                 <span style="color:#75715e">#     f.write(base64.b64decode(pic))</span>
