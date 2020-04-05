@@ -19,7 +19,7 @@
       "articleSection" : "posts",
       "name" : "随手试了下 B 站的滑块验证码",
       "headline" : "随手试了下 B 站的滑块验证码",
-      "description" : "没什么意思, 就是随手试试, 记录下代码, 顺便看看 cdp 代替 selenium\n  特意截了个先失败一次的图 https:\/\/clericpy.github.io\/blog\/images\/bilibili_demo.gif\n 思路  根据目标方框位置的边角特征, 投票选出最可能的左边界  特征图包括左侧边\/左上角\/左下角得到左边界, 右侧边\/右上角\/右下角剪掉方框宽度 42px 得到右边界 特征图比较小 (2 * 5 左右), 直接用 b64 就够了 左边界结果还要额外 -5, 因为滑块并不在 0 的位置 按照 3px 的误差分组, 间隔 3px 以内的算一组, 最后取中位数作为该组结果 按组投票, 票数最多的三组最接近实际结果, 按顺序一个个拖拽即可   如果三组偏移拖完依然没成功, 则刷新页面重新来过. 考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口, 网上其他人用的是 selenium 里的 drag offset 方面的东西, 可能支持后台 Headless 拖拽.  用 chrome cdp 里其实也有, https:\/\/chromedevtools.github.io\/devtools-protocol\/tot\/Input#method-dispatchMouseEvent 不过 ichrome 里还没集成上, 现写原生代码会有点麻烦, 这两天把功能加进去, 然后看看模仿人类轨迹实现出来    代码 import asyncio import base64 import json import numpy as np import pyautogui from ichrome import AsyncChrome, AsyncChromeDaemon, AsyncTab from pyscreeze import locateAll import cv2 BUTTON_IMG_B64 = b\x26#39;iVBORw0KGgoAAAANSUhEUgAAACMAAAAdCAYAAAAgqdWEAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAJ6SURBVEiJ7ZdNaxNRFIafM5nJ2LQpljZSKtpWqIgiuBN3bsS9\/8GVv8KV\x2bBN0405B8GulgkLVXVV0YSmtFDREtF8G6XQSm4\/jopNk7sydkp1Z5IXAPee999x35j3MvZFms6kMCJz\/LSCOoZgsuNrtmM5AAEWMbBSJ9qbFIdFEIcGbCbGn0Sh209XVkAZQDX\x2bxE1Yo\x2bOOUCrN4uXyX2wrKbIcVJgszHBub6\x2bZb7QYbu9\/Za1SZGj3BxMg0qedOxH3Z9LHygicrt3n97Q5BY8fg3qw\/4OHyTRYr94x8rRHwcu0uj1du8XnzeT\/b9CdmeXORteAtn4JHhK2qwS39eEp5f4n3u\/eNfL0Z8uHnM9b\/vmM1fNWXGFe142XangNvhbD1m7a\/R\x2bhXacs\x2boKgerNptbOCM7xPkyyiKRAWUJnu6hTdap\x2bZtoFFzSlTT7NFIDKi1J3vKFEQRV3G8NgiodklwQDxFvDYk\x2b9sBx1Vwe1ljbeLx3SwdBiTSLxlc9LNxZHEWDN53pqtc469PUOsTqem\/QR0UU02UitbZIVHNTs9Y5\/UaQDsftITe5KZqTNDMeVkiB8qmoZgsuJptphWqvQa2cbaxLbZhoN5MX2Jy4iIIOXySXz7XyUfHv3\/IOq8vMQmbUhcSAGaKp9muf2HKL5F3CsYrnz96gbL8Ye7IOSPvis\/J8fMEzjrT\x2bbMWm9J7JY4Du68Xj19jMpyiNDZLMVcyuCunrvO1vsDCxCUjP\x2bIVuTp\/g\x2b32KmeKly1V03tJrVYb\/juwwVXVWEuKecsQ6F0xpBMC0ZUkxsRODANGvW4Qy8aGbnxOamQYqMkwxRzmt32tebANlE1DMVn4Bx8DGiTD\x2bXldAAAAAElFTkSuQmCC\x26#39; BUTTON_IMG_DATA = np.",
+      "description" : "没什么意思, 就是随手试试, 记录下代码, 顺便看看 cdp 代替 selenium\n  特意截了个先失败一次的图 https:\/\/clericpy.github.io\/blog\/images\/bilibili_demo.gif\n 思路  根据目标方框位置的边角特征, 投票选出最可能的左边界  特征图包括左侧边\/左上角\/左下角得到左边界, 右侧边\/右上角\/右下角剪掉方框宽度 42px 得到右边界 特征图比较小 (2 * 5 左右), 直接用 b64 就够了 左边界结果还要额外 -5, 因为滑块并不在 0 的位置 按照 3px 的误差分组, 间隔 3px 以内的算一组, 最后取中位数作为该组结果 按组投票, 票数最多的三组最接近实际结果, 按顺序一个个拖拽即可   如果三组偏移拖完依然没成功, 则刷新页面重新来过. 考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口  用 chrome cdp 里其实也有, https:\/\/chromedevtools.github.io\/devtools-protocol\/tot\/Input#method-dispatchMouseEvent 不过真实体验过发现, pyautogui 被当作机器的可能比较小, 速度也很快, 用 cdp 模拟拖拽事件虽然支持 Headless 后台拖拽, 却基本都是被识别为机器, 这部分需要伪造人类拖拽轨迹.    代码 import asyncio import base64 import json import random import numpy as np import pyautogui from ichrome import AsyncChrome, AsyncChromeDaemon, AsyncTab from pyscreeze import locateAll import cv2 BUTTON_IMG_B64 = b\x26#39;iVBORw0KGgoAAAANSUhEUgAAACMAAAAdCAYAAAAgqdWEAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAJ6SURBVEiJ7ZdNaxNRFIafM5nJ2LQpljZSKtpWqIgiuBN3bsS9\/8GVv8KV\x2bBN0405B8GulgkLVXVV0YSmtFDREtF8G6XQSm4\/jopNk7sydkp1Z5IXAPee999x35j3MvZFms6kMCJz\/LSCOoZgsuNrtmM5AAEWMbBSJ9qbFIdFEIcGbCbGn0Sh209XVkAZQDX\x2bxE1Yo\x2bOOUCrN4uXyX2wrKbIcVJgszHBub6\x2bZb7QYbu9\/Za1SZGj3BxMg0qedOxH3Z9LHygicrt3n97Q5BY8fg3qw\/4OHyTRYr94x8rRHwcu0uj1du8XnzeT\/b9CdmeXORteAtn4JHhK2qwS39eEp5f4n3u\/eNfL0Z8uHnM9b\/vmM1fNWXGFe142XangNvhbD1m7a\/R\x2bhXacs\x2boKgerNptbOCM7xPkyyiKRAWUJnu6hTdap\x2bZtoFFzSlTT7NFIDKi1J3vKFEQRV3G8NgiodklwQDxFvDYk\x2b9sBx1Vwe1ljbeLx3SwdBiTSLxlc9LNxZHEWDN53pqtc469PUOsTqem\/QR0UU02UitbZIVHNTs9Y5\/UaQDsftITe5KZqTNDMeVkiB8qmoZgsuJptphWqvQa2cbaxLbZhoN5MX2Jy4iIIOXySXz7XyUfHv3\/IOq8vMQmbUhcSAGaKp9muf2HKL5F3CsYrnz96gbL8Ye7IOSPvis\/J8fMEzjrT\x2bbMWm9J7JY4Du68Xj19jMpyiNDZLMVcyuCunrvO1vsDCxCUjP\x2bIVuTp\/g\x2b32KmeKly1V03tJrVYb\/juwwVXVWEuKecsQ6F0xpBMC0ZUkxsRODANGvW4Qy8aGbnxOamQYqMkwxRzmt32tebANlE1DMVn4Bx8DGiTD\x2bXldAAAAAElFTkSuQmCC\x26#39; BUTTON_IMG_DATA = np.",
       "inLanguage" : "en-US",
       "author" : "Clericpy",
       "creator" : "Clericpy",
@@ -38,7 +38,7 @@
   <meta property="og:type" content="article" />
   <meta name="description" content="没什么意思, 就是随手试试, 记录下代码, 顺便看看 cdp 代替 selenium
   特意截了个先失败一次的图 https://clericpy.github.io/blog/images/bilibili_demo.gif
- 思路  根据目标方框位置的边角特征, 投票选出最可能的左边界  特征图包括左侧边/左上角/左下角得到左边界, 右侧边/右上角/右下角剪掉方框宽度 42px 得到右边界 特征图比较小 (2 * 5 左右), 直接用 b64 就够了 左边界结果还要额外 -5, 因为滑块并不在 0 的位置 按照 3px 的误差分组, 间隔 3px 以内的算一组, 最后取中位数作为该组结果 按组投票, 票数最多的三组最接近实际结果, 按顺序一个个拖拽即可   如果三组偏移拖完依然没成功, 则刷新页面重新来过. 考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口, 网上其他人用的是 selenium 里的 drag offset 方面的东西, 可能支持后台 Headless 拖拽.  用 chrome cdp 里其实也有, https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchMouseEvent 不过 ichrome 里还没集成上, 现写原生代码会有点麻烦, 这两天把功能加进去, 然后看看模仿人类轨迹实现出来    代码 import asyncio import base64 import json import numpy as np import pyautogui from ichrome import AsyncChrome, AsyncChromeDaemon, AsyncTab from pyscreeze import locateAll import cv2 BUTTON_IMG_B64 = b&#39;iVBORw0KGgoAAAANSUhEUgAAACMAAAAdCAYAAAAgqdWEAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAJ6SURBVEiJ7ZdNaxNRFIafM5nJ2LQpljZSKtpWqIgiuBN3bsS9/8GVv8KV&#43;BN0405B8GulgkLVXVV0YSmtFDREtF8G6XQSm4/jopNk7sydkp1Z5IXAPee999x35j3MvZFms6kMCJz/LSCOoZgsuNrtmM5AAEWMbBSJ9qbFIdFEIcGbCbGn0Sh209XVkAZQDX&#43;xE1Yo&#43;OOUCrN4uXyX2wrKbIcVJgszHBub6&#43;Zb7QYbu9/Za1SZGj3BxMg0qedOxH3Z9LHygicrt3n97Q5BY8fg3qw/4OHyTRYr94x8rRHwcu0uj1du8XnzeT/b9CdmeXORteAtn4JHhK2qwS39eEp5f4n3u/eNfL0Z8uHnM9b/vmM1fNWXGFe142XangNvhbD1m7a/R&#43;hXacs&#43;oKgerNptbOCM7xPkyyiKRAWUJnu6hTdap&#43;ZtoFFzSlTT7NFIDKi1J3vKFEQRV3G8NgiodklwQDxFvDYk&#43;9sBx1Vwe1ljbeLx3SwdBiTSLxlc9LNxZHEWDN53pqtc469PUOsTqem/QR0UU02UitbZIVHNTs9Y5/UaQDsftITe5KZqTNDMeVkiB8qmoZgsuJptphWqvQa2cbaxLbZhoN5MX2Jy4iIIOXySXz7XyUfHv3/IOq8vMQmbUhcSAGaKp9muf2HKL5F3CsYrnz96gbL8Ye7IOSPvis/J8fMEzjrT&#43;bMWm9J7JY4Du68Xj19jMpyiNDZLMVcyuCunrvO1vsDCxCUjP&#43;IVuTp/g&#43;32KmeKly1V03tJrVYb/juwwVXVWEuKecsQ6F0xpBMC0ZUkxsRODANGvW4Qy8aGbnxOamQYqMkwxRzmt32tebANlE1DMVn4Bx8DGiTD&#43;XldAAAAAElFTkSuQmCC&#39; BUTTON_IMG_DATA = np." />
+ 思路  根据目标方框位置的边角特征, 投票选出最可能的左边界  特征图包括左侧边/左上角/左下角得到左边界, 右侧边/右上角/右下角剪掉方框宽度 42px 得到右边界 特征图比较小 (2 * 5 左右), 直接用 b64 就够了 左边界结果还要额外 -5, 因为滑块并不在 0 的位置 按照 3px 的误差分组, 间隔 3px 以内的算一组, 最后取中位数作为该组结果 按组投票, 票数最多的三组最接近实际结果, 按顺序一个个拖拽即可   如果三组偏移拖完依然没成功, 则刷新页面重新来过. 考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口  用 chrome cdp 里其实也有, https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchMouseEvent 不过真实体验过发现, pyautogui 被当作机器的可能比较小, 速度也很快, 用 cdp 模拟拖拽事件虽然支持 Headless 后台拖拽, 却基本都是被识别为机器, 这部分需要伪造人类拖拽轨迹.    代码 import asyncio import base64 import json import random import numpy as np import pyautogui from ichrome import AsyncChrome, AsyncChromeDaemon, AsyncTab from pyscreeze import locateAll import cv2 BUTTON_IMG_B64 = b&#39;iVBORw0KGgoAAAANSUhEUgAAACMAAAAdCAYAAAAgqdWEAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAJ6SURBVEiJ7ZdNaxNRFIafM5nJ2LQpljZSKtpWqIgiuBN3bsS9/8GVv8KV&#43;BN0405B8GulgkLVXVV0YSmtFDREtF8G6XQSm4/jopNk7sydkp1Z5IXAPee999x35j3MvZFms6kMCJz/LSCOoZgsuNrtmM5AAEWMbBSJ9qbFIdFEIcGbCbGn0Sh209XVkAZQDX&#43;xE1Yo&#43;OOUCrN4uXyX2wrKbIcVJgszHBub6&#43;Zb7QYbu9/Za1SZGj3BxMg0qedOxH3Z9LHygicrt3n97Q5BY8fg3qw/4OHyTRYr94x8rRHwcu0uj1du8XnzeT/b9CdmeXORteAtn4JHhK2qwS39eEp5f4n3u/eNfL0Z8uHnM9b/vmM1fNWXGFe142XangNvhbD1m7a/R&#43;hXacs&#43;oKgerNptbOCM7xPkyyiKRAWUJnu6hTdap&#43;ZtoFFzSlTT7NFIDKi1J3vKFEQRV3G8NgiodklwQDxFvDYk&#43;9sBx1Vwe1ljbeLx3SwdBiTSLxlc9LNxZHEWDN53pqtc469PUOsTqem/QR0UU02UitbZIVHNTs9Y5/UaQDsftITe5KZqTNDMeVkiB8qmoZgsuJptphWqvQa2cbaxLbZhoN5MX2Jy4iIIOXySXz7XyUfHv3/IOq8vMQmbUhcSAGaKp9muf2HKL5F3CsYrnz96gbL8Ye7IOSPvis/J8fMEzjrT&#43;bMWm9J7JY4Du68Xj19jMpyiNDZLMVcyuCunrvO1vsDCxCUjP&#43;IVuTp/g&#43;32KmeKly1V03tJrVYb/juwwVXVWEuKecsQ6F0xpBMC0ZUkxsRODANGvW4Qy8aGbnxOamQYqMkwxRzmt32tebANlE1DMVn4Bx8DGiTD&#43;XldAAAAAElFTkSuQmCC&#39; BUTTON_IMG_DATA = np." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -132,10 +132,10 @@
 </ol>
 </li>
 <li>如果三组偏移拖完依然没成功, 则刷新页面重新来过.</li>
-<li>考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口, 网上其他人用的是 selenium 里的 drag offset 方面的东西, 可能支持后台 Headless 拖拽.
+<li>考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口
 <ol>
 <li>用 chrome cdp 里其实也有, <a href="https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchMouseEvent">https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchMouseEvent</a></li>
-<li>不过 ichrome 里还没集成上, 现写原生代码会有点麻烦, 这两天把功能加进去, 然后看看模仿人类轨迹实现出来</li>
+<li>不过真实体验过发现, pyautogui 被当作机器的可能比较小, 速度也很快, 用 cdp 模拟拖拽事件虽然支持 Headless 后台拖拽, 却基本都是被识别为机器, 这部分需要伪造人类拖拽轨迹.</li>
 </ol>
 </li>
 </ol>
@@ -143,7 +143,7 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> asyncio
 <span style="color:#f92672">import</span> base64
 <span style="color:#f92672">import</span> json
-
+<span style="color:#f92672">import</span> random
 <span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 <span style="color:#f92672">import</span> pyautogui
 <span style="color:#f92672">from</span> ichrome <span style="color:#f92672">import</span> AsyncChrome, AsyncChromeDaemon, AsyncTab
@@ -191,8 +191,8 @@ BUTTON_IMG <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.
     result<span style="color:#f92672">.</span>sort(key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x: len(x), reverse<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;坐标分组:&#39;</span>, result)
     <span style="color:#75715e"># 每个分组取中位数, 并减去 5 像素起始偏差</span>
-    result <span style="color:#f92672">=</span> [i[len(i) <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">5</span> <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> result <span style="color:#66d9ef">if</span> i]
-    result <span style="color:#f92672">=</span> [i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> result <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>]
+    result <span style="color:#f92672">=</span> [i[len(i) <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> result <span style="color:#66d9ef">if</span> i]
+    result <span style="color:#f92672">=</span> [i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> result <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">220</span> <span style="color:#f92672">&gt;</span> i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>]
     <span style="color:#66d9ef">return</span> result
 
 
@@ -275,7 +275,7 @@ BUTTON_IMG <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.
     items <span style="color:#f92672">=</span> [i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> items <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>]
     items<span style="color:#f92672">.</span>sort()
     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;全部坐标:&#39;</span>, items)
-    results <span style="color:#f92672">=</span> get_most_common(items, <span style="color:#ae81ff">3</span>)
+    results <span style="color:#f92672">=</span> get_most_common(items, <span style="color:#ae81ff">2</span>)
     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;坐标列表:&#39;</span>, results)
     <span style="color:#75715e"># cv2.imshow(&#39;&#39;, bg)</span>
     <span style="color:#75715e"># cv2.waitKey(0)</span>
@@ -288,10 +288,23 @@ BUTTON_IMG <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.
     pyautogui<span style="color:#f92672">.</span>moveTo(button_position)
     pyautogui<span style="color:#f92672">.</span>mouseDown()
     pyautogui<span style="color:#f92672">.</span>moveRel(x, <span style="color:#ae81ff">12</span>, duration<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>)
-    pyautogui<span style="color:#f92672">.</span>moveRel(<span style="color:#f92672">-</span><span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">1</span>, duration<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>)
-    pyautogui<span style="color:#f92672">.</span>moveRel(<span style="color:#ae81ff">11</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>, duration<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>)
-    pyautogui<span style="color:#f92672">.</span>moveRel(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, duration<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>)
+    pyautogui<span style="color:#f92672">.</span>moveRel(<span style="color:#f92672">-</span><span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">1</span>, duration<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>)
+    pyautogui<span style="color:#f92672">.</span>moveRel(<span style="color:#ae81ff">10</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>, duration<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>)
+    <span style="color:#75715e"># pyautogui.moveRel(-1, duration=0.5)</span>
     pyautogui<span style="color:#f92672">.</span>mouseUp()
+
+
+async <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cdp_drag</span>(x, tab: AsyncTab):
+    <span style="color:#75715e"># 有偏移值则拖拽</span>
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;尝试坐标:&#39;</span>, x)
+    rect <span style="color:#f92672">=</span> (await tab<span style="color:#f92672">.</span>get_element_clip(<span style="color:#e6db74">&#39;.geetest_slider_button&#39;</span>))
+    <span style="color:#75715e"># print(rect)</span>
+    start_x, start_y <span style="color:#f92672">=</span> rect[<span style="color:#e6db74">&#39;left&#39;</span>], rect[<span style="color:#e6db74">&#39;top&#39;</span>]
+    <span style="color:#75715e"># await tab.drag(start_x, start_y, start_x + x, start_y, duration=2)</span>
+    await tab<span style="color:#f92672">.</span>mouse_move(start_x, start_y)
+    <span style="color:#75715e"># (await tab.mouse_press(x=start_x, y=start_y))</span>
+    await tab<span style="color:#f92672">.</span>mouse_drag_rel_chain(start_x, start_y)<span style="color:#f92672">.</span>move(x <span style="color:#f92672">+</span> <span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">3</span>)<span style="color:#f92672">.</span>move(<span style="color:#f92672">-</span><span style="color:#ae81ff">25</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">0.5</span>)<span style="color:#f92672">.</span>move(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0.5</span>)
+    <span style="color:#75715e"># await tab.mouse_release(start_x + x, start_y)</span>
 
 
 async <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bilibili</span>(user<span style="color:#f92672">=</span><span style="color:#ae81ff">123</span>, password<span style="color:#f92672">=</span><span style="color:#ae81ff">123</span>, close_after_checking<span style="color:#f92672">=</span>True):
@@ -299,6 +312,8 @@ async <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bilibil
         tabs <span style="color:#f92672">=</span> await chrome<span style="color:#f92672">.</span>tabs
         tab: AsyncTab <span style="color:#f92672">=</span> tabs[<span style="color:#ae81ff">0</span>]
         async <span style="color:#66d9ef">with</span> tab():
+            await tab<span style="color:#f92672">.</span>clear_browser_cache()
+            await tab<span style="color:#f92672">.</span>clear_browser_cookies()
             <span style="color:#66d9ef">while</span> <span style="color:#ae81ff">1</span>:
                 await tab<span style="color:#f92672">.</span>set_url(<span style="color:#e6db74">&#39;https://passport.bilibili.com/login&#39;</span>)
                 <span style="color:#75715e"># 填入帐号密码, 并触发 input 事件</span>
@@ -314,13 +329,23 @@ async <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bilibil
                     <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;geetest_canvas_slice&#39;</span> <span style="color:#f92672">in</span> (await tab<span style="color:#f92672">.</span>html):
                         <span style="color:#66d9ef">break</span>
                     await asyncio<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">1</span>)
-                <span style="color:#75715e"># 隐藏滑块方便给背景截图, 拿到背景图的位置范围才可以截图.</span>
-                rect <span style="color:#f92672">=</span> (await tab<span style="color:#f92672">.</span>js(
-                    <span style="color:#e6db74">&#39;document.querySelector(&#34;.geetest_canvas_bg&#34;).hidden = false;document.querySelector(&#34;.geetest_canvas_slice&#34;).hidden = true;JSON.stringify(document.querySelector(&#34;.geetest_canvas_bg&#34;).getBoundingClientRect())&#39;</span>
-                ))[<span style="color:#e6db74">&#39;result&#39;</span>][<span style="color:#e6db74">&#39;result&#39;</span>][<span style="color:#e6db74">&#39;value&#39;</span>]
-                rect <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(rect)
+                <span style="color:#75715e"># # 隐藏滑块方便给背景截图, 拿到背景图的位置范围才可以截图.</span>
+                <span style="color:#75715e"># rect = (await tab.js(</span>
+                <span style="color:#75715e">#     &#39;document.querySelector(&#34;.geetest_canvas_slice&#34;).hidden = true;JSON.stringify(document.querySelector(&#34;.geetest_canvas_bg&#34;).getBoundingClientRect())&#39;</span>
+                <span style="color:#75715e"># ))[&#39;result&#39;][&#39;result&#39;][&#39;value&#39;]</span>
+                <span style="color:#75715e"># rect = json.loads(rect)</span>
+                <span style="color:#75715e"># # 截图为 base64 格式</span>
+                <span style="color:#75715e"># pic = (await tab.send(</span>
+                <span style="color:#75715e">#     &#39;Page.captureScreenshot&#39;,</span>
+                <span style="color:#75715e">#     clip=dict(</span>
+                <span style="color:#75715e">#         x=rect[&#39;x&#39;],</span>
+                <span style="color:#75715e">#         y=rect[&#39;y&#39;],</span>
+                <span style="color:#75715e">#         width=rect[&#39;width&#39;],</span>
+                <span style="color:#75715e">#         height=rect[&#39;height&#39;],</span>
+                <span style="color:#75715e">#         scale=1,</span>
+                <span style="color:#75715e">#     )))[&#39;result&#39;][&#39;data&#39;]</span>
                 <span style="color:#75715e"># print(rect)</span>
-                <span style="color:#75715e"># 截图为 base64 格式</span>
+                <span style="color:#75715e"># 截图为 base64 格式, 这种图片会有比例变化</span>
                 pic <span style="color:#f92672">=</span> (await tab<span style="color:#f92672">.</span>get_variable(
                     <span style="color:#e6db74">&#34;document.querySelector(&#39;.geetest_canvas_bg &#39;).toDataURL(&#39;image/png&#39;)&#34;</span>
                 ))[<span style="color:#ae81ff">22</span>:]
@@ -328,26 +353,38 @@ async <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bilibil
                 <span style="color:#75715e"># with open(&#39;bg.png&#39;, &#39;wb&#39;) as f:</span>
                 <span style="color:#75715e">#     f.write(base64.b64decode(pic))</span>
                 <span style="color:#75715e"># 通过图像识别得到偏移值</span>
-                offsets <span style="color:#f92672">=</span> get_x_positions(pic)
+                offsets <span style="color:#f92672">=</span> get_x_positions(pic)[:<span style="color:#ae81ff">3</span>]
+                <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;尝试坐标列表:&#39;</span>, offsets)
                 <span style="color:#75715e"># 等待 1 秒, 截图会有残影</span>
                 await asyncio<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">1</span>)
                 <span style="color:#75715e"># 只要前三个就够了</span>
-                <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> offsets[:<span style="color:#ae81ff">3</span>]:
+                <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> offsets:
+                    <span style="color:#75715e"># 5 的偏移给滑块</span>
+                    x <span style="color:#f92672">=</span> float(x <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>)
+                    <span style="color:#66d9ef">if</span> x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>:
+                        <span style="color:#66d9ef">continue</span>
                     <span style="color:#75715e"># 判断下 chrome 还在不在</span>
                     <span style="color:#66d9ef">assert</span> (await chrome<span style="color:#f92672">.</span>ok)
-                    <span style="color:#75715e"># 有偏移值则拖拽</span>
-                    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;尝试坐标:&#39;</span>, x)
+                    <span style="color:#75715e"># 通过 cdp 的拖拽, 是产生事件的, 绕不过去, 用 pyautogui 操作真实鼠标比较容易过</span>
+                    <span style="color:#75715e"># await cdp_drag(x, tab)</span>
                     drag(x)
                     <span style="color:#75715e"># 通过流量判断一下是否成功, 成功时会发送一个 passport.bilibili.com/login 请求</span>
                     ok <span style="color:#f92672">=</span> await tab<span style="color:#f92672">.</span>wait_response(
                         filter_function<span style="color:#f92672">=</span>
-                        <span style="color:#66d9ef">lambda</span> r: <span style="color:#e6db74">&#39;passport.bilibili.com/login&#39;</span> <span style="color:#f92672">in</span> r[<span style="color:#e6db74">&#39;params&#39;</span>][<span style="color:#e6db74">&#39;response&#39;</span>][<span style="color:#e6db74">&#39;url&#39;</span>],
+                        <span style="color:#66d9ef">lambda</span> r: <span style="color:#e6db74">&#39;https://passport.bilibili.com/login&#39;</span> <span style="color:#f92672">in</span> str(r[<span style="color:#e6db74">&#39;params&#39;</span>][<span style="color:#e6db74">&#39;response&#39;</span>][<span style="color:#e6db74">&#39;url&#39;</span>]),
                         timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+                    err <span style="color:#f92672">=</span> (await tab<span style="color:#f92672">.</span>get_variable(
+                        <span style="color:#e6db74">&#34;document.querySelector(&#39;.geetest_panel_error&#39;).style.display&#34;</span>
+                    ))
+                    <span style="color:#66d9ef">if</span> err <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;none&#39;</span>:
+                        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;人机反爬:&#39;</span>, err)
+                        <span style="color:#66d9ef">break</span>
                     <span style="color:#66d9ef">if</span> ok:
                         <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;验证成功&#39;</span>)
+                        <span style="color:#75715e"># print(ok)</span>
                         <span style="color:#75715e"># 优雅地关闭浏览器</span>
-                        <span style="color:#66d9ef">if</span> close_after_checking:
-                            await chrome<span style="color:#f92672">.</span>close_browser()
+                        <span style="color:#75715e"># if close_after_checking:</span>
+                        <span style="color:#75715e">#     await chrome.close_browser()</span>
                         <span style="color:#66d9ef">return</span>
                 <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;验证失败, 重新尝试&#39;</span>)
 
@@ -363,7 +400,7 @@ async <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bilibil
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main_without_daemon</span>():
     <span style="color:#75715e"># 可以在外面启动守护进程, 方便调试</span>
-    <span style="color:#75715e"># python -m ichrome --extra_config=&#34;--window-size=1212,1212&#34;</span>
+    <span style="color:#75715e"># python -m ichrome --extra_config=&#34;--window-size=1212,800&#34;</span>
     asyncio<span style="color:#f92672">.</span>run(bilibili(<span style="color:#e6db74">&#39;user&#39;</span>, <span style="color:#e6db74">&#39;password&#39;</span>))
 
 
@@ -381,7 +418,8 @@ main_with_daemon()
 尝试坐标: 119
 验证成功
 </code></pre><h2 id="小结">小结</h2>
-<p>没什么意义, 识别率不算太高, 一次成功率(一般三次滑动, 第一次的坐标就正确)大概七成, 二次成功率九成左右, 遇到干扰直线太多的时候, 也可能三次都失败, 刷新重来. 和网上其他人的套路比不算太先进, 毕竟就是昨晚上摸索了五个小时写着玩的, 胜在简单吧.</p>
+<p>识别率不算太高, 一次成功率(一般三次滑动, 第一次的坐标就正确)大概七成, 二次成功率九成左右, 遇到干扰直线太多的时候, 也可能三次都失败, 刷新重来.</p>
+<p>整个拖拽代码都是从 pyautogui 上复制下来用 cdp 里的拖拽事件来实现的, 但就是不如 pyautogui 的能避开人机检测, 每次都被怪兽吞了, 这部分折腾良久依然没什么好办法, 不过 pyautogui 的拖拽基本就是干脆利落, 超过 98% 其他用户的速度.</p>
 <p>代码学习使用, 请勿商用, 毕竟网上随手能搜到准确率更高的代码, 如有侵权, 请 issue 联系删掉本文.</p>
 
                 </div>
