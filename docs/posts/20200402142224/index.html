@@ -19,7 +19,7 @@
       "articleSection" : "posts",
       "name" : "随手试了下 B 站的滑块验证码",
       "headline" : "随手试了下 B 站的滑块验证码",
-      "description" : "没什么意思, 就是随手试试, 记录下代码, 顺便看看 cdp 代替 selenium\n  特意截了个先失败一次的图 https:\/\/clericpy.github.io\/blog\/images\/bilibili_demo.gif\n 思路  根据目标方框位置的边角特征, 投票选出最可能的左边界  特征图包括左侧边\/左上角\/左下角得到左边界, 右侧边\/右上角\/右下角剪掉方框宽度 42px 得到右边界 特征图比较小 (2 * 5 左右), 直接用 b64 就够了 左边界结果还要额外 -5, 因为滑块并不在 0 的位置 按照 3px 的误差分组, 间隔 3px 以内的算一组, 最后取中位数作为该组结果 按组投票, 票数最多的三组最接近实际结果, 按顺序一个个拖拽即可   如果三组偏移拖完依然没成功, 则刷新页面重新来过. 考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口  用 chrome cdp 里其实也有, https:\/\/chromedevtools.github.io\/devtools-protocol\/tot\/Input#method-dispatchMouseEvent 不过真实体验过发现, pyautogui 被当作机器的可能比较小, 速度也很快, 用 cdp 模拟拖拽事件虽然支持 Headless 后台拖拽, 却基本都是被识别为机器, 这部分需要伪造人类拖拽轨迹.    代码 import asyncio import base64 import json import random import numpy as np import pyautogui from ichrome import AsyncChrome, AsyncChromeDaemon, AsyncTab from pyscreeze import locateAll import cv2 BUTTON_IMG_B64 = b\x26#39;iVBORw0KGgoAAAANSUhEUgAAACMAAAAdCAYAAAAgqdWEAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAJ6SURBVEiJ7ZdNaxNRFIafM5nJ2LQpljZSKtpWqIgiuBN3bsS9\/8GVv8KV\x2bBN0405B8GulgkLVXVV0YSmtFDREtF8G6XQSm4\/jopNk7sydkp1Z5IXAPee999x35j3MvZFms6kMCJz\/LSCOoZgsuNrtmM5AAEWMbBSJ9qbFIdFEIcGbCbGn0Sh209XVkAZQDX\x2bxE1Yo\x2bOOUCrN4uXyX2wrKbIcVJgszHBub6\x2bZb7QYbu9\/Za1SZGj3BxMg0qedOxH3Z9LHygicrt3n97Q5BY8fg3qw\/4OHyTRYr94x8rRHwcu0uj1du8XnzeT\/b9CdmeXORteAtn4JHhK2qwS39eEp5f4n3u\/eNfL0Z8uHnM9b\/vmM1fNWXGFe142XangNvhbD1m7a\/R\x2bhXacs\x2boKgerNptbOCM7xPkyyiKRAWUJnu6hTdap\x2bZtoFFzSlTT7NFIDKi1J3vKFEQRV3G8NgiodklwQDxFvDYk\x2b9sBx1Vwe1ljbeLx3SwdBiTSLxlc9LNxZHEWDN53pqtc469PUOsTqem\/QR0UU02UitbZIVHNTs9Y5\/UaQDsftITe5KZqTNDMeVkiB8qmoZgsuJptphWqvQa2cbaxLbZhoN5MX2Jy4iIIOXySXz7XyUfHv3\/IOq8vMQmbUhcSAGaKp9muf2HKL5F3CsYrnz96gbL8Ye7IOSPvis\/J8fMEzjrT\x2bbMWm9J7JY4Du68Xj19jMpyiNDZLMVcyuCunrvO1vsDCxCUjP\x2bIVuTp\/g\x2b32KmeKly1V03tJrVYb\/juwwVXVWEuKecsQ6F0xpBMC0ZUkxsRODANGvW4Qy8aGbnxOamQYqMkwxRzmt32tebANlE1DMVn4Bx8DGiTD\x2bXldAAAAAElFTkSuQmCC\x26#39; BUTTON_IMG_DATA = np.",
+      "description" : "没什么意思, 就是随手试试, 记录下代码, 顺便看看 cdp 代替 selenium\n  特意截了个先失败一次的图 https:\/\/clericpy.github.io\/blog\/images\/bilibili_demo.gif\n 思路  根据目标方框位置的边角特征, 投票选出最可能的左边界  特征图包括左侧边\/左上角\/左下角得到左边界, 右侧边\/右上角\/右下角剪掉方框宽度 42px 得到右边界 特征图比较小 (2 * 5 左右), 直接用 b64 就够了 左边界结果还要额外 -5, 因为滑块并不在 0 的位置 按照 3px 的误差分组, 间隔 3px 以内的算一组, 最后取中位数作为该组结果 按组投票, 票数最多的三组最接近实际结果, 按顺序一个个拖拽即可   如果三组偏移拖完依然没成功, 则刷新页面重新来过. 考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口  用 chrome cdp 里其实也有, https:\/\/chromedevtools.github.io\/devtools-protocol\/tot\/Input#method-dispatchMouseEvent , 但是这是基于发送鼠标事件的方式来调用的, 并没有移动鼠标的实际位置, 基本 100% 被检测到. 通过 pyautogui 被当作机器的可能比较小, 速度也很快, 用 cdp 模拟拖拽事件虽然支持 Headless 后台拖拽, 却基本都是被识别为机器, 这部分需要伪造人类拖拽轨迹.",
       "inLanguage" : "en-US",
       "author" : "Clericpy",
       "creator" : "Clericpy",
@@ -38,7 +38,7 @@
   <meta property="og:type" content="article" />
   <meta name="description" content="没什么意思, 就是随手试试, 记录下代码, 顺便看看 cdp 代替 selenium
   特意截了个先失败一次的图 https://clericpy.github.io/blog/images/bilibili_demo.gif
- 思路  根据目标方框位置的边角特征, 投票选出最可能的左边界  特征图包括左侧边/左上角/左下角得到左边界, 右侧边/右上角/右下角剪掉方框宽度 42px 得到右边界 特征图比较小 (2 * 5 左右), 直接用 b64 就够了 左边界结果还要额外 -5, 因为滑块并不在 0 的位置 按照 3px 的误差分组, 间隔 3px 以内的算一组, 最后取中位数作为该组结果 按组投票, 票数最多的三组最接近实际结果, 按顺序一个个拖拽即可   如果三组偏移拖完依然没成功, 则刷新页面重新来过. 考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口  用 chrome cdp 里其实也有, https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchMouseEvent 不过真实体验过发现, pyautogui 被当作机器的可能比较小, 速度也很快, 用 cdp 模拟拖拽事件虽然支持 Headless 后台拖拽, 却基本都是被识别为机器, 这部分需要伪造人类拖拽轨迹.    代码 import asyncio import base64 import json import random import numpy as np import pyautogui from ichrome import AsyncChrome, AsyncChromeDaemon, AsyncTab from pyscreeze import locateAll import cv2 BUTTON_IMG_B64 = b&#39;iVBORw0KGgoAAAANSUhEUgAAACMAAAAdCAYAAAAgqdWEAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAJ6SURBVEiJ7ZdNaxNRFIafM5nJ2LQpljZSKtpWqIgiuBN3bsS9/8GVv8KV&#43;BN0405B8GulgkLVXVV0YSmtFDREtF8G6XQSm4/jopNk7sydkp1Z5IXAPee999x35j3MvZFms6kMCJz/LSCOoZgsuNrtmM5AAEWMbBSJ9qbFIdFEIcGbCbGn0Sh209XVkAZQDX&#43;xE1Yo&#43;OOUCrN4uXyX2wrKbIcVJgszHBub6&#43;Zb7QYbu9/Za1SZGj3BxMg0qedOxH3Z9LHygicrt3n97Q5BY8fg3qw/4OHyTRYr94x8rRHwcu0uj1du8XnzeT/b9CdmeXORteAtn4JHhK2qwS39eEp5f4n3u/eNfL0Z8uHnM9b/vmM1fNWXGFe142XangNvhbD1m7a/R&#43;hXacs&#43;oKgerNptbOCM7xPkyyiKRAWUJnu6hTdap&#43;ZtoFFzSlTT7NFIDKi1J3vKFEQRV3G8NgiodklwQDxFvDYk&#43;9sBx1Vwe1ljbeLx3SwdBiTSLxlc9LNxZHEWDN53pqtc469PUOsTqem/QR0UU02UitbZIVHNTs9Y5/UaQDsftITe5KZqTNDMeVkiB8qmoZgsuJptphWqvQa2cbaxLbZhoN5MX2Jy4iIIOXySXz7XyUfHv3/IOq8vMQmbUhcSAGaKp9muf2HKL5F3CsYrnz96gbL8Ye7IOSPvis/J8fMEzjrT&#43;bMWm9J7JY4Du68Xj19jMpyiNDZLMVcyuCunrvO1vsDCxCUjP&#43;IVuTp/g&#43;32KmeKly1V03tJrVYb/juwwVXVWEuKecsQ6F0xpBMC0ZUkxsRODANGvW4Qy8aGbnxOamQYqMkwxRzmt32tebANlE1DMVn4Bx8DGiTD&#43;XldAAAAAElFTkSuQmCC&#39; BUTTON_IMG_DATA = np." />
+ 思路  根据目标方框位置的边角特征, 投票选出最可能的左边界  特征图包括左侧边/左上角/左下角得到左边界, 右侧边/右上角/右下角剪掉方框宽度 42px 得到右边界 特征图比较小 (2 * 5 左右), 直接用 b64 就够了 左边界结果还要额外 -5, 因为滑块并不在 0 的位置 按照 3px 的误差分组, 间隔 3px 以内的算一组, 最后取中位数作为该组结果 按组投票, 票数最多的三组最接近实际结果, 按顺序一个个拖拽即可   如果三组偏移拖完依然没成功, 则刷新页面重新来过. 考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口  用 chrome cdp 里其实也有, https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchMouseEvent , 但是这是基于发送鼠标事件的方式来调用的, 并没有移动鼠标的实际位置, 基本 100% 被检测到. 通过 pyautogui 被当作机器的可能比较小, 速度也很快, 用 cdp 模拟拖拽事件虽然支持 Headless 后台拖拽, 却基本都是被识别为机器, 这部分需要伪造人类拖拽轨迹." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -134,8 +134,9 @@
 <li>如果三组偏移拖完依然没成功, 则刷新页面重新来过.</li>
 <li>考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口
 <ol>
-<li>用 chrome cdp 里其实也有, <a href="https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchMouseEvent">https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchMouseEvent</a></li>
-<li>不过真实体验过发现, pyautogui 被当作机器的可能比较小, 速度也很快, 用 cdp 模拟拖拽事件虽然支持 Headless 后台拖拽, 却基本都是被识别为机器, 这部分需要伪造人类拖拽轨迹.</li>
+<li>用 chrome cdp 里其实也有, <a href="https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchMouseEvent">https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchMouseEvent</a> , 但是这是基于发送鼠标事件的方式来调用的, 并没有移动鼠标的实际位置, 基本 100% 被检测到.</li>
+<li>通过 pyautogui 被当作机器的可能比较小, 速度也很快, 用 cdp 模拟拖拽事件虽然支持 Headless 后台拖拽, 却基本都是被识别为机器, 这部分需要伪造人类拖拽轨迹.</li>
+<li>对比通过 cdp 和 pyautogui 操作鼠标, 前者会产生几十个 mouse move Event, 后者却只产生两个.</li>
 </ol>
 </li>
 </ol>
@@ -419,7 +420,7 @@ main_with_daemon()
 验证成功
 </code></pre><h2 id="小结">小结</h2>
 <p>识别率不算太高, 一次成功率(一般三次滑动, 第一次的坐标就正确)大概七成, 二次成功率九成左右, 遇到干扰直线太多的时候, 也可能三次都失败, 刷新重来.</p>
-<p>整个拖拽代码都是从 pyautogui 上复制下来用 cdp 里的拖拽事件来实现的, 但就是不如 pyautogui 的能避开人机检测, 每次都被怪兽吞了, 这部分折腾良久依然没什么好办法, 不过 pyautogui 的拖拽基本就是干脆利落, 超过 98% 其他用户的速度.</p>
+<p>ichrome 里整个拖拽功能的相关代码都是从 pyautogui 上复制下来的, 但就是不如 pyautogui 的能避开人机检测, 每次都被怪兽吞了, 这部分折腾良久依然没什么好办法, 毕竟不是真实的鼠标动作, 只是一堆鼠标事件. 不过 pyautogui 的拖拽基本就是干脆利落, 超过 98% 其他用户的速度.</p>
 <p>代码学习使用, 请勿商用, 毕竟网上随手能搜到准确率更高的代码, 如有侵权, 请 issue 联系删掉本文.</p>
 
                 </div>
