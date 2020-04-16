@@ -40,7 +40,7 @@
   特意截了个先失败一次的图 https://clericpy.github.io/blog/images/bilibili_demo.gif
  思路  根据目标方框位置的边角特征, 投票选出最可能的左边界  特征图包括左侧边/左上角/左下角得到左边界, 右侧边/右上角/右下角剪掉方框宽度 42px 得到右边界 特征图比较小 (2 * 5 左右), 直接用 b64 就够了 左边界结果还要额外 -5, 因为滑块并不在 0 的位置 按照 3px 的误差分组, 间隔 3px 以内的算一组, 最后取中位数作为该组结果 按组投票, 票数最多的三组最接近实际结果, 按顺序一个个拖拽即可   如果三组偏移拖完依然没成功, 则刷新页面重新来过. 考虑到拖拽时候的拟人轨迹, 使用的是 pyautogui, 所以要前台显示窗口  用 chrome cdp 里其实也有, https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchMouseEvent , 但是这是基于发送鼠标事件的方式来调用的, 并没有移动鼠标的实际位置, 基本 100% 被检测到. 通过 pyautogui 被当作机器的可能比较小, 速度也很快, 用 cdp 模拟拖拽事件虽然支持 Headless 后台拖拽, 却基本都是被识别为机器, 这部分需要伪造人类拖拽轨迹." />
 
-  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet" href="https://cdn.staticfile.org/flexboxgrid/6.3.1/flexboxgrid.min.css" />
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
@@ -465,7 +465,7 @@ main_with_daemon()
     </article>
 
     <script src="/blog/js/highlight.pack.js"></script>
-<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+<script src="https://cdn.staticfile.org/quicklink/2.0.0-alpha/quicklink.umd.js"></script>
 
 <script>
   hljs.initHighlightingOnLoad();
