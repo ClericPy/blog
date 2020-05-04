@@ -1,7 +1,6 @@
-from torequests.utils import ttime, re
-import os
+import subprocess
 
 
-fname = re.sub(r"\D", "", ttime())
+fname = input('Input the title:\n')
 name = f'posts/{fname}.md'
-os.system(f'hugo new {name}')
+subprocess.Popen(['hugo', 'new', name]).wait()

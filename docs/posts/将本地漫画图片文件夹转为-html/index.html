@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.65.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Clericpy" />
+  <meta property="og:url" content="https://clericpy.github.io/blog/posts/%E5%B0%86%E6%9C%AC%E5%9C%B0%E6%BC%AB%E7%94%BB%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6%E5%A4%B9%E8%BD%AC%E4%B8%BA-html/" />
+  <link rel="canonical" href="https://clericpy.github.io/blog/posts/%E5%B0%86%E6%9C%AC%E5%9C%B0%E6%BC%AB%E7%94%BB%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6%E5%A4%B9%E8%BD%AC%E4%B8%BA-html/" /><link rel="shortcut icon" href="/blog/favicon.ico" type="image/x-png" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/clericpy.github.io\/blog\/"
+      },
+      "articleSection" : "posts",
+      "name" : "将本地图片文件夹转为 HTML 文件",
+      "headline" : "将本地图片文件夹转为 HTML 文件",
+      "description" : "一键生成文件夹图片 HTML 方便统一浏览",
+      "inLanguage" : "en-US",
+      "author" : "Clericpy",
+      "creator" : "Clericpy",
+      "publisher": "Clericpy",
+      "accountablePerson" : "Clericpy",
+      "copyrightHolder" : "Clericpy",
+      "copyrightYear" : "2020",
+      "datePublished": "2020-05-04 16:42:54 \x2b0800 CST",
+      "dateModified" : "2020-05-04 16:42:54 \x2b0800 CST",
+      "url" : "https:\/\/clericpy.github.io\/blog\/posts\/%E5%B0%86%E6%9C%AC%E5%9C%B0%E6%BC%AB%E7%94%BB%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6%E5%A4%B9%E8%BD%AC%E4%B8%BA-html\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>将本地图片文件夹转为 HTML 文件 - Clericpy&#39;s Blog</title>
+  <meta property="og:title" content="将本地图片文件夹转为 HTML 文件 - Clericpy&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="一键生成文件夹图片 HTML 方便统一浏览" />
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/blog/css/index.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Clericpy&#39;s Blog">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150991415-1"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag("js", new Date());  gtag("config", "UA-150991415-1");</script>
+</head>
+
+
+<body>
+    <article class="post Chinese" id="article">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                <div class="site-header">
+                    
+<header>
+  <div class="signatures site-title">
+    <a href="/blog/">Clericpy&#39;s Blog</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+                </div>
+                <header class="post-header">
+                    <h1 class="post-title">将本地图片文件夹转为 HTML 文件</h1>
+                    
+                    <div class="row post-desc">
+                        <div class="col-xs-2">
+                            
+                            <time class="post-date" datetime="2020-05-04 16:42:54 CST">
+                                04 May 2020
+                            </time>
+                            
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="/blog/categories/tools"><b
+                                    style="text-decoration:underline">Tools</b></a>
+                        </div>
+                        <div class="col-xs-6">
+                            
+                            <div class="post-author">
+                                <a target="_blank" href="https://github.com/ClericPy">@Clericpy</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="toc" class="well col-md-12 col-sm-10" style="font-size: 0.8em; border: 1px dashed rgb(194, 194, 194); margin: 15px; padding: 15px;">
+                        <h3>Table of Contents</h3>
+                        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#场景">场景</a></li>
+    <li><a href="#用法">用法</a></li>
+    <li><a href="#细节">细节</a></li>
+    <li><a href="#截图">截图</a></li>
+  </ul>
+</nav>
+                    </div>
+                </header>
+                <div class="post-content markdown-body">
+                    <hr>
+<blockquote>
+<p>因为代码量比较小, 暂时不打算上 pypi</p>
+</blockquote>
+<p>下载地址:</p>
+<p><a href="https://github.com/ClericPy/somethings/releases">https://github.com/ClericPy/somethings/releases</a></p>
+<ol>
+<li>
+<p>源码 (建议): <a href="https://github.com/ClericPy/somethings/blob/master/Python/pic2html.pyw">https://github.com/ClericPy/somethings/blob/master/Python/pic2html.pyw</a></p>
+<blockquote>
+<p>直接复制源代码更干净, 因为没有第三方依赖, 不过需要 python 解释器环境, windows 下双击即可运行</p>
+</blockquote>
+</li>
+<li>
+<p>单文件 exe: <a href="https://github.com/ClericPy/somethings/releases/download/0.1/pic2html-single.exe">pic2html-single.exe</a></p>
+<blockquote>
+<p>每次执行会产生临时文件, 执行结束会自动清理</p>
+</blockquote>
+</li>
+<li>
+<p>文件夹 exe: <a href="https://github.com/ClericPy/somethings/releases/download/0.1/pic2html.zip">pic2html.zip</a></p>
+<blockquote>
+<p>不产生临时文件, 不过需要解压缩</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="场景">场景</h2>
+<p>日常生活中, 总有需要浏览大量图片的时候, 比如打包的 <strong>漫画</strong> / <strong>壁纸</strong> / <strong>相片</strong> / <strong>素材</strong>, 浏览图片集过程中, 也会产生一些常见的需求:</p>
+<ol>
+<li>图片放大拉宽, 方便文字阅读</li>
+<li>能快速定位到文件的路径和名称</li>
+<li>一次加载多张图片, 免得手动一张张翻页</li>
+<li>支持多种图片格式</li>
+<li>单文件 exe 无需安装</li>
+</ol>
+<h2 id="用法">用法</h2>
+<ol>
+<li>手动复制要处理的文件夹路径</li>
+<li>执行脚本, 会自动从剪切板中读取路径
+<ol>
+<li>可能是 pyw 文件, 也可能是 exe 文件</li>
+</ol>
+</li>
+<li>等待执行结束, 自动打开浏览器查看
+<ol>
+<li>双击图片则打开单个图片方便单独放大</li>
+<li>顶部调整图片宽度占比</li>
+<li>顶部锚点链接负责跳转到指定文件夹路径
+<ol>
+<li>单个文件夹标题点击会回到顶部</li>
+</ol>
+</li>
+<li>每张图片的右下角会有小字显示文件名和路径</li>
+</ol>
+</li>
+<li>HTML 文件会放在剪切板路径中, 命名以 <code>-</code> 开头</li>
+</ol>
+<h2 id="细节">细节</h2>
+<ol>
+<li>
+<p>HTML 文件要与文件夹放在一起, 不留冗余文件</p>
+<ol>
+<li>因为都是相对路径, 所以不能到处移动, 这符合设计不需要处理</li>
+<li>HTML 文件名为了排序有利, 会使用该文件夹的名字并且以 <code>-</code> 开头</li>
+<li>linux 和 windows 系统都有<strong>最大路径长度</strong>问题, 所以最终文件名路径会控制在 200 字符以内</li>
+</ol>
+</li>
+<li>
+<p>图片如果数量过多, 会特别的慢</p>
+<ol>
+<li>加载特别慢, 借助 <code>IntersectionObserver</code> 实现图片的<strong>懒加载</strong></li>
+<li>遍历文件夹特别慢, 则每隔一定时间弹出对话框询问是否还要继续, 这个主要是由此对整个磁盘执行了该脚本</li>
+</ol>
+</li>
+<li>
+<p>嵌套的子目录太多, 浏览不方便</p>
+<ol>
+<li>子目录的路径信息也是有价值的信息, 所以会按照顺序做标题, 绑定<strong>锚点</strong></li>
+<li>文件名有可能格式错误, 所以会做 md5 方便跳转</li>
+</ol>
+</li>
+<li>
+<p>操作尽可能地少, 最好的软件是不需要交互的</p>
+<ol>
+<li>程序读取了<strong>剪切板</strong>里的路径, 全程自动</li>
+<li>HTML 生成完毕后, 会使用默认浏览器打开该 HTML, 省的去找</li>
+</ol>
+</li>
+<li>
+<p>程序崩溃或超时的时候, 可以弹出对话框提醒相关信息</p>
+</li>
+<li>
+<p>尽可能支持多的图片格式: <code>.pcd .gif .jfif .raw .pcx .svg .pjpeg .pjp .eps .fpx .tga .cur .WMF .psd .tiff .png .ufo .tif .bmp .exif .ico .jpeg .jpg .ai .webp .cdr .dxf .apng</code></p>
+</li>
+<li>
+<p>安装方便</p>
+<ol>
+<li>打包一份单文件 exe</li>
+<li>或者自行安装依赖, 然后在 windows 上双击
+<ol>
+<li>如果没有安装 <code>pyperclip</code>, 则自己手动输入路径</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>图片和文件夹的排序要避免 <code>10.jpg &lt; 2.jpg</code></p>
+<ol>
+<li>简单的方法就是先找出文件名里所有数字, 然后对所有数字左边都补 0, 补到统一长度为 10, 做前缀进行排序, 用冒号隔开, 需要填入路径的时候, 以冒号 split 一次取后半截即可</li>
+</ol>
+</li>
+</ol>
+<h2 id="截图">截图</h2>
+<p><img src="/blog/images/demo_pic2html.png" alt="demo"></p>
+
+                </div>
+                
+
+                
+
+
+                
+                
+                <div style="height: 50px;"></div>
+                
+                
+
+                <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="https://www.clericpy.top/newspaper/articles.query.html" target="_blank">News</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/index.xml" target="_blank">RSS</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/categories/" target="_blank">Categories</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/ClericPy/blog/issues" target="_blank">Issue</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/about" target="_blank">About</a>
+  </div>
+  
+  
+</div>
+
+            </div>
+        </div>
+    </article>
+
+    <script src="/blog/js/highlight.pack.js"></script>
+<script src="https://cdn.staticfile.org/quicklink/2.0.0-alpha/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+    
+
+</body>
+
+</html>
