@@ -12,6 +12,25 @@
     
     
     <item>
+      <title>将本地图片文件夹转为 HTML 文件</title>
+      <link>https://clericpy.github.io/blog/posts/%E5%B0%86%E6%9C%AC%E5%9C%B0%E6%BC%AB%E7%94%BB%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6%E5%A4%B9%E8%BD%AC%E4%B8%BA-html/</link>
+      <pubDate>Mon, 04 May 2020 16:42:54 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/%E5%B0%86%E6%9C%AC%E5%9C%B0%E6%BC%AB%E7%94%BB%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6%E5%A4%B9%E8%BD%AC%E4%B8%BA-html/</guid>
+      <description>因为代码量比较小, 暂时不打算上 pypi
+ 下载地址:
+https://github.com/ClericPy/somethings/releases
+  源码 (建议): https://github.com/ClericPy/somethings/blob/master/Python/pic2html.pyw
+ 直接复制源代码更干净, 因为没有第三方依赖, 不过需要 python 解释器环境, windows 下双击即可运行
+   单文件 exe: pic2html-single.exe
+ 每次执行会产生临时文件, 执行结束会自动清理
+   文件夹 exe: pic2html.zip
+ 不产生临时文件, 不过需要解压缩
+   场景 日常生活中, 总有需要浏览大量图片的时候, 比如打包的 漫画 / 壁纸 / 相片 / 素材, 浏览图片集过程中, 也会产生一些常见的需求:
+ 图片放大拉宽, 方便文字阅读 能快速定位到文件的路径和名称 一次加载多张图片, 免得手动一张张翻页 支持多种图片格式 单文件 exe 无需安装  用法  手动复制要处理的文件夹路径 执行脚本, 会自动从剪切板中读取路径  可能是 pyw 文件, 也可能是 exe 文件   等待执行结束, 自动打开浏览器查看  双击图片则打开单个图片方便单独放大 顶部调整图片宽度占比 顶部锚点链接负责跳转到指定文件夹路径  单个文件夹标题点击会回到顶部   每张图片的右下角会有小字显示文件名和路径   HTML 文件会放在剪切板路径中, 命名以 - 开头  细节   HTML 文件要与文件夹放在一起, 不留冗余文件</description>
+    </item>
+    
+    <item>
       <title>随手试了下 B 站的滑块验证码</title>
       <link>https://clericpy.github.io/blog/posts/20200402142224/</link>
       <pubDate>Thu, 02 Apr 2020 14:22:24 +0800</pubDate>
