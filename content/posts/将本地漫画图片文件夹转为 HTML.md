@@ -1,7 +1,7 @@
 ---
 title: "将本地图片文件夹转为 HTML 文件"
 date: 2020-05-04T16:42:54+08:00
-description: "一键生成文件夹图片 HTML 方便统一浏览"
+description: "文件夹图片一键生成 HTML 相册"
 categories: Tools
 draft: false
 ---
