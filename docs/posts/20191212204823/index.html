@@ -144,29 +144,26 @@
 <h2 id="2-设计原则明细">2. 设计原则明细</h2>
 <h3 id="面向对象的solid-原则">面向对象的S.O.L.I.D 原则</h3>
 <ol>
-<li>Single Responsibility Principle (SRP) – 职责单一原则</li>
-<li>一个&quot;类&quot;只做好一件事, 一个函数只实现一个功能</li>
-<li>纯面向过程写代码会导致逻辑不够清晰, 更容易出错</li>
-<li>Open/Closed Principle (OCP) – 开闭原则</li>
-<li>依赖抽象，而不是实现</li>
-<li>对扩展是开放的，而对修改是封闭的</li>
-<li>一方面要保证业务层对底层具体实现相隔离, 避免随意修改导致原有功能遭到破坏</li>
-<li>另一方面避免修改底层代码而导致未知引用遭到破坏, 产生不期结果</li>
-<li>Liskov substitution principle (LSP) – 里氏代换原则</li>
-<li>任何基类可以出现的地方，子类一定可以出现</li>
-<li>类的继承不要割裂, 一般情况下, 多考虑新增功能, 而不是覆盖父类同名方法 (抽象方法除外)</li>
-<li>Interface Segregation Principle (ISP) – 接口隔离原则</li>
-<li>把功能实现在接口中，而不是类中</li>
-<li>对 python 来说, 将多重继承改为 Mixin 类的组合, 使功能更加内聚, 也避免了方法解析顺序 (MRO) 的混乱</li>
-<li>Dependency Inversion Principle (DIP) – 依赖倒置原则</li>
-<li>基本等同于上面提到的 &ldquo;Program to an interface, not an implementation&rdquo;</li>
-<li>主要解决的问题是: 一般依赖的功能抽象变化比较少, 而底层实现经常会改变
-<ol>
-<li>增加复用的安全性, 减少修改成本</li>
-</ol>
-</li>
-<li>高层抽象尽量不变, 迫使底层做改变</li>
-<li>功能标准化, 设计一致性</li>
+<li>Single Responsibility Principle (SRP) – 职责单一原则
+1. 一个&quot;类&quot;只做好一件事, 一个函数只实现一个功能
+2. 纯面向过程写代码会导致逻辑不够清晰, 更容易出错</li>
+<li>Open/Closed Principle (OCP) – 开闭原则
+1. 依赖抽象，而不是实现
+2. 对扩展是开放的，而对修改是封闭的
+3. 一方面要保证业务层对底层具体实现相隔离, 避免随意修改导致原有功能遭到破坏
+4. 另一方面避免修改底层代码而导致未知引用遭到破坏, 产生不期结果</li>
+<li>Liskov substitution principle (LSP) – 里氏代换原则
+1. 任何基类可以出现的地方，子类一定可以出现
+2. 类的继承不要割裂, 一般情况下, 多考虑新增功能, 而不是覆盖父类同名方法 (抽象方法除外)</li>
+<li>Interface Segregation Principle (ISP) – 接口隔离原则
+1. 把功能实现在接口中，而不是类中
+2. 对 python 来说, 将多重继承改为 Mixin 类的组合, 使功能更加内聚, 也避免了方法解析顺序 (MRO) 的混乱</li>
+<li>Dependency Inversion Principle (DIP) – 依赖倒置原则
+1. 基本等同于上面提到的 &ldquo;Program to an interface, not an implementation&rdquo;
+2. 主要解决的问题是: 一般依赖的功能抽象变化比较少, 而底层实现经常会改变
+1. 增加复用的安全性, 减少修改成本
+3. 高层抽象尽量不变, 迫使底层做改变
+4. 功能标准化, 设计一致性</li>
 </ol>
 <h3 id="dont-repeat-yourself-dry">Don’t Repeat Yourself (DRY)</h3>
 <ol>
