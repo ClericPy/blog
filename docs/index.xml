@@ -64,8 +64,8 @@ https://github.com/ClericPy/somethings/releases
       <pubDate>Tue, 14 Jan 2020 15:11:38 +0800</pubDate>
       
       <guid>https://clericpy.github.io/blog/posts/20200114151137/</guid>
-      <description>背景 自从 Chrome 59 发布支持 &amp;ndash;headless 启动参数以后 (Windows 上是 60 版本), 轻量级浏览器内核就不再是 webdriver 一家独大, 甚至 phantomjs 作者也发文表示不再维护该项目, 国外也有越来越多的文章推荐使用 headless Chrome 代替过去 selenium + webdriver 的方式进行 Web 测试或者爬虫相关工作.目前国内实际上使用 headless Chrome 的并不少, 只不过目前大量营销号的存在, 导致为了点击量频繁刷文, 进而把早年间 selenium 用作爬虫的旧文章重新翻到读者眼前, 所以遇到各种稀奇古怪的问题, 初学者使用体验较差.selenium 作为老牌 Web 测试手段闻名已久, 在高级功能 API 层面非常成熟, 后来也加强了对 Chrome headless 模式下 CDP 的支持, 目前依然拥有大量用户在使用.这里, 简单提一下 selenium + webdriver 方式的一些不足:
- 默认参数启动时很容易被服务端发现 性能与 Chrome headless 相比, 较差 存在了无数年的内存泄漏问题 不像 Chrome 有大厂在背后支撑, 上千 issues 解决不完 无法作为完整浏览器使用和调试  简而言之, 都 2020 年了, 不要再抱着 selenium 不放了</description>
+      <description>背景 ​	自从 Chrome 59 发布支持 &amp;ndash;headless 启动参数以后 (Windows 上是 60 版本), 轻量级浏览器内核就不再是 webdriver 一家独大, 甚至 phantomjs 作者也发文表示不再维护该项目, 国外也有越来越多的文章推荐使用 headless Chrome 代替过去 selenium + webdriver 的方式进行 Web 测试或者爬虫相关工作.目前国内实际上使用 headless Chrome 的并不少, 只不过目前大量营销号的存在, 导致为了点击量频繁刷文, 进而把早年间 selenium 用作爬虫的旧文章重新翻到读者眼前, 所以遇到各种稀奇古怪的问题, 初学者使用体验较差.selenium 作为老牌 Web 测试手段闻名已久, 在高级功能 API 层面非常成熟, 后来也加强了对 Chrome headless 模式下 CDP 的支持, 目前依然拥有大量用户在使用.这里, 简单提一下 selenium + webdriver 方式的一些不足:
+ 默认参数启动时很容易被服务端发现 性能与 Chrome headless 相比, 较差 存在了无数年的内存泄漏问题 不像 Chrome 有大厂在背后支撑, 上千 issues 解决不完 无法作为完整浏览器使用和调试  ​	简而言之, 都 2020 年了, 不要再抱着 selenium 不放了</description>
     </item>
     
     <item>
@@ -101,7 +101,7 @@ import abc class AnimalFactory(metaclass=abc.ABCMeta): &amp;#34;&amp;#34;&amp;#3
       <guid>https://clericpy.github.io/blog/posts/20191212204823/</guid>
       <description>鉴于最近又写出大量低质量代码, 所以需要重新回顾一下这些有用的编码哲学.
  主要参照 &amp;lt;一些软件设计的原则&amp;gt; &amp;ndash; 酷壳, 做一下简单理解的笔记.
-1. 一句话总结:  大段重复代码要提取函数, 方便复用和统一修改 高层依赖抽象, 抽象去依赖底层实现. 因为高层抽象逻辑很少变, 而底层实现却经常要变 功能之间相互依赖越少越好, 逻辑越独立越好, 不要过度优化和过早优化 底层的每个函数职责尽量单一, 每个类只做好一件事, 功能粒度越细越好 多用接口少用继承. 由上层抽象来统一组合调配, 进而实现完整功能  2. 设计原则明细 面向对象的S.O.L.I.D 原则  Single Responsibility Principle (SRP) – 职责单一原则 一个&amp;quot;类&amp;quot;只做好一件事, 一个函数只实现一个功能 纯面向过程写代码会导致逻辑不够清晰, 更容易出错 Open/Closed Principle (OCP) – 开闭原则 依赖抽象，而不是实现 对扩展是开放的，而对修改是封闭的 一方面要保证业务层对底层具体实现相隔离, 避免随意修改导致原有功能遭到破坏 另一方面避免修改底层代码而导致未知引用遭到破坏, 产生不期结果 Liskov substitution principle (LSP) – 里氏代换原则 任何基类可以出现的地方，子类一定可以出现 类的继承不要割裂, 一般情况下, 多考虑新增功能, 而不是覆盖父类同名方法 (抽象方法除外) Interface Segregation Principle (ISP) – 接口隔离原则 把功能实现在接口中，而不是类中 对 python 来说, 将多重继承改为 Mixin 类的组合, 使功能更加内聚, 也避免了方法解析顺序 (MRO) 的混乱 Dependency Inversion Principle (DIP) – 依赖倒置原则 基本等同于上面提到的 &amp;ldquo;Program to an interface, not an implementation&amp;rdquo; 主要解决的问题是: 一般依赖的功能抽象变化比较少, 而底层实现经常会改变  增加复用的安全性, 减少修改成本   高层抽象尽量不变, 迫使底层做改变 功能标准化, 设计一致性  Don’t Repeat Yourself (DRY)  相似代码抽取共性, 构造复用函数 避免出现大坨重复代码, 导致每次逻辑改变时遗漏一些修改 配合正确的函数名, 可读性优于一段段注释  Keep It Simple, Stupid (KISS)  不要把事情搞复杂, 围绕要解决的问题保持简洁 不要臆想出一些不存在的问题而过早优化  Program to an interface, not an implementation  多依靠抽象接口解决问题, 少依赖具体实现, 方便后期修改时保持独立 因为底层常变, 而上层抽象逻辑一般不太改变, 此外, 上层逻辑之间独立性比较强, 而底层的实现容易牵一发而动全身  Command-Query Separation (CQS) – 命令-查询分离原则  Query 功能和 Command 功能不要合并到一起写.</description>
+1. 一句话总结:  大段重复代码要提取函数, 方便复用和统一修改 高层依赖抽象, 抽象去依赖底层实现. 因为高层抽象逻辑很少变, 而底层实现却经常要变 功能之间相互依赖越少越好, 逻辑越独立越好, 不要过度优化和过早优化 底层的每个函数职责尽量单一, 每个类只做好一件事, 功能粒度越细越好 多用接口少用继承. 由上层抽象来统一组合调配, 进而实现完整功能  2. 设计原则明细 面向对象的S.O.L.I.D 原则  Single Responsibility Principle (SRP) – 职责单一原则 1. 一个&amp;quot;类&amp;quot;只做好一件事, 一个函数只实现一个功能 2. 纯面向过程写代码会导致逻辑不够清晰, 更容易出错 Open/Closed Principle (OCP) – 开闭原则 1. 依赖抽象，而不是实现 2. 对扩展是开放的，而对修改是封闭的 3. 一方面要保证业务层对底层具体实现相隔离, 避免随意修改导致原有功能遭到破坏 4. 另一方面避免修改底层代码而导致未知引用遭到破坏, 产生不期结果 Liskov substitution principle (LSP) – 里氏代换原则 1. 任何基类可以出现的地方，子类一定可以出现 2. 类的继承不要割裂, 一般情况下, 多考虑新增功能, 而不是覆盖父类同名方法 (抽象方法除外) Interface Segregation Principle (ISP) – 接口隔离原则 1.</description>
     </item>
     
     <item>
