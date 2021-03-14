@@ -111,7 +111,6 @@ import abc class AnimalFactory(metaclass=abc.ABCMeta): &amp;#34;&amp;#34;&amp;#3
       
       <guid>https://clericpy.github.io/blog/about/</guid>
       <description>WebSites My Blog
-Python News
 Github https://github.com/ClericPy
 Email clericpy@gmail.com
  Blog Theme
