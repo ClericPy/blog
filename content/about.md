@@ -8,8 +8,6 @@ draft: false
 
 [My Blog](/blog)
 
-[Python News]( https://www.clericpy.top/newspaper/articles.query.html )
-
 ### **Github**
 
 https://github.com/ClericPy
