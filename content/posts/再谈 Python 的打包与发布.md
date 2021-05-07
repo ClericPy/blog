@@ -1,5 +1,5 @@
 ---
-title: "再谈 Python 的打包与发布"
+title: "再谈 Python 的打包与发布 -- zipapps"
 date: 2021-05-07T22:10:51+08:00
 description: "时隔一年, 再随便聊聊 Python 打包和发布遇到的那些事儿"
 categories: Python
