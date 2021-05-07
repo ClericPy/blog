@@ -6,10 +6,24 @@
     <description>Recent content in Posts on Clericpy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 May 2020 16:42:54 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 07 May 2021 22:10:51 +0800</lastBuildDate>
     
 	<atom:link href="https://clericpy.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>再谈 Python 的打包与发布</title>
+      <link>https://clericpy.github.io/blog/posts/%E5%86%8D%E8%B0%88-python-%E7%9A%84%E6%89%93%E5%8C%85%E4%B8%8E%E5%8F%91%E5%B8%83/</link>
+      <pubDate>Fri, 07 May 2021 22:10:51 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/%E5%86%8D%E8%B0%88-python-%E7%9A%84%E6%89%93%E5%8C%85%E4%B8%8E%E5%8F%91%E5%B8%83/</guid>
+      <description>时隔一年, 再随便聊聊 Python 打包和发布遇到的那些事儿
+ 接上回 入职新公司之后遇到 Python 打包发布的问题, 由于基础建设以及技术选型等历史遗留问题, 只能使用 Python 写的工具, 所以基本告别 pipenv / venv / poetry 等常见的发布方式, 遇到需要第三方依赖的功能, 打包依赖变得非常费劲.
+考虑过像 go 一样打包一些二进制文件, 但是性能和兼容性等方面特别不友好, 所以还是打算使用 zipapp 那种方式来搞. pyinstaller / venv / pipenv / poetry / setuptools / shiv / PyOxidizer 这些的使用体验, 其实本身还是不错的.
+新的选择 目前这类比较成熟的几个打包用的库里面, shiv 算是生态还算健康的选择, 类似的 pex / superzippy 使用过程中有挺多缓存或者其他不方便的地方, 所以用了大概三个多月 shiv (https://github.com/linkedin/shiv), 期间挺多小问题能解决的都解决了, 不能解决的提 issue 作者也比较快地支持了.
+然而最后还是选择自己开发个类似项目 zipapps, 因为下面几个原因 shiv 支持的不是很方便:
+ 不能在打包时候设置默认 SHIV_ROOT 默认推到 HOME 目录在某些场景缺少 HOME 会报错, 每次手动定义这个环境变量又感觉很冗余  提过 issue 以后目前支持上了   每次重新打包以后要重新创建缓存, 时间久了导致系统磁盘浪费几 GB 空间, 其实这是最主要的那个原因  有别人提了 build_id 的建议, 貌似没通过   每次需要解压全部内容做缓存  实际上 zipapp 借助 zipimport 自带能力, 有的库是不需要解压的, 这样可以保证发布时的 standalone 特性   跨平台和跨 Python 版本能力比较薄弱  比如 Python3.</description>
+    </item>
     
     <item>
       <title>文件夹图片一键生成 HTML 相册</title>
