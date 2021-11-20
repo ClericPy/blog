@@ -138,32 +138,51 @@
 <li>大段重复代码要提取函数, 方便复用和统一修改</li>
 <li>高层依赖抽象, 抽象去依赖底层实现. 因为高层抽象逻辑很少变, 而底层实现却经常要变</li>
 <li>功能之间相互依赖越少越好, 逻辑越独立越好, 不要过度优化和过早优化</li>
-<li>底层的每个函数职责尽量单一, 每个类只做好一件事, 功能粒度越细越好</li>
+<li>底层的每个函数职责尽量单一, 每个类只做好一件事, 功能粒度越细越好
+<ol>
+<li>无状态无副作用的<strong>纯函数</strong>是捷径</li>
+</ol>
+</li>
 <li>多用接口少用继承. 由上层抽象来统一组合调配, 进而实现完整功能</li>
 </ol>
 <h2 id="2-设计原则明细">2. 设计原则明细</h2>
 <h3 id="面向对象的solid-原则">面向对象的S.O.L.I.D 原则</h3>
 <ol>
 <li>Single Responsibility Principle (SRP) – 职责单一原则
-1. 一个&quot;类&quot;只做好一件事, 一个函数只实现一个功能
-2. 纯面向过程写代码会导致逻辑不够清晰, 更容易出错</li>
+<ol>
+<li>一个&quot;类&quot;只做好一件事, 一个函数只实现一个功能</li>
+<li>纯面向过程写代码会导致逻辑不够清晰, 更容易出错</li>
+</ol>
+</li>
 <li>Open/Closed Principle (OCP) – 开闭原则
-1. 依赖抽象，而不是实现
-2. 对扩展是开放的，而对修改是封闭的
-3. 一方面要保证业务层对底层具体实现相隔离, 避免随意修改导致原有功能遭到破坏
-4. 另一方面避免修改底层代码而导致未知引用遭到破坏, 产生不期结果</li>
-<li>Liskov substitution principle (LSP) – 里氏代换原则
-1. 任何基类可以出现的地方，子类一定可以出现
+<ol>
+<li>依赖抽象，而不是实现</li>
+<li>对扩展是开放的，而对修改是封闭的
+<ol>
+<li>一方面要保证业务层对底层具体实现相隔离, 避免随意修改导致原有功能遭到破坏</li>
+<li>另一方面避免修改底层代码而导致未知引用遭到破坏, 产生不期结果</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Liskov Substitution Principle (LSP) – 里氏替换原则
+<ol>
+<li>任何基类可以出现的地方，子类一定可以出现
 2. 类的继承不要割裂, 一般情况下, 多考虑新增功能, 而不是覆盖父类同名方法 (抽象方法除外)</li>
+</ol>
+</li>
 <li>Interface Segregation Principle (ISP) – 接口隔离原则
 1. 把功能实现在接口中，而不是类中
-2. 对 python 来说, 将多重继承改为 Mixin 类的组合, 使功能更加内聚, 也避免了方法解析顺序 (MRO) 的混乱</li>
+2. 对 Python 来说, 可以将多重继承改为 Mixin 类的组合, 使功能更加内聚, 也避免了方法解析顺序 (MRO) 的混乱</li>
 <li>Dependency Inversion Principle (DIP) – 依赖倒置原则
-1. 基本等同于上面提到的 &ldquo;Program to an interface, not an implementation&rdquo;
-2. 主要解决的问题是: 一般依赖的功能抽象变化比较少, 而底层实现经常会改变
-1. 增加复用的安全性, 减少修改成本
-3. 高层抽象尽量不变, 迫使底层做改变
-4. 功能标准化, 设计一致性</li>
+<ol>
+<li>基本等同于上面提到的 &ldquo;Program to an interface, not an implementation&rdquo;
+2. 主要解决的问题是: 一般依赖的功能<strong>抽象变化较少</strong>, 而底层<strong>实现经常改变</strong></li>
+<li>增加复用的安全性, 减少修改成本</li>
+<li>高层抽象尽量不变, 迫使底层做改变</li>
+<li>功能标准化, 设计一致性</li>
+</ol>
+</li>
 </ol>
 <h3 id="dont-repeat-yourself-dry">Don’t Repeat Yourself (DRY)</h3>
 <ol>
