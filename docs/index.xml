@@ -12,6 +12,19 @@
     
     
     <item>
+      <title>周报拾遗(持续更新)</title>
+      <link>https://clericpy.github.io/blog/posts/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97/</link>
+      <pubDate>Sun, 02 Jan 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97/</guid>
+      <description>将会按时间倒序, 不定期更新一些周报里读到的好东西, 并加入一点简评. 每次修改会顺带更新日期, 所以会跑到列表最前面.
+ 2022年1月2日 Writing fast async HTTP requests in Python | JonLuca’s Blog   主要看了 aiohttp 参数调优
+  conn = aiohttp.TCPConnector(limit=None, ttl_dns_cache=300)
+ 延长 dns 缓存7有效期    http.cookies._is_legal_key = lambda _: True
+ 貌似可以解决总是在 stderr 里提示 illegal Cookie key 的问题, 这东西很烦      LibreTranslate  完全离线自托管的翻译服务, 平时偶尔用一下应该没有问题, 底层是 Argos Translate  GitHub - Nuitka/Nuitka: Nuitka is a Python compiler written in Python.</description>
+    </item>
+    
+    <item>
       <title>再谈 Python 的打包与发布『zipapps』</title>
       <link>https://clericpy.github.io/blog/posts/%E5%86%8D%E8%B0%88-python-%E7%9A%84%E6%89%93%E5%8C%85%E4%B8%8E%E5%8F%91%E5%B8%83/</link>
       <pubDate>Fri, 07 May 2021 22:10:51 +0800</pubDate>
