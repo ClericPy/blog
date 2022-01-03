@@ -40,8 +40,8 @@ name = "Categories"
 link = "/blog/categories/"
 
 [[params.socials]]
-name = "Issue"
-link = "https://github.com/ClericPy/blog/issues"
+name = "Discussions"
+link = "https://github.com/ClericPy/blog/discussions"
 
 [[params.socials]]
 name = "About"

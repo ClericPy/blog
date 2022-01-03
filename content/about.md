@@ -16,11 +16,7 @@ https://github.com/ClericPy
 
 <clericpy@gmail.com>
 
-
-
 ---
-
-
 
 **Blog Theme**
 

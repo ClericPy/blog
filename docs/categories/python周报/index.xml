@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python,周报 on Clericpy&#39;s Blog</title>
+    <link>https://clericpy.github.io/blog/categories/python%E5%91%A8%E6%8A%A5/</link>
+    <description>Recent content in Python,周报 on Clericpy&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 02 Jan 2022 16:46:56 +0800</lastBuildDate>
+    
+	<atom:link href="https://clericpy.github.io/blog/categories/python%E5%91%A8%E6%8A%A5/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>周报拾遗(一)</title>
+      <link>https://clericpy.github.io/blog/posts/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97%E4%B8%80/</link>
+      <pubDate>Sun, 02 Jan 2022 16:46:56 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97%E4%B8%80/</guid>
+      <description> 将会按时间倒序, 不定期更新一些周报里读到的好东西, 并加入一点简评. 每隔一个月左右, 会新开一个文档记录.
+ 2022年1月2日 Writing fast async HTTP requests in Python | JonLuca’s Blog   主要看了 aiohttp 参数调优
+  conn = aiohttp.TCPConnector(limit=None, ttl_dns_cache=300)
+ 延长 dns 缓存7有效期    http.cookies._is_legal_key = lambda _: True
+ 貌似可以解决总是在 stderr 里提示 illegal Cookie key 的问题, 这东西很烦      LibreTranslate  完全离线自托管的翻译服务, 平时偶尔用一下应该没有问题, 底层是 Argos Translate   </description>
+    </item>
+    
+  </channel>
+</rss>
