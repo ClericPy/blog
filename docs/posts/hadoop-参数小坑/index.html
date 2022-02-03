@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.65.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Clericpy" />
+  <meta property="og:url" content="https://clericpy.github.io/blog/posts/hadoop-%E5%8F%82%E6%95%B0%E5%B0%8F%E5%9D%91/" />
+  <link rel="canonical" href="https://clericpy.github.io/blog/posts/hadoop-%E5%8F%82%E6%95%B0%E5%B0%8F%E5%9D%91/" /><link rel="shortcut icon" href="/blog/favicon.ico" type="image/x-png" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/clericpy.github.io\/blog\/"
+      },
+      "articleSection" : "posts",
+      "name" : "Hadoop 参数小坑",
+      "headline" : "Hadoop 参数小坑",
+      "description" : "mapreduce.map.memory.mb=4096\n  这个参数是设置 task 内存的参数, 但是有坑在里面, 如果想细致调整内存占用避免 OOM Kill, 还要使用下面几个参数\n  mapreduce.map.java.opts=-Xmx2600m\n  map 任务里 Java 程序命令行参数设置最大堆内存, 这个内存和 task 总内存的差值要留给 Java 代码文件相关内存来使用\n  所以一般推荐二者差值在 200 ~ 400 mb 之间, 堆内存大小一般是 0.75 * task 内存\n    mapreduce.reduce.shuffle.input.buffer.percent\n 这个参数默认一般是 0.7, 但是有时候内存比磁盘贵的时候, 设置为 0.1 可以节省大量堆内存      mapreduce.map.speculative=false\n  这个参数默认是开启状态, 用途是预测执行逻辑, 同一个 job 下的某一个 task, 同时启动多个实例来运行, 以避免某个节点资源不足 (比如 CPU 忙碌或者网络带宽不足) 导致的某个任务执行过久拖累其他任务",
+      "inLanguage" : "en-US",
+      "author" : "Clericpy",
+      "creator" : "Clericpy",
+      "publisher": "Clericpy",
+      "accountablePerson" : "Clericpy",
+      "copyrightHolder" : "Clericpy",
+      "copyrightYear" : "2022",
+      "datePublished": "2022-02-03 19:13:28 \x2b0800 CST",
+      "dateModified" : "2022-02-03 19:13:28 \x2b0800 CST",
+      "url" : "https:\/\/clericpy.github.io\/blog\/posts\/hadoop-%E5%8F%82%E6%95%B0%E5%B0%8F%E5%9D%91\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>Hadoop 参数小坑 - Clericpy&#39;s Blog</title>
+  <meta property="og:title" content="Hadoop 参数小坑 - Clericpy&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="mapreduce.map.memory.mb=4096
+  这个参数是设置 task 内存的参数, 但是有坑在里面, 如果想细致调整内存占用避免 OOM Kill, 还要使用下面几个参数
+  mapreduce.map.java.opts=-Xmx2600m
+  map 任务里 Java 程序命令行参数设置最大堆内存, 这个内存和 task 总内存的差值要留给 Java 代码文件相关内存来使用
+  所以一般推荐二者差值在 200 ~ 400 mb 之间, 堆内存大小一般是 0.75 * task 内存
+    mapreduce.reduce.shuffle.input.buffer.percent
+ 这个参数默认一般是 0.7, 但是有时候内存比磁盘贵的时候, 设置为 0.1 可以节省大量堆内存      mapreduce.map.speculative=false
+  这个参数默认是开启状态, 用途是预测执行逻辑, 同一个 job 下的某一个 task, 同时启动多个实例来运行, 以避免某个节点资源不足 (比如 CPU 忙碌或者网络带宽不足) 导致的某个任务执行过久拖累其他任务" />
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/blog/css/index.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Clericpy&#39;s Blog">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150991415-1"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag("js", new Date());  gtag("config", "UA-150991415-1");</script>
+</head>
+
+
+<body>
+    <article class="post Chinese" id="article">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                <div class="site-header">
+                    
+<header>
+  <div class="signatures site-title">
+    <a href="/blog/">Clericpy&#39;s Blog</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+                </div>
+                <header class="post-header">
+                    <h1 class="post-title">Hadoop 参数小坑</h1>
+                    
+                    <div class="row post-desc">
+                        <div class="col-xs-2">
+                            
+                            <time class="post-date" datetime="2022-02-03 19:13:28 CST">
+                                03 Feb 2022
+                            </time>
+                            
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="/blog/categories/python"><b
+                                    style="text-decoration:underline">Python</b></a>
+                        </div>
+                        <div class="col-xs-6">
+                            
+                            <div class="post-author">
+                                <a target="_blank" href="https://github.com/ClericPy">@Clericpy</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="toc" class="well col-md-12 col-sm-10" style="font-size: 0.8em; border: 1px dashed rgb(194, 194, 194); margin: 15px; padding: 15px;">
+                        <h3>Table of Contents</h3>
+                        <nav id="TableOfContents"></nav>
+                    </div>
+                </header>
+                <div class="post-content markdown-body">
+                    <ul>
+<li>
+<p>mapreduce.map.memory.mb=4096</p>
+<ul>
+<li>
+<p>这个参数是设置 task 内存的参数, 但是有坑在里面, 如果想细致调整内存占用避免 OOM Kill, 还要使用下面几个参数</p>
+</li>
+<li>
+<p>mapreduce.map.java.opts=-Xmx2600m</p>
+<ul>
+<li>
+<p>map 任务里 Java 程序命令行参数设置最大堆内存, 这个内存和 task 总内存的差值要留给 Java 代码文件相关内存来使用</p>
+</li>
+<li>
+<p>所以一般推荐二者差值在 200 ~ 400 mb 之间, 堆内存大小一般是 0.75 * task 内存</p>
+</li>
+</ul>
+</li>
+<li>
+<p>mapreduce.reduce.shuffle.input.buffer.percent</p>
+<ul>
+<li>这个参数默认一般是 0.7, 但是有时候内存比磁盘贵的时候, 设置为 0.1 可以节省大量堆内存</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>mapreduce.map.speculative=false</p>
+<ul>
+<li>
+<p>这个参数默认是开启状态, 用途是预测执行逻辑, 同一个 job 下的某一个 task, 同时启动多个实例来运行, 以避免某个节点资源不足 (比如 CPU 忙碌或者网络带宽不足) 导致的某个任务执行过久拖累其他任务</p>
+<ul>
+<li>
+<p>也就是在资源允许的情况下, 同一个任务启动两个, 先执行完的会发信号 kill 掉还没执行完毕的</p>
+</li>
+<li>
+<p>最大的坑就是两个地方</p>
+<ul>
+<li>
+<p>会额外占用多余的资源</p>
+</li>
+<li>
+<p><strong>非幂等</strong> 类型的任务会出问题</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>同理还有一个 mapreduce.reduce.speculative=false</p>
+</li>
+</ul>
+</li>
+<li>
+<p>mapreduce.map.maxattempts=1</p>
+<ul>
+<li>
+<p>任务最大尝试次数, 默认最多 4 次尝试(包含出错那次)</p>
+</li>
+<li>
+<p>坑</p>
+<ul>
+<li>
+<p><strong>非幂等</strong> 任务重试会有问题</p>
+</li>
+<li>
+<p>代码或者输入本身就有问题的话, 不管怎么重试都是浪费时间白折腾</p>
+</li>
+</ul>
+</li>
+<li>
+<p>同理也有 mapreduce.reduce.maxattempts=1</p>
+</li>
+</ul>
+</li>
+<li>
+<p>mapreduce.job.reduce.slowstart.completedmaps=1.0</p>
+<ul>
+<li>
+<p>reduce 预热机制, 主要目的就是在 map 完成一定百分比的情况下提前把 reduce 资源申请下来, 减少切换状态及冷启动虚拟机的等待</p>
+<ul>
+<li>默认值 0.05 也就是 20 个 map 任务里只要完成一个就申请 reduce 容器资源</li>
+</ul>
+</li>
+<li>
+<p>有些 map 任务实际上会因为很多因素导致执行时间超长, reduce 资源申请下来却要等待很长时间不使用, 无疑是一种浪费</p>
+<ul>
+<li>
+<p>例如 map 输入的 gz 文件有的很小有的巨大, 解压缩要很多时间</p>
+</li>
+<li>
+<p>比如 map 任务里各种奇怪的 sleep, 不是纯计算</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>stream.non.zero.exit.is.failure=false</p>
+<ul>
+<li>
+<p>非 0 状态码的退出是否算作失败</p>
+<ul>
+<li>有的场景失败也没事, 不需要重试</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>mapreduce.map.failures.maxpercent=1</p>
+<ul>
+<li>允许的 map 任务失败比例, 一般不怎么用到</li>
+</ul>
+</li>
+<li>
+<p>mapreduce.job.maps=10</p>
+<ul>
+<li>
+<p>这个参数控制输入文件拆分的 map 任务数量</p>
+<ul>
+<li>但是 gz 文件不是 splitable 的, 所以如果输入都是 gz 的话, 这个参数遇到输入文件数超过设置值时不生效</li>
+</ul>
+</li>
+<li>
+<p>mapreduce.job.running.map.limit</p>
+<ul>
+<li>相对而言, 控制并发数量有些时候更有用一点</li>
+</ul>
+</li>
+</ul>
+</li>
+<li></li>
+</ul>
+
+                </div>
+                
+
+                
+
+
+                
+                
+                <div style="height: 50px;"></div>
+                
+                
+
+                <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="https://www.clericpy.top/newspaper/articles.query.html" target="_blank">News</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/index.xml" target="_blank">RSS</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/categories/" target="_blank">Categories</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/ClericPy/blog/discussions" target="_blank">Discussions</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/about" target="_blank">About</a>
+  </div>
+  
+  
+</div>
+
+            </div>
+        </div>
+    </article>
+
+    <script src="/blog/js/highlight.pack.js"></script>
+<script src="https://cdn.staticfile.org/quicklink/2.0.0-alpha/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+    
+
+</body>
+
+</html>
