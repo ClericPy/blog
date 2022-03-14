@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.65.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Clericpy" />
+  <meta property="og:url" content="https://clericpy.github.io/blog/posts/hadoop-streaming-%E9%80%90%E8%A1%8C%E5%88%86%E7%BB%84%E7%94%9F%E6%88%90%E5%99%A8/" />
+  <link rel="canonical" href="https://clericpy.github.io/blog/posts/hadoop-streaming-%E9%80%90%E8%A1%8C%E5%88%86%E7%BB%84%E7%94%9F%E6%88%90%E5%99%A8/" /><link rel="shortcut icon" href="/blog/favicon.ico" type="image/x-png" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/clericpy.github.io\/blog\/"
+      },
+      "articleSection" : "posts",
+      "name" : "Hadoop Streaming 逐行分组代码片段(生成器版)",
+      "headline" : "Hadoop Streaming 逐行分组代码片段(生成器版)",
+      "description" : "为什么要用生成器\n  省内存\n 每次只处理一行, 但是做好了分组, 不需要每组一次读入内存    转列表也很方便\n 生成器只需要 list(generator) 就可以转列表      不废话上代码, 主要手段就是 闭包\x2b生成器\n  import sys\rdef get_windows(lines=sys.stdin, sep=\x26#39;\\t\x26#39;):\r# hadoop streaming: split stdin into groups\r def iter_lines(lines=sys.stdin, sep=\x26#39;\\t\x26#39;):\rcurrent_key = None\rfor line in lines:\rkey, line = line.split(sep, 1)\rif key is not current_key:\ryield ...\rcurrent_key = key\ryield (key, line)\rhas_more = None\rlast_generator = None\rgen = iter_lines(lines=lines, sep=sep)\rdef window_iter():\rnonlocal has_more\rwhile 1:\rtry:\rline = next(gen)\rif line is .",
+      "inLanguage" : "en-US",
+      "author" : "Clericpy",
+      "creator" : "Clericpy",
+      "publisher": "Clericpy",
+      "accountablePerson" : "Clericpy",
+      "copyrightHolder" : "Clericpy",
+      "copyrightYear" : "2022",
+      "datePublished": "2022-03-14 23:53:36 \x2b0800 CST",
+      "dateModified" : "2022-03-14 23:53:36 \x2b0800 CST",
+      "url" : "https:\/\/clericpy.github.io\/blog\/posts\/hadoop-streaming-%E9%80%90%E8%A1%8C%E5%88%86%E7%BB%84%E7%94%9F%E6%88%90%E5%99%A8\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>Hadoop Streaming 逐行分组代码片段(生成器版) - Clericpy&#39;s Blog</title>
+  <meta property="og:title" content="Hadoop Streaming 逐行分组代码片段(生成器版) - Clericpy&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="为什么要用生成器
+  省内存
+ 每次只处理一行, 但是做好了分组, 不需要每组一次读入内存    转列表也很方便
+ 生成器只需要 list(generator) 就可以转列表      不废话上代码, 主要手段就是 闭包&#43;生成器
+  import sysdef get_windows(lines=sys.stdin, sep=&#39;\t&#39;):# hadoop streaming: split stdin into groups def iter_lines(lines=sys.stdin, sep=&#39;\t&#39;):current_key = Nonefor line in lines:key, line = line.split(sep, 1)if key is not current_key:yield ...current_key = keyyield (key, line)has_more = Nonelast_generator = Nonegen = iter_lines(lines=lines, sep=sep)def window_iter():nonlocal has_morewhile 1:try:line = next(gen)if line is ." />
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/blog/css/index.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Clericpy&#39;s Blog">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150991415-1"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag("js", new Date());  gtag("config", "UA-150991415-1");</script>
+</head>
+
+
+<body>
+    <article class="post Chinese" id="article">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                <div class="site-header">
+                    
+<header>
+  <div class="signatures site-title">
+    <a href="/blog/">Clericpy&#39;s Blog</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+                </div>
+                <header class="post-header">
+                    <h1 class="post-title">Hadoop Streaming 逐行分组代码片段(生成器版)</h1>
+                    
+                    <div class="row post-desc">
+                        <div class="col-xs-2">
+                            
+                            <time class="post-date" datetime="2022-03-14 23:53:36 CST">
+                                14 Mar 2022
+                            </time>
+                            
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="/blog/categories/python"><b
+                                    style="text-decoration:underline">Python</b></a>
+                        </div>
+                        <div class="col-xs-6">
+                            
+                            <div class="post-author">
+                                <a target="_blank" href="https://github.com/ClericPy">@Clericpy</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="toc" class="well col-md-12 col-sm-10" style="font-size: 0.8em; border: 1px dashed rgb(194, 194, 194); margin: 15px; padding: 15px;">
+                        <h3>Table of Contents</h3>
+                        <nav id="TableOfContents"></nav>
+                    </div>
+                </header>
+                <div class="post-content markdown-body">
+                    <ol>
+<li>
+<p>为什么要用生成器</p>
+<ol>
+<li>
+<p>省内存</p>
+<ol>
+<li>每次只处理一行, 但是做好了分组, 不需要每组一次读入内存</li>
+</ol>
+</li>
+<li>
+<p>转列表也很方便</p>
+<ol>
+<li>生成器只需要 list(generator) 就可以转列表</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>不废话上代码, 主要手段就是 <strong>闭包+生成器</strong></p>
+</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> sys
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_windows</span>(lines<span style="color:#f92672">=</span>sys<span style="color:#f92672">.</span>stdin, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span>):
+    <span style="color:#75715e"># hadoop streaming: split stdin into groups</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">iter_lines</span>(lines<span style="color:#f92672">=</span>sys<span style="color:#f92672">.</span>stdin, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span>):
+        current_key <span style="color:#f92672">=</span> None
+        <span style="color:#66d9ef">for</span> line <span style="color:#f92672">in</span> lines:
+            key, line <span style="color:#f92672">=</span> line<span style="color:#f92672">.</span>split(sep, <span style="color:#ae81ff">1</span>)
+            <span style="color:#66d9ef">if</span> key <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> current_key:
+                <span style="color:#66d9ef">yield</span> <span style="color:#f92672">...</span>
+                current_key <span style="color:#f92672">=</span> key
+            <span style="color:#66d9ef">yield</span> (key, line)
+
+    has_more <span style="color:#f92672">=</span> None
+    last_generator <span style="color:#f92672">=</span> None
+    gen <span style="color:#f92672">=</span> iter_lines(lines<span style="color:#f92672">=</span>lines, sep<span style="color:#f92672">=</span>sep)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">window_iter</span>():
+        nonlocal has_more
+        <span style="color:#66d9ef">while</span> <span style="color:#ae81ff">1</span>:
+            <span style="color:#66d9ef">try</span>:
+                line <span style="color:#f92672">=</span> next(gen)
+                <span style="color:#66d9ef">if</span> line <span style="color:#f92672">is</span> <span style="color:#f92672">...</span>:
+                    <span style="color:#66d9ef">if</span> has_more <span style="color:#f92672">is</span> None:
+                        has_more <span style="color:#f92672">=</span> True
+                        <span style="color:#66d9ef">continue</span>
+                    <span style="color:#66d9ef">else</span>:
+                        <span style="color:#66d9ef">break</span>
+                <span style="color:#66d9ef">else</span>:
+                    <span style="color:#66d9ef">yield</span> line
+            <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">StopIteration</span>:
+                has_more <span style="color:#f92672">=</span> False
+                <span style="color:#66d9ef">break</span>
+
+    <span style="color:#66d9ef">while</span> has_more <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> False:
+        <span style="color:#66d9ef">if</span> last_generator:
+            <span style="color:#66d9ef">try</span>:
+                next(last_generator)
+                <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">RuntimeError</span>(<span style="color:#e6db74">&#39;last generator has not been used up&#39;</span>)
+            <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">StopIteration</span>:
+                <span style="color:#66d9ef">pass</span>
+        last_generator <span style="color:#f92672">=</span> window_iter()
+        <span style="color:#66d9ef">yield</span> last_generator
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test</span>():
+    lines <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;a</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">1</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">a</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">1</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">b</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">2</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">b</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">2</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">b</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">2</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;&#39;&#39;</span><span style="color:#f92672">.</span>strip()<span style="color:#f92672">.</span>splitlines()
+    <span style="color:#66d9ef">assert</span> [list(i) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> get_windows(lines)] <span style="color:#f92672">==</span> [[(<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;1&#39;</span>), (<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;1&#39;</span>)],
+                                                     [(<span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>), (<span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>),
+                                                      (<span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>)]]
+    <span style="color:#66d9ef">for</span> gen <span style="color:#f92672">in</span> get_windows(lines):
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> gen:
+            <span style="color:#66d9ef">print</span>(i)
+    <span style="color:#66d9ef">for</span> gen <span style="color:#f92672">in</span> get_windows(lines):
+        line_group <span style="color:#f92672">=</span> list(gen)
+        <span style="color:#66d9ef">print</span>(line_group)
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+    test()
+
+</code></pre></div>
+                </div>
+                
+
+                
+
+
+                
+                
+                <div style="height: 50px;"></div>
+                
+                
+
+                <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="https://www.clericpy.top/newspaper/articles.query.html" target="_blank">News</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/index.xml" target="_blank">RSS</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/categories/" target="_blank">Categories</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/ClericPy/blog/discussions" target="_blank">Discussions</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/about" target="_blank">About</a>
+  </div>
+  
+  
+</div>
+
+            </div>
+        </div>
+    </article>
+
+    <script src="/blog/js/highlight.pack.js"></script>
+<script src="https://cdn.staticfile.org/quicklink/2.0.0-alpha/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+    
+
+</body>
+
+</html>
