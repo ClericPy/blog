@@ -18,12 +18,15 @@ draft: false
 
 2. 不废话上代码, 主要手段就是 **闭包+生成器**
 
+
+
 ```python
-import sys
-
-
-def get_windows(lines=sys.stdin, sep='\t'):
-    # hadoop streaming: split stdin into groups
+def get_windows(lines=None, sep='\t'):
+    """hadoop streaming: split stdin into groups.
+    lines is a list of string, or sys.stdin to default"""
+    if lines is None:
+        import sys
+        lines = sys.stdin
 
     def iter_lines(lines=sys.stdin, sep='\t'):
         current_key = None
