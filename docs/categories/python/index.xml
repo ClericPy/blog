@@ -6,10 +6,23 @@
     <description>Recent content in Python on Clericpy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 03 Feb 2022 19:13:28 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 14 Mar 2022 23:53:36 +0800</lastBuildDate>
     
 	<atom:link href="https://clericpy.github.io/blog/categories/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hadoop Streaming 逐行分组代码片段(生成器版)</title>
+      <link>https://clericpy.github.io/blog/posts/hadoop-streaming-%E9%80%90%E8%A1%8C%E5%88%86%E7%BB%84%E7%94%9F%E6%88%90%E5%99%A8/</link>
+      <pubDate>Mon, 14 Mar 2022 23:53:36 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/hadoop-streaming-%E9%80%90%E8%A1%8C%E5%88%86%E7%BB%84%E7%94%9F%E6%88%90%E5%99%A8/</guid>
+      <description>为什么要用生成器
+  省内存
+ 每次只处理一行, 但是做好了分组, 不需要每组一次读入内存    转列表也很方便
+ 生成器只需要 list(generator) 就可以转列表      不废话上代码, 主要手段就是 闭包+生成器
+  import sysdef get_windows(lines=sys.stdin, sep=&amp;#39;\t&amp;#39;):# hadoop streaming: split stdin into groups def iter_lines(lines=sys.stdin, sep=&amp;#39;\t&amp;#39;):current_key = Nonefor line in lines:key, line = line.split(sep, 1)if key is not current_key:yield ...current_key = keyyield (key, line)has_more = Nonelast_generator = Nonegen = iter_lines(lines=lines, sep=sep)def window_iter():nonlocal has_morewhile 1:try:line = next(gen)if line is .</description>
+    </item>
     
     <item>
       <title>Hadoop 参数小坑</title>
