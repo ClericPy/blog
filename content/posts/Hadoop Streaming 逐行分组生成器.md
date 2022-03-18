@@ -18,8 +18,6 @@ draft: false
 
 2. 不废话上代码, 主要手段就是 **闭包+生成器**
 
-
-
 ```python
 def get_windows(lines=None, sep='\t'):
     """hadoop streaming: split stdin into groups.
@@ -28,7 +26,7 @@ def get_windows(lines=None, sep='\t'):
         import sys
         lines = sys.stdin
 
-    def iter_lines(lines=sys.stdin, sep='\t'):
+    def iter_lines(lines, sep='\t'):
         current_key = None
         for line in lines:
             key, line = line.split(sep, 1)
@@ -84,5 +82,4 @@ def test():
 
 if __name__ == "__main__":
     test()
-
 ```
