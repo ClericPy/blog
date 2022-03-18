@@ -19,7 +19,7 @@
       "articleSection" : "posts",
       "name" : "Hadoop Streaming 逐行分组代码片段(生成器版)",
       "headline" : "Hadoop Streaming 逐行分组代码片段(生成器版)",
-      "description" : "为什么要用生成器\n  省内存\n 每次只处理一行, 但是做好了分组, 不需要每组一次读入内存    转列表也很方便\n 生成器只需要 list(generator) 就可以转列表      不废话上代码, 主要手段就是 闭包\x2b生成器\n  def get_windows(lines=None, sep=\x26#39;\\t\x26#39;):\r\x26#34;\x26#34;\x26#34;hadoop streaming: split stdin into groups.\rlines is a list of string, or sys.stdin to default\x26#34;\x26#34;\x26#34;\rif lines is None:\rimport sys\rlines = sys.stdin\rdef iter_lines(lines=sys.stdin, sep=\x26#39;\\t\x26#39;):\rcurrent_key = None\rfor line in lines:\rkey, line = line.split(sep, 1)\rif key is not current_key:\ryield .",
+      "description" : "为什么要用生成器\n  省内存\n 每次只处理一行, 但是做好了分组, 不需要每组一次读入内存    转列表也很方便\n 生成器只需要 list(generator) 就可以转列表      不废话上代码, 主要手段就是 闭包\x2b生成器\n  def get_windows(lines=None, sep=\x26#39;\\t\x26#39;):\r\x26#34;\x26#34;\x26#34;hadoop streaming: split stdin into groups.\rlines is a list of string, or sys.stdin to default\x26#34;\x26#34;\x26#34;\rif lines is None:\rimport sys\rlines = sys.stdin\rdef iter_lines(lines, sep=\x26#39;\\t\x26#39;):\rcurrent_key = None\rfor line in lines:\rkey, line = line.split(sep, 1)\rif key is not current_key:\ryield .",
       "inLanguage" : "en-US",
       "author" : "Clericpy",
       "creator" : "Clericpy",
@@ -40,7 +40,7 @@
   省内存
  每次只处理一行, 但是做好了分组, 不需要每组一次读入内存    转列表也很方便
  生成器只需要 list(generator) 就可以转列表      不废话上代码, 主要手段就是 闭包&#43;生成器
-  def get_windows(lines=None, sep=&#39;\t&#39;):&#34;&#34;&#34;hadoop streaming: split stdin into groups.lines is a list of string, or sys.stdin to default&#34;&#34;&#34;if lines is None:import syslines = sys.stdindef iter_lines(lines=sys.stdin, sep=&#39;\t&#39;):current_key = Nonefor line in lines:key, line = line.split(sep, 1)if key is not current_key:yield ." />
+  def get_windows(lines=None, sep=&#39;\t&#39;):&#34;&#34;&#34;hadoop streaming: split stdin into groups.lines is a list of string, or sys.stdin to default&#34;&#34;&#34;if lines is None:import syslines = sys.stdindef iter_lines(lines, sep=&#39;\t&#39;):current_key = Nonefor line in lines:key, line = line.split(sep, 1)if key is not current_key:yield ." />
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/flexboxgrid/6.3.1/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -137,7 +137,7 @@
         <span style="color:#f92672">import</span> sys
         lines <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>stdin
 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">iter_lines</span>(lines<span style="color:#f92672">=</span>sys<span style="color:#f92672">.</span>stdin, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span>):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">iter_lines</span>(lines, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span>):
         current_key <span style="color:#f92672">=</span> None
         <span style="color:#66d9ef">for</span> line <span style="color:#f92672">in</span> lines:
             key, line <span style="color:#f92672">=</span> line<span style="color:#f92672">.</span>split(sep, <span style="color:#ae81ff">1</span>)
@@ -193,7 +193,6 @@
 
 <span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
     test()
-
 </code></pre></div>
                 </div>
                 

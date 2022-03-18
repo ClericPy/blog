@@ -21,7 +21,7 @@
   省内存
  每次只处理一行, 但是做好了分组, 不需要每组一次读入内存    转列表也很方便
  生成器只需要 list(generator) 就可以转列表      不废话上代码, 主要手段就是 闭包+生成器
-  def get_windows(lines=None, sep=&amp;#39;\t&amp;#39;):&amp;#34;&amp;#34;&amp;#34;hadoop streaming: split stdin into groups.lines is a list of string, or sys.stdin to default&amp;#34;&amp;#34;&amp;#34;if lines is None:import syslines = sys.stdindef iter_lines(lines=sys.stdin, sep=&amp;#39;\t&amp;#39;):current_key = Nonefor line in lines:key, line = line.split(sep, 1)if key is not current_key:yield .</description>
+  def get_windows(lines=None, sep=&amp;#39;\t&amp;#39;):&amp;#34;&amp;#34;&amp;#34;hadoop streaming: split stdin into groups.lines is a list of string, or sys.stdin to default&amp;#34;&amp;#34;&amp;#34;if lines is None:import syslines = sys.stdindef iter_lines(lines, sep=&amp;#39;\t&amp;#39;):current_key = Nonefor line in lines:key, line = line.split(sep, 1)if key is not current_key:yield .</description>
     </item>
     
     <item>
