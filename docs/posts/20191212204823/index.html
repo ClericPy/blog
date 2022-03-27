@@ -105,7 +105,7 @@
     <li><a href="#1-一句话总结">1. 一句话总结:</a></li>
     <li><a href="#2-设计原则明细">2. 设计原则明细</a>
       <ul>
-        <li><a href="#面向对象的solid-原则">面向对象的S.O.L.I.D 原则</a></li>
+        <li><a href="#面向对象设计的-solid-原则">面向对象设计的 S.O.L.I.D 原则</a></li>
         <li><a href="#dont-repeat-yourself-dry">Don’t Repeat Yourself (DRY)</a></li>
         <li><a href="#keep-it-simple-stupid-kiss">Keep It Simple, Stupid (KISS)</a></li>
         <li><a href="#program-to-an-interface-not-an-implementation">Program to an interface, not an implementation</a></li>
@@ -135,8 +135,9 @@
 <h2 id="1-一句话总结">1. 一句话总结:</h2>
 <ol>
 <li>大段重复代码要提取函数, 方便复用和统一修改</li>
-<li>高层依赖抽象, 抽象去依赖底层实现. 因为高层抽象逻辑很少变, 而底层实现却经常要变</li>
-<li>功能之间相互依赖越少越好, 逻辑越独立越好, 不要过度优化和过早优化</li>
+<li>高层依赖抽象, 抽象去依赖底层实现. 主要是避免两个易变模块耦合在一起(业务逻辑/底层实现)</li>
+<li>功能之间的相互依赖越少越好, 逻辑越独立越好, 尤其不要产生循环依赖</li>
+<li>不要过度优化和过早优化</li>
 <li>底层的每个函数职责尽量单一, 每个类只做好一件事, 功能粒度越细越好
 <ol>
 <li>无状态无副作用的<strong>纯函数</strong>是捷径</li>
@@ -145,18 +146,20 @@
 <li>多用接口少用继承. 由上层抽象来统一组合调配, 进而实现完整功能</li>
 </ol>
 <h2 id="2-设计原则明细">2. 设计原则明细</h2>
-<h3 id="面向对象的solid-原则">面向对象的S.O.L.I.D 原则</h3>
+<h3 id="面向对象设计的-solid-原则">面向对象设计的 S.O.L.I.D 原则</h3>
 <ol>
-<li>Single Responsibility Principle (SRP) – 职责单一原则
+<li>
+<p>Single Responsibility Principle (SRP) – 单一功能原则</p>
 <ol>
 <li>一个&quot;类&quot;只做好一件事, 一个函数只实现一个功能</li>
 <li>纯面向过程写代码会导致逻辑不够清晰, 更容易出错</li>
 </ol>
 </li>
-<li>Open/Closed Principle (OCP) – 开闭原则
+<li>
+<p>Open/Closed Principle (OCP) – 开闭原则</p>
 <ol>
 <li>依赖抽象，而不是实现</li>
-<li>对扩展是开放的，而对修改是封闭的
+<li>对扩展开放，而对修改封闭
 <ol>
 <li>一方面要保证业务层对底层具体实现相隔离, 避免随意修改导致原有功能遭到破坏</li>
 <li>另一方面避免修改底层代码而导致未知引用遭到破坏, 产生不期结果</li>
@@ -164,102 +167,133 @@
 </li>
 </ol>
 </li>
-<li>Liskov Substitution Principle (LSP) – 里氏替换原则
+<li>
+<p>Liskov Substitution Principle (LSP) – 里氏替换原则</p>
 <ol>
-<li>任何基类可以出现的地方，子类一定可以出现
-2. 类的继承不要割裂, 一般情况下, 多考虑新增功能, 而不是覆盖父类同名方法 (抽象方法除外)</li>
+<li>任何基类可以出现的地方，子类一定可以出现</li>
+<li>类的继承不要割裂, 一般情况下, 多考虑新增功能, 而不是覆盖父类同名方法 (抽象方法除外)</li>
 </ol>
 </li>
-<li>Interface Segregation Principle (ISP) – 接口隔离原则
-1. 把功能实现在接口中，而不是类中
-2. 对 Python 来说, 可以将多重继承改为 Mixin 类的组合, 使功能更加内聚, 也避免了方法解析顺序 (MRO) 的混乱</li>
-<li>Dependency Inversion Principle (DIP) – 依赖倒置原则
+<li>
+<p>Interface Segregation Principle (ISP) – 接口隔离原则</p>
 <ol>
-<li>基本等同于上面提到的 &ldquo;Program to an interface, not an implementation&rdquo;
-2. 主要解决的问题是: 一般依赖的功能<strong>抽象变化较少</strong>, 而底层<strong>实现经常改变</strong></li>
+<li>把功能实现在接口中，而不是类中</li>
+<li>对 Python 来说, 可以将多重继承改为 Mixin 类的组合, 使功能更加内聚, 也避免了 MRO(方法解析顺序)混乱</li>
+</ol>
+</li>
+<li>
+<p>Dependency Inversion Principle (DIP) – 依赖倒置原则</p>
+<ol>
+<li>依赖抽象而不是具体实现
+<ol>
+<li>依赖一个统一的标准(抽象), 有利于标准化管理</li>
+</ol>
+</li>
+<li>高层抽象尽量不变, 迫使底层做各种兼容与修复</li>
+<li>功能标准化, 设计一致性
+<ol>
 <li>增加复用的安全性, 减少修改成本</li>
-<li>高层抽象尽量不变, 迫使底层做改变</li>
-<li>功能标准化, 设计一致性</li>
+</ol>
+</li>
 </ol>
 </li>
 </ol>
 <h3 id="dont-repeat-yourself-dry">Don’t Repeat Yourself (DRY)</h3>
 <ol>
 <li>相似代码抽取共性, 构造复用函数</li>
-<li>避免出现大坨重复代码, 导致每次逻辑改变时遗漏一些修改</li>
+<li>避免出现大团的重复代码, 导致每次逻辑改变时遗漏一些修改</li>
 <li>配合正确的函数名, 可读性优于一段段注释</li>
 </ol>
 <h3 id="keep-it-simple-stupid-kiss">Keep It Simple, Stupid (KISS)</h3>
 <ol>
 <li>不要把事情搞复杂, 围绕要解决的问题保持简洁</li>
-<li>不要臆想出一些不存在的问题而过早优化</li>
+<li>不要臆想 &ldquo;不存在的问题&rdquo; 而过早优化</li>
 </ol>
 <h3 id="program-to-an-interface-not-an-implementation">Program to an interface, not an implementation</h3>
 <ol>
 <li>多依靠抽象接口解决问题, 少依赖具体实现, 方便后期修改时保持独立</li>
-<li>因为底层常变, 而上层抽象逻辑一般不太改变, 此外, 上层逻辑之间独立性比较强, 而底层的实现容易牵一发而动全身</li>
+<li>先抽象出标准, 做好回归测试, 再考虑具体实现</li>
 </ol>
 <h3 id="command-query-separation-cqs-命令-查询分离原则">Command-Query Separation (CQS)  – 命令-查询分离原则</h3>
 <ol>
-<li>Query 功能和 Command 功能不要合并到一起写. 主要考虑到 安全性, 性能, 可维护性, 功能唯一原则等因素</li>
-<li>增删改查之中, 查是频率最高的操作, 却又不会影响原始数据, 所以像数据库做读-写分离一样, 代码结构也相互隔离, 更有利于后期维护</li>
+<li>Query 功能和 Command 功能不要合并到一起写. 主要考虑到: 安全, 性能, 可维护性, 功能唯一原则等因素</li>
+<li>增删改查之中, 查是频率最高的操作, 却又不会影响原始数据
+<ol>
+<li>所以像数据库做读-写分离一样, 代码结构也相互隔离, 更有利于后期维护</li>
+<li>而且查询一般是幂等操作, 可以添加缓存来提速, 修改就不一定是幂等行为</li>
+</ol>
+</li>
 </ol>
 <h3 id="you-aint-gonna-need-it-yagni">You Ain’t Gonna Need It (YAGNI)</h3>
 <ol>
-<li>只实现目前需要的功能，在以后您需要更多功能时，可以再进行添加</li>
+<li>只实现目前需要的功能，其他功能真正有调用机会时再行添加</li>
+<li>奥卡姆剃刀, 如无必要, 勿增实体</li>
 </ol>
 <h3 id="law-of-demeter-迪米特法则">Law of Demeter – 迪米特法则</h3>
 <ol>
-<li>每个功能对其他功能的了解越少越好, 越独立越好, 不要太多复合依赖</li>
+<li>每个功能对其他功能的了解越少越好, 越独立越好, 不要太多复合依赖
+<ol>
 <li>也就是常说的解耦合</li>
+<li>&ldquo;无状态&rdquo; 是分布式计算模块中常见设计方式</li>
+</ol>
+</li>
 </ol>
 <h3 id="common-closure-principleccp-共同封闭原则">Common Closure Principle（CCP）– 共同封闭原则</h3>
 <ol>
 <li>开闭原则的延伸</li>
 <li>将相关联的修改控制在一个 &ldquo;包&rdquo;, 甚至一个 &ldquo;类&rdquo; 中, 不要做跨包/跨类修改操作</li>
-<li>我的理解是, 有点类似 git 每个文件一个 commit 的想法, 但又不一样, 这种代码结构将所有相关联的修改内聚起来, 避免过于分散对后期维护造成不必要的成本</li>
+<li>简单的说法就是, 相关联的修改不要东一块西一块
+<ol>
+<li>结合单个函数不要过长(超出一屏)的思想, 越分散的修改越容易出错</li>
+</ol>
+</li>
 </ol>
 <h3 id="common-reuse-principle-crp-共同重用原则">Common Reuse Principle (CRP) – 共同重用原则</h3>
-<ol>
-<li>包内的类应该一起被重用 (reuse)</li>
-<li>CCP 让包尽可能大, 把关联的放到一起; CRP 让包尽可能小, 只放用到的类</li>
-<li>我的理解是, 该原则对 Java 用处比较大, 而对 python 这类动态语言来说, 通过优雅的代码结构, 也可以避免在 import 导入的时候初始化太多无用的函数或类, 进而提高性能, 毕竟无用的还要再次被 GC 掉. 举个例子, 把 C 和 D 两个功能分开放到模块 A.C 和 A.D 两个部 分, 这样需要用单独某个功能的时候, from A.C import C 就不会构建 A.D 里的代码.</li>
-</ol>
+<pre><code>1. 包内的类应该一起被重用 (reuse), 剔除掉不使用或不相关的类
+2. CCP 让包尽可能大, 把关联的放到一起; CRP 让包尽可能小, 只放用到的类
+3. 举个例子, 把 C 和 D 两个功能分开放到模块 A.C 和 A.D 两个部 分, 这样需要用单独某个功能的时候, from A.C import C 就不会构建 A.D 里的代码.
+</code></pre>
 <h3 id="hollywood-principle-好莱坞原则">Hollywood Principle – 好莱坞原则</h3>
 <ol>
 <li>允许低层组件将自己挂钩到系统上，但是由高层组件来决定什么时候使用这些低层组件</li>
-<li>大致是说, 底层只负责基础功能, 把基础功能如何组合起来被使用这件事, 交给调用方来解决</li>
+<li>大致是说, 底层只负责基础功能, 把基础功能如何组合起来被使用这件事, 交给调用方来解决
+<ol>
+<li>调用方自己抽象/组合多个功能, 合并成一套用法</li>
+</ol>
+</li>
 </ol>
 <h3 id="high-cohesion--lowloose-coupling--高内聚-低耦合">High Cohesion &amp; Low/Loose coupling – 高内聚， 低耦合</h3>
 <ol>
 <li>高内聚: 重用性高, 功能完整</li>
 <li>低耦合: 相互独立, 减少相互依赖</li>
-<li>代码不是量子纠缠, 没必要扯那么玄乎</li>
+<li>简单地说, 单一功能高内聚, 多个功能低耦合</li>
 </ol>
 <h3 id="convention-over-configurationcoc-惯例优于配置原则">Convention over Configuration（CoC）– 惯例优于配置原则</h3>
-<ol>
-<li>使用惯例(约定)代替详细的配置文件.</li>
-<li>比如 get_ 开头的函数代表取值操作, 而 get_obj_ 开头代表取得一个对象的操作, 对 python 来说, 可以通过 globals 一次列出过滤, 而不必一个个添加到 list 里面, 节省代码, 而且方便增删</li>
-<li>不过也不是绝对的, 部分动态配置使用配置文件与代码隔离还是有必要的</li>
-</ol>
+<pre><code>1. 使用惯例(约定)代替详细的配置文件.
+   1. 比如 get_ 开头的函数代表取值操作, 而 get_obj_ 开头代表取得一个对象的操作
+   2. 惯例可能是跨部门甚至跨企业的, 配置却只能局限在单个项目里面, 无法形成共享知识
+2. 要想清楚什么时候适合惯例, 什么时候适合配置
+</code></pre>
 <h3 id="separation-of-concerns-soc-关注点分离">Separation of Concerns (SoC) – 关注点分离</h3>
-<ol>
-<li>复杂问题拆分为最小的独立问题, 更易于解决</li>
-<li>常见于 MVC 模式</li>
-<li>有点像超过 5 行代码都抽离成单独函数</li>
-<li>也有点像动态规划, 一个大问题的答案比较难求, 拆成子问题却会简单很多</li>
-</ol>
+<pre><code>1. 复杂问题拆分为最小的独立问题, 更易于解决
+   1. 常见于 MVC 模式
+   2. 有点像超过 5 行代码都抽离成单个函数的说法
+</code></pre>
 <h3 id="design-by-contract-dbc-契约式设计">Design by Contract (DbC) – 契约式设计</h3>
 <ol>
-<li>类继承的方法, 参数/返回 要和基类一致</li>
+<li>类继承的方法, 参数/返回 要和基类一致
+<ol>
+<li>既然继承了某个类, 重写了某个同名方法, 就要遵循原方法的设计, 否则很容易导致歧义</li>
+</ol>
+</li>
 </ol>
 <h3 id="acyclic-dependencies-principle-adp-无环依赖原则">Acyclic Dependencies Principle (ADP) – 无环依赖原则</h3>
-<ol>
-<li>杜绝循环依赖</li>
-<li>就算 python 之类的语言做了循环依赖的优化, 也要杜绝这种坏习惯, 因为它不但对可读性相当不利, 也给重构带来了巨大成本</li>
-</ol>
+<pre><code>1. 杜绝循环依赖
+   1. 死锁的产生一般伴随着循环依赖
+2. 如果确实产生了互相依赖, 那就加入第三方专门用来拆解
+</code></pre>
 <h2 id="3-总结">3. 总结</h2>
-<p>目前看来, 设计原则基本围绕的是每个函数的功能越<strong>单一</strong>越好, 类与类之间越<strong>独立</strong>越好; 业务层面依赖<strong>抽象,</strong> 尽量不要去关心具体的实现.</p>
+<p>目前看来, 设计原则基本围绕的是函数的功能尽可能<strong>单一</strong>, 类之间的抽象尽量<strong>独立</strong>; 业务层面依赖<strong>抽象</strong>做好标准化约束, 不要直接接触具体实现.</p>
 <p>也就是所谓的: <strong>高内聚, 低耦合</strong>.</p>
 
                 </div>
