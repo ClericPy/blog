@@ -14,15 +14,11 @@
     <item>
       <title>Python 周报拾遗(持续更新)</title>
       <link>https://clericpy.github.io/blog/posts/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97/</link>
-      <pubDate>Mon, 28 Mar 2022 00:00:00 +0800</pubDate>
+      <pubDate>Sun, 03 Jul 2022 00:00:00 +0800</pubDate>
       
       <guid>https://clericpy.github.io/blog/posts/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97/</guid>
       <description>将会按时间倒序, 不定期更新一些周报里读到的好东西, 并加入一点简评. 每次修改会顺带更新日期, 所以会跑到列表最前面.
- 2022年3月28日 cosmic_python   Python 图书 Architecture Patterns with Python 在线版
-  主要从 DDD(领域驱动设计) 角度讲架构设计方式, 避免软件设计中走弯路
-  2022年1月31日 Textualize/textual: Textual is a TUI (Text User Interface) framework for Python inspired by modern web development.   Textual is a TUI (Text User Interface) framework for Python inspired by modern web development.
-  Windows 支持在路上了
-  KurtBestor/Hitomi-Downloader: Desktop utility to download images/videos/music/text from various websites, and more.</description>
+ 2022年7月3日 Python 程序调试分析大杀器合集  很早之前看到的调试工具合集, 主要是  wooparadog/pystack: Tool to dump python thread and greenlet stacks.  The pystack is to python as jstack is to java. 能直接找到 block 到哪一行   kmaork/hypno: A tool/library allowing to inject python code into a running python process.  注入正在运行的 python 进程里去, 顺便跑点别的代码   benfred/py-spy: Sampling profiler for Python programs  还能看火焰图, 主要是监控性能的   P403n1x87/austin：用于 CPython 的 Python 帧堆栈采样器  一般配合 TUI 或者 VSCODE 插件使用, 很强大的性能问题排查工具   之前比较火的几个流行的类似库, 这三个比较相似  joerick/pyinstrument: 🚴 Call stack profiler for Python.</description>
     </item>
     
     <item>
