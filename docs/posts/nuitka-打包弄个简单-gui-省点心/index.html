@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.65.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Clericpy" />
+  <meta property="og:url" content="https://clericpy.github.io/blog/posts/nuitka-%E6%89%93%E5%8C%85%E5%BC%84%E4%B8%AA%E7%AE%80%E5%8D%95-gui-%E7%9C%81%E7%82%B9%E5%BF%83/" />
+  <link rel="canonical" href="https://clericpy.github.io/blog/posts/nuitka-%E6%89%93%E5%8C%85%E5%BC%84%E4%B8%AA%E7%AE%80%E5%8D%95-gui-%E7%9C%81%E7%82%B9%E5%BF%83/" /><link rel="shortcut icon" href="/blog/favicon.ico" type="image/x-png" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/clericpy.github.io\/blog\/"
+      },
+      "articleSection" : "posts",
+      "name" : "Nuitka 打包弄个简单 GUI 省点心",
+      "headline" : "Nuitka 打包弄个简单 GUI 省点心",
+      "description" : " https:\/\/github.com\/ClericPy\/nuitka_simple_gui\n 长话短说, 以前用 pyinstaller 打包总是有各种 platform.dll 什么的问题, 后来改 nuitka 了, 半年前随手写了个 GUI 日常使用一下\n暂时不上 pypi 了, 代码质量不太好\n基本功能:\n 常用命令行参数直接勾选, 不用动脑子记命令 Linux \/ Windows 应该都成功打包过 不使用单文件模式, 因为和 pyinstaller 一样会在 tmp 目录产生缓存文件但不删除, 虽然可以自定义缓存目录, 但还是没必要 非单文件编译, 输出目录  支持直接压缩成 zip 方便发送给别人, 也节省了体积 添加入口软链接(Windows), 省的进文件夹里找 exe 文件 依赖的第三方包会通过 pip install lib -t xxx 的方式直接放到输出目录里  节省编译时间, 否则有些 numpy 之类的包编译要很长时间     图形界面即文档  直接下载下去运行就好了, 提前安装好 python 和 nuitka https:\/\/github.com\/ClericPy\/nuitka_simple_gui\/blob\/master\/nuitkaui.pyw    ",
+      "inLanguage" : "en-US",
+      "author" : "Clericpy",
+      "creator" : "Clericpy",
+      "publisher": "Clericpy",
+      "accountablePerson" : "Clericpy",
+      "copyrightHolder" : "Clericpy",
+      "copyrightYear" : "2022",
+      "datePublished": "2022-10-23 11:47:39 \x2b0800 CST",
+      "dateModified" : "2022-10-23 11:47:39 \x2b0800 CST",
+      "url" : "https:\/\/clericpy.github.io\/blog\/posts\/nuitka-%E6%89%93%E5%8C%85%E5%BC%84%E4%B8%AA%E7%AE%80%E5%8D%95-gui-%E7%9C%81%E7%82%B9%E5%BF%83\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>Nuitka 打包弄个简单 GUI 省点心 - Clericpy&#39;s Blog</title>
+  <meta property="og:title" content="Nuitka 打包弄个简单 GUI 省点心 - Clericpy&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content=" https://github.com/ClericPy/nuitka_simple_gui
+ 长话短说, 以前用 pyinstaller 打包总是有各种 platform.dll 什么的问题, 后来改 nuitka 了, 半年前随手写了个 GUI 日常使用一下
+暂时不上 pypi 了, 代码质量不太好
+基本功能:
+ 常用命令行参数直接勾选, 不用动脑子记命令 Linux / Windows 应该都成功打包过 不使用单文件模式, 因为和 pyinstaller 一样会在 tmp 目录产生缓存文件但不删除, 虽然可以自定义缓存目录, 但还是没必要 非单文件编译, 输出目录  支持直接压缩成 zip 方便发送给别人, 也节省了体积 添加入口软链接(Windows), 省的进文件夹里找 exe 文件 依赖的第三方包会通过 pip install lib -t xxx 的方式直接放到输出目录里  节省编译时间, 否则有些 numpy 之类的包编译要很长时间     图形界面即文档  直接下载下去运行就好了, 提前安装好 python 和 nuitka https://github.com/ClericPy/nuitka_simple_gui/blob/master/nuitkaui.pyw    " />
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="/blog/css/index.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Clericpy&#39;s Blog">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150991415-1"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag("js", new Date());  gtag("config", "UA-150991415-1");</script>
+</head>
+
+
+<body>
+    <article class="post Chinese" id="article">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                <div class="site-header">
+                    
+<header>
+  <div class="signatures site-title">
+    <a href="/blog/">Clericpy&#39;s Blog</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+                </div>
+                <header class="post-header">
+                    <h1 class="post-title">Nuitka 打包弄个简单 GUI 省点心</h1>
+                    
+                    <div class="row post-desc">
+                        <div class="col-xs-2">
+                            
+                            <time class="post-date" datetime="2022-10-23 11:47:39 CST">
+                                23 Oct 2022
+                            </time>
+                            
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="/blog/categories/python"><b
+                                    style="text-decoration:underline">Python</b></a>
+                        </div>
+                        <div class="col-xs-6">
+                            
+                            <div class="post-author">
+                                <a target="_blank" href="https://github.com/ClericPy">@Clericpy</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="toc" class="well col-md-12 col-sm-10" style="font-size: 0.8em; border: 1px dashed rgb(194, 194, 194); margin: 15px; padding: 15px;">
+                        <h3>Table of Contents</h3>
+                        <nav id="TableOfContents"></nav>
+                    </div>
+                </header>
+                <div class="post-content markdown-body">
+                    <blockquote>
+<p><a href="https://github.com/ClericPy/nuitka_simple_gui">https://github.com/ClericPy/nuitka_simple_gui</a></p>
+</blockquote>
+<p>长话短说, 以前用 pyinstaller 打包总是有各种 platform.dll 什么的问题, 后来改 nuitka 了, 半年前随手写了个 GUI 日常使用一下</p>
+<p>暂时不上 pypi 了, 代码质量不太好</p>
+<p>基本功能:</p>
+<ol>
+<li>常用命令行参数直接勾选, 不用动脑子记命令</li>
+<li>Linux / Windows 应该都成功打包过</li>
+<li>不使用单文件模式, 因为和 pyinstaller 一样会在 tmp 目录产生缓存文件但不删除, 虽然可以自定义缓存目录, 但还是没必要</li>
+<li>非单文件编译, 输出目录
+<ol>
+<li>支持直接压缩成 zip 方便发送给别人, 也节省了体积</li>
+<li>添加入口软链接(Windows), 省的进文件夹里找 exe 文件</li>
+<li>依赖的第三方包会通过 <code>pip install lib -t xxx</code> 的方式直接放到输出目录里
+<ol>
+<li>节省编译时间, 否则有些 numpy 之类的包编译要很长时间</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>图形界面即文档
+<ol>
+<li>直接下载下去运行就好了, 提前安装好 python 和 nuitka</li>
+<li><a href="https://github.com/ClericPy/nuitka_simple_gui/blob/master/nuitkaui.pyw">https://github.com/ClericPy/nuitka_simple_gui/blob/master/nuitkaui.pyw</a></li>
+</ol>
+</li>
+</ol>
+
+                </div>
+                
+
+                
+
+
+                
+                
+                <div style="height: 50px;"></div>
+                
+                
+
+                <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="/blog/index.xml" target="_blank">RSS</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/categories/" target="_blank">Categories</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/ClericPy/blog/discussions" target="_blank">Discussions</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/about" target="_blank">About</a>
+  </div>
+  
+  
+</div>
+
+            </div>
+        </div>
+    </article>
+
+    <script src="/blog/js/highlight.pack.js"></script>
+<script src="https://cdn.staticfile.org/quicklink/2.0.0-alpha/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+    
+
+</body>
+
+</html>
