@@ -6,10 +6,23 @@
     <description>Recent content in Python on Clericpy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 06 Aug 2022 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 23 Oct 2022 11:47:39 +0800</lastBuildDate>
     
 	<atom:link href="https://clericpy.github.io/blog/categories/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Nuitka 打包弄个简单 GUI 省点心</title>
+      <link>https://clericpy.github.io/blog/posts/nuitka-%E6%89%93%E5%8C%85%E5%BC%84%E4%B8%AA%E7%AE%80%E5%8D%95-gui-%E7%9C%81%E7%82%B9%E5%BF%83/</link>
+      <pubDate>Sun, 23 Oct 2022 11:47:39 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/nuitka-%E6%89%93%E5%8C%85%E5%BC%84%E4%B8%AA%E7%AE%80%E5%8D%95-gui-%E7%9C%81%E7%82%B9%E5%BF%83/</guid>
+      <description> https://github.com/ClericPy/nuitka_simple_gui
+ 长话短说, 以前用 pyinstaller 打包总是有各种 platform.dll 什么的问题, 后来改 nuitka 了, 半年前随手写了个 GUI 日常使用一下
+暂时不上 pypi 了, 代码质量不太好
+基本功能:
+ 常用命令行参数直接勾选, 不用动脑子记命令 Linux / Windows 应该都成功打包过 不使用单文件模式, 因为和 pyinstaller 一样会在 tmp 目录产生缓存文件但不删除, 虽然可以自定义缓存目录, 但还是没必要 非单文件编译, 输出目录  支持直接压缩成 zip 方便发送给别人, 也节省了体积 添加入口软链接(Windows), 省的进文件夹里找 exe 文件 依赖的第三方包会通过 pip install lib -t xxx 的方式直接放到输出目录里  节省编译时间, 否则有些 numpy 之类的包编译要很长时间     图形界面即文档  直接下载下去运行就好了, 提前安装好 python 和 nuitka https://github.com/ClericPy/nuitka_simple_gui/blob/master/nuitkaui.pyw    </description>
+    </item>
     
     <item>
       <title>Python 周报拾遗(持续更新 2022.8.6)</title>
