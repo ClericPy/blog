@@ -67,48 +67,38 @@ draft: false
       1. ```python
          import requests
          import time
-         
-         
+         ```
+
          print(requests.get('http://bing.com').text)
          time.sleep(3)
          ```
+
+2. 目录结构
    
-   2. 目录结构
-      
-      1. ```py
-         └─python
-             ├─DLLs
-             ├─include
-             │  ├─cpython
-             │  └─internal
-             ├─Lib
-             │  ├─site-packages
-         └─app.pyz
-         └─run.bat
-         └─script.py
-         ```
+   1. ```py
+      └─python
+          ├─DLLs
+          ├─include
+          │  ├─cpython
+          │  └─internal
+          ├─Lib
+          │  ├─site-packages
+      └─app.pyz
+      └─run.bat
+      └─script.py
+      ```
+
+3. bat 命令隐藏黑框
    
-   3.  bat 命令的一些技巧
+   1. 
       
-      1. 隐藏黑框
+      1. 彻底隐藏: 创建 bat 文件的快捷方式, 快捷方式属性里
          
-         1. 彻底隐藏
-            
-            1. 创建 bat 文件的快捷方式, 快捷方式属性里
-               
-               1. **运行方式 - 最小化**
-         
-         2. 启动时隐藏
-            
-            1. start 命令添加 /min 参数
-         
-         3. 必要时候使用 pythonw.exe 启动
-
-
-
-
-
-
+         1. <mark>**运行方式 - 最小化**</mark>
+      
+      2. 启动时隐藏: start 命令添加 /min 参数
+      
+      3. 必要时候使用 pythonw.exe 启动
 
 ### 性能
 
@@ -123,39 +113,39 @@ draft: false
       1. ```python
          import sys
          from timeit import timeit
-         
-         
+         ```
+
          def fib(n):
              if n <= 1:
                  return n
              else:
                  return fib(n - 1) + fib(n - 2)
-         
-         
+    
+    
          def test():
              fib(10)
-         
-         
+    
+    
          print(sys.executable, round(timeit(test, number=100000), 6))
          ```
+
+4. 测试结果
    
-   4. 测试结果
-      
-      1. ```md
-         # 官方 CPython3.11
-         D:\python311\python3.exe 1.178743
-         # 绿色版 Python3.11
-         D:\downloads\python3\3.11\python.exe 1.143648
-         # 绿色版 pgo Python3.11
-         D:\downloads\python3\3.11pgo\python.exe 1.037657
-         ```
+   1. ```md
+      # 官方 CPython3.11
+      D:\python311\python3.exe 1.178743
+      # 绿色版 Python3.11
+      D:\downloads\python3\3.11\python.exe 1.143648
+      # 绿色版 pgo Python3.11
+      D:\downloads\python3\3.11pgo\python.exe 1.037657
+      ```
+
+5. 结论
    
-   5. 结论
-      
-      1. 官方版中规中矩, 用的 3.11.0, 两个绿色版是 3.11.3
-      
-      2. 绿色版 3.11 略微提升一点
-      
-      3. 绿色版 pgo 优化后会比官方提升 10% 左右
-      
-      4. 没发现明显性能损失
+   1. 官方版中规中矩, 用的 3.11.0, 两个绿色版是 3.11.3
+   
+   2. 绿色版 3.11 略微提升一点
+   
+   3. 绿色版 pgo 优化后会比官方提升 10% 左右
+   
+   4. 没发现明显性能损失

@@ -220,11 +220,12 @@
 <li>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
 <span style="color:#f92672">import</span> time
-         
-         
-<span style="color:#66d9ef">print</span>(requests<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;http://bing.com&#39;</span>)<span style="color:#f92672">.</span>text)
-time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">3</span>)
-</code></pre></div></li>
+</code></pre></div><p>print(requests.get(&lsquo;<a href="http://bing.com">http://bing.com</a>&rsquo;).text)
+time.sleep(3)</p>
+<pre><code>
+</code></pre></li>
+</ol>
+</li>
 </ol>
 </li>
 <li>
@@ -245,32 +246,22 @@ time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">3</spa
 </ol>
 </li>
 <li>
-<p>bat 命令的一些技巧</p>
-</li>
-<li>
-<p>隐藏黑框</p>
+<p>bat 命令隐藏黑框</p>
 <ol>
-<li>
-<p>彻底隐藏</p>
-<ol>
-<li>
-<p>创建 bat 文件的快捷方式, 快捷方式属性里</p>
-<ol>
-<li><strong>运行方式 - 最小化</strong></li>
+<li></li>
 </ol>
-</li>
+<ol>
+<li>
+<p>彻底隐藏: 创建 bat 文件的快捷方式, 快捷方式属性里</p>
+<ol>
+<li><!-- raw HTML omitted --><strong>运行方式 - 最小化</strong><!-- raw HTML omitted --></li>
 </ol>
 </li>
 <li>
-<p>启动时隐藏</p>
-<ol>
-<li>start 命令添加 /min 参数</li>
-</ol>
+<p>启动时隐藏: start 命令添加 /min 参数</p>
 </li>
 <li>
 <p>必要时候使用 pythonw.exe 启动</p>
-</li>
-</ol>
 </li>
 </ol>
 </li>
@@ -292,21 +283,18 @@ time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">3</spa
 <li>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> sys
 <span style="color:#f92672">from</span> timeit <span style="color:#f92672">import</span> timeit
-         
-         
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fib</span>(n):
-    <span style="color:#66d9ef">if</span> n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>:
-        <span style="color:#66d9ef">return</span> n
-    <span style="color:#66d9ef">else</span>:
-        <span style="color:#66d9ef">return</span> fib(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> fib(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>)
-         
-         
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test</span>():
-    fib(<span style="color:#ae81ff">10</span>)
-         
-         
-<span style="color:#66d9ef">print</span>(sys<span style="color:#f92672">.</span>executable, round(timeit(test, number<span style="color:#f92672">=</span><span style="color:#ae81ff">100000</span>), <span style="color:#ae81ff">6</span>))
-</code></pre></div></li>
+</code></pre></div><p>def fib(n):
+if n &lt;= 1:
+return n
+else:
+return fib(n - 1) + fib(n - 2)</p>
+<p>def test():
+fib(10)</p>
+<p>print(sys.executable, round(timeit(test, number=100000), 6))</p>
+<pre><code>
+</code></pre></li>
+</ol>
+</li>
 </ol>
 </li>
 <li>
@@ -336,8 +324,6 @@ D:\downloads\python3\3.11pgo\python.exe 1.037657
 </li>
 <li>
 <p>没发现明显性能损失</p>
-</li>
-</ol>
 </li>
 </ol>
 </li>
