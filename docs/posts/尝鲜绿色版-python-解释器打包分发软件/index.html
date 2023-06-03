@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.65.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Clericpy" />
+  <meta property="og:url" content="https://clericpy.github.io/blog/posts/%E5%B0%9D%E9%B2%9C%E7%BB%BF%E8%89%B2%E7%89%88-python-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91%E8%BD%AF%E4%BB%B6/" />
+  <link rel="canonical" href="https://clericpy.github.io/blog/posts/%E5%B0%9D%E9%B2%9C%E7%BB%BF%E8%89%B2%E7%89%88-python-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91%E8%BD%AF%E4%BB%B6/" /><link rel="shortcut icon" href="/blog/favicon.ico" type="image/x-png" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/clericpy.github.io\/blog\/"
+      },
+      "articleSection" : "posts",
+      "name" : "尝鲜绿色版解释器, 以及打包分发 Python 软件",
+      "headline" : "尝鲜绿色版解释器, 以及打包分发 Python 软件",
+      "description" : "python-build-standalone \x2bPyOxy \x2bzipapps",
+      "inLanguage" : "en-US",
+      "author" : "Clericpy",
+      "creator" : "Clericpy",
+      "publisher": "Clericpy",
+      "accountablePerson" : "Clericpy",
+      "copyrightHolder" : "Clericpy",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-06-03 12:27:12 \x2b0800 CST",
+      "dateModified" : "2023-06-03 12:27:12 \x2b0800 CST",
+      "url" : "https:\/\/clericpy.github.io\/blog\/posts\/%E5%B0%9D%E9%B2%9C%E7%BB%BF%E8%89%B2%E7%89%88-python-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91%E8%BD%AF%E4%BB%B6\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>尝鲜绿色版解释器, 以及打包分发 Python 软件 - Clericpy&#39;s Blog</title>
+  <meta property="og:title" content="尝鲜绿色版解释器, 以及打包分发 Python 软件 - Clericpy&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="python-build-standalone &#43;PyOxy &#43;zipapps" />
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="/blog/css/index.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Clericpy&#39;s Blog">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150991415-1"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag("js", new Date());  gtag("config", "UA-150991415-1");</script>
+</head>
+
+
+<body>
+    <article class="post Chinese" id="article">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                <div class="site-header">
+                    
+<header>
+  <div class="signatures site-title">
+    <a href="/blog/">Clericpy&#39;s Blog</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+                </div>
+                <header class="post-header">
+                    <h1 class="post-title">尝鲜绿色版解释器, 以及打包分发 Python 软件</h1>
+                    
+                    <div class="row post-desc">
+                        <div class="col-xs-2">
+                            
+                            <time class="post-date" datetime="2023-06-03 12:27:12 CST">
+                                03 Jun 2023
+                            </time>
+                            
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="/blog/categories/python"><b
+                                    style="text-decoration:underline">Python</b></a>
+                        </div>
+                        <div class="col-xs-6">
+                            
+                            <div class="post-author">
+                                <a target="_blank" href="https://github.com/ClericPy">@Clericpy</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="toc" class="well col-md-12 col-sm-10" style="font-size: 0.8em; border: 1px dashed rgb(194, 194, 194); margin: 15px; padding: 15px;">
+                        <h3>Table of Contents</h3>
+                        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#背景">背景:</a></li>
+        <li><a href="#过程">过程:</a></li>
+        <li><a href="#性能">性能</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                    </div>
+                </header>
+                <div class="post-content markdown-body">
+                    <h3 id="背景">背景:</h3>
+<p>期待已久的绿色版 Python 解释器终于成熟可用, 目前体验地址是 <a href="https://github.com/indygreg/python-build-standalone/releases">Releases · indygreg/python-build-standalone · GitHub</a> python-build-standalone 项目 release 2023.5.7, 包含 mac/linux/win32 多平台可用.</p>
+<p>所以分享一下未来一段时间内使用 Python 语言编写应用后分发到各平台的简单方式, 如果比较在乎保护源码, 则可以考虑使用 pyinstaller / nuitka 编译的方式来发布. 两者我都写过简单 UI 来搞, 目前主要使用 nuitka, 有兴趣可以参考之前写的一个 nuitka 打包 GUI: <a href="https://github.com/ClericPy/nuitka_simple_gui">https://github.com/ClericPy/nuitka_simple_gui</a> , 简单这个 GUI 默认只编译你核心代码, 依赖是通过外部安装的方式打包起来, 最后输出 zip 和快捷软链给用户</p>
+<h3 id="过程">过程:</h3>
+<p>以 Windows 平台为例, linux 等其他平台其实也很简单, 毕竟解释器各平台都有, zipapps 的 pyz 文件也可以跨平台.</p>
+<ol>
+<li>
+<p>下载想要的解释器, 版本解释</p>
+<ol>
+<li>主要找文件名里带 <code>install_only </code> 的, 这个不是让你拿去自己编译, 而是直接使用</li>
+<li>Windows 的是 <code>pc-windows-msvc-shared</code> 标记
+<ol>
+<li>举例
+<ol>
+<li><a href="https://github.com/indygreg/python-build-standalone/releases/download/20230507/cpython-3.11.3+20230507-i686-pc-windows-msvc-shared-install_only.tar.gz">cpython-3.11.3+20230507-i686-pc-windows-msvc-shared-install_only.tar.gz</a></li>
+<li>Linux
+<ol>
+<li><a href="https://github.com/indygreg/python-build-standalone/releases/download/20230507/cpython-3.11.3+20230507-aarch64-unknown-linux-gnu-install_only.tar.gz">cpython-3.11.3+20230507-aarch64-unknown-linux-gnu-install_only.tar.gz</a></li>
+</ol>
+</li>
+<li>Darwin
+<ol>
+<li><a href="https://github.com/indygreg/python-build-standalone/releases/download/20230507/cpython-3.11.3+20230507-aarch64-apple-darwin-install_only.tar.gz">cpython-3.11.3+20230507-aarch64-apple-darwin-install_only.tar.gz</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>也可以找 pgo 优化版, 性能有些提升, 兼容性目前没发现有什么问题
+<ol>
+<li>就是带 <code>pgo</code> 字段的文件名</li>
+<li>但是要注意需要解压缩 <code>.zst</code> 压缩文件, 不知道为什么不用 7z</li>
+<li>举例
+<ol>
+<li><a href="https://github.com/indygreg/python-build-standalone/releases/download/20230507/cpython-3.11.3+20230507-i686-pc-windows-msvc-shared-pgo-full.tar.zst">cpython-3.11.3+20230507-i686-pc-windows-msvc-shared-pgo-full.tar.zst</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>这里就选择 <code>pgo</code> 优化过的 Windows 平台路径</p>
+<ol>
+<li>解压缩拿到 python 文件夹, 里面包含 python.exe 文件</li>
+<li>当前目录结构 app/python</li>
+</ol>
+</li>
+<li>
+<p>要分发的软件代码分两种情况</p>
+<ol>
+<li>一种是没有第三方依赖的情况
+<ol>
+<li>单纯一个 py/pyw 文件的话, 直接放在 app 目录下面
+<ol>
+<li>例如 app.py</li>
+</ol>
+</li>
+<li>如果是一个包, 则使用 zipapps 打包成一个 pyz 文件</li>
+</ol>
+</li>
+<li>一种是需要第三方依赖的代码
+<ol>
+<li>使用 zipapps 将依赖和代码打包成一个 pyz 文件
+<ol>
+<li>因为会将解释器一起打包过去, 所以不使用 <code>-d</code> 惰性安装依赖, 直接安装就好了</li>
+<li><code>python/python.exe -m pip install zipapps -U</code></li>
+<li><code>python/python.exe -m zipapps -a script.py -m script -u=* -up $SELF/cache requests --no-cache-dir</code></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>当然, 也可以直接用 <code>pip</code> 安装依赖然后执行代码
+<ol>
+<li><code>python/python.exe -m pip install -r requests</code></li>
+<li>用 zipapps 主要目的是为了不污染解释器默认环境, 可以一个解释器启动多个 app 而环境隔离</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>编写执行入口</p>
+<ol>
+<li>Windows 简单使用 bat 文件
+<ol>
+<li><code>start python/python.exe app.pyz</code>
+<ol>
+<li><code>start python/python.exe app.pyz</code></li>
+<li>或者用 pythonw.exe</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>其他平台考虑 run.sh</li>
+</ol>
+</li>
+<li>
+<p>完整代码与文件夹结构</p>
+<ol>
+<li>
+<p>script.py</p>
+<ol>
+<li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
+<span style="color:#f92672">import</span> time
+         
+         
+<span style="color:#66d9ef">print</span>(requests<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;http://bing.com&#39;</span>)<span style="color:#f92672">.</span>text)
+time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">3</span>)
+</code></pre></div></li>
+</ol>
+</li>
+<li>
+<p>目录结构</p>
+<ol>
+<li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#960050;background-color:#1e0010">└─</span>python
+    <span style="color:#960050;background-color:#1e0010">├─</span>DLLs
+    <span style="color:#960050;background-color:#1e0010">├─</span>include
+    <span style="color:#960050;background-color:#1e0010">│</span>  <span style="color:#960050;background-color:#1e0010">├─</span>cpython
+    <span style="color:#960050;background-color:#1e0010">│</span>  <span style="color:#960050;background-color:#1e0010">└─</span>internal
+    <span style="color:#960050;background-color:#1e0010">├─</span>Lib
+    <span style="color:#960050;background-color:#1e0010">│</span>  <span style="color:#960050;background-color:#1e0010">├─</span>site<span style="color:#f92672">-</span>packages
+<span style="color:#960050;background-color:#1e0010">└─</span>app<span style="color:#f92672">.</span>pyz
+<span style="color:#960050;background-color:#1e0010">└─</span>run<span style="color:#f92672">.</span>bat
+<span style="color:#960050;background-color:#1e0010">└─</span>script<span style="color:#f92672">.</span>py
+</code></pre></div></li>
+</ol>
+</li>
+<li>
+<p>bat 命令的一些技巧</p>
+</li>
+<li>
+<p>隐藏黑框</p>
+<ol>
+<li>
+<p>彻底隐藏</p>
+<ol>
+<li>
+<p>创建 bat 文件的快捷方式, 快捷方式属性里</p>
+<ol>
+<li><strong>运行方式 - 最小化</strong></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>启动时隐藏</p>
+<ol>
+<li>start 命令添加 /min 参数</li>
+</ol>
+</li>
+<li>
+<p>必要时候使用 pythonw.exe 启动</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="性能">性能</h3>
+<ol>
+<li>
+<h4 id="三个-python-版本简单测试下性能损失">三个 Python 版本简单测试下性能损失</h4>
+<ol>
+<li>
+<p>平台: Windows10</p>
+</li>
+<li>
+<p>Python 版本: 官方 CPython3.11, 绿色版 Python3.11, 绿色版 Python3.11(pgo)</p>
+</li>
+<li>
+<p>测试代码</p>
+<ol>
+<li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> sys
+<span style="color:#f92672">from</span> timeit <span style="color:#f92672">import</span> timeit
+         
+         
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fib</span>(n):
+    <span style="color:#66d9ef">if</span> n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>:
+        <span style="color:#66d9ef">return</span> n
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">return</span> fib(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> fib(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>)
+         
+         
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test</span>():
+    fib(<span style="color:#ae81ff">10</span>)
+         
+         
+<span style="color:#66d9ef">print</span>(sys<span style="color:#f92672">.</span>executable, round(timeit(test, number<span style="color:#f92672">=</span><span style="color:#ae81ff">100000</span>), <span style="color:#ae81ff">6</span>))
+</code></pre></div></li>
+</ol>
+</li>
+<li>
+<p>测试结果</p>
+<ol>
+<li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md"># 官方 CPython3.11
+D:\python311\python3.exe 1.178743
+# 绿色版 Python3.11
+D:\downloads\python3\3.11\python.exe 1.143648
+# 绿色版 pgo Python3.11
+D:\downloads\python3\3.11pgo\python.exe 1.037657
+</code></pre></div></li>
+</ol>
+</li>
+<li>
+<p>结论</p>
+<ol>
+<li>
+<p>官方版中规中矩, 用的 3.11.0, 两个绿色版是 3.11.3</p>
+</li>
+<li>
+<p>绿色版 3.11 略微提升一点</p>
+</li>
+<li>
+<p>绿色版 pgo 优化后会比官方提升 10% 左右</p>
+</li>
+<li>
+<p>没发现明显性能损失</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+                </div>
+                
+
+                
+
+
+                
+                
+                <div style="height: 50px;"></div>
+                
+                
+
+                <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="/blog/index.xml" target="_blank">RSS</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/categories/" target="_blank">Categories</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/ClericPy/blog/discussions" target="_blank">Discussions</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/about" target="_blank">About</a>
+  </div>
+  
+  
+</div>
+
+            </div>
+        </div>
+    </article>
+
+    <script src="/blog/js/highlight.pack.js"></script>
+<script src="https://cdn.staticfile.org/quicklink/2.0.0-alpha/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+    
+
+</body>
+
+</html>

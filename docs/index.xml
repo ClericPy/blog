@@ -12,6 +12,19 @@
     
     
     <item>
+      <title>尝鲜绿色版解释器, 以及打包分发 Python 软件</title>
+      <link>https://clericpy.github.io/blog/posts/%E5%B0%9D%E9%B2%9C%E7%BB%BF%E8%89%B2%E7%89%88-python-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91%E8%BD%AF%E4%BB%B6/</link>
+      <pubDate>Sat, 03 Jun 2023 12:27:12 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/%E5%B0%9D%E9%B2%9C%E7%BB%BF%E8%89%B2%E7%89%88-python-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91%E8%BD%AF%E4%BB%B6/</guid>
+      <description>背景: 期待已久的绿色版 Python 解释器终于成熟可用, 目前体验地址是 Releases · indygreg/python-build-standalone · GitHub python-build-standalone 项目 release 2023.5.7, 包含 mac/linux/win32 多平台可用.
+所以分享一下未来一段时间内使用 Python 语言编写应用后分发到各平台的简单方式, 如果比较在乎保护源码, 则可以考虑使用 pyinstaller / nuitka 编译的方式来发布. 两者我都写过简单 UI 来搞, 目前主要使用 nuitka, 有兴趣可以参考之前写的一个 nuitka 打包 GUI: https://github.com/ClericPy/nuitka_simple_gui , 简单这个 GUI 默认只编译你核心代码, 依赖是通过外部安装的方式打包起来, 最后输出 zip 和快捷软链给用户
+过程: 以 Windows 平台为例, linux 等其他平台其实也很简单, 毕竟解释器各平台都有, zipapps 的 pyz 文件也可以跨平台.
+  下载想要的解释器, 版本解释
+ 主要找文件名里带 install_only  的, 这个不是让你拿去自己编译, 而是直接使用 Windows 的是 pc-windows-msvc-shared 标记  举例  cpython-3.</description>
+    </item>
+    
+    <item>
       <title>Nuitka 打包弄个简单 GUI 省点心</title>
       <link>https://clericpy.github.io/blog/posts/nuitka-%E6%89%93%E5%8C%85%E5%BC%84%E4%B8%AA%E7%AE%80%E5%8D%95-gui-%E7%9C%81%E7%82%B9%E5%BF%83/</link>
       <pubDate>Sun, 23 Oct 2022 11:47:39 +0800</pubDate>
