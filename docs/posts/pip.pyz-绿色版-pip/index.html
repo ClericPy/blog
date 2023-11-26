@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.65.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Clericpy" />
+  <meta property="og:url" content="https://clericpy.github.io/blog/posts/pip.pyz-%E7%BB%BF%E8%89%B2%E7%89%88-pip/" />
+  <link rel="canonical" href="https://clericpy.github.io/blog/posts/pip.pyz-%E7%BB%BF%E8%89%B2%E7%89%88-pip/" /><link rel="shortcut icon" href="/blog/favicon.ico" type="image/x-png" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/clericpy.github.io\/blog\/"
+      },
+      "articleSection" : "posts",
+      "name" : "pip.pyz 与 Windows 绿色版 Python app",
+      "headline" : "pip.pyz 与 Windows 绿色版 Python app",
+      "description" : "不说废话 文档 https:\/\/pip.pypa.io\/en\/stable\/installation\/#standalone-zip-application\n下载地址 https:\/\/bootstrap.pypa.io\/pip\/pip.pyz\n用途 Windows embeded python 安装 pip\n 将 嵌入式 python 下载并解压缩到 python-3.11.5-embed-amd64\/ 下载 pip.pyz 文件到 python-3.11.5-embed-amd64\/ 在 python311._pth(根据版本号 311 可能是其他数字) 文件里写入  import site pip.pyz 这样就可以直接 pip 安装依赖了 .\/python.exe -m pip install xxx  ",
+      "inLanguage" : "en-US",
+      "author" : "Clericpy",
+      "creator" : "Clericpy",
+      "publisher": "Clericpy",
+      "accountablePerson" : "Clericpy",
+      "copyrightHolder" : "Clericpy",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-11-26 21:40:11 \x2b0800 CST",
+      "dateModified" : "2023-11-26 21:40:11 \x2b0800 CST",
+      "url" : "https:\/\/clericpy.github.io\/blog\/posts\/pip.pyz-%E7%BB%BF%E8%89%B2%E7%89%88-pip\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>pip.pyz 与 Windows 绿色版 Python app - Clericpy&#39;s Blog</title>
+  <meta property="og:title" content="pip.pyz 与 Windows 绿色版 Python app - Clericpy&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="不说废话 文档 https://pip.pypa.io/en/stable/installation/#standalone-zip-application
+下载地址 https://bootstrap.pypa.io/pip/pip.pyz
+用途 Windows embeded python 安装 pip
+ 将 嵌入式 python 下载并解压缩到 python-3.11.5-embed-amd64/ 下载 pip.pyz 文件到 python-3.11.5-embed-amd64/ 在 python311._pth(根据版本号 311 可能是其他数字) 文件里写入  import site pip.pyz 这样就可以直接 pip 安装依赖了 ./python.exe -m pip install xxx  " />
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="/blog/css/index.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Clericpy&#39;s Blog">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150991415-1"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag("js", new Date());  gtag("config", "UA-150991415-1");</script>
+</head>
+
+
+<body>
+    <article class="post Chinese" id="article">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                <div class="site-header">
+                    
+<header>
+  <div class="signatures site-title">
+    <a href="/blog/">Clericpy&#39;s Blog</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+                </div>
+                <header class="post-header">
+                    <h1 class="post-title">pip.pyz 与 Windows 绿色版 Python app</h1>
+                    
+                    <div class="row post-desc">
+                        <div class="col-xs-2">
+                            
+                            <time class="post-date" datetime="2023-11-26 21:40:11 CST">
+                                26 Nov 2023
+                            </time>
+                            
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="/blog/categories/python"><b
+                                    style="text-decoration:underline">Python</b></a>
+                        </div>
+                        <div class="col-xs-6">
+                            
+                            <div class="post-author">
+                                <a target="_blank" href="https://github.com/ClericPy">@Clericpy</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="toc" class="well col-md-12 col-sm-10" style="font-size: 0.8em; border: 1px dashed rgb(194, 194, 194); margin: 15px; padding: 15px;">
+                        <h3>Table of Contents</h3>
+                        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#文档">文档</a></li>
+    <li><a href="#下载地址">下载地址</a></li>
+  </ul>
+</nav>
+                    </div>
+                </header>
+                <div class="post-content markdown-body">
+                    <h1 id="不说废话">不说废话</h1>
+<h2 id="文档">文档</h2>
+<p><a href="https://pip.pypa.io/en/stable/installation/#standalone-zip-application">https://pip.pypa.io/en/stable/installation/#standalone-zip-application</a></p>
+<h2 id="下载地址">下载地址</h2>
+<p><a href="https://bootstrap.pypa.io/pip/pip.pyz">https://bootstrap.pypa.io/pip/pip.pyz</a></p>
+<h1 id="用途">用途</h1>
+<p>Windows embeded python 安装 pip</p>
+<ol>
+<li>将 <code>嵌入式 python</code> 下载并解压缩到 <code>python-3.11.5-embed-amd64/</code></li>
+<li>下载 <code>pip.pyz</code> 文件到 <code>python-3.11.5-embed-amd64/</code></li>
+<li>在 <code>python311._pth</code>(根据版本号 <code>311</code> 可能是其他数字) 文件里写入</li>
+</ol>
+<pre><code>import site
+
+pip.pyz
+</code></pre><ol start="4">
+<li>这样就可以直接 pip 安装依赖了 <code>./python.exe -m pip install xxx</code></li>
+</ol>
+
+                </div>
+                
+
+                
+
+
+                
+                
+                <div style="height: 50px;"></div>
+                
+                
+
+                <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="/blog/index.xml" target="_blank">RSS</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/categories/" target="_blank">Categories</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/ClericPy/blog/discussions" target="_blank">Discussions</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/about" target="_blank">About</a>
+  </div>
+  
+  
+</div>
+
+            </div>
+        </div>
+    </article>
+
+    <script src="/blog/js/highlight.pack.js"></script>
+<script src="https://cdn.staticfile.org/quicklink/2.0.0-alpha/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+    
+
+</body>
+
+</html>

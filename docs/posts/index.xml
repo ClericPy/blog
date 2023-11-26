@@ -6,10 +6,22 @@
     <description>Recent content in Posts on Clericpy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 03 Jun 2023 12:27:12 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 26 Nov 2023 21:40:11 +0800</lastBuildDate>
     
 	<atom:link href="https://clericpy.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>pip.pyz 与 Windows 绿色版 Python app</title>
+      <link>https://clericpy.github.io/blog/posts/pip.pyz-%E7%BB%BF%E8%89%B2%E7%89%88-pip/</link>
+      <pubDate>Sun, 26 Nov 2023 21:40:11 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/pip.pyz-%E7%BB%BF%E8%89%B2%E7%89%88-pip/</guid>
+      <description>不说废话 文档 https://pip.pypa.io/en/stable/installation/#standalone-zip-application
+下载地址 https://bootstrap.pypa.io/pip/pip.pyz
+用途 Windows embeded python 安装 pip
+ 将 嵌入式 python 下载并解压缩到 python-3.11.5-embed-amd64/ 下载 pip.pyz 文件到 python-3.11.5-embed-amd64/ 在 python311._pth(根据版本号 311 可能是其他数字) 文件里写入  import site pip.pyz 这样就可以直接 pip 安装依赖了 ./python.exe -m pip install xxx  </description>
+    </item>
     
     <item>
       <title>尝鲜绿色版解释器, 以及打包分发 Python 软件</title>
