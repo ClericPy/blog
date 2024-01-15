@@ -18,13 +18,9 @@ https://github.com/ClericPy/somethings/releases
 
    > 直接复制源代码更干净, 因为没有第三方依赖, 不过需要 python 解释器环境, windows 下双击即可运行
 
-2. 单文件 exe: [pic2html-single.exe](https://github.com/ClericPy/somethings/releases/download/0.1/pic2html-single.exe)
+2. 单文件 exe: [pic2html-single.exe]
 
-   > 每次执行会产生临时文件, 执行结束会自动清理
-
-3. 文件夹 exe: [pic2html.zip](https://github.com/ClericPy/somethings/releases/download/0.1/pic2html.zip)
-
-   > 不产生临时文件, 不过需要解压缩
+   > 首次执行会产生临时文件
 
 ## 场景
 
