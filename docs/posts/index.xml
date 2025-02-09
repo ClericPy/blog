@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Clericpy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 26 Nov 2023 21:40:11 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 03 Mar 2024 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://clericpy.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python 周报拾遗(持续更新 2024.3.3)</title>
+      <link>https://clericpy.github.io/blog/posts/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97/</link>
+      <pubDate>Sun, 03 Mar 2024 00:00:00 +0800</pubDate>
+      
+      <guid>https://clericpy.github.io/blog/posts/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97/</guid>
+      <description>将会按时间倒序, 不定期更新一些周报里读到的好东西, 并加入一点简评. 每次修改会顺带更新日期, 所以会跑到列表最前面.
+ 2024年4月9日 抑制某些报错, 比 try 更简洁 from contextlib import suppress with suppress(FileNotFoundError): with open(&amp;#39;file.txt&amp;#39;, &amp;#39;r&amp;#39;) as file: contents = file.read() 2024年3月3日 字符串格式化日常使用 &amp;gt;&amp;gt;&amp;gt; &#39;Correct answers: {:.2%}&#39;.format(1/6) &#39;Correct answers: 16.67%&#39; &amp;gt;&amp;gt;&amp;gt; &#39;{:+f}; {:+f}&#39;.format(3.14, -3.14) &#39;+3.140000; -3.140000&#39; &amp;gt;&amp;gt;&amp;gt; &#39;{:*^30}&#39;.format(f&#39; {1/6:.2%} &#39;) &#39;*********** 16.67% ***********&#39;  还有一些其他格式化的东西, 例如 https://docs.python.org/3/library/textwrap.html
+from textwrap import shorten from inspect import cleandoc from textwrap import dedent 2022年8月6日 taichi-dev/taichi: Productive &amp;amp; portable high-performance programming in Python.</description>
+    </item>
     
     <item>
       <title>pip.pyz 与 Windows 绿色版 Python app</title>
@@ -47,16 +58,6 @@
 暂时不上 pypi 了, 代码质量不太好
 基本功能:
  常用命令行参数直接勾选, 不用动脑子记命令 Linux / Windows 应该都成功打包过 不使用单文件模式, 因为和 pyinstaller 一样会在 tmp 目录产生缓存文件但不删除, 虽然可以自定义缓存目录, 但还是没必要 非单文件编译, 输出目录  支持直接压缩成 zip 方便发送给别人, 也节省了体积 添加入口软链接(Windows), 省的进文件夹里找 exe 文件 依赖的第三方包会通过 pip install lib -t xxx 的方式直接放到输出目录里  节省编译时间, 否则有些 numpy 之类的包编译要很长时间     图形界面即文档  直接下载下去运行就好了, 提前安装好 python 和 nuitka https://github.com/ClericPy/nuitka_simple_gui/blob/master/nuitkaui.pyw    </description>
-    </item>
-    
-    <item>
-      <title>Python 周报拾遗(持续更新 2022.8.6)</title>
-      <link>https://clericpy.github.io/blog/posts/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97/</link>
-      <pubDate>Sat, 06 Aug 2022 00:00:00 +0800</pubDate>
-      
-      <guid>https://clericpy.github.io/blog/posts/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97/</guid>
-      <description>将会按时间倒序, 不定期更新一些周报里读到的好东西, 并加入一点简评. 每次修改会顺带更新日期, 所以会跑到列表最前面.
- 2022年8月6日 taichi-dev/taichi: Productive &amp;amp; portable high-performance programming in Python.  著名的太极项目, 太极图形团队也是非常专业的一群人, 最近因为很多推广文提到百倍提速 Python 代码而再次出圈  2022年7月3日 Python 程序调试分析大杀器合集  很早之前看到的调试工具合集, 主要是  wooparadog/pystack: Tool to dump python thread and greenlet stacks.  The pystack is to python as jstack is to java. 能直接找到 block 到哪一行   kmaork/hypno: A tool/library allowing to inject python code into a running python process.  注入正在运行的 python 进程里去, 顺便跑点别的代码   benfred/py-spy: Sampling profiler for Python programs  还能看火焰图, 主要是监控性能的   P403n1x87/austin：用于 CPython 的 Python 帧堆栈采样器  一般配合 TUI 或者 VSCODE 插件使用, 很强大的性能问题排查工具   之前比较火的几个流行的类似库, 这三个比较相似  joerick/pyinstrument: 🚴 Call stack profiler for Python.</description>
     </item>
     
     <item>

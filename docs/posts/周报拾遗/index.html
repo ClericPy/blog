@@ -17,8 +17,8 @@
            "@id": "https:\/\/clericpy.github.io\/blog\/"
       },
       "articleSection" : "posts",
-      "name" : "Python 周报拾遗(持续更新 2022.8.6)",
-      "headline" : "Python 周报拾遗(持续更新 2022.8.6)",
+      "name" : "Python 周报拾遗(持续更新 2024.3.3)",
+      "headline" : "Python 周报拾遗(持续更新 2024.3.3)",
       "description" : "Python 周报回忆录",
       "inLanguage" : "en-US",
       "author" : "Clericpy",
@@ -26,15 +26,15 @@
       "publisher": "Clericpy",
       "accountablePerson" : "Clericpy",
       "copyrightHolder" : "Clericpy",
-      "copyrightYear" : "2022",
-      "datePublished": "2022-08-06 00:00:00 \x2b0800 CST",
-      "dateModified" : "2022-08-06 00:00:00 \x2b0800 CST",
+      "copyrightYear" : "2024",
+      "datePublished": "2024-03-03 00:00:00 \x2b0800 CST",
+      "dateModified" : "2024-03-03 00:00:00 \x2b0800 CST",
       "url" : "https:\/\/clericpy.github.io\/blog\/posts\/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97\/",
       "keywords" : [  ]
   }
 </script>
-<title>Python 周报拾遗(持续更新 2022.8.6) - Clericpy&#39;s Blog</title>
-  <meta property="og:title" content="Python 周报拾遗(持续更新 2022.8.6) - Clericpy&#39;s Blog" />
+<title>Python 周报拾遗(持续更新 2024.3.3) - Clericpy&#39;s Blog</title>
+  <meta property="og:title" content="Python 周报拾遗(持续更新 2024.3.3) - Clericpy&#39;s Blog" />
   <meta property="og:type" content="article" />
   <meta name="description" content="Python 周报回忆录" />
 
@@ -75,13 +75,13 @@
 
                 </div>
                 <header class="post-header">
-                    <h1 class="post-title">Python 周报拾遗(持续更新 2022.8.6)</h1>
+                    <h1 class="post-title">Python 周报拾遗(持续更新 2024.3.3)</h1>
                     
                     <div class="row post-desc">
                         <div class="col-xs-2">
                             
-                            <time class="post-date" datetime="2022-08-06 00:00:00 CST">
-                                06 Aug 2022
+                            <time class="post-date" datetime="2024-03-03 00:00:00 CST">
+                                03 Mar 2024
                             </time>
                             
                         </div>
@@ -102,6 +102,16 @@
                         <h3>Table of Contents</h3>
                         <nav id="TableOfContents">
   <ul>
+    <li><a href="#2024年4月9日">2024年4月9日</a>
+      <ul>
+        <li><a href="#抑制某些报错-比-try-更简洁">抑制某些报错, 比 try 更简洁</a></li>
+      </ul>
+    </li>
+    <li><a href="#2024年3月3日">2024年3月3日</a>
+      <ul>
+        <li><a href="#字符串格式化日常使用httpsdocspythonorg3librarystringhtmlformatstrings">字符串格式化日常使用</a></li>
+      </ul>
+    </li>
     <li><a href="#2022年8月6日">2022年8月6日</a>
       <ul>
         <li><a href="#taichi-devtaichi-productive--portable-high-performance-programming-in-pythonhttpsgithubcomtaichi-devtaichi">taichi-dev/taichi: Productive & portable high-performance programming in Python.</a></li>
@@ -144,7 +154,26 @@
                     <blockquote>
 <p>将会按时间倒序, 不定期更新一些周报里读到的好东西, 并加入一点简评. 每次修改会顺带更新日期, 所以会跑到列表最前面.</p>
 </blockquote>
-<h2 id="2022年8月6日">2022年8月6日</h2>
+<h2 id="2024年4月9日">2024年4月9日</h2>
+<h3 id="抑制某些报错-比-try-更简洁">抑制某些报错, 比 try 更简洁</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> contextlib <span style="color:#f92672">import</span> suppress
+<span style="color:#66d9ef">with</span> suppress(FileNotFoundError):
+    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;file.txt&#39;</span>, <span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">as</span> file:
+        contents <span style="color:#f92672">=</span> file<span style="color:#f92672">.</span>read()
+</code></pre></div><h2 id="2024年3月3日">2024年3月3日</h2>
+<h3 id="字符串格式化日常使用httpsdocspythonorg3librarystringhtmlformatstrings"><a href="https://docs.python.org/3/library/string.html#formatstrings">字符串格式化日常使用</a></h3>
+<pre><code>&gt;&gt;&gt; 'Correct answers: {:.2%}'.format(1/6)
+'Correct answers: 16.67%'
+&gt;&gt;&gt; '{:+f}; {:+f}'.format(3.14, -3.14)
+'+3.140000; -3.140000' 
+&gt;&gt;&gt; '{:*^30}'.format(f' {1/6:.2%} ')
+'*********** 16.67% ***********'
+</code></pre>
+<p>还有一些其他格式化的东西, 例如 <a href="https://docs.python.org/3/library/textwrap.html">https://docs.python.org/3/library/textwrap.html</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> textwrap <span style="color:#f92672">import</span> shorten
+<span style="color:#f92672">from</span> inspect <span style="color:#f92672">import</span> cleandoc
+<span style="color:#f92672">from</span> textwrap <span style="color:#f92672">import</span> dedent
+</code></pre></div><h2 id="2022年8月6日">2022年8月6日</h2>
 <h3 id="taichi-devtaichi-productive--portable-high-performance-programming-in-pythonhttpsgithubcomtaichi-devtaichi"><a href="https://github.com/taichi-dev/taichi">taichi-dev/taichi: Productive &amp; portable high-performance programming in Python.</a></h3>
 <ol>
 <li>著名的太极项目, 太极图形团队也是非常专业的一群人, 最近因为很多推广文提到百倍提速 Python 代码而再次出圈</li>
