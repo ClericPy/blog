@@ -4,29 +4,16 @@
     <title>Github on Clericpy&#39;s Blog</title>
     <link>https://clericpy.github.io/blog/categories/github/</link>
     <description>Recent content in Github on Clericpy&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <generator>Hugo</generator>
+    <language>cn</language>
     <lastBuildDate>Tue, 31 Mar 2020 17:12:12 +0800</lastBuildDate>
-    
-	<atom:link href="https://clericpy.github.io/blog/categories/github/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://clericpy.github.io/blog/categories/github/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>watchdogs: 随时关注网络世界的变化</title>
       <link>https://clericpy.github.io/blog/posts/20200331171211/</link>
       <pubDate>Tue, 31 Mar 2020 17:12:12 +0800</pubDate>
-      
       <guid>https://clericpy.github.io/blog/posts/20200331171211/</guid>
-      <description>做爬虫的, 要有自己的工具来发现网络世界的动态, 对信息保持一份敏感, 对数据存有一颗敬畏之心.
- 项目名称: ClericPy/watchdogs
-项目初衷   统一关注.
- 平时可能会追剧追小说追综艺, 关注疫情实况, 订阅一些博客, 但是网站多了太分散, 所以需要一份 Timeline 方便浏览.
-   解放双手.
- 满足对日常信息变化的订阅, 并提供主动提醒功能, 从不断刷网页判断更新中解放双手. 简而言之, 信息索取由被动转为主动.
-   体验新事物.
- 而归根结底的初衷, 还是想试试去年就大火的 fastapi, 体验之后, 果然比原生 starlette 要优雅很多.
-   主要功能  适用于: 追剧, 追星, 追小说漫画, steam 降价, 博客更新, 服务翻车, 疫情实况, 定向新闻或搜索结果等场景的提醒. 根据定制解析规则, 关注网页特定数据的变化, 记录更新时间与历史数据, 并提供对应 URL 进行跳转. 所有爬虫执行在协程环境下, 抓取 / 存储 / 回调与整个 Web 服务相互独立不阻塞.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;做爬虫的, 要有自己的工具来发现网络世界的动态, 对信息保持一份敏感, 对数据存有一颗敬畏之心.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;项目名称: &lt;a href=&#34;https://github.com/ClericPy/watchdogs&#34;&gt;ClericPy/watchdogs&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;项目初衷&#34;&gt;项目初衷&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;统一关注.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;平时可能会追剧追小说追综艺, 关注疫情实况, 订阅一些博客, 但是网站多了太分散, 所以需要一份 Timeline 方便浏览.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;解放双手.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;满足对日常信息变化的订阅, 并提供主动提醒功能, 从不断刷网页判断更新中解放双手. 简而言之, 信息索取由被动转为主动.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;体验新事物.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;而归根结底的初衷, 还是想试试去年就大火的 &lt;strong&gt;&lt;a href=&#34;https://github.com/tiangolo/fastapi&#34;&gt;fastapi&lt;/a&gt;&lt;/strong&gt;, 体验之后, 果然比原生 &lt;strong&gt;&lt;a href=&#34;https://github.com/encode/starlette&#34;&gt;starlette&lt;/a&gt;&lt;/strong&gt; 要优雅很多.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;主要功能&#34;&gt;主要功能&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;适用于: 追剧, 追星, 追小说漫画, steam 降价, 博客更新, &lt;strong&gt;服务翻车&lt;/strong&gt;, 疫情实况, 定向新闻或搜索结果等场景的提醒.&lt;/li&gt;&#xA;&lt;li&gt;根据定制解析规则, 关注网页特定数据的变化, 记录更新时间与历史数据, 并提供对应 URL 进行跳转. 所有爬虫执行在协程环境下, 抓取 / 存储 / 回调与整个 Web 服务相互独立不阻塞.&lt;/li&gt;&#xA;&lt;li&gt;通过可视化 Web UI 快速配置爬虫的下载器与解析器参数, 目前熟练操作以后, 配置一个抓取规则大约耗时 &lt;strong&gt;3 分钟&lt;/strong&gt;.&#xA;&lt;ol&gt;&#xA;&lt;li&gt;结合前段时间写的解析规则持久化模块 &lt;a href=&#34;https://github.com/ClericPy/uniparser&#34;&gt;uniparser&lt;/a&gt;, 将解析方式存储在数据库中, 避免每次新增爬虫都要发布代码. 该库虽然涵盖的解析方式很多, 但大部分库都是&lt;strong&gt;惰性&lt;/strong&gt;引用, 开销并不算太大.&lt;/li&gt;&#xA;&lt;li&gt;总的来说, 就是将大量爬虫解析器的耦合代码归纳起来, 然后把变量部分入库保存, 实现解析规则持久化.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;定制化提醒方式. 默认支持了『&lt;strong&gt;Server 酱&lt;/strong&gt;』和 &lt;strong&gt;RSS&lt;/strong&gt; 的订阅, 以及适配手机的 Lite 页面.&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://sc.ftqq.com/&#34;&gt;Server 酱&lt;/a&gt; 是用来通过微信推送提醒的服务, 具体 Token 获取方式参考其官方网站.&lt;/li&gt;&#xA;&lt;li&gt;RSS 网页的订阅可以使用专业的 RSS 阅读器应用或扩展. 之前使用的 &lt;code&gt;Inoreader&lt;/code&gt; 和 &lt;code&gt;RSS Feed Reader&lt;/code&gt; 因为刷新频率太低, 好暂时弃用. 而 Chrome 扩展 &lt;a href=&#34;https://nodetics.com/feedbro/&#34;&gt;feedbro&lt;/a&gt; 则支持分钟级提醒.&lt;/li&gt;&#xA;&lt;li&gt;至于 &lt;strong&gt;Email&lt;/strong&gt; 等其他提醒方式, 可以凭借继承 &lt;code&gt;watchdogs.callbacks.Callback&lt;/code&gt; 抽象类, 并实现 callback(task) 函数来完成.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;快速部署.&lt;/li&gt;&#xA;&lt;li&gt;默认配置只需要 pip 安装后 &lt;code&gt;python3.7 -m watchdogs&lt;/code&gt; 即可启动 Web App, 配置文件与日志文件存放在 $HOME/watchdogs 目录下, 若没有指定 &lt;code&gt;mysql&lt;/code&gt; 的 &lt;code&gt;db_url&lt;/code&gt;, 则使用 &lt;code&gt;sqlite&lt;/code&gt; 数据库也存放在该目录.&lt;/li&gt;&#xA;&lt;li&gt;内存占用大约 80 MB, Linux 系统下如果安装 &lt;code&gt;uvloop&lt;/code&gt;, 性能非常顺畅.&lt;/li&gt;&#xA;&lt;li&gt;也可以将 watchdogs 作为第三方库来进行私人订制, 只需要调制好 &lt;code&gt;watchdogs.Config&lt;/code&gt; 中的各项原始变量, 然后执行 &lt;code&gt;watchdogs.init_app()&lt;/code&gt; 即可拿到 &lt;code&gt;app: Fastapi&lt;/code&gt; 对象, 该对象可以进行二次绑定 routes, 不过尽量不要作为 sub_app 使用, 否则会错过 startup 和 shutdown 事件的回调函数, 需要另行调用.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;简单上手&#34;&gt;简单上手&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;安装 (pip)&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

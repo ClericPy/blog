@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.65.2" />
+  <meta name="generator" content="Hugo 0.152.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "posts",
       "name" : "尝鲜绿色版解释器, 以及打包分发 Python 软件",
       "headline" : "尝鲜绿色版解释器, 以及打包分发 Python 软件",
-      "description" : "python-build-standalone \x2bPyOxy \x2bzipapps",
+      "description" : "python-build-standalone \u002bPyOxy \u002bzipapps",
       "inLanguage" : "en-US",
       "author" : "Clericpy",
       "creator" : "Clericpy",
@@ -27,8 +27,8 @@
       "accountablePerson" : "Clericpy",
       "copyrightHolder" : "Clericpy",
       "copyrightYear" : "2023",
-      "datePublished": "2023-06-03 12:27:12 \x2b0800 CST",
-      "dateModified" : "2023-06-03 12:27:12 \x2b0800 CST",
+      "datePublished": "2023-06-03 12:27:12 \u002b0800 CST",
+      "dateModified" : "2023-06-03 12:27:12 \u002b0800 CST",
       "url" : "https:\/\/clericpy.github.io\/blog\/posts\/%E5%B0%9D%E9%B2%9C%E7%BB%BF%E8%89%B2%E7%89%88-python-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91%E8%BD%AF%E4%BB%B6\/",
       "keywords" : [  ]
   }
@@ -128,15 +128,15 @@
 <ol>
 <li>举例
 <ol>
-<li><a href="https://github.com/indygreg/python-build-standalone/releases/download/20230507/cpython-3.11.3+20230507-i686-pc-windows-msvc-shared-install_only.tar.gz">cpython-3.11.3+20230507-i686-pc-windows-msvc-shared-install_only.tar.gz</a></li>
+<li><a href="https://github.com/indygreg/python-build-standalone/releases/download/20230507/cpython-3.11.3&#43;20230507-i686-pc-windows-msvc-shared-install_only.tar.gz">cpython-3.11.3+20230507-i686-pc-windows-msvc-shared-install_only.tar.gz</a></li>
 <li>Linux
 <ol>
-<li><a href="https://github.com/indygreg/python-build-standalone/releases/download/20230507/cpython-3.11.3+20230507-aarch64-unknown-linux-gnu-install_only.tar.gz">cpython-3.11.3+20230507-aarch64-unknown-linux-gnu-install_only.tar.gz</a></li>
+<li><a href="https://github.com/indygreg/python-build-standalone/releases/download/20230507/cpython-3.11.3&#43;20230507-aarch64-unknown-linux-gnu-install_only.tar.gz">cpython-3.11.3+20230507-aarch64-unknown-linux-gnu-install_only.tar.gz</a></li>
 </ol>
 </li>
 <li>Darwin
 <ol>
-<li><a href="https://github.com/indygreg/python-build-standalone/releases/download/20230507/cpython-3.11.3+20230507-aarch64-apple-darwin-install_only.tar.gz">cpython-3.11.3+20230507-aarch64-apple-darwin-install_only.tar.gz</a></li>
+<li><a href="https://github.com/indygreg/python-build-standalone/releases/download/20230507/cpython-3.11.3&#43;20230507-aarch64-apple-darwin-install_only.tar.gz">cpython-3.11.3+20230507-aarch64-apple-darwin-install_only.tar.gz</a></li>
 </ol>
 </li>
 </ol>
@@ -149,7 +149,7 @@
 <li>但是要注意需要解压缩 <code>.zst</code> 压缩文件, 不知道为什么不用 7z</li>
 <li>举例
 <ol>
-<li><a href="https://github.com/indygreg/python-build-standalone/releases/download/20230507/cpython-3.11.3+20230507-i686-pc-windows-msvc-shared-pgo-full.tar.zst">cpython-3.11.3+20230507-i686-pc-windows-msvc-shared-pgo-full.tar.zst</a></li>
+<li><a href="https://github.com/indygreg/python-build-standalone/releases/download/20230507/cpython-3.11.3&#43;20230507-i686-pc-windows-msvc-shared-pgo-full.tar.zst">cpython-3.11.3+20230507-i686-pc-windows-msvc-shared-pgo-full.tar.zst</a></li>
 </ol>
 </li>
 </ol>
@@ -218,12 +218,11 @@
 <p>script.py</p>
 <ol>
 <li>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
-<span style="color:#f92672">import</span> time
-</code></pre></div><p>print(requests.get(&lsquo;<a href="http://bing.com">http://bing.com</a>&rsquo;).text)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span></code></pre></div><p>print(requests.get(&lsquo;<a href="http://bing.com">http://bing.com</a>&rsquo;).text)
 time.sleep(3)</p>
-<pre><code>
-</code></pre></li>
+<pre tabindex="0"><code></code></pre></li>
 </ol>
 </li>
 </ol>
@@ -232,17 +231,17 @@ time.sleep(3)</p>
 <p>目录结构</p>
 <ol>
 <li>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#960050;background-color:#1e0010">└─</span>python
-    <span style="color:#960050;background-color:#1e0010">├─</span>DLLs
-    <span style="color:#960050;background-color:#1e0010">├─</span>include
-    <span style="color:#960050;background-color:#1e0010">│</span>  <span style="color:#960050;background-color:#1e0010">├─</span>cpython
-    <span style="color:#960050;background-color:#1e0010">│</span>  <span style="color:#960050;background-color:#1e0010">└─</span>internal
-    <span style="color:#960050;background-color:#1e0010">├─</span>Lib
-    <span style="color:#960050;background-color:#1e0010">│</span>  <span style="color:#960050;background-color:#1e0010">├─</span>site<span style="color:#f92672">-</span>packages
-<span style="color:#960050;background-color:#1e0010">└─</span>app<span style="color:#f92672">.</span>pyz
-<span style="color:#960050;background-color:#1e0010">└─</span>run<span style="color:#f92672">.</span>bat
-<span style="color:#960050;background-color:#1e0010">└─</span>script<span style="color:#f92672">.</span>py
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">└─</span>python
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">├─</span>DLLs
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">├─</span>include
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">│</span>  <span style="color:#960050;background-color:#1e0010">├─</span>cpython
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">│</span>  <span style="color:#960050;background-color:#1e0010">└─</span>internal
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">├─</span>Lib
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">│</span>  <span style="color:#960050;background-color:#1e0010">├─</span>site<span style="color:#f92672">-</span>packages
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">└─</span>app<span style="color:#f92672">.</span>pyz
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">└─</span>run<span style="color:#f92672">.</span>bat
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">└─</span>script<span style="color:#f92672">.</span>py
+</span></span></code></pre></div></li>
 </ol>
 </li>
 <li>
@@ -278,9 +277,9 @@ time.sleep(3)</p>
 <p>测试代码</p>
 <ol>
 <li>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> sys
-<span style="color:#f92672">from</span> timeit <span style="color:#f92672">import</span> timeit
-</code></pre></div><p>def fib(n):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> sys
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> timeit <span style="color:#f92672">import</span> timeit
+</span></span></code></pre></div><p>def fib(n):
 if n &lt;= 1:
 return n
 else:
@@ -288,8 +287,7 @@ return fib(n - 1) + fib(n - 2)</p>
 <p>def test():
 fib(10)</p>
 <p>print(sys.executable, round(timeit(test, number=100000), 6))</p>
-<pre><code>
-</code></pre></li>
+<pre tabindex="0"><code></code></pre></li>
 </ol>
 </li>
 </ol>
@@ -298,13 +296,13 @@ fib(10)</p>
 <p>测试结果</p>
 <ol>
 <li>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md"># 官方 CPython3.11
-D:\python311\python3.exe 1.178743
-# 绿色版 Python3.11
-D:\downloads\python3\3.11\python.exe 1.143648
-# 绿色版 pgo Python3.11
-D:\downloads\python3\3.11pgo\python.exe 1.037657
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span># 官方 CPython3.11
+</span></span><span style="display:flex;"><span>D:\python311\python3.exe 1.178743
+</span></span><span style="display:flex;"><span># 绿色版 Python3.11
+</span></span><span style="display:flex;"><span>D:\downloads\python3\3.11\python.exe 1.143648
+</span></span><span style="display:flex;"><span># 绿色版 pgo Python3.11
+</span></span><span style="display:flex;"><span>D:\downloads\python3\3.11pgo\python.exe 1.037657
+</span></span></code></pre></div></li>
 </ol>
 </li>
 <li>

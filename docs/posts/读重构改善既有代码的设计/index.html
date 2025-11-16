@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.152.2">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Clericpy" />
+  <meta property="og:url" content="https://clericpy.github.io/blog/posts/%E8%AF%BB%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81%E7%9A%84%E8%AE%BE%E8%AE%A1/" />
+  <link rel="canonical" href="https://clericpy.github.io/blog/posts/%E8%AF%BB%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81%E7%9A%84%E8%AE%BE%E8%AE%A1/" /><link rel="shortcut icon" href="/blog/favicon.ico" type="image/x-png" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/clericpy.github.io\/blog\/"
+      },
+      "articleSection" : "posts",
+      "name" : "读《重构：改善既有代码的设计》",
+      "headline" : "读《重构：改善既有代码的设计》",
+      "description" : "\u003ch1 id=\u0022前言\u0022\u003e前言\u003c\/h1\u003e\n\u003cp\u003e王健十六字心法：\u003c\/p\u003e\n\u003cp\u003e旧的不变\u003c\/p\u003e\n\u003cp\u003e新的创建\u003c\/p\u003e\n\u003cp\u003e\u003cstrong\u003e一键切换\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e旧的再见\u003c\/p\u003e\n\u003cp\u003e古老的工程谚语：如果它还可以运行，就不要动它。\u003c\/p\u003e\n\u003cp\u003e六个月后项目宣告失败：很大原因是代码太复杂，无法调试，也无法将性能调优到可接受水平。后来项目重新启动，几乎从头开始编写整个系统。\u003c\/p\u003e\n\u003cp\u003e测试在重构中扮演非常重要的角色。\u003c\/p\u003e\n\u003ch1 id=\u0022第一章-重构第一个示例\u0022\u003e第一章 重构，第一个示例\u003c\/h1\u003e\n\u003col\u003e\n\u003cli\u003e\n\u003cp\u003e常见的程序员立志: 应用于真实世界的程序中的有用技术。\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e重构的第一步永远相同：确保即将修改的代码\u003cstrong\u003e拥有一组可靠的测试\u003c\/strong\u003e。（包括一套可靠的测试集）\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003e回归测试\u003c\/strong\u003e是指修改了旧代码后，重新进行测试以确认修改没有\u003cstrong\u003e引入新的错误\u003c\/strong\u003e或导致其他代码产生错误\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003e自动回归测试将大幅降低系统测试、维护升级等阶段的成本。\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e提炼函数：将一块代码抽取成一个函数\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003e\n\u003cp\u003e首先要检查哪些变量会离开原本的作用域，并且更关心会被修改的变量\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e做完改动马上测试\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e提炼函数可以一步步\u003cstrong\u003e消除过多的临时变量\u003c\/strong\u003e\u003c\/p\u003e\n\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e编码风格：将函数\u003cstrong\u003e返回值尽量命名为 result\u003c\/strong\u003e\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e编码风格：参数\u003cstrong\u003e命名带上类型\u003c\/strong\u003e\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e营地法则：保证你离开时的代码库一定\u003cstrong\u003e比来时更健康\u003c\/strong\u003e\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e第一章主要是举例子，代码挺多但是信息密度不大，初学者略微看看，主要建立一种典型的重构思维方式：\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003e\n\u003cp\u003e提炼函数\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e内联变量\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e搬移函数\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e以多态取代条件表达式\u003c\/p\u003e\n\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003ch1 id=\u0022第二章-重构的原则\u0022\u003e第二章 重构的原则\u003c\/h1\u003e\n\u003col\u003e\n\u003cli\u003e\n\u003cp\u003e如果有人说\u0026quot;他们的代码在重构过程中\u003cstrong\u003e暂时不可用\u003c\/strong\u003e\u0026quot;\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003e那他们做的事\u003cstrong\u003e不算重构\u003c\/strong\u003e\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e两顶帽子：添加新功能、重构\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003e同时只戴一顶帽子\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e什么时候不应该重构：\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003e\n\u003cp\u003e有一段凌乱代码但是隐藏在一个 API 之下，它既没有出问题也不需要我马上理解它\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e另一种情况是重写比重构容易\u003c\/p\u003e\n\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e重构与YAGNI\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e一些方法论经验之谈的总结\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003e信息量不大\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003ch1 id=\u0022第三章-代码的坏味道\u0022\u003e第三章 代码的坏味道\u003c\/h1\u003e\n\u003cp\u003e信息量较大，但是非常有用。基本上指明了需要重构的点\u003c\/p\u003e\n\u003ch2 id=\u00221-神秘命名\u0022\u003e1 神秘命名\u003c\/h2\u003e\n\u003col\u003e\n\u003cli\u003e\n\u003cp\u003e整洁代码\u003cstrong\u003e最重要一环就是好的名字\u003c\/strong\u003e\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003e函数、模块、变量、类的名字要能清晰表达自己的功能和用法\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003e命名\u003c\/strong\u003e是编程中\u003cstrong\u003e最难\u003c\/strong\u003e的两件事之一（很有名的梗，另一个是缓存失效）\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e要注意的是尽量不要用字符串替换的方式给函数或者变量改名字\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003e\n\u003cp\u003e可能遇到同名不同作用域，导致\u003cstrong\u003e重名误改或者跨域漏改\u003c\/strong\u003e\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e尽量用 IDE 自带的重命名功能\u003c\/p\u003e\n\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003ch2 id=\u00222-重复代码\u0022\u003e2 重复代码\u003c\/h2\u003e\n\u003col\u003e\n\u003cli\u003e\n\u003cp\u003e阅读重复代码：\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003e\n\u003cp\u003e设法将他们合而为一\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e留意细微差异，做成参数变量\u003c\/p\u003e\n\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003e代码复用\u003c\/strong\u003e节省二次修改的时间，并且\u003cstrong\u003e避免漏改\u003c\/strong\u003e或者修改不一致的情况发生\u003c\/p\u003e\n\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003ch2 id=\u00223-过长函数\u0022\u003e3 过长函数\u003c\/h2\u003e\n\u003col\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003e活得最长、最好的程序，其中的函数都比较简短\u003c\/strong\u003e\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003e函数越长，就越难理解\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e小函数的间接性带来的好处：更好的阐释力、更易于分享、更多的选择\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003e小函数易于理解的关键还是好的命名\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e早期的编程语言会为了极限性能尽量减少函数的使用。但是，现代编程语言已经几乎免除了进程内函数调用的开销\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e一个简单的原则：\u003c\/p\u003e",
+      "inLanguage" : "en-US",
+      "author" : "Clericpy",
+      "creator" : "Clericpy",
+      "publisher": "Clericpy",
+      "accountablePerson" : "Clericpy",
+      "copyrightHolder" : "Clericpy",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-11-16 21:49:21 \u002b0800 CST",
+      "dateModified" : "2025-11-16 21:49:21 \u002b0800 CST",
+      "url" : "https:\/\/clericpy.github.io\/blog\/posts\/%E8%AF%BB%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81%E7%9A%84%E8%AE%BE%E8%AE%A1\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>读《重构：改善既有代码的设计》 - Clericpy&#39;s Blog</title>
+  <meta property="og:title" content="读《重构：改善既有代码的设计》 - Clericpy&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="前言
+王健十六字心法：
+旧的不变
+新的创建
+一键切换
+旧的再见
+古老的工程谚语：如果它还可以运行，就不要动它。
+六个月后项目宣告失败：很大原因是代码太复杂，无法调试，也无法将性能调优到可接受水平。后来项目重新启动，几乎从头开始编写整个系统。
+测试在重构中扮演非常重要的角色。
+第一章 重构，第一个示例
+
+
+常见的程序员立志: 应用于真实世界的程序中的有用技术。
+
+
+重构的第一步永远相同：确保即将修改的代码拥有一组可靠的测试。（包括一套可靠的测试集）
+
+
+回归测试是指修改了旧代码后，重新进行测试以确认修改没有引入新的错误或导致其他代码产生错误
+
+自动回归测试将大幅降低系统测试、维护升级等阶段的成本。
+
+
+
+提炼函数：将一块代码抽取成一个函数
+
+
+首先要检查哪些变量会离开原本的作用域，并且更关心会被修改的变量
+
+
+做完改动马上测试
+
+
+提炼函数可以一步步消除过多的临时变量
+
+
+
+
+编码风格：将函数返回值尽量命名为 result
+
+
+编码风格：参数命名带上类型
+
+
+营地法则：保证你离开时的代码库一定比来时更健康
+
+
+第一章主要是举例子，代码挺多但是信息密度不大，初学者略微看看，主要建立一种典型的重构思维方式：
+
+
+提炼函数
+
+
+内联变量
+
+
+搬移函数
+
+
+以多态取代条件表达式
+
+
+
+
+第二章 重构的原则
+
+
+如果有人说&quot;他们的代码在重构过程中暂时不可用&quot;
+
+那他们做的事不算重构
+
+
+
+两顶帽子：添加新功能、重构
+
+同时只戴一顶帽子
+
+
+
+什么时候不应该重构：
+
+
+有一段凌乱代码但是隐藏在一个 API 之下，它既没有出问题也不需要我马上理解它
+
+
+另一种情况是重写比重构容易
+
+
+
+
+重构与YAGNI
+
+
+一些方法论经验之谈的总结
+
+信息量不大
+
+
+
+第三章 代码的坏味道
+信息量较大，但是非常有用。基本上指明了需要重构的点
+1 神秘命名
+
+
+整洁代码最重要一环就是好的名字
+
+函数、模块、变量、类的名字要能清晰表达自己的功能和用法
+
+
+
+命名是编程中最难的两件事之一（很有名的梗，另一个是缓存失效）
+
+
+要注意的是尽量不要用字符串替换的方式给函数或者变量改名字
+
+
+可能遇到同名不同作用域，导致重名误改或者跨域漏改
+
+
+尽量用 IDE 自带的重命名功能
+
+
+
+
+2 重复代码
+
+
+阅读重复代码：
+
+
+设法将他们合而为一
+
+
+留意细微差异，做成参数变量
+
+
+
+
+代码复用节省二次修改的时间，并且避免漏改或者修改不一致的情况发生
+
+
+3 过长函数
+
+
+活得最长、最好的程序，其中的函数都比较简短
+
+函数越长，就越难理解
+
+
+
+小函数的间接性带来的好处：更好的阐释力、更易于分享、更多的选择
+
+小函数易于理解的关键还是好的命名
+
+
+
+早期的编程语言会为了极限性能尽量减少函数的使用。但是，现代编程语言已经几乎免除了进程内函数调用的开销
+
+
+一个简单的原则：" />
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="/blog/css/index.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Clericpy&#39;s Blog">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150991415-1"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag("js", new Date());  gtag("config", "UA-150991415-1");</script>
+</head>
+
+
+<body>
+    <article class="post Chinese" id="article">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                <div class="site-header">
+                    
+<header>
+  <div class="signatures site-title">
+    <a href="/blog/">Clericpy&#39;s Blog</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+                </div>
+                <header class="post-header">
+                    <h1 class="post-title">读《重构：改善既有代码的设计》</h1>
+                    
+                    <div class="row post-desc">
+                        <div class="col-xs-2">
+                            
+                            <time class="post-date" datetime="2025-11-16 21:49:21 CST">
+                                16 Nov 2025
+                            </time>
+                            
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="/blog/categories/python"><b
+                                    style="text-decoration:underline">Python</b></a>
+                        </div>
+                        <div class="col-xs-6">
+                            
+                            <div class="post-author">
+                                <a target="_blank" href="https://github.com/ClericPy">@Clericpy</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="toc" class="well col-md-12 col-sm-10" style="font-size: 0.8em; border: 1px dashed rgb(194, 194, 194); margin: 15px; padding: 15px;">
+                        <h3>Table of Contents</h3>
+                        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-神秘命名">1 神秘命名</a></li>
+    <li><a href="#2-重复代码">2 重复代码</a></li>
+    <li><a href="#3-过长函数">3 过长函数</a></li>
+    <li><a href="#4-过长参数列表">4 过长参数列表</a></li>
+    <li><a href="#5-全局数据">5 全局数据</a></li>
+    <li><a href="#6-可变数据">6 可变数据</a></li>
+    <li><a href="#7-发散式变化">7 发散式变化</a></li>
+    <li><a href="#8-霰弹式修改">8 霰弹式修改</a></li>
+    <li><a href="#9-依恋情节">9 依恋情节</a></li>
+    <li><a href="#10-数据泥团">10 数据泥团</a></li>
+    <li><a href="#11-基本类型偏执">11 基本类型偏执</a></li>
+    <li><a href="#12-重复的switch">12 重复的switch</a></li>
+    <li><a href="#13-循环语句">13 循环语句</a></li>
+    <li><a href="#14-冗赘的元素">14 冗赘的元素</a></li>
+    <li><a href="#15-夸夸其谈通用性">15 夸夸其谈通用性</a></li>
+    <li><a href="#16-临时字段">16 临时字段</a></li>
+    <li><a href="#17-过长的消息链">17 过长的消息链</a></li>
+    <li><a href="#18-中间人">18 中间人</a></li>
+    <li><a href="#19-内幕交易">19 内幕交易</a></li>
+    <li><a href="#20-过大的类">20 过大的类</a></li>
+    <li><a href="#21-异曲同工的类">21 异曲同工的类</a></li>
+    <li><a href="#22-纯数据类">22 纯数据类</a></li>
+    <li><a href="#23-被拒绝的馈赠">23 被拒绝的馈赠</a></li>
+    <li><a href="#24-注释">24 注释</a></li>
+  </ul>
+</nav>
+                    </div>
+                </header>
+                <div class="post-content markdown-body">
+                    <h1 id="前言">前言</h1>
+<p>王健十六字心法：</p>
+<p>旧的不变</p>
+<p>新的创建</p>
+<p><strong>一键切换</strong></p>
+<p>旧的再见</p>
+<p>古老的工程谚语：如果它还可以运行，就不要动它。</p>
+<p>六个月后项目宣告失败：很大原因是代码太复杂，无法调试，也无法将性能调优到可接受水平。后来项目重新启动，几乎从头开始编写整个系统。</p>
+<p>测试在重构中扮演非常重要的角色。</p>
+<h1 id="第一章-重构第一个示例">第一章 重构，第一个示例</h1>
+<ol>
+<li>
+<p>常见的程序员立志: 应用于真实世界的程序中的有用技术。</p>
+</li>
+<li>
+<p>重构的第一步永远相同：确保即将修改的代码<strong>拥有一组可靠的测试</strong>。（包括一套可靠的测试集）</p>
+</li>
+<li>
+<p><strong>回归测试</strong>是指修改了旧代码后，重新进行测试以确认修改没有<strong>引入新的错误</strong>或导致其他代码产生错误</p>
+<ol>
+<li>自动回归测试将大幅降低系统测试、维护升级等阶段的成本。</li>
+</ol>
+</li>
+<li>
+<p>提炼函数：将一块代码抽取成一个函数</p>
+<ol>
+<li>
+<p>首先要检查哪些变量会离开原本的作用域，并且更关心会被修改的变量</p>
+</li>
+<li>
+<p>做完改动马上测试</p>
+</li>
+<li>
+<p>提炼函数可以一步步<strong>消除过多的临时变量</strong></p>
+</li>
+</ol>
+</li>
+<li>
+<p>编码风格：将函数<strong>返回值尽量命名为 result</strong></p>
+</li>
+<li>
+<p>编码风格：参数<strong>命名带上类型</strong></p>
+</li>
+<li>
+<p>营地法则：保证你离开时的代码库一定<strong>比来时更健康</strong></p>
+</li>
+<li>
+<p>第一章主要是举例子，代码挺多但是信息密度不大，初学者略微看看，主要建立一种典型的重构思维方式：</p>
+<ol>
+<li>
+<p>提炼函数</p>
+</li>
+<li>
+<p>内联变量</p>
+</li>
+<li>
+<p>搬移函数</p>
+</li>
+<li>
+<p>以多态取代条件表达式</p>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="第二章-重构的原则">第二章 重构的原则</h1>
+<ol>
+<li>
+<p>如果有人说&quot;他们的代码在重构过程中<strong>暂时不可用</strong>&quot;</p>
+<ol>
+<li>那他们做的事<strong>不算重构</strong></li>
+</ol>
+</li>
+<li>
+<p>两顶帽子：添加新功能、重构</p>
+<ol>
+<li>同时只戴一顶帽子</li>
+</ol>
+</li>
+<li>
+<p>什么时候不应该重构：</p>
+<ol>
+<li>
+<p>有一段凌乱代码但是隐藏在一个 API 之下，它既没有出问题也不需要我马上理解它</p>
+</li>
+<li>
+<p>另一种情况是重写比重构容易</p>
+</li>
+</ol>
+</li>
+<li>
+<p>重构与YAGNI</p>
+</li>
+<li>
+<p>一些方法论经验之谈的总结</p>
+<ol>
+<li>信息量不大</li>
+</ol>
+</li>
+</ol>
+<h1 id="第三章-代码的坏味道">第三章 代码的坏味道</h1>
+<p>信息量较大，但是非常有用。基本上指明了需要重构的点</p>
+<h2 id="1-神秘命名">1 神秘命名</h2>
+<ol>
+<li>
+<p>整洁代码<strong>最重要一环就是好的名字</strong></p>
+<ol>
+<li>函数、模块、变量、类的名字要能清晰表达自己的功能和用法</li>
+</ol>
+</li>
+<li>
+<p><strong>命名</strong>是编程中<strong>最难</strong>的两件事之一（很有名的梗，另一个是缓存失效）</p>
+</li>
+<li>
+<p>要注意的是尽量不要用字符串替换的方式给函数或者变量改名字</p>
+<ol>
+<li>
+<p>可能遇到同名不同作用域，导致<strong>重名误改或者跨域漏改</strong></p>
+</li>
+<li>
+<p>尽量用 IDE 自带的重命名功能</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="2-重复代码">2 重复代码</h2>
+<ol>
+<li>
+<p>阅读重复代码：</p>
+<ol>
+<li>
+<p>设法将他们合而为一</p>
+</li>
+<li>
+<p>留意细微差异，做成参数变量</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>代码复用</strong>节省二次修改的时间，并且<strong>避免漏改</strong>或者修改不一致的情况发生</p>
+</li>
+</ol>
+<h2 id="3-过长函数">3 过长函数</h2>
+<ol>
+<li>
+<p><strong>活得最长、最好的程序，其中的函数都比较简短</strong></p>
+<ol>
+<li>函数越长，就越难理解</li>
+</ol>
+</li>
+<li>
+<p>小函数的间接性带来的好处：更好的阐释力、更易于分享、更多的选择</p>
+<ol>
+<li>小函数易于理解的关键还是好的命名</li>
+</ol>
+</li>
+<li>
+<p>早期的编程语言会为了极限性能尽量减少函数的使用。但是，现代编程语言已经几乎免除了进程内函数调用的开销</p>
+</li>
+<li>
+<p>一个简单的原则：</p>
+<ol>
+<li>每当我们需要以注释来说明点什么的时候，把需要说明的东西写到一个独立函数里，并以用途命名</li>
+</ol>
+</li>
+<li>
+<p>常见的<strong>提炼函数信号</strong>：一段<strong>注释</strong>、条件表达式（<strong>switch</strong>）、<strong>循环</strong></p>
+</li>
+</ol>
+<h2 id="4-过长参数列表">4 过长参数列表</h2>
+<ol>
+<li>
+<p>虽然过长的参数列表不好，但也不要用全局变量来避免它</p>
+</li>
+<li>
+<p>参数特别多并且经常一起出现, 考虑合并成一个对象或数据类</p>
+<ol>
+<li>
+<p>如果好几个函数经常用到相似度很高的<strong>参数列表</strong>, 考虑把多个函数合并成一个<strong>类的方法</strong></p>
+</li>
+<li>
+<p>如果同类<strong>参数</strong>经常共现, 使用数据类/值对象 来存放, <strong>尽量使用不可变对象</strong></p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="5-全局数据">5 全局数据</h2>
+<ol>
+<li>
+<p><strong>全局变量：</strong></p>
+<ol>
+<li>
+<p><strong>改成常量（其不可变）</strong></p>
+</li>
+<li>
+<p>多处可读，但<strong>只有一处可改</strong></p>
+</li>
+</ol>
+</li>
+<li>
+<p>全局变量非常危险, 能不用尽量不要用, <strong>变量的作用域越小越好</strong>, 变量的声明离它使用的位置越近越好</p>
+</li>
+</ol>
+<h2 id="6-可变数据">6 可变数据</h2>
+<ol>
+<li>
+<p><strong>函数式编程</strong>的思维建立在<strong>数据永不改变</strong>的概念基础上，如果要对某个对象改变，则返回一个修改后的副本。</p>
+</li>
+<li>
+<p><strong>纯函数</strong>要求函数运行时<strong>只依赖入参</strong>，并且执行过程中<strong>没有副作用</strong>（修改内部或外部变量），在并行编程等领域非常流行。</p>
+</li>
+<li>
+<p>对于<strong>可变数据</strong>的修改，尽可能<strong>约束在一个地方</strong>，多个地方的修改容易导致困扰，将查询和修改（读与写）分离，尽可能缩小变量的作用域、缩短生命周期。</p>
+</li>
+<li>
+<p>对于复杂结构的数据，尽可能使用<strong>值对象</strong>的方式进行操作，而不是数据的每个属性单独操作。（注意区分DDD中的值对象与实体对象）</p>
+</li>
+</ol>
+<h2 id="7-发散式变化">7 发散式变化</h2>
+<ol>
+<li>
+<p>清晰的<strong>上下文边界聚焦视野</strong>，清晰的数据结构用来通信（DTO），每次只关心一个上下文不受其他场景干扰。</p>
+</li>
+<li>
+<p>需要较强的逻辑抽象能力，这里上下文边界和DDD限界上下文有所不同，这里更讲究独立性和边界固定。</p>
+</li>
+</ol>
+<h2 id="8-霰弹式修改">8 霰弹式修改</h2>
+<ol>
+<li>
+<p>如果某一次修改涉及到的代码散布多处，而且这些代码逻辑上又是有关联性存在的</p>
+<ol>
+<li>那么考虑使用内联函数/内联类将这个本不该分散的逻辑关系<strong>合并到一起再修改</strong></li>
+</ol>
+</li>
+</ol>
+<h2 id="9-依恋情节">9 依恋情节</h2>
+<ol>
+<li>
+<p>如果发现一个函数的调用相对于当前模块，更倾向于修改另一个模块对象里的数据，那么这个函数应该搬移到它本来应该在的地方（放错模块）。</p>
+</li>
+<li>
+<p>简而言之：<strong>将总是一起变化的东西放在一块</strong>。</p>
+</li>
+</ol>
+<h2 id="10-数据泥团">10 数据泥团</h2>
+<ol>
+<li>
+<p>有一些总是绑在一起出现的数据项，他们值得新建一个类来存放</p>
+</li>
+<li>
+<p>一般使用数据类处理这种逻辑关系，比如</p>
+<ol>
+<li>
+<p>尺寸=长+宽</p>
+</li>
+<li>
+<p>坐标=x+y+z</p>
+</li>
+</ol>
+</li>
+<li>
+<p>尽管有时他们不是一起出现，会存在冗余情况</p>
+</li>
+<li>
+<p>合并到一起的参数，可以缩短参数列表、简化函数调用</p>
+<ol>
+<li>入参从 def func(a,b,c,d) 变成了 def func(Model):</li>
+</ol>
+</li>
+</ol>
+<h2 id="11-基本类型偏执">11 基本类型偏执</h2>
+<ol>
+<li>
+<p>不要过度迷信基本类型</p>
+<ol>
+<li>
+<p>比如 email 不只是字符串</p>
+<ol>
+<li>里面还有隐含的信息，值得为它新建一个类来区分 name、domain</li>
+</ol>
+</li>
+<li>
+<p>比如国际标准连续出版物号 ISBN</p>
+<ol>
+<li>ISBN = NewType(&ldquo;ISBN&rdquo;, str)</li>
+</ol>
+</li>
+<li>
+<p>比如金钱类型使用简单的数字，会忽略单位导致对比大小时容易出错</p>
+<ol>
+<li>if CNY(100) &gt; USD(100) 实际都是整型但单位不一样，不该直接比较</li>
+</ol>
+</li>
+<li>
+<p>还有一个例子就是Python自带的 http 库里面的状态码相关对象</p>
+<ol>
+<li>
+<p>它们都是既包含整型数字部分也包含 message 字符串部分</p>
+</li>
+<li>
+<p>更具语义性质的同时使函数调用更加准确合理</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>简而言之：如果有一组总是一起出现的基本类型数据，考虑提炼类和引入参数对象进行归纳。</p>
+</li>
+</ol>
+<h2 id="12-重复的switch">12 重复的switch</h2>
+<ol>
+<li>
+<p>使用多态替换大量的条件表达式（if、switch）</p>
+</li>
+<li>
+<p>其实有些情况用 dict 选择回调函数也是可以的</p>
+</li>
+</ol>
+<h2 id="13-循环语句">13 循环语句</h2>
+<ol>
+<li>
+<p>鄙视循环</p>
+</li>
+<li>
+<p>管道操作（filter和map）比循环更能让人看到被迭代的元素和动作</p>
+</li>
+</ol>
+<h2 id="14-冗赘的元素">14 冗赘的元素</h2>
+<ol>
+<li>
+<p>可能有一个类，其实只有一个函数</p>
+<ol>
+<li>这种情况<strong>类是多余的</strong>，只需要保留函数</li>
+</ol>
+</li>
+<li>
+<p>前面提到过不要有太长的函数，这里也<strong>不建议有太短的函数</strong></p>
+<ol>
+<li>
+<p>比如有个函数实际上它的名字跟代码实现看起来一模一样</p>
+<ol>
+<li>
+<p>则没有必要构造这么一个多余的函数</p>
+</li>
+<li>
+<p>if a is True: return True</p>
+<ol>
+<li>直接 return a</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>可能一开始要做更复杂的逻辑操作后来又被精简了</p>
+<ol>
+<li><strong>不要为可能不会发生的事情预留没有必要的冗余结构</strong></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="15-夸夸其谈通用性">15 夸夸其谈通用性</h2>
+<ol>
+<li>
+<p>简而言之：<strong>不要提前做不必要的事情</strong></p>
+<ol>
+<li>不要高估通用性</li>
+</ol>
+</li>
+<li>
+<p>比如一个抽象类实际上没有太大作用（没有约束或者重要意义）</p>
+<ol>
+<li>则考虑折叠继承体系，避免一个类和超类没有太大区别却浪费继承</li>
+</ol>
+</li>
+<li>
+<p>比如函数参数列表里的参数<strong>实际运行中没有被用上</strong></p>
+<ol>
+<li>则要么清理掉多余项，要么使用参数对象保留冗余</li>
+</ol>
+</li>
+<li>
+<p>比如函数或类的唯一使用者是测试用例，而<strong>没有现实中的使用者</strong></p>
+<ol>
+<li>则这个函数或类就没有存在的必要</li>
+</ol>
+</li>
+</ol>
+<h2 id="16-临时字段">16 临时字段</h2>
+<ol>
+<li>
+<p>前面提到过的减少使用临时变量</p>
+<ol>
+<li>可以通过搬移函数给临时变量的逻辑创造一个家</li>
+</ol>
+</li>
+<li>
+<p>所以不要滥用临时变量和全局变量</p>
+</li>
+</ol>
+<h2 id="17-过长的消息链">17 过长的消息链</h2>
+<ol>
+<li>
+<p>简单的说，消息链类似下面的调用方式，大写字母X代表客户端，小写字母代表中间对象</p>
+<ol>
+<li>
+<p>a = X.get_a()</p>
+</li>
+<li>
+<p>b = a.get_b()</p>
+</li>
+<li>
+<p>c = b.get_c()</p>
+</li>
+<li>
+<p>return c.do_sth()</p>
+</li>
+<li>
+<p>消息链中的某一个环节如果发生改变，客户端需要重新排查并且做出相应修改，非常不安全也不方便。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>简单做法是抽象出一个<strong>委托隐藏关系的函数</strong>，避免在外部一层层调用</p>
+<ol>
+<li>调用方根本不关心实际依赖关系</li>
+</ol>
+</li>
+</ol>
+<h2 id="18-中间人">18 中间人</h2>
+<ol>
+<li>
+<p>过度使用中间人，过度使用委托</p>
+<ol>
+<li>
+<p>也就是一个类里大部分函数都是委托其他类实现的</p>
+</li>
+<li>
+<p>则最好移除中间人直接和真正负责的类打交道</p>
+</li>
+</ol>
+</li>
+<li>
+<p>移除过多的中间人有点类似于去掉中介厂家直销</p>
+</li>
+<li>
+<p>但是很多时候离不开中间人，所以<strong>不能完全不使用</strong></p>
+<ol>
+<li>抽象工厂、适配器、代理模式都是很好的抽象依赖</li>
+</ol>
+</li>
+</ol>
+<h2 id="19-内幕交易">19 内幕交易</h2>
+<ol>
+<li>
+<p>减少密谋，把多个类的<strong>数据交换放到明面</strong>上</p>
+<ol>
+<li>
+<p>比如 A 和 B 两个类原本是没有耦合的，但是由于业务需要加入了大量的数据交换场景</p>
+<ol>
+<li>
+<p>这时最好让二者在对象方法里面<strong>不要直接进行通信</strong>，而是单独实现一个通信类传入两个对象进行操作</p>
+</li>
+<li>
+<p>参考 DDD 领域驱动设计里领域服务层（核心复杂业务）、应用服务层（数据传递或流程步骤）</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="20-过大的类">20 过大的类</h2>
+<ol>
+<li>
+<p>一个类如果做了过多的事情（方法过多），后期维护是非常吃力的事情，并且修改也非常危险。</p>
+</li>
+<li>
+<p>如果有几个方法的前缀或者说做的事情关联性非常相似，则考虑提取出一个单独的类进行隔离。</p>
+<ol>
+<li>有点类似 Mixin 模式</li>
+</ol>
+</li>
+</ol>
+<h2 id="21-异曲同工的类">21 异曲同工的类</h2>
+<ol>
+<li>
+<p>使做相似事情的不同的类使用相同的接口</p>
+<ol>
+<li>csv、json、yaml、toml 不同文件类型的配置导入都有 load、dump 方法</li>
+</ol>
+</li>
+</ol>
+<h2 id="22-纯数据类">22 纯数据类</h2>
+<ol>
+<li>
+<p>纯数据类简单理解就是：这个类有几个字段，然后有几个读写这些字段的方法，除此之外再无其他功能</p>
+</li>
+<li>
+<p>使用纯数据类让事情更加纯粹</p>
+<ol>
+<li>
+<p>对某个数据类的具体业务逻辑上的操作可以使用其他类来实现</p>
+</li>
+<li>
+<p>这样大量不同业务逻辑操作同样的数据对象时，做好了相对干净的解耦合</p>
+</li>
+</ol>
+</li>
+<li>
+<p>dataclass、typeddict、pydantic、msgspec</p>
+</li>
+</ol>
+<h2 id="23-被拒绝的馈赠">23 被拒绝的馈赠</h2>
+<ol>
+<li>
+<p>子类继承父类的同名函数却不复用相同的接口（参数列表与返回类型）</p>
+<ol>
+<li>
+<p><strong>则去掉无效的继承关系</strong></p>
+</li>
+<li>
+<p>例如父类函数 def parse(self, text: str) -&gt; dict:</p>
+<ol>
+<li>然而子类却是 def parse(self, text: list, mode: str, errors: str=&ldquo;strict&rdquo;) -&gt; list:</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="24-注释">24 注释</h2>
+<ol>
+<li>
+<p>有时看到的一大段注释，往往是因为代码写的太难懂</p>
+<ol>
+<li>重构解决可读性的同时，也消除了冗余的注释</li>
+</ol>
+</li>
+<li>
+<p>如果不知道该做什么，则可以使用注释描述</p>
+<ol>
+<li>为什么做某事、未来要做某事</li>
+</ol>
+</li>
+</ol>
+<h1 id="第四章-构筑测试体系">第四章 构筑测试体系</h1>
+<ol>
+<li>
+<p>测试驱动开发（Test-Driven Development，TDD）</p>
+</li>
+<li>
+<p><strong>内容太浅，随便找本TDD的书看。</strong></p>
+</li>
+</ol>
+<h1 id="第五十二章-重构名录">第五~十二章 重构名录</h1>
+<ol>
+<li>
+<p>基本都是上面坏味道修改方案相关的具体细节。没什么看头了。</p>
+</li>
+<li>
+<p>结尾还有第三章的表格方便查询。</p>
+</li>
+<li>
+<p>总体而言只要有了解过设计模式和软件开发各项原则，一看就明白了。</p>
+</li>
+</ol>
+
+                </div>
+                
+
+                
+
+
+                
+                
+                <div style="height: 50px;"></div>
+                
+                
+
+                <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="/blog/index.xml" target="_blank">RSS</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/categories/" target="_blank">Categories</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/ClericPy/blog/discussions" target="_blank">Discussions</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/about" target="_blank">About</a>
+  </div>
+  
+  
+</div>
+
+            </div>
+        </div>
+    </article>
+
+    <script src="/blog/js/highlight.pack.js"></script>
+<script src="https://cdn.staticfile.org/quicklink/2.0.0-alpha/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+    
+
+</body>
+
+</html>

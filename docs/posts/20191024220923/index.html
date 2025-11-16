@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.65.2" />
+  <meta name="generator" content="Hugo 0.152.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,9 +17,9 @@
            "@id": "https:\/\/clericpy.github.io\/blog\/"
       },
       "articleSection" : "posts",
-      "name" : "通过 Python \x2b Chrome cURL 重放 HTTP 请求",
-      "headline" : "通过 Python \x2b Chrome cURL 重放 HTTP 请求",
-      "description" : "众所周知, 一条完整 cURL 命令, 基本可以完整涵盖一次 HTTP 请求的全部信息, 所以, 只要有一句 Curl 命令, 就足以向服务器发起一次完全一样的请求.\n 一个 HTTP 请求有多常见?  百度知道答案的点赞 斗鱼直播的一次弹幕 github issues 的一次评论  换句话说, 只要拿到一段 cURL 命令, 就能够将类似上面的各路请求再次复现.\n更进一步地说, 既然拿到了命令, 略微修改里面的参数便足以发起与上次请求内容相异的同类请求.\n手把手做个实验 实验准备   安装 Python, 并搞一个可以解析 cURL 的库\n pip install torequests -U\ntorequests \x26gt;= 4.8.18, 刚修复了一个 \\n 导致提交出错的 bug\n   安装一个 Chrome 浏览器\n  实验步骤 from torequests.utils import curlparse import requests curlstring = r\x26#39;\x26#39;\x26#39;curl \x26#39;https:\/\/github.",
+      "name" : "通过 Python \u002b Chrome cURL 重放 HTTP 请求",
+      "headline" : "通过 Python \u002b Chrome cURL 重放 HTTP 请求",
+      "description" : "\u003cblockquote\u003e\n\u003cp\u003e众所周知, 一条完整 cURL 命令, 基本可以完整涵盖一次 HTTP 请求的全部信息, 所以, 只要有一句 Curl 命令, 就足以向服务器发起一次完全一样的请求.\u003c\/p\u003e\n\u003c\/blockquote\u003e\n\u003ch3 id=\u0022一个-http-请求有多常见\u0022\u003e一个 HTTP 请求有多常见?\u003c\/h3\u003e\n\u003col\u003e\n\u003cli\u003e百度知道答案的点赞\u003c\/li\u003e\n\u003cli\u003e斗鱼直播的一次弹幕\u003c\/li\u003e\n\u003cli\u003egithub issues 的一次评论\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003cp\u003e换句话说, 只要拿到一段 cURL 命令, 就能够将类似上面的各路请求再次复现.\u003c\/p\u003e\n\u003cp\u003e更进一步地说, 既然拿到了命令, 略微修改里面的参数便足以发起与上次请求内容相异的同类请求.\u003c\/p\u003e\n\u003ch3 id=\u0022手把手做个实验\u0022\u003e手把手做个实验\u003c\/h3\u003e\n\u003ch4 id=\u0022实验准备\u0022\u003e实验准备\u003c\/h4\u003e\n\u003col\u003e\n\u003cli\u003e\n\u003cp\u003e安装 Python, 并搞一个可以解析 cURL 的库\u003c\/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003epip install torequests -U\u003c\/p\u003e\n\u003cp\u003e\u003cstrong\u003etorequests  \u0026gt;= 4.8.18\u003c\/strong\u003e, 刚修复了一个 \\n 导致提交出错的 bug\u003c\/p\u003e\n\u003c\/blockquote\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e安装一个 Chrome 浏览器\u003c\/p\u003e\n\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003ch4 id=\u0022实验步骤\u0022\u003e实验步骤\u003c\/h4\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre tabindex=\u00220\u0022 style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;\u0022\u003e\u003ccode class=\u0022language-python\u0022 data-lang=\u0022python\u0022\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e\u003cspan style=\u0022color:#f92672\u0022\u003efrom\u003c\/span\u003e torequests.utils \u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e curlparse\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e requests\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003ecurlstring \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e \u003cspan style=\u0022color:#e6db74\u0022\u003er\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\u0026#39;\u0026#39;curl \u0026#39;https:\/\/github.com\/ClericPy\/blog\/issue_comments\u0026#39; -H \u0026#39;Connection: keep-alive\u0026#39; -H \u0026#39;Origin: https:\/\/github.com\u0026#39;[这里省略很多字符串]测试第一次发送[这里省略很多字符串] --compressed\u0026#39;\u0026#39;\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003erequests\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003erequest(\u003cspan style=\u0022color:#f92672\u0022\u003e**\u003c\/span\u003ecurlparse(curlstring))\n\u003c\/span\u003e\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003col start=\u00227\u0022\u003e\n\u003cli\u003e为了安全起见, 整段 cURL String 被我省略大部分内容, 大体代码如上\u003c\/li\u003e\n\u003cli\u003e现在把 \u003cstrong\u003e测试第一次发送\u003c\/strong\u003e 这几个字改为 \u003cstrong\u003e测试第二次发送\u003c\/strong\u003e , 然后执行 Python 脚本\n\u003col\u003e\n\u003cli\u003e如果需要, 也可以把 Response 的 text 打印出来看看\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003cli\u003e现在在网页上查看该 issue, 下面多了一个 comment, 内容为 \u003cstrong\u003e测试第二次发送\u003c\/strong\u003e\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003ch3 id=\u0022总结\u0022\u003e总结\u003c\/h3\u003e\n\u003col\u003e\n\u003cli\u003e在网页上和对方服务器的每次交互, 多数情况下借助的是 HTTP 请求 (少数情况 WebSocket 以后再说), 通过 cURL 命令可以将该请求再次发送给服务器.\u003c\/li\u003e\n\u003cli\u003e重放 HTTP 请求是最常见的爬虫手段\n\u003col\u003e\n\u003cli\u003e比如想用代码发弹幕, 只需要截取流量然后修改提交的一点代码即可.\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003cli\u003e直接使用 cURL 发送请求的最大好处是, 在不确定对方是否有根据 User-Agent \/ Referer \/ Custom Header 等方式来反爬的情况下, 这种请求一般都是安全的.\u003c\/li\u003e\n\u003cli\u003e使用 curlparse 可以将多数(少数不兼容情况还缺少测试案例) cURL 命令转为 requests 库可用的 dict 参数\u003c\/li\u003e\n\u003cli\u003e如果使用过程中遇到问题, 欢迎来提 \u003ca href=\u0022https:\/\/github.com\/ClericPy\/torequests\/issues\u0022\u003eissue\u003c\/a\u003e\u003c\/li\u003e\n\u003c\/ol\u003e",
       "inLanguage" : "en-US",
       "author" : "Clericpy",
       "creator" : "Clericpy",
@@ -27,8 +27,8 @@
       "accountablePerson" : "Clericpy",
       "copyrightHolder" : "Clericpy",
       "copyrightYear" : "2019",
-      "datePublished": "2019-10-24 22:09:23 \x2b0800 CST",
-      "dateModified" : "2019-10-24 22:09:23 \x2b0800 CST",
+      "datePublished": "2019-10-24 22:09:23 \u002b0800 CST",
+      "dateModified" : "2019-10-24 22:09:23 \u002b0800 CST",
       "url" : "https:\/\/clericpy.github.io\/blog\/posts\/20191024220923\/",
       "keywords" : [  ]
   }
@@ -36,14 +36,59 @@
 <title>通过 Python &#43; Chrome cURL 重放 HTTP 请求 - Clericpy&#39;s Blog</title>
   <meta property="og:title" content="通过 Python &#43; Chrome cURL 重放 HTTP 请求 - Clericpy&#39;s Blog" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="众所周知, 一条完整 cURL 命令, 基本可以完整涵盖一次 HTTP 请求的全部信息, 所以, 只要有一句 Curl 命令, 就足以向服务器发起一次完全一样的请求.
- 一个 HTTP 请求有多常见?  百度知道答案的点赞 斗鱼直播的一次弹幕 github issues 的一次评论  换句话说, 只要拿到一段 cURL 命令, 就能够将类似上面的各路请求再次复现.
+  <meta name="description" content="
+众所周知, 一条完整 cURL 命令, 基本可以完整涵盖一次 HTTP 请求的全部信息, 所以, 只要有一句 Curl 命令, 就足以向服务器发起一次完全一样的请求.
+
+一个 HTTP 请求有多常见?
+
+百度知道答案的点赞
+斗鱼直播的一次弹幕
+github issues 的一次评论
+
+换句话说, 只要拿到一段 cURL 命令, 就能够将类似上面的各路请求再次复现.
 更进一步地说, 既然拿到了命令, 略微修改里面的参数便足以发起与上次请求内容相异的同类请求.
-手把手做个实验 实验准备   安装 Python, 并搞一个可以解析 cURL 的库
- pip install torequests -U
-torequests &gt;= 4.8.18, 刚修复了一个 \n 导致提交出错的 bug
-   安装一个 Chrome 浏览器
-  实验步骤 from torequests.utils import curlparse import requests curlstring = r&#39;&#39;&#39;curl &#39;https://github." />
+手把手做个实验
+实验准备
+
+
+安装 Python, 并搞一个可以解析 cURL 的库
+
+pip install torequests -U
+torequests  &gt;= 4.8.18, 刚修复了一个 \n 导致提交出错的 bug
+
+
+
+安装一个 Chrome 浏览器
+
+
+实验步骤
+from torequests.utils import curlparse
+import requests
+
+curlstring = r&#39;&#39;&#39;curl &#39;https://github.com/ClericPy/blog/issue_comments&#39; -H &#39;Connection: keep-alive&#39; -H &#39;Origin: https://github.com&#39;[这里省略很多字符串]测试第一次发送[这里省略很多字符串] --compressed&#39;&#39;&#39;
+
+requests.request(**curlparse(curlstring))
+
+为了安全起见, 整段 cURL String 被我省略大部分内容, 大体代码如上
+现在把 测试第一次发送 这几个字改为 测试第二次发送 , 然后执行 Python 脚本
+
+如果需要, 也可以把 Response 的 text 打印出来看看
+
+
+现在在网页上查看该 issue, 下面多了一个 comment, 内容为 测试第二次发送
+
+总结
+
+在网页上和对方服务器的每次交互, 多数情况下借助的是 HTTP 请求 (少数情况 WebSocket 以后再说), 通过 cURL 命令可以将该请求再次发送给服务器.
+重放 HTTP 请求是最常见的爬虫手段
+
+比如想用代码发弹幕, 只需要截取流量然后修改提交的一点代码即可.
+
+
+直接使用 cURL 发送请求的最大好处是, 在不确定对方是否有根据 User-Agent / Referer / Custom Header 等方式来反爬的情况下, 这种请求一般都是安全的.
+使用 curlparse 可以将多数(少数不兼容情况还缺少测试案例) cURL 命令转为 requests 库可用的 dict 参数
+如果使用过程中遇到问题, 欢迎来提 issue
+" />
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/flexboxgrid/6.3.1/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -147,14 +192,13 @@ torequests &gt;= 4.8.18, 刚修复了一个 \n 导致提交出错的 bug
 </li>
 </ol>
 <h4 id="实验步骤">实验步骤</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> torequests.utils <span style="color:#f92672">import</span> curlparse
-<span style="color:#f92672">import</span> requests
-
-curlstring <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;&#39;&#39;curl &#39;https://github.com/ClericPy/blog/issue_comments&#39; -H &#39;Connection: keep-alive&#39; -H &#39;Origin: https://github.com&#39;[这里省略很多字符串]测试第一次发送[这里省略很多字符串] --compressed&#39;&#39;&#39;</span>
-
-requests<span style="color:#f92672">.</span>request(<span style="color:#f92672">**</span>curlparse(curlstring))
-
-</code></pre></div><ol start="7">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> torequests.utils <span style="color:#f92672">import</span> curlparse
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>curlstring <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;&#39;&#39;curl &#39;https://github.com/ClericPy/blog/issue_comments&#39; -H &#39;Connection: keep-alive&#39; -H &#39;Origin: https://github.com&#39;[这里省略很多字符串]测试第一次发送[这里省略很多字符串] --compressed&#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>requests<span style="color:#f92672">.</span>request(<span style="color:#f92672">**</span>curlparse(curlstring))
+</span></span></code></pre></div><ol start="7">
 <li>为了安全起见, 整段 cURL String 被我省略大部分内容, 大体代码如上</li>
 <li>现在把 <strong>测试第一次发送</strong> 这几个字改为 <strong>测试第二次发送</strong> , 然后执行 Python 脚本
 <ol>

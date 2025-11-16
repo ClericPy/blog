@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.65.2" />
+  <meta name="generator" content="Hugo 0.152.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "Clericpy",
       "copyrightHolder" : "Clericpy",
       "copyrightYear" : "2020",
-      "datePublished": "2020-01-14 15:11:38 \x2b0800 CST",
-      "dateModified" : "2020-01-14 15:11:38 \x2b0800 CST",
+      "datePublished": "2020-01-14 15:11:38 \u002b0800 CST",
+      "dateModified" : "2020-01-14 15:11:38 \u002b0800 CST",
       "url" : "https:\/\/clericpy.github.io\/blog\/posts\/20200114151137\/",
       "keywords" : [  ]
   }
@@ -239,18 +239,17 @@
 </li>
 </ol>
 <h3 id="启动调试模式下的chrome">启动调试模式下的 chrome</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> ichrome <span style="color:#f92672">import</span> ChromeDaemon
-
-
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">launch_chrome</span>():
-    <span style="color:#66d9ef">with</span> ChromeDaemon(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;127.0.0.1&#34;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">9222</span>, max_deaths<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">as</span> chromed:
-        chromed<span style="color:#f92672">.</span>run_forever()
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    launch_chrome()
-
-</code></pre></div><p>以上代码负责启动 chrome 调试模式的守护进程, 具体参数如下:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> ichrome <span style="color:#f92672">import</span> ChromeDaemon
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">launch_chrome</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> ChromeDaemon(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;127.0.0.1&#34;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">9222</span>, max_deaths<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">as</span> chromed:
+</span></span><span style="display:flex;"><span>        chromed<span style="color:#f92672">.</span>run_forever()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    launch_chrome()
+</span></span></code></pre></div><p>以上代码负责启动 chrome 调试模式的守护进程, 具体参数如下:</p>
 <ol>
 <li>
 <p>**chrome_path: **表示 chrome 的可执行路径 / 命令, 默认为 None 的时候, 会自动根据操作系统去尝试找寻 chrome 路径, 如 <strong>linux</strong> 下的 google-chrome 和 google-chrome-stable, <strong>macOS</strong> 下的 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome, 或者 Windows 下的</p>
@@ -295,82 +294,81 @@
 <li>访问 <a href="http://127.0.0.1:9222/json">http://127.0.0.1:9222/json</a> , 会拿到一个列出当前 tabs 信息的 json</li>
 <li>其他操作参考 <a href="https://chromedevtools.github.io/devtools-protocol/">https://chromedevtools.github.io/devtools-protocol/</a> (HTTP Endpoints 部分)</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">[
-    {
-        <span style="color:#e6db74">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
-        <span style="color:#e6db74">&#34;devtoolsFrontendUrl&#34;</span>: <span style="color:#e6db74">&#34;/devtools/inspector.html?ws=127.0.0.1:9222/devtools/page/E6826ED4A0365605F3234B2A441B1D03&#34;</span>,
-        <span style="color:#e6db74">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;E6826ED4A0365605F3234B2A441B1D03&#34;</span>,
-        <span style="color:#e6db74">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;about:blank&#34;</span>,
-        <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;page&#34;</span>,
-        <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;about:blank&#34;</span>,
-        <span style="color:#e6db74">&#34;webSocketDebuggerUrl&#34;</span>: <span style="color:#e6db74">&#34;ws://127.0.0.1:9222/devtools/page/E6826ED4A0365605F3234B2A441B1D03&#34;</span>
-    }
-]
-</code></pre></div><h3 id="操作tab">操作 Tab</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>[
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;devtoolsFrontendUrl&#34;</span>: <span style="color:#e6db74">&#34;/devtools/inspector.html?ws=127.0.0.1:9222/devtools/page/E6826ED4A0365605F3234B2A441B1D03&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;E6826ED4A0365605F3234B2A441B1D03&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;about:blank&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;page&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;about:blank&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;webSocketDebuggerUrl&#34;</span>: <span style="color:#e6db74">&#34;ws://127.0.0.1:9222/devtools/page/E6826ED4A0365605F3234B2A441B1D03&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><h3 id="操作tab">操作 Tab</h3>
 <ol>
 <li>建立到 webSocketDebuggerUrl 的 Websocket 连接, 然后监听事件</li>
 <li>大部分功能 ichrome 已经打包好了</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> ichrome <span style="color:#f92672">import</span> AsyncChrome
-<span style="color:#f92672">import</span> asyncio
-
-
-async <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">async_operate_tab</span>():
-    chrome <span style="color:#f92672">=</span> AsyncChrome(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;127.0.0.1&#39;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">9222</span>)
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> await chrome<span style="color:#f92672">.</span>connect():
-        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">RuntimeError</span>
-    tab <span style="color:#f92672">=</span> (await chrome<span style="color:#f92672">.</span>tabs)[<span style="color:#ae81ff">0</span>]
-    async <span style="color:#66d9ef">with</span> tab():
-        <span style="color:#75715e"># 跳转到 httpbin, 3 秒 loading 超时的话则 stop loading</span>
-        await tab<span style="color:#f92672">.</span>set_url(<span style="color:#e6db74">&#39;http://httpbin.org&#39;</span>, timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
-        <span style="color:#75715e"># 注入 js, 并查看返回结果</span>
-        result <span style="color:#f92672">=</span> await tab<span style="color:#f92672">.</span>js(<span style="color:#e6db74">&#34;document.title&#34;</span>)
-        title <span style="color:#f92672">=</span> result[<span style="color:#e6db74">&#39;result&#39;</span>][<span style="color:#e6db74">&#39;result&#39;</span>][<span style="color:#e6db74">&#39;value&#39;</span>]
-        <span style="color:#75715e"># 打印 title</span>
-        <span style="color:#66d9ef">print</span>(title)
-        <span style="color:#75715e"># httpbin.org</span>
-        <span style="color:#75715e"># 通过 js 修改 title</span>
-        await tab<span style="color:#f92672">.</span>js(<span style="color:#e6db74">&#34;document.title = &#39;New Title&#39;&#34;</span>)
-        <span style="color:#75715e"># click 一个 css 选择器的位置, 跳转到了 Github</span>
-        await tab<span style="color:#f92672">.</span>click(<span style="color:#e6db74">&#39;body &gt; a:first-child&#39;</span>)
-        <span style="color:#75715e"># 等待加载完成</span>
-        await tab<span style="color:#f92672">.</span>wait_loading(<span style="color:#ae81ff">3</span>)
-
-        async <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">callback_function</span>(request):
-            <span style="color:#66d9ef">if</span> request:
-                <span style="color:#75715e"># 监听到经过过滤的流量, 等待它加载一会比较保险</span>
-                <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):
-                    result <span style="color:#f92672">=</span> await tab<span style="color:#f92672">.</span>get_response(request)
-                    <span style="color:#66d9ef">if</span> result<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;error&#39;</span>):
-                        await tab<span style="color:#f92672">.</span>wait_loading(<span style="color:#ae81ff">1</span>)
-                        <span style="color:#66d9ef">continue</span>
-                    <span style="color:#75715e"># 拿到整个 html</span>
-                    body <span style="color:#f92672">=</span> result[<span style="color:#e6db74">&#39;result&#39;</span>][<span style="color:#e6db74">&#39;body&#39;</span>]
-                    <span style="color:#66d9ef">print</span>(body)
-
-        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">filter_func</span>(r):
-            url <span style="color:#f92672">=</span> r[<span style="color:#e6db74">&#39;params&#39;</span>][<span style="color:#e6db74">&#39;response&#39;</span>][<span style="color:#e6db74">&#39;url&#39;</span>]
-            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;received:&#39;</span>, url)
-            <span style="color:#66d9ef">return</span> url <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;https://github.com/&#39;</span>
-
-        <span style="color:#75715e"># 监听流量, 需要异步处理, 则使用 asyncio.ensure_future 即可</span>
-        <span style="color:#75715e"># 监听 10 秒</span>
-        task <span style="color:#f92672">=</span> asyncio<span style="color:#f92672">.</span>ensure_future(
-            tab<span style="color:#f92672">.</span>wait_response(
-                filter_function<span style="color:#f92672">=</span>filter_func,
-                callback_function<span style="color:#f92672">=</span>callback_function,
-                timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>),
-            loop<span style="color:#f92672">=</span>tab<span style="color:#f92672">.</span>loop)
-        <span style="color:#75715e"># 点击一下左上角的小章鱼则会触发流量</span>
-        await tab<span style="color:#f92672">.</span>click(<span style="color:#e6db74">&#39;[href=&#34;https://github.com/&#34;]&#39;</span>)
-        <span style="color:#75715e"># 等待监听流量</span>
-        await task
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    asyncio<span style="color:#f92672">.</span>run(async_operate_tab())
-
-</code></pre></div><h2 id="总结">总结</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> ichrome <span style="color:#f92672">import</span> AsyncChrome
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">async_operate_tab</span>():
+</span></span><span style="display:flex;"><span>    chrome <span style="color:#f92672">=</span> AsyncChrome(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;127.0.0.1&#39;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">9222</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">await</span> chrome<span style="color:#f92672">.</span>connect():
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">RuntimeError</span>
+</span></span><span style="display:flex;"><span>    tab <span style="color:#f92672">=</span> (<span style="color:#66d9ef">await</span> chrome<span style="color:#f92672">.</span>tabs)[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> tab():
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 跳转到 httpbin, 3 秒 loading 超时的话则 stop loading</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> tab<span style="color:#f92672">.</span>set_url(<span style="color:#e6db74">&#39;http://httpbin.org&#39;</span>, timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 注入 js, 并查看返回结果</span>
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> tab<span style="color:#f92672">.</span>js(<span style="color:#e6db74">&#34;document.title&#34;</span>)
+</span></span><span style="display:flex;"><span>        title <span style="color:#f92672">=</span> result[<span style="color:#e6db74">&#39;result&#39;</span>][<span style="color:#e6db74">&#39;result&#39;</span>][<span style="color:#e6db74">&#39;value&#39;</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 打印 title</span>
+</span></span><span style="display:flex;"><span>        print(title)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># httpbin.org</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 通过 js 修改 title</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> tab<span style="color:#f92672">.</span>js(<span style="color:#e6db74">&#34;document.title = &#39;New Title&#39;&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># click 一个 css 选择器的位置, 跳转到了 Github</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> tab<span style="color:#f92672">.</span>click(<span style="color:#e6db74">&#39;body &gt; a:first-child&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 等待加载完成</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> tab<span style="color:#f92672">.</span>wait_loading(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">callback_function</span>(request):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> request:
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># 监听到经过过滤的流量, 等待它加载一会比较保险</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):
+</span></span><span style="display:flex;"><span>                    result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> tab<span style="color:#f92672">.</span>get_response(request)
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> result<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;error&#39;</span>):
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">await</span> tab<span style="color:#f92672">.</span>wait_loading(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e"># 拿到整个 html</span>
+</span></span><span style="display:flex;"><span>                    body <span style="color:#f92672">=</span> result[<span style="color:#e6db74">&#39;result&#39;</span>][<span style="color:#e6db74">&#39;body&#39;</span>]
+</span></span><span style="display:flex;"><span>                    print(body)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">filter_func</span>(r):
+</span></span><span style="display:flex;"><span>            url <span style="color:#f92672">=</span> r[<span style="color:#e6db74">&#39;params&#39;</span>][<span style="color:#e6db74">&#39;response&#39;</span>][<span style="color:#e6db74">&#39;url&#39;</span>]
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#39;received:&#39;</span>, url)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> url <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;https://github.com/&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 监听流量, 需要异步处理, 则使用 asyncio.ensure_future 即可</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 监听 10 秒</span>
+</span></span><span style="display:flex;"><span>        task <span style="color:#f92672">=</span> asyncio<span style="color:#f92672">.</span>ensure_future(
+</span></span><span style="display:flex;"><span>            tab<span style="color:#f92672">.</span>wait_response(
+</span></span><span style="display:flex;"><span>                filter_function<span style="color:#f92672">=</span>filter_func,
+</span></span><span style="display:flex;"><span>                callback_function<span style="color:#f92672">=</span>callback_function,
+</span></span><span style="display:flex;"><span>                timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>),
+</span></span><span style="display:flex;"><span>            loop<span style="color:#f92672">=</span>tab<span style="color:#f92672">.</span>loop)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 点击一下左上角的小章鱼则会触发流量</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> tab<span style="color:#f92672">.</span>click(<span style="color:#e6db74">&#39;[href=&#34;https://github.com/&#34;]&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 等待监听流量</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> task
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    asyncio<span style="color:#f92672">.</span>run(async_operate_tab())
+</span></span></code></pre></div><h2 id="总结">总结</h2>
 <p>​		CDP 单单入门的话, 其实没想象中那么复杂, chrome 59 刚出的时候, puppeteer 都没的用, 更别说 pyppeteer 之类的包装, 看了几个早期项目的源码, 发现简单使用的话, 其实主要就是:</p>
 <pre><code>1. HTTP
 2. Websocket

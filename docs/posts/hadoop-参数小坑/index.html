@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.65.2" />
+  <meta name="generator" content="Hugo 0.152.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "posts",
       "name" : "Hadoop 参数小坑",
       "headline" : "Hadoop 参数小坑",
-      "description" : "mapreduce.map.memory.mb=4096\n  这个参数是设置 task 内存的参数, 但是有坑在里面, 如果想细致调整内存占用避免 OOM Kill, 还要使用下面几个参数\n  mapreduce.map.java.opts=-Xmx2600m\n  map 任务里 Java 程序命令行参数设置最大堆内存, 这个内存和 task 总内存的差值要留给 Java 代码文件相关内存来使用\n  所以一般推荐二者差值在 200 ~ 400 mb 之间, 堆内存大小一般是 0.75 * task 内存\n    mapreduce.reduce.shuffle.input.buffer.percent\n 这个参数默认一般是 0.7, 但是有时候内存比磁盘贵的时候, 设置为 0.1 可以节省大量堆内存      mapreduce.map.speculative=false\n  这个参数默认是开启状态, 用途是预测执行逻辑, 同一个 job 下的某一个 task, 同时启动多个实例来运行, 以避免某个节点资源不足 (比如 CPU 忙碌或者网络带宽不足) 导致的某个任务执行过久拖累其他任务",
+      "description" : "\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003emapreduce.map.memory.mb=4096\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e这个参数是设置 task 内存的参数, 但是有坑在里面, 如果想细致调整内存占用避免 OOM Kill, 还要使用下面几个参数\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003emapreduce.map.java.opts=-Xmx2600m\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003emap 任务里 Java 程序命令行参数设置最大堆内存, 这个内存和 task 总内存的差值要留给 Java 代码文件相关内存来使用\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e所以一般推荐二者差值在 200 ~ 400 mb 之间, 堆内存大小一般是 0.75 * task 内存\u003c\/p\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003emapreduce.reduce.shuffle.input.buffer.percent\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e这个参数默认一般是 0.7, 但是有时候内存比磁盘贵的时候, 设置为 0.1 可以节省大量堆内存\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003emapreduce.map.speculative=false\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e这个参数默认是开启状态, 用途是预测执行逻辑, 同一个 job 下的某一个 task, 同时启动多个实例来运行, 以避免某个节点资源不足 (比如 CPU 忙碌或者网络带宽不足) 导致的某个任务执行过久拖累其他任务\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e也就是在资源允许的情况下, 同一个任务启动两个, 先执行完的会发信号 kill 掉还没执行完毕的\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e最大的坑就是两个地方\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e会额外占用多余的资源\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003e非幂等\u003c\/strong\u003e 类型的任务会出问题\u003c\/p\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e同理还有一个 mapreduce.reduce.speculative=false\u003c\/p\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003emapreduce.map.maxattempts=1\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e任务最大尝试次数, 默认最多 4 次尝试(包含出错那次)\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e坑\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003e非幂等\u003c\/strong\u003e 任务重试会有问题\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e代码或者输入本身就有问题的话, 不管怎么重试都是浪费时间白折腾\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "Clericpy",
       "creator" : "Clericpy",
@@ -27,8 +27,8 @@
       "accountablePerson" : "Clericpy",
       "copyrightHolder" : "Clericpy",
       "copyrightYear" : "2022",
-      "datePublished": "2022-02-03 19:13:28 \x2b0800 CST",
-      "dateModified" : "2022-02-03 19:13:28 \x2b0800 CST",
+      "datePublished": "2022-02-03 19:13:28 \u002b0800 CST",
+      "dateModified" : "2022-02-03 19:13:28 \u002b0800 CST",
       "url" : "https:\/\/clericpy.github.io\/blog\/posts\/hadoop-%E5%8F%82%E6%95%B0%E5%B0%8F%E5%9D%91\/",
       "keywords" : [  ]
   }
@@ -36,14 +36,73 @@
 <title>Hadoop 参数小坑 - Clericpy&#39;s Blog</title>
   <meta property="og:title" content="Hadoop 参数小坑 - Clericpy&#39;s Blog" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="mapreduce.map.memory.mb=4096
-  这个参数是设置 task 内存的参数, 但是有坑在里面, 如果想细致调整内存占用避免 OOM Kill, 还要使用下面几个参数
-  mapreduce.map.java.opts=-Xmx2600m
-  map 任务里 Java 程序命令行参数设置最大堆内存, 这个内存和 task 总内存的差值要留给 Java 代码文件相关内存来使用
-  所以一般推荐二者差值在 200 ~ 400 mb 之间, 堆内存大小一般是 0.75 * task 内存
-    mapreduce.reduce.shuffle.input.buffer.percent
- 这个参数默认一般是 0.7, 但是有时候内存比磁盘贵的时候, 设置为 0.1 可以节省大量堆内存      mapreduce.map.speculative=false
-  这个参数默认是开启状态, 用途是预测执行逻辑, 同一个 job 下的某一个 task, 同时启动多个实例来运行, 以避免某个节点资源不足 (比如 CPU 忙碌或者网络带宽不足) 导致的某个任务执行过久拖累其他任务" />
+  <meta name="description" content="
+
+mapreduce.map.memory.mb=4096
+
+
+这个参数是设置 task 内存的参数, 但是有坑在里面, 如果想细致调整内存占用避免 OOM Kill, 还要使用下面几个参数
+
+
+mapreduce.map.java.opts=-Xmx2600m
+
+
+map 任务里 Java 程序命令行参数设置最大堆内存, 这个内存和 task 总内存的差值要留给 Java 代码文件相关内存来使用
+
+
+所以一般推荐二者差值在 200 ~ 400 mb 之间, 堆内存大小一般是 0.75 * task 内存
+
+
+
+
+mapreduce.reduce.shuffle.input.buffer.percent
+
+这个参数默认一般是 0.7, 但是有时候内存比磁盘贵的时候, 设置为 0.1 可以节省大量堆内存
+
+
+
+
+
+mapreduce.map.speculative=false
+
+
+这个参数默认是开启状态, 用途是预测执行逻辑, 同一个 job 下的某一个 task, 同时启动多个实例来运行, 以避免某个节点资源不足 (比如 CPU 忙碌或者网络带宽不足) 导致的某个任务执行过久拖累其他任务
+
+
+也就是在资源允许的情况下, 同一个任务启动两个, 先执行完的会发信号 kill 掉还没执行完毕的
+
+
+最大的坑就是两个地方
+
+
+会额外占用多余的资源
+
+
+非幂等 类型的任务会出问题
+
+
+
+
+
+
+同理还有一个 mapreduce.reduce.speculative=false
+
+
+
+
+mapreduce.map.maxattempts=1
+
+
+任务最大尝试次数, 默认最多 4 次尝试(包含出错那次)
+
+
+坑
+
+
+非幂等 任务重试会有问题
+
+
+代码或者输入本身就有问题的话, 不管怎么重试都是浪费时间白折腾" />
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/flexboxgrid/6.3.1/flexboxgrid.min.css" />
   <link rel="stylesheet"

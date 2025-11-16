@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.65.2" />
+  <meta name="generator" content="Hugo 0.152.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "posts",
       "name" : "设计模式拾遗",
       "headline" : "设计模式拾遗",
-      "description" : "没有什么 \x22新瓶装旧酒\x22, 只希望温故而知新吧",
+      "description" : "没有什么 \u0022新瓶装旧酒\u0022, 只希望温故而知新吧",
       "inLanguage" : "en-US",
       "author" : "Clericpy",
       "creator" : "Clericpy",
@@ -27,8 +27,8 @@
       "accountablePerson" : "Clericpy",
       "copyrightHolder" : "Clericpy",
       "copyrightYear" : "2019",
-      "datePublished": "2019-12-21 00:14:06 \x2b0800 CST",
-      "dateModified" : "2019-12-21 00:14:06 \x2b0800 CST",
+      "datePublished": "2019-12-21 00:14:06 \u002b0800 CST",
+      "dateModified" : "2019-12-21 00:14:06 \u002b0800 CST",
       "url" : "https:\/\/clericpy.github.io\/blog\/posts\/20191221001405\/",
       "keywords" : [  ]
   }
@@ -136,614 +136,596 @@
 <h1 id="设计模式简介">设计模式简介</h1>
 <h2 id="1-简单工厂-simple-factory">1 简单工厂 Simple Factory</h2>
 <p>&ldquo;工厂&rdquo; 顾名思义就是负责生产产品(对象)的地方, 简单工厂则主要处理单一产品等级结构的情况<!-- raw HTML omitted -->由一个工厂类来决定创建哪个 / 哪些对象, 将创建对象的操作集中在一起, 使之与对象的使用解耦<!-- raw HTML omitted -->将<strong>对象的创建与使用解耦</strong>, 也就是俗称的:** **要什么就造什么<!-- raw HTML omitted -->现实案例: 宠物店新增宠物</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AnimalFactory</span>(object):
-    <span style="color:#e6db74">&#34;&#34;&#34;动物工厂, 负责产生动物&#34;&#34;&#34;</span>
-
-    <span style="color:#a6e22e">@staticmethod</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_animal</span>(name):
-        <span style="color:#66d9ef">if</span> name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Cat&#39;</span>:
-            <span style="color:#66d9ef">return</span> Cat()
-        <span style="color:#66d9ef">elif</span> name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Dog&#39;</span>:
-            <span style="color:#66d9ef">return</span> Dog()
-
-
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
-    dog <span style="color:#f92672">=</span> AnimalFactory<span style="color:#f92672">.</span>create_animal(<span style="color:#e6db74">&#39;Dog&#39;</span>)
-    cat <span style="color:#f92672">=</span> AnimalFactory<span style="color:#f92672">.</span>create_animal(<span style="color:#e6db74">&#39;Cat&#39;</span>)
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    main()
-
-</code></pre></div><h2 id="2-工厂方法-factory-method">2 工厂方法 Factory Method</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AnimalFactory</span>(object):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;动物工厂, 负责产生动物&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@staticmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_animal</span>(name):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Cat&#39;</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> Cat()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elif</span> name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Dog&#39;</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> Dog()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+</span></span><span style="display:flex;"><span>    dog <span style="color:#f92672">=</span> AnimalFactory<span style="color:#f92672">.</span>create_animal(<span style="color:#e6db74">&#39;Dog&#39;</span>)
+</span></span><span style="display:flex;"><span>    cat <span style="color:#f92672">=</span> AnimalFactory<span style="color:#f92672">.</span>create_animal(<span style="color:#e6db74">&#39;Cat&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    main()
+</span></span></code></pre></div><h2 id="2-工厂方法-factory-method">2 工厂方法 Factory Method</h2>
 <p>基类负责抽象一个工厂方法(<strong>接口</strong>), 而不用关心具体如何实现, 具体实现让子类来负责<!-- raw HTML omitted -->现实案例: 动物园新增动物</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> abc
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AnimalFactory</span>(metaclass<span style="color:#f92672">=</span>abc<span style="color:#f92672">.</span>ABCMeta):
-    <span style="color:#e6db74">&#34;&#34;&#34;相当于定义了一个接口, 所有类型的工厂都要继承这个类, 并覆盖抽象方法 create_animal&#34;&#34;&#34;</span>
-
-    <span style="color:#a6e22e">@abc.abstractmethod</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_animal</span>(self):
-        <span style="color:#75715e"># 将工厂方法抽象出来</span>
-        <span style="color:#66d9ef">pass</span>
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CatFactory</span>(AnimalFactory):
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_animal</span>(self):
-        <span style="color:#75715e"># 具体的工厂方法, 用来创建一个猫对象</span>
-        <span style="color:#66d9ef">return</span> Cat()
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DogFactory</span>(AnimalFactory):
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_animal</span>(self):
-        <span style="color:#75715e"># 具体的工厂方法, 用来创建一个狗对象</span>
-        <span style="color:#66d9ef">return</span> Dog()
-
-
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
-    cat <span style="color:#f92672">=</span> CatFactory()<span style="color:#f92672">.</span>create_animal()
-    dog <span style="color:#f92672">=</span> DogFactory()<span style="color:#f92672">.</span>create_animal()
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    main()
-
-</code></pre></div><h2 id="3-抽象工厂-abstract-factory">3 抽象工厂 Abstract Factory</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> abc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AnimalFactory</span>(metaclass<span style="color:#f92672">=</span>abc<span style="color:#f92672">.</span>ABCMeta):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;相当于定义了一个接口, 所有类型的工厂都要继承这个类, 并覆盖抽象方法 create_animal&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abc.abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_animal</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 将工厂方法抽象出来</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CatFactory</span>(AnimalFactory):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_animal</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 具体的工厂方法, 用来创建一个猫对象</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Cat()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DogFactory</span>(AnimalFactory):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_animal</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 具体的工厂方法, 用来创建一个狗对象</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Dog()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+</span></span><span style="display:flex;"><span>    cat <span style="color:#f92672">=</span> CatFactory()<span style="color:#f92672">.</span>create_animal()
+</span></span><span style="display:flex;"><span>    dog <span style="color:#f92672">=</span> DogFactory()<span style="color:#f92672">.</span>create_animal()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    main()
+</span></span></code></pre></div><h2 id="3-抽象工厂-abstract-factory">3 抽象工厂 Abstract Factory</h2>
 <p>在工厂方法的基础上, 产品之间具有超过一层的<strong>复杂</strong>逻辑关系, 比如多种业务品种 / 功能分类<!-- raw HTML omitted -->因此可以将它们聚集到同一个地方一起管理, 也就是按照特殊的分类角度将各种工厂方法聚合在一起<!-- raw HTML omitted -->现实案例: 键盘工厂生产不同品牌的有线键盘和无线键盘</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> abc <span style="color:#f92672">import</span> ABC, abstractmethod
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">KeyboardFactory</span>(ABC):
-    <span style="color:#e6db74">&#34;&#34;&#34;抽象键盘工厂, 负责生产有线和无线键盘&#34;&#34;&#34;</span>
-
-    <span style="color:#a6e22e">@abstractmethod</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">produce_wired_keyboard</span>(self):
-        <span style="color:#66d9ef">pass</span>
-
-    <span style="color:#a6e22e">@abstractmethod</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">produce_wireless_keyboard</span>(self):
-        <span style="color:#66d9ef">pass</span>
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">IKBCFactory</span>(KeyboardFactory):
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">produce_wired_keyboard</span>(self):
-        <span style="color:#66d9ef">return</span> IKBC_C87()
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">produce_wireless_keyboard</span>(self):
-        <span style="color:#66d9ef">return</span> IKBC_W200()
-
-
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
-    ikbc <span style="color:#f92672">=</span> IKBCFactory()
-    kb <span style="color:#f92672">=</span> ikbc<span style="color:#f92672">.</span>produce_wired_keyboard()
-    <span style="color:#75715e"># 如果需要支持 Flico 品牌键盘, 添加好商品, 然后模仿 IKBCFactory 实现一个具体工厂类即可</span>
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    main()
-
-</code></pre></div><h2 id="4-建造者-builder">4 建造者 Builder</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> abc <span style="color:#f92672">import</span> ABC, abstractmethod
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">KeyboardFactory</span>(ABC):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;抽象键盘工厂, 负责生产有线和无线键盘&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">produce_wired_keyboard</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">produce_wireless_keyboard</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">IKBCFactory</span>(KeyboardFactory):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">produce_wired_keyboard</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> IKBC_C87()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">produce_wireless_keyboard</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> IKBC_W200()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+</span></span><span style="display:flex;"><span>    ikbc <span style="color:#f92672">=</span> IKBCFactory()
+</span></span><span style="display:flex;"><span>    kb <span style="color:#f92672">=</span> ikbc<span style="color:#f92672">.</span>produce_wired_keyboard()
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 如果需要支持 Flico 品牌键盘, 添加好商品, 然后模仿 IKBCFactory 实现一个具体工厂类即可</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    main()
+</span></span></code></pre></div><h2 id="4-建造者-builder">4 建造者 Builder</h2>
 <p>将对象的创建过程独立出来, 使同样的过程可以创造出不同的表达<!-- raw HTML omitted -->简而言之, 将一个对象的构造过程单独<strong>抽离</strong>出来, 可变部分用变量表示</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> PySimpleGUI <span style="color:#f92672">as</span> sg
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WindowBuilder</span>(object):
-
-    <span style="color:#66d9ef">def</span> __init__(self):
-        self<span style="color:#f92672">.</span>layout <span style="color:#f92672">=</span> []
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">build</span>(self, text):
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>build1(text)<span style="color:#f92672">.</span>build2(text)
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">build1</span>(self, text):
-        self<span style="color:#f92672">.</span>layout<span style="color:#f92672">.</span>append([sg<span style="color:#f92672">.</span>Text(text)])
-        <span style="color:#66d9ef">return</span> self
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">build2</span>(self, text):
-        self<span style="color:#f92672">.</span>layout<span style="color:#f92672">.</span>append([sg<span style="color:#f92672">.</span>Text(text)])
-        <span style="color:#66d9ef">return</span> self
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show</span>(self):
-        window <span style="color:#f92672">=</span> sg<span style="color:#f92672">.</span>Window(<span style="color:#e6db74">&#39;Test&#39;</span>, layout<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>layout)
-        window<span style="color:#f92672">.</span>Show()
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    window <span style="color:#f92672">=</span> WindowBuilder()
-    window<span style="color:#f92672">.</span>build(<span style="color:#e6db74">&#39;Test title&#39;</span>)<span style="color:#f92672">.</span>show()
-    window<span style="color:#f92672">.</span>build(<span style="color:#e6db74">&#39;Test title 2&#39;</span>)<span style="color:#f92672">.</span>show()
-
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> PySimpleGUI <span style="color:#66d9ef">as</span> sg
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WindowBuilder</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>layout <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">build</span>(self, text):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>build1(text)<span style="color:#f92672">.</span>build2(text)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">build1</span>(self, text):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>layout<span style="color:#f92672">.</span>append([sg<span style="color:#f92672">.</span>Text(text)])
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">build2</span>(self, text):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>layout<span style="color:#f92672">.</span>append([sg<span style="color:#f92672">.</span>Text(text)])
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show</span>(self):
+</span></span><span style="display:flex;"><span>        window <span style="color:#f92672">=</span> sg<span style="color:#f92672">.</span>Window(<span style="color:#e6db74">&#39;Test&#39;</span>, layout<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>layout)
+</span></span><span style="display:flex;"><span>        window<span style="color:#f92672">.</span>Show()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    window <span style="color:#f92672">=</span> WindowBuilder()
+</span></span><span style="display:flex;"><span>    window<span style="color:#f92672">.</span>build(<span style="color:#e6db74">&#39;Test title&#39;</span>)<span style="color:#f92672">.</span>show()
+</span></span><span style="display:flex;"><span>    window<span style="color:#f92672">.</span>build(<span style="color:#e6db74">&#39;Test title 2&#39;</span>)<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><ul>
 <li>这里类的链式调用不是必须的</li>
 </ul>
 <h2 id="5-原型-prototype">5 原型 Prototype</h2>
 <p>对已有对象创建一个完整副本时, 这个<strong>副本的修改与原型是相互独立</strong>的<!-- raw HTML omitted -->之所以借助 copy 而不是重新初始化一个对象, 大概是为了避开 <code>__init__</code> 方法的开支<!-- raw HTML omitted -->所以有的地方也叫 clone 模式</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> copy
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Prototype</span>(object):
-
-    <span style="color:#66d9ef">def</span> __init__(self, a, b):
-        self<span style="color:#f92672">.</span>a <span style="color:#f92672">=</span> a
-        self<span style="color:#f92672">.</span>b <span style="color:#f92672">=</span> b
-        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;init&#39;</span>)
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">shallow_clone</span>(self):
-        <span style="color:#66d9ef">return</span> copy<span style="color:#f92672">.</span>copy(self)
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">deep_clone</span>(self):
-        <span style="color:#66d9ef">return</span> copy<span style="color:#f92672">.</span>deepcopy(self)
-
-    <span style="color:#66d9ef">def</span> __str__(self):
-        <span style="color:#66d9ef">return</span> str([self<span style="color:#f92672">.</span>a, self<span style="color:#f92672">.</span>b])
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    a <span style="color:#f92672">=</span> Prototype(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
-    b <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span>shallow_clone()
-    b<span style="color:#f92672">.</span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
-    <span style="color:#66d9ef">print</span>(a, b)
-
-</code></pre></div><h2 id="6-适配器-adapter">6 适配器 Adapter</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> copy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Prototype</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, a, b):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>a <span style="color:#f92672">=</span> a
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>b <span style="color:#f92672">=</span> b
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#39;init&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">shallow_clone</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> copy<span style="color:#f92672">.</span>copy(self)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">deep_clone</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> copy<span style="color:#f92672">.</span>deepcopy(self)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__str__</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> str([self<span style="color:#f92672">.</span>a, self<span style="color:#f92672">.</span>b])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    a <span style="color:#f92672">=</span> Prototype(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    b <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span>shallow_clone()
+</span></span><span style="display:flex;"><span>    b<span style="color:#f92672">.</span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>    print(a, b)
+</span></span></code></pre></div><h2 id="6-适配器-adapter">6 适配器 Adapter</h2>
 <p>通过适配器转换一个对象, 在不改变原始对象的前提下, 令它与所期望的<strong>接口兼容</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Computer</span>(object):
-
-    <span style="color:#66d9ef">def</span> __init__(self, name):
-        self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> name
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show_name</span>(self):
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>name
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Adapter</span>(object):
-
-    <span style="color:#66d9ef">def</span> __init__(self, obj, kwargs):
-        self<span style="color:#f92672">.</span>obj <span style="color:#f92672">=</span> obj
-        self<span style="color:#f92672">.</span>__dict__<span style="color:#f92672">.</span>update(kwargs)
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MobilePhone</span>(object):
-
-    <span style="color:#66d9ef">def</span> __init__(self, name):
-        self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> name
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show_nick</span>(self):
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>name
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    computer <span style="color:#f92672">=</span> Computer(<span style="color:#e6db74">&#39;PC&#39;</span>)
-    <span style="color:#66d9ef">print</span>(computer<span style="color:#f92672">.</span>show_name())
-    mb <span style="color:#f92672">=</span> MobilePhone(<span style="color:#e6db74">&#39;iPhone&#39;</span>)
-    computer2 <span style="color:#f92672">=</span> Adapter(mb, {<span style="color:#e6db74">&#39;show_name&#39;</span>: mb<span style="color:#f92672">.</span>show_nick})
-    <span style="color:#66d9ef">print</span>(computer2<span style="color:#f92672">.</span>show_name())
-
-</code></pre></div><h2 id="7-装饰器-decorator">7 装饰器 Decorator</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Computer</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, name):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> name
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show_name</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>name
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Adapter</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, obj, kwargs):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>obj <span style="color:#f92672">=</span> obj
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>__dict__<span style="color:#f92672">.</span>update(kwargs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MobilePhone</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, name):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> name
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show_nick</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>name
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    computer <span style="color:#f92672">=</span> Computer(<span style="color:#e6db74">&#39;PC&#39;</span>)
+</span></span><span style="display:flex;"><span>    print(computer<span style="color:#f92672">.</span>show_name())
+</span></span><span style="display:flex;"><span>    mb <span style="color:#f92672">=</span> MobilePhone(<span style="color:#e6db74">&#39;iPhone&#39;</span>)
+</span></span><span style="display:flex;"><span>    computer2 <span style="color:#f92672">=</span> Adapter(mb, {<span style="color:#e6db74">&#39;show_name&#39;</span>: mb<span style="color:#f92672">.</span>show_nick})
+</span></span><span style="display:flex;"><span>    print(computer2<span style="color:#f92672">.</span>show_name())
+</span></span></code></pre></div><h2 id="7-装饰器-decorator">7 装饰器 Decorator</h2>
 <p>从 Python 语言角度比较容易理解, 就是把函数(或者类)对象外面套上一层函数(或者类), 使其在<strong>保留原有功能</strong>的基础上, 还可以做一些<strong>额外的操作</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wrapper</span>(function):
-    <span style="color:#e6db74">&#34;&#34;&#34;包装函数的前后打印信息&#34;&#34;&#34;</span>
-    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;before wrapping function&#39;</span>)
-    function<span style="color:#f92672">.</span>arg <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;test&#39;</span>
-    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;after wrapping function&#39;</span>)
-    <span style="color:#66d9ef">return</span> function
-
-
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">raw_function</span>(num):
-    <span style="color:#66d9ef">return</span> num
-
-
-<span style="color:#75715e"># 使用 @ 语法表示原函数以后不会被用到, 而如果还会用到原函数, 则使用显式转换</span>
-new_function <span style="color:#f92672">=</span> wrapper(raw_function)
-<span style="color:#75715e"># 经过 wrap 后, 新函数可以保留原有功能, 但也包含了 arg 属性</span>
-<span style="color:#66d9ef">print</span>(new_function<span style="color:#f92672">.</span>arg)
-<span style="color:#66d9ef">print</span>(new_function(<span style="color:#ae81ff">1</span>))
-<span style="color:#75715e"># before wrapping function</span>
-<span style="color:#75715e"># after wrapping function</span>
-<span style="color:#75715e"># test</span>
-<span style="color:#75715e"># 1</span>
-
-</code></pre></div><h2 id="8-外观-facade">8 外观 Facade</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wrapper</span>(function):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;包装函数的前后打印信息&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;before wrapping function&#39;</span>)
+</span></span><span style="display:flex;"><span>    function<span style="color:#f92672">.</span>arg <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;test&#39;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;after wrapping function&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> function
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">raw_function</span>(num):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> num
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用 @ 语法表示原函数以后不会被用到, 而如果还会用到原函数, 则使用显式转换</span>
+</span></span><span style="display:flex;"><span>new_function <span style="color:#f92672">=</span> wrapper(raw_function)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 经过 wrap 后, 新函数可以保留原有功能, 但也包含了 arg 属性</span>
+</span></span><span style="display:flex;"><span>print(new_function<span style="color:#f92672">.</span>arg)
+</span></span><span style="display:flex;"><span>print(new_function(<span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># before wrapping function</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># after wrapping function</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># test</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1</span>
+</span></span></code></pre></div><h2 id="8-外观-facade">8 外观 Facade</h2>
 <p>外观模式有助于<strong>隐藏系统的内部复杂性</strong>，并通过一个简化的接口向客户端暴露必要的部分<!-- raw HTML omitted -->客户端只需要操作业务层对象和其抽象, 而不需要关心它的具体实现<!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Client</span>(object):
-
-    <span style="color:#66d9ef">def</span> __init__(self):
-        self<span style="color:#f92672">.</span>a <span style="color:#f92672">=</span> StepA()
-        self<span style="color:#f92672">.</span>b <span style="color:#f92672">=</span> StepB()
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_start</span>(self):
-        <span style="color:#66d9ef">pass</span>
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_prepare</span>(self):
-        self<span style="color:#f92672">.</span>a<span style="color:#f92672">.</span>prepare_something()
-        self<span style="color:#f92672">.</span>b<span style="color:#f92672">.</span>prepare_something()
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">start</span>(self):
-        self<span style="color:#f92672">.</span>_prepare()
-        self<span style="color:#f92672">.</span>_start()
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StepA</span>(object):
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">prepare_something</span>(self):
-        <span style="color:#66d9ef">pass</span>
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StepB</span>(object):
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">prepare_something</span>(self):
-        <span style="color:#66d9ef">pass</span>
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    c <span style="color:#f92672">=</span> Client()
-    c<span style="color:#f92672">.</span>start()
-
-</code></pre></div><h2 id="9-享元-flyweight">9 享元 Flyweight</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Client</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>a <span style="color:#f92672">=</span> StepA()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>b <span style="color:#f92672">=</span> StepB()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_start</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_prepare</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>a<span style="color:#f92672">.</span>prepare_something()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>b<span style="color:#f92672">.</span>prepare_something()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">start</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_prepare()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_start()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StepA</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">prepare_something</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StepB</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">prepare_something</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    c <span style="color:#f92672">=</span> Client()
+</span></span><span style="display:flex;"><span>    c<span style="color:#f92672">.</span>start()
+</span></span></code></pre></div><h2 id="9-享元-flyweight">9 享元 Flyweight</h2>
 <p>使用<strong>对象池</strong>来避免重复对象的创建, 节省创建对象的开销<!-- raw HTML omitted -->比较类似缓存的原理</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> time
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Example</span>(object):
-    _a <span style="color:#f92672">=</span> None
-
-    <span style="color:#a6e22e">@property</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">a</span>(self):
-        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>_a <span style="color:#f92672">is</span> None:
-            self<span style="color:#f92672">.</span>_a <span style="color:#f92672">=</span> A()
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_a
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>(object):
-
-    <span style="color:#66d9ef">def</span> __init__(self):
-        time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">3</span>)
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    e <span style="color:#f92672">=</span> Example()
-    <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2</span>):
-        start_time <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
-        a <span style="color:#f92672">=</span> e<span style="color:#f92672">.</span>a
-        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;cost {time.time()-start_time} seconds.&#39;</span>)
-<span style="color:#75715e"># cost 3.0013318061828613 seconds.</span>
-<span style="color:#75715e"># cost 0.0 seconds.</span>
-
-</code></pre></div><h2 id="10-代理-proxy">10 代理 Proxy</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Example</span>(object):
+</span></span><span style="display:flex;"><span>    _a <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">a</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>_a <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>_a <span style="color:#f92672">=</span> A()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_a
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
+</span></span><span style="display:flex;"><span>        time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    e <span style="color:#f92672">=</span> Example()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2</span>):
+</span></span><span style="display:flex;"><span>        start_time <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>        a <span style="color:#f92672">=</span> e<span style="color:#f92672">.</span>a
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;cost </span><span style="color:#e6db74">{</span>time<span style="color:#f92672">.</span>time()<span style="color:#f92672">-</span>start_time<span style="color:#e6db74">}</span><span style="color:#e6db74"> seconds.&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># cost 3.0013318061828613 seconds.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># cost 0.0 seconds.</span>
+</span></span></code></pre></div><h2 id="10-代理-proxy">10 代理 Proxy</h2>
 <p>常见于网络代理模式, 正向代理, 反向代理等, 即通过代理层控制网络请求的收发<!-- raw HTML omitted -->也用于<strong>限权</strong>, 即只对用户开放部分需要的权限, 保护敏感对象的访问<!-- raw HTML omitted -->也用于延迟初始化, 比如只在真正第一次用到的时候, 才做比较耗时的初始化操作<!-- raw HTML omitted -->还被用于在对象被访问时执行一些额外操作, 可以看作一个装饰器, 如引用计数等</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base</span>(object):
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">normal_operation</span>(self):
-        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{self.user_type} calls normal_operation success&#39;</span>)
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">admin_operation</span>(self):
-        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{self.user_type} calls admin_operation success&#39;</span>)
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Proxy</span>(Base):
-
-    <span style="color:#66d9ef">def</span> __init__(self, user_type):
-        self<span style="color:#f92672">.</span>user_type <span style="color:#f92672">=</span> user_type
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">normal_operation</span>(self):
-        <span style="color:#66d9ef">return</span> super()<span style="color:#f92672">.</span>normal_operation()
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">admin_operation</span>(self):
-        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>user_type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;admin&#39;</span>:
-            <span style="color:#66d9ef">return</span> super()<span style="color:#f92672">.</span>admin_operation()
-        <span style="color:#66d9ef">else</span>:
-            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">TypeError</span>(<span style="color:#e6db74">&#39;Only admin role can use admin_operation&#39;</span>)
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    admin <span style="color:#f92672">=</span> Proxy(<span style="color:#e6db74">&#39;admin&#39;</span>)
-    admin<span style="color:#f92672">.</span>normal_operation()
-    admin<span style="color:#f92672">.</span>admin_operation()
-    normal <span style="color:#f92672">=</span> Proxy(<span style="color:#e6db74">&#39;normal&#39;</span>)
-    normal<span style="color:#f92672">.</span>normal_operation()
-    normal<span style="color:#f92672">.</span>admin_operation()
-    <span style="color:#75715e"># admin calls normal_operation success</span>
-    <span style="color:#75715e"># admin calls admin_operation success</span>
-    <span style="color:#75715e"># normal calls normal_operation success</span>
-    <span style="color:#75715e"># ...</span>
-    <span style="color:#75715e"># TypeError: Only admin role can use admin_operation</span>
-
-</code></pre></div><h2 id="11-责任链-chain-of-responsibility">11 责任链 Chain of Responsibility</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">normal_operation</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>user_type<span style="color:#e6db74">}</span><span style="color:#e6db74"> calls normal_operation success&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">admin_operation</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>user_type<span style="color:#e6db74">}</span><span style="color:#e6db74"> calls admin_operation success&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Proxy</span>(Base):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, user_type):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>user_type <span style="color:#f92672">=</span> user_type
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">normal_operation</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> super()<span style="color:#f92672">.</span>normal_operation()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">admin_operation</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>user_type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;admin&#39;</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> super()<span style="color:#f92672">.</span>admin_operation()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">TypeError</span>(<span style="color:#e6db74">&#39;Only admin role can use admin_operation&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    admin <span style="color:#f92672">=</span> Proxy(<span style="color:#e6db74">&#39;admin&#39;</span>)
+</span></span><span style="display:flex;"><span>    admin<span style="color:#f92672">.</span>normal_operation()
+</span></span><span style="display:flex;"><span>    admin<span style="color:#f92672">.</span>admin_operation()
+</span></span><span style="display:flex;"><span>    normal <span style="color:#f92672">=</span> Proxy(<span style="color:#e6db74">&#39;normal&#39;</span>)
+</span></span><span style="display:flex;"><span>    normal<span style="color:#f92672">.</span>normal_operation()
+</span></span><span style="display:flex;"><span>    normal<span style="color:#f92672">.</span>admin_operation()
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># admin calls normal_operation success</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># admin calls admin_operation success</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># normal calls normal_operation success</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># TypeError: Only admin role can use admin_operation</span>
+</span></span></code></pre></div><h2 id="11-责任链-chain-of-responsibility">11 责任链 Chain of Responsibility</h2>
 <p>对象的一系列操作是<strong>链式结构</strong>, 比如有一个过滤器链, 入口函数接收一段数据, 然后依次经历每个过滤器, 最后输出过滤后的结果, 或抛出错误<!-- raw HTML omitted -->责任链的价值在于<strong>解耦那些复杂的分支逻辑</strong>, 如 if-else 地狱, 以及 switch-case 的多层嵌套</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CashRegister</span>(object):
-    <span style="color:#e6db74">&#34;&#34;&#34;超市收款机, 收到纸币分面额存放&#34;&#34;&#34;</span>
-    handle_5_yuan_list <span style="color:#f92672">=</span> []
-    handle_1_yuan_list <span style="color:#f92672">=</span> []
-    handle_10_yuan_list <span style="color:#f92672">=</span> []
-
-    <span style="color:#66d9ef">def</span> __init__(self, money):
-        self<span style="color:#f92672">.</span>money <span style="color:#f92672">=</span> money
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle_yuan</span>(self):
-        <span style="color:#e6db74">&#34;&#34;&#34;函数柯里化. 这里也可以考虑链式调用的设计: self.xx().yy().zz()&#34;&#34;&#34;</span>
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>handle_5_yuan
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle_5_yuan</span>(self):
-        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>money <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>:
-            self<span style="color:#f92672">.</span>handle_5_yuan_list<span style="color:#f92672">.</span>append(self<span style="color:#f92672">.</span>money)
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>handle_1_yuan
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle_1_yuan</span>(self):
-        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>money <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
-            self<span style="color:#f92672">.</span>handle_1_yuan_list<span style="color:#f92672">.</span>append(self<span style="color:#f92672">.</span>money)
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>handle_10_yuan
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle_10_yuan</span>(self):
-        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>money <span style="color:#f92672">==</span> <span style="color:#ae81ff">10</span>:
-            self<span style="color:#f92672">.</span>handle_10_yuan_list<span style="color:#f92672">.</span>append(self<span style="color:#f92672">.</span>money)
-        <span style="color:#66d9ef">return</span> [
-            self<span style="color:#f92672">.</span>handle_1_yuan_list, self<span style="color:#f92672">.</span>handle_5_yuan_list,
-            self<span style="color:#f92672">.</span>handle_10_yuan_list
-        ]
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    <span style="color:#75715e"># 柯里化</span>
-    <span style="color:#66d9ef">print</span>(CashRegister(<span style="color:#ae81ff">5</span>)<span style="color:#f92672">.</span>handle_yuan()()()())
-    <span style="color:#75715e"># [[], [5], []]</span>
-
-</code></pre></div><h2 id="12-命令-command">12 命令 Command</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CashRegister</span>(object):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;超市收款机, 收到纸币分面额存放&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    handle_5_yuan_list <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    handle_1_yuan_list <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    handle_10_yuan_list <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, money):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>money <span style="color:#f92672">=</span> money
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle_yuan</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;函数柯里化. 这里也可以考虑链式调用的设计: self.xx().yy().zz()&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>handle_5_yuan
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle_5_yuan</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>money <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>handle_5_yuan_list<span style="color:#f92672">.</span>append(self<span style="color:#f92672">.</span>money)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>handle_1_yuan
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle_1_yuan</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>money <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>handle_1_yuan_list<span style="color:#f92672">.</span>append(self<span style="color:#f92672">.</span>money)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>handle_10_yuan
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle_10_yuan</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>money <span style="color:#f92672">==</span> <span style="color:#ae81ff">10</span>:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>handle_10_yuan_list<span style="color:#f92672">.</span>append(self<span style="color:#f92672">.</span>money)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> [
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>handle_1_yuan_list, self<span style="color:#f92672">.</span>handle_5_yuan_list,
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>handle_10_yuan_list
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 柯里化</span>
+</span></span><span style="display:flex;"><span>    print(CashRegister(<span style="color:#ae81ff">5</span>)<span style="color:#f92672">.</span>handle_yuan()()()())
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># [[], [5], []]</span>
+</span></span></code></pre></div><h2 id="12-命令-command">12 命令 Command</h2>
 <p>通过将<strong>请求</strong>封装并记录下来, 以便可以实现撤销、重做、复制、粘贴等操作<!-- raw HTML omitted -->如下代码所示, 对象封装的是一次操作请求, 而不是一种功能, 只有封装请求, 才能把请求需要的参数记录下来, 方便后续撤销</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RenameFile</span>:
-
-    <span style="color:#66d9ef">def</span> __init__(self, src, dest):
-        self<span style="color:#f92672">.</span>src, self<span style="color:#f92672">.</span>dest <span style="color:#f92672">=</span> src, dest
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">do</span>(self):
-        <span style="color:#75715e"># equals redo</span>
-        os<span style="color:#f92672">.</span>rename(self<span style="color:#f92672">.</span>src, self<span style="color:#f92672">.</span>dest)
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">undo</span>(self):
-        os<span style="color:#f92672">.</span>rename(self<span style="color:#f92672">.</span>dest, self<span style="color:#f92672">.</span>src)
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    a, b <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;111.txt&#39;</span>, <span style="color:#e6db74">&#39;222.txt&#39;</span>
-    <span style="color:#66d9ef">print</span>(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(a), os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(b))
-    <span style="color:#75715e"># True False</span>
-    rf <span style="color:#f92672">=</span> RenameFile(a, b)
-    rf<span style="color:#f92672">.</span>do()
-    <span style="color:#66d9ef">print</span>(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(a), os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(b))
-    <span style="color:#75715e"># False True</span>
-    rf<span style="color:#f92672">.</span>undo()
-    <span style="color:#66d9ef">print</span>(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(a), os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(b))
-    <span style="color:#75715e"># True False</span>
-
-</code></pre></div><h2 id="13-观察者-observer">13 观察者 Observer</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RenameFile</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, src, dest):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>src, self<span style="color:#f92672">.</span>dest <span style="color:#f92672">=</span> src, dest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">do</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># equals redo</span>
+</span></span><span style="display:flex;"><span>        os<span style="color:#f92672">.</span>rename(self<span style="color:#f92672">.</span>src, self<span style="color:#f92672">.</span>dest)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">undo</span>(self):
+</span></span><span style="display:flex;"><span>        os<span style="color:#f92672">.</span>rename(self<span style="color:#f92672">.</span>dest, self<span style="color:#f92672">.</span>src)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    a, b <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;111.txt&#39;</span>, <span style="color:#e6db74">&#39;222.txt&#39;</span>
+</span></span><span style="display:flex;"><span>    print(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(a), os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(b))
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># True False</span>
+</span></span><span style="display:flex;"><span>    rf <span style="color:#f92672">=</span> RenameFile(a, b)
+</span></span><span style="display:flex;"><span>    rf<span style="color:#f92672">.</span>do()
+</span></span><span style="display:flex;"><span>    print(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(a), os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(b))
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># False True</span>
+</span></span><span style="display:flex;"><span>    rf<span style="color:#f92672">.</span>undo()
+</span></span><span style="display:flex;"><span>    print(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(a), os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(b))
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># True False</span>
+</span></span></code></pre></div><h2 id="13-观察者-observer">13 观察者 Observer</h2>
 <p>当观察对象发生变化, 所有订阅的观察者都会被通知到<!-- raw HTML omitted -->观察对象与观察者之间属于<strong>发布-订阅</strong>关系<!-- raw HTML omitted -->可以参考 python 内置的 <a href="https://docs.python.org/3/library/threading.html#condition-objects">threading.Condition</a> 对象的文档, Condition.notify 就是观察者模式的经典用法</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Publisher</span>:
-
-    <span style="color:#66d9ef">def</span> __init__(self):
-        self<span style="color:#f92672">.</span>observers <span style="color:#f92672">=</span> []
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add</span>(self, observer):
-        <span style="color:#66d9ef">if</span> observer <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>observers:
-            self<span style="color:#f92672">.</span>observers<span style="color:#f92672">.</span>append(observer)
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">remove</span>(self, observer):
-        <span style="color:#66d9ef">if</span> observer <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>observers:
-            self<span style="color:#f92672">.</span>observers<span style="color:#f92672">.</span>remove(observer)
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">notify</span>(self):
-        <span style="color:#66d9ef">for</span> ob <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>observers:
-            ob<span style="color:#f92672">.</span>notify(self)
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Observer</span>(object):
-
-    <span style="color:#66d9ef">def</span> __init__(self, name):
-        self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> name
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">notify</span>(self, publisher):
-        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;received notify from&#39;</span>, publisher)
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sub</span>(self, publisher):
-        publisher<span style="color:#f92672">.</span>add(self)
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    ob <span style="color:#f92672">=</span> Observer(<span style="color:#e6db74">&#39;test&#39;</span>)
-    pub <span style="color:#f92672">=</span> Publisher()
-    ob<span style="color:#f92672">.</span>sub(pub)
-    pub<span style="color:#f92672">.</span>notify()
-    <span style="color:#75715e"># received notify from &lt;__main__.Publisher object at 0x000001A2771897F0&gt;</span>
-
-</code></pre></div><h2 id="14-状态-state">14 状态 State</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Publisher</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>observers <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add</span>(self, observer):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> observer <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>observers:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>observers<span style="color:#f92672">.</span>append(observer)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">remove</span>(self, observer):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> observer <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>observers:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>observers<span style="color:#f92672">.</span>remove(observer)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">notify</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> ob <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>observers:
+</span></span><span style="display:flex;"><span>            ob<span style="color:#f92672">.</span>notify(self)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Observer</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, name):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> name
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">notify</span>(self, publisher):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#39;received notify from&#39;</span>, publisher)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sub</span>(self, publisher):
+</span></span><span style="display:flex;"><span>        publisher<span style="color:#f92672">.</span>add(self)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    ob <span style="color:#f92672">=</span> Observer(<span style="color:#e6db74">&#39;test&#39;</span>)
+</span></span><span style="display:flex;"><span>    pub <span style="color:#f92672">=</span> Publisher()
+</span></span><span style="display:flex;"><span>    ob<span style="color:#f92672">.</span>sub(pub)
+</span></span><span style="display:flex;"><span>    pub<span style="color:#f92672">.</span>notify()
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># received notify from &lt;__main__.Publisher object at 0x000001A2771897F0&gt;</span>
+</span></span></code></pre></div><h2 id="14-状态-state">14 状态 State</h2>
 <p>假定有一个状态机对象, 它在创建以后可能会处于数个不同状态, 并具备在不同状态之间<strong>切换</strong>的能力<!-- raw HTML omitted -->一般会在状态转换的时候绑定一个<strong>回调</strong>(callback)<!-- raw HTML omitted -->一定程度上解耦了大量复杂的 if-else 和 switch-case 关系, 并把某个状态的所有行为封装到了一起, 达到高内聚低耦合<!-- raw HTML omitted -->参考有限状态机<!-- raw HTML omitted -->Python 的<a href="https://github.com/python/cpython/blob/dec367261e7e2bb4dd42feeb58031abed2ade683/Lib/asyncio/futures.py"> Future</a> 体现了一些状态的理念, 具体参考一些状态搭配的 <strong>done_callback</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">_PENDING <span style="color:#f92672">=</span> base_futures<span style="color:#f92672">.</span>_PENDING
-_CANCELLED <span style="color:#f92672">=</span> base_futures<span style="color:#f92672">.</span>_CANCELLED
-_FINISHED <span style="color:#f92672">=</span> base_futures<span style="color:#f92672">.</span>_FINISHED
-</code></pre></div><h2 id="15-策略-strategy">15 策略 Strategy</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>_PENDING <span style="color:#f92672">=</span> base_futures<span style="color:#f92672">.</span>_PENDING
+</span></span><span style="display:flex;"><span>_CANCELLED <span style="color:#f92672">=</span> base_futures<span style="color:#f92672">.</span>_CANCELLED
+</span></span><span style="display:flex;"><span>_FINISHED <span style="color:#f92672">=</span> base_futures<span style="color:#f92672">.</span>_FINISHED
+</span></span></code></pre></div><h2 id="15-策略-strategy">15 策略 Strategy</h2>
 <p>定义一系列算法, 在<strong>运行时</strong>可按照对应策略灵活切换, 进而得到想要的结果<!-- raw HTML omitted -->可以参考 Python 里 list 的 sort 方法的 key 参数</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">VIPStrategy</span>(object):
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calculate</span>(self, origin_price):
-        <span style="color:#e6db74">&#34;&#34;&#34;江湖上俗称的会员打八折, 非会员七五折&#34;&#34;&#34;</span>
-        <span style="color:#66d9ef">return</span> origin_price <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.8</span>
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NONVIPStrategy</span>(object):
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calculate</span>(self, origin_price):
-        <span style="color:#66d9ef">return</span> origin_price <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.75</span>
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span>(object):
-
-    <span style="color:#66d9ef">def</span> __init__(self, name, user_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;normal&#39;</span>):
-        self<span style="color:#f92672">.</span>name, self<span style="color:#f92672">.</span>user_type <span style="color:#f92672">=</span> name, user_type
-        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>user_type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;VIP&#39;</span>:
-            self<span style="color:#f92672">.</span>pricing_strategy <span style="color:#f92672">=</span> VIPStrategy()
-        <span style="color:#66d9ef">else</span>:
-            self<span style="color:#f92672">.</span>pricing_strategy <span style="color:#f92672">=</span> NONVIPStrategy()
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">pricing</span>(self, origin_price):
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>pricing_strategy<span style="color:#f92672">.</span>calculate(origin_price)
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    user <span style="color:#f92672">=</span> User(<span style="color:#e6db74">&#39;Tom&#39;</span>, <span style="color:#e6db74">&#39;normal&#39;</span>)
-    <span style="color:#66d9ef">print</span>(user<span style="color:#f92672">.</span>pricing(<span style="color:#ae81ff">100</span>))
-    <span style="color:#75715e"># 75.0</span>
-    user <span style="color:#f92672">=</span> User(<span style="color:#e6db74">&#39;Tom&#39;</span>, <span style="color:#e6db74">&#39;VIP&#39;</span>)
-    <span style="color:#66d9ef">print</span>(user<span style="color:#f92672">.</span>pricing(<span style="color:#ae81ff">100</span>))
-    <span style="color:#75715e"># 80.0</span>
-
-</code></pre></div><h2 id="16-模板-template">16 模板 Template</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">VIPStrategy</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calculate</span>(self, origin_price):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;江湖上俗称的会员打八折, 非会员七五折&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> origin_price <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NONVIPStrategy</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calculate</span>(self, origin_price):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> origin_price <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.75</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, name, user_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;normal&#39;</span>):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>name, self<span style="color:#f92672">.</span>user_type <span style="color:#f92672">=</span> name, user_type
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>user_type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;VIP&#39;</span>:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>pricing_strategy <span style="color:#f92672">=</span> VIPStrategy()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>pricing_strategy <span style="color:#f92672">=</span> NONVIPStrategy()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">pricing</span>(self, origin_price):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>pricing_strategy<span style="color:#f92672">.</span>calculate(origin_price)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    user <span style="color:#f92672">=</span> User(<span style="color:#e6db74">&#39;Tom&#39;</span>, <span style="color:#e6db74">&#39;normal&#39;</span>)
+</span></span><span style="display:flex;"><span>    print(user<span style="color:#f92672">.</span>pricing(<span style="color:#ae81ff">100</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 75.0</span>
+</span></span><span style="display:flex;"><span>    user <span style="color:#f92672">=</span> User(<span style="color:#e6db74">&#39;Tom&#39;</span>, <span style="color:#e6db74">&#39;VIP&#39;</span>)
+</span></span><span style="display:flex;"><span>    print(user<span style="color:#f92672">.</span>pricing(<span style="color:#ae81ff">100</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 80.0</span>
+</span></span></code></pre></div><h2 id="16-模板-template">16 模板 Template</h2>
 <p><strong>提取不变</strong>部分, 将<strong>可变</strong>部分交给<strong>扩展</strong>实现<!-- raw HTML omitted -->父类将整个骨架抽象出来, 子类继承后将血肉填充进去, 胖瘦随心<!-- raw HTML omitted -->体现了&quot;依赖抽象, 而不是实现&quot;的设计原则, 父类知道<strong>做什么</strong>, 子类知道<strong>怎么做</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> abc <span style="color:#f92672">import</span> ABC, abstractmethod
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DrinkBase</span>(ABC):
-
-    <span style="color:#66d9ef">def</span> __init__(self):
-        self<span style="color:#f92672">.</span>water <span style="color:#f92672">=</span> []
-
-    <span style="color:#a6e22e">@abstractmethod</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_water</span>(self):
-        <span style="color:#66d9ef">pass</span>
-
-    <span style="color:#a6e22e">@abstractmethod</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">drink</span>(self):
-        <span style="color:#66d9ef">pass</span>
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Drink</span>(DrinkBase):
-
-    <span style="color:#66d9ef">def</span> __init__(self):
-        super()<span style="color:#f92672">.</span>__init__()
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_water</span>(self):
-        self<span style="color:#f92672">.</span>water<span style="color:#f92672">.</span>append(<span style="color:#ae81ff">1</span>)
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">drink</span>(self):
-        self<span style="color:#f92672">.</span>water<span style="color:#f92672">.</span>pop(<span style="color:#ae81ff">0</span>)
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    d <span style="color:#f92672">=</span> Drink()
-    <span style="color:#66d9ef">print</span>(d<span style="color:#f92672">.</span>water)
-    d<span style="color:#f92672">.</span>get_water()
-    d<span style="color:#f92672">.</span>get_water()
-    <span style="color:#66d9ef">print</span>(d<span style="color:#f92672">.</span>water)
-    d<span style="color:#f92672">.</span>drink()
-    <span style="color:#66d9ef">print</span>(d<span style="color:#f92672">.</span>water)
-    d<span style="color:#f92672">.</span>drink()
-    <span style="color:#66d9ef">print</span>(d<span style="color:#f92672">.</span>water)
-
-</code></pre></div><h2 id="17-混入-mixin">17 混入 Mixin</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> abc <span style="color:#f92672">import</span> ABC, abstractmethod
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DrinkBase</span>(ABC):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>water <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_water</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">drink</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Drink</span>(DrinkBase):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_water</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>water<span style="color:#f92672">.</span>append(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">drink</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>water<span style="color:#f92672">.</span>pop(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    d <span style="color:#f92672">=</span> Drink()
+</span></span><span style="display:flex;"><span>    print(d<span style="color:#f92672">.</span>water)
+</span></span><span style="display:flex;"><span>    d<span style="color:#f92672">.</span>get_water()
+</span></span><span style="display:flex;"><span>    d<span style="color:#f92672">.</span>get_water()
+</span></span><span style="display:flex;"><span>    print(d<span style="color:#f92672">.</span>water)
+</span></span><span style="display:flex;"><span>    d<span style="color:#f92672">.</span>drink()
+</span></span><span style="display:flex;"><span>    print(d<span style="color:#f92672">.</span>water)
+</span></span><span style="display:flex;"><span>    d<span style="color:#f92672">.</span>drink()
+</span></span><span style="display:flex;"><span>    print(d<span style="color:#f92672">.</span>water)
+</span></span></code></pre></div><h2 id="17-混入-mixin">17 混入 Mixin</h2>
 <p>通过多个<strong>零散的功能合并</strong>成完整功能的一种继承方式<!-- raw HTML omitted -->体现了<strong>迪米特法则</strong>, 每个功能对其他功能了解的越少越好, 越独立越好, 也就是解耦<!-- raw HTML omitted -->体现了<strong>职责单一</strong>原则, 将紧耦合的面向对象转为更清晰的面向接口, 即鸭子类型<!-- raw HTML omitted -->体现了<strong>关注点分离</strong>原则, 复杂的问题拆分成独立的小问题, 更容易维护~~</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Human</span>(object):
-
-    <span style="color:#66d9ef">def</span> __init__(self, name):
-        self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> name
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EatMixin</span>(object):
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">eat</span>(self, food):
-        <span style="color:#66d9ef">pass</span>
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WalkMixin</span>(object):
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">walk</span>(self, destination):
-        <span style="color:#66d9ef">pass</span>
-
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Male</span>(Human, EatMixin, WalkMixin):
-
-    <span style="color:#66d9ef">def</span> __init__(self, name):
-        super()<span style="color:#f92672">.</span>__init__(name)
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    male <span style="color:#f92672">=</span> Male(<span style="color:#e6db74">&#39;Tom&#39;</span>)
-    male<span style="color:#f92672">.</span>eat(<span style="color:#e6db74">&#39;food&#39;</span>)
-    male<span style="color:#f92672">.</span>walk(<span style="color:#e6db74">&#39;beach&#39;</span>)
-
-</code></pre></div><h2 id="18-单例-singleton">18 单例 Singleton</h2>
-<p>保证一个类<strong>只产生一个</strong>实例<!-- raw HTML omitted -->对 Python 来说, 重载构造函数 <code>__new__</code> 来复用已有对象, 以减轻多次实例化时的额外开销<!-- raw HTML omitted -->之前也见过很多讲 Python 的地方提到, 绝大多数单例模式适用的场景, 可以用 Borg 模式代替, 不过也出现了很多反对 Borg 模式的声音, 这里就不再多提了, 感兴趣的 google 之: <a href="https://www.google.com/search?q=Borg+Design+singleton">https://www.google.com/search?q=Borg+Design+singleton</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Singleton</span>(object):
-    conn <span style="color:#f92672">=</span> None
-
-    <span style="color:#66d9ef">def</span> __new__(cls, <span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwds):
-        <span style="color:#66d9ef">if</span> cls<span style="color:#f92672">.</span>conn <span style="color:#f92672">is</span> None:
-            cls<span style="color:#f92672">.</span>conn <span style="color:#f92672">=</span> Object()
-        <span style="color:#66d9ef">return</span> cls<span style="color:#f92672">.</span>conn
-
-</code></pre></div><h2 id="19-备忘录-memento">19 备忘录 Memento</h2>
-<p>通过一个&quot;备忘录&rdquo;, 在<strong>不破坏封装</strong>的前提下, <strong>记录</strong>对象<strong>状态</strong>的变化, 以便在不同状态之间灵活地<strong>转换</strong><!-- raw HTML omitted -->数据库事务管理机制的回滚操作, 就是这种模式</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Browser</span>(object):
-
-    <span style="color:#66d9ef">def</span> __init__(self, states):
-        self<span style="color:#f92672">.</span>states <span style="color:#f92672">=</span> states
-        self<span style="color:#f92672">.</span>index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">back</span>(self):
-        <span style="color:#66d9ef">if</span> len(self<span style="color:#f92672">.</span>states) <span style="color:#f92672">&gt;</span> self<span style="color:#f92672">.</span>index <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
-            self<span style="color:#f92672">.</span>index <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self):
-        <span style="color:#66d9ef">if</span> len(self<span style="color:#f92672">.</span>states) <span style="color:#f92672">&gt;</span> self<span style="color:#f92672">.</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>:
-            self<span style="color:#f92672">.</span>index <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    b <span style="color:#f92672">=</span> Browser([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>])
-    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):
-        <span style="color:#66d9ef">print</span>(b<span style="color:#f92672">.</span>forward() <span style="color:#f92672">or</span> b<span style="color:#f92672">.</span>index, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#39; &#39;</span>)
-    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):
-        <span style="color:#66d9ef">print</span>(b<span style="color:#f92672">.</span>back() <span style="color:#f92672">or</span> b<span style="color:#f92672">.</span>index, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#39; &#39;</span>)
-    <span style="color:#75715e"># 1 2 3 2 1 0 </span>
-
-</code></pre></div><h2 id="20-空对象-null-object">20 空对象 Null Object</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Human</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, name):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> name
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EatMixin</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">eat</span>(self, food):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WalkMixin</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">walk</span>(self, destination):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Male</span>(Human, EatMixin, WalkMixin):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, name):
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>(name)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    male <span style="color:#f92672">=</span> Male(<span style="color:#e6db74">&#39;Tom&#39;</span>)
+</span></span><span style="display:flex;"><span>    male<span style="color:#f92672">.</span>eat(<span style="color:#e6db74">&#39;food&#39;</span>)
+</span></span><span style="display:flex;"><span>    male<span style="color:#f92672">.</span>walk(<span style="color:#e6db74">&#39;beach&#39;</span>)
+</span></span></code></pre></div><h2 id="18-单例-singleton">18 单例 Singleton</h2>
+<p>保证一个类<strong>只产生一个</strong>实例<!-- raw HTML omitted -->对 Python 来说, 重载构造函数 <code>__new__</code> 来复用已有对象, 以减轻多次实例化时的额外开销<!-- raw HTML omitted -->之前也见过很多讲 Python 的地方提到, 绝大多数单例模式适用的场景, 可以用 Borg 模式代替, 不过也出现了很多反对 Borg 模式的声音, 这里就不再多提了, 感兴趣的 google 之: <a href="https://www.google.com/search?q=Borg&#43;Design&#43;singleton">https://www.google.com/search?q=Borg+Design+singleton</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Singleton</span>(object):
+</span></span><span style="display:flex;"><span>    conn <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__new__</span>(cls, <span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwds):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> cls<span style="color:#f92672">.</span>conn <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>            cls<span style="color:#f92672">.</span>conn <span style="color:#f92672">=</span> Object()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> cls<span style="color:#f92672">.</span>conn
+</span></span></code></pre></div><h2 id="19-备忘录-memento">19 备忘录 Memento</h2>
+<p>通过一个&quot;备忘录&quot;, 在<strong>不破坏封装</strong>的前提下, <strong>记录</strong>对象<strong>状态</strong>的变化, 以便在不同状态之间灵活地<strong>转换</strong><!-- raw HTML omitted -->数据库事务管理机制的回滚操作, 就是这种模式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Browser</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, states):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>states <span style="color:#f92672">=</span> states
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">back</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> len(self<span style="color:#f92672">.</span>states) <span style="color:#f92672">&gt;</span> self<span style="color:#f92672">.</span>index <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>index <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> len(self<span style="color:#f92672">.</span>states) <span style="color:#f92672">&gt;</span> self<span style="color:#f92672">.</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>index <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    b <span style="color:#f92672">=</span> Browser([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):
+</span></span><span style="display:flex;"><span>        print(b<span style="color:#f92672">.</span>forward() <span style="color:#f92672">or</span> b<span style="color:#f92672">.</span>index, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#39; &#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):
+</span></span><span style="display:flex;"><span>        print(b<span style="color:#f92672">.</span>back() <span style="color:#f92672">or</span> b<span style="color:#f92672">.</span>index, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#39; &#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 1 2 3 2 1 0 </span>
+</span></span></code></pre></div><h2 id="20-空对象-null-object">20 空对象 Null Object</h2>
 <p>一个空对象可以看作某个<strong>数据类型的零值</strong><!-- raw HTML omitted -->空对象的好处是, 验证返回值的时候, 可以简化** EAFP 和 LBYL 两种防御性编程风格**的复杂逻辑, 返回一个合法空值</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Null</span>(object):
-    <span style="color:#e6db74">&#34;&#34;&#34;Null instance will return self when be called, and it will alway be False.&#34;&#34;&#34;</span>
-
-    <span style="color:#66d9ef">def</span> __init__(self, <span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs):
-        <span style="color:#66d9ef">return</span>
-
-    <span style="color:#66d9ef">def</span> __call__(self, <span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs):
-        <span style="color:#66d9ef">return</span> self
-
-    <span style="color:#66d9ef">def</span> __getattr__(self, mname):
-        <span style="color:#66d9ef">return</span> self
-
-    <span style="color:#66d9ef">def</span> __setattr__(self, name, value):
-        <span style="color:#66d9ef">return</span> self
-
-    <span style="color:#66d9ef">def</span> __getitem__(self, key):
-        <span style="color:#66d9ef">return</span> self
-
-    <span style="color:#66d9ef">def</span> __delattr__(self, name):
-        <span style="color:#66d9ef">return</span> self
-
-    <span style="color:#66d9ef">def</span> __repr__(self):
-        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>
-
-    <span style="color:#66d9ef">def</span> __str__(self):
-        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__bool__</span>(self):
-        <span style="color:#66d9ef">return</span> False
-
-    <span style="color:#66d9ef">def</span> __nonzero__(self):
-        <span style="color:#66d9ef">return</span> False
-</code></pre></div><h2 id="21-解释器-interpreter">21 解释器 Interpreter</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Null</span>(object):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;Null instance will return self when be called, and it will alway be False.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, <span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__call__</span>(self, <span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__getattr__</span>(self, mname):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__setattr__</span>(self, name, value):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__getitem__</span>(self, key):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__delattr__</span>(self, name):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__repr__</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__str__</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__bool__</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__nonzero__</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+</span></span></code></pre></div><h2 id="21-解释器-interpreter">21 解释器 Interpreter</h2>
 <p>常用在领域特定语言（Domain Specific Language，DSL）的场景<!-- raw HTML omitted -->需要构建语法树, 定义终结符与非终结符<!-- raw HTML omitted --><strong>文法</strong>的设计非常考验能力<!-- raw HTML omitted -->等用到再学也来得及, 不多赘述</p>
 <h1 id="概括">概括</h1>
 <p><strong>三种工厂模式:</strong></p>
@@ -807,7 +789,7 @@ _FINISHED <span style="color:#f92672">=</span> base_futures<span style="color:#f
 <li>观察者和观察对象之间避免循环依赖</li>
 <li>观察者模式和发布-订阅模式经常被放在一起说
 <ol>
-<li>两者实际上都是在讲发布-订阅关系, 有不少地方对两者的区别概括为&quot;别名&rdquo;, 也就是两种模式实质上没有区别, 都可以包含以下所有特性</li>
+<li>两者实际上都是在讲发布-订阅关系, 有不少地方对两者的区别概括为&quot;别名&quot;, 也就是两种模式实质上没有区别, 都可以包含以下所有特性</li>
 <li>观察者与观察对象之间是紧耦合同步通知的, 两者直接对话</li>
 <li>发布者和订阅者之间是通过发布渠道和订阅渠道解耦, 中间件的存在使整个通知过程可以在异步模型中实现, 也就是说发布者不用关心订阅者是谁, 只要通知到发布渠道, 由后者再发送到订阅者即可; 同理, 订阅者也不需要直接联系到发布者本尊, 只需要与订阅接口打交道, 做好订阅与退订环节</li>
 <li>发布者和订阅者之间的环节可以放在同一个调度中心, 也可以分别实现一个调度中心</li>
@@ -880,7 +862,7 @@ _FINISHED <span style="color:#f92672">=</span> base_futures<span style="color:#f
 <li>访问者模式, 简单的说, 就是在一个对象 A 里用一个变量存下另一个对象 B, 从而 A 可以对 B 做一些想做的事情. 但是切忌产生循环依赖的问题</li>
 </ol>
 <h1 id="总结">总结</h1>
-<p>就像某个编程语言的崛起是为了<strong>解决问题</strong>, 设计模式的出现, 也是对以往特定问题解决思路的一种经典归纳. 因此, 设计模式可以被看作是一种常识性答案, 却不是那种真理性质的答案, 它可能是在某个时期解决问题的最佳选择, 却不一定永远都是最佳, 永远也不要迷信设计模式, 甚至为了用而用. 正如<a href="https://stackoverflow.com/a/153565"> TDD 之父 Kent Beck 谈到测试驱动开发时的态度一样</a> &ndash; <strong>不要过度测试</strong>. 而设计模式也是这个道理, 更何况, 为炫技却影响代码的可读性, 从来都不是一件靠谱的事情.<!-- raw HTML omitted -->一句话, &ldquo;<strong>软件工程没有银弹</strong>&quot;.</p>
+<p>就像某个编程语言的崛起是为了<strong>解决问题</strong>, 设计模式的出现, 也是对以往特定问题解决思路的一种经典归纳. 因此, 设计模式可以被看作是一种常识性答案, 却不是那种真理性质的答案, 它可能是在某个时期解决问题的最佳选择, 却不一定永远都是最佳, 永远也不要迷信设计模式, 甚至为了用而用. 正如<a href="https://stackoverflow.com/a/153565"> TDD 之父 Kent Beck 谈到测试驱动开发时的态度一样</a> &ndash; <strong>不要过度测试</strong>. 而设计模式也是这个道理, 更何况, 为炫技却影响代码的可读性, 从来都不是一件靠谱的事情.<!-- raw HTML omitted -->一句话, &ldquo;<strong>软件工程没有银弹</strong>&rdquo;.</p>
 
                 </div>
                 
