@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.152.2">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Clericpy" />
+  <meta property="og:url" content="https://clericpy.github.io/blog/posts/headless-ubuntu-in-virtualbox/" />
+  <link rel="canonical" href="https://clericpy.github.io/blog/posts/headless-ubuntu-in-virtualbox/" /><link rel="shortcut icon" href="/blog/favicon.ico" type="image/x-png" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/clericpy.github.io\/blog\/"
+      },
+      "articleSection" : "posts",
+      "name" : "Headless Ubuntu in VirtualBox",
+      "headline" : "Headless Ubuntu in VirtualBox",
+      "description" : "\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e策略\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e无头虚拟机 \u002b SSH\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003eVirtualBox Headless\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003eUbuntu Server LTS\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003eMobaxterms（SSH）\u003c\/p\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e空闲时资源占用：内存 60~200MB，磁盘 550MB\u003c\/p\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e步骤\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e安装 VBOX\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\u0022https:\/\/www.virtualbox.org\/wiki\/Downloads\u0022\u003ehttps:\/\/www.virtualbox.org\/wiki\/Downloads\u003c\/a\u003e\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e安装Ubuntu\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e下载服务器 LTS 版本镜像 ISO\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\u0022https:\/\/cn.ubuntu.com\/server\u0022\u003ehttps:\/\/cn.ubuntu.com\/server\u003c\/a\u003e\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003eVBOX 新建虚拟机\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e选择镜像\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e自动安装\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e① 设置个简单的用户名、密码\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e② 其他默认即可\u003c\/p\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e磁盘20GB足以，动态扩容（我配的80GB）\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e内存2GB 足以，随时可调整（我分配了8GB）\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003eCPU 2 核够用，随时可调整（我分配了4）\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e如果选中 - 安装增强功能，可能会导致什么失败\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e如果不选中，共享文件夹可能不好用\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e点下一步，就会进入自动安装\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e安装完毕的时候可能看不出来，自己按几下回车发现可以输入命令就表示结束了\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e关机 - 正常关机\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e修改网络设置\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e右键虚拟机 - 设置 - 网络 - 继续使用 NAT\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e端口转发\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e名称：ssh\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e协议：TCP\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e主机IP：127.0.0.1\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e主机端口：10022\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e子系统IP：不填\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e子系统端口：22\u003c\/p\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e启动 ssh 服务\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e双击虚拟机开机\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e输入帐号，密码\u003c\/p\u003e\n\u003c\/li\u003e\n\u003cli\u003e\n\u003cp\u003e安装 ssh-server\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003esudo apt update\u003c\/p\u003e",
+      "inLanguage" : "en-US",
+      "author" : "Clericpy",
+      "creator" : "Clericpy",
+      "publisher": "Clericpy",
+      "accountablePerson" : "Clericpy",
+      "copyrightHolder" : "Clericpy",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-11-22 11:28:55 \u002b0800 CST",
+      "dateModified" : "2025-11-22 11:28:55 \u002b0800 CST",
+      "url" : "https:\/\/clericpy.github.io\/blog\/posts\/headless-ubuntu-in-virtualbox\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>Headless Ubuntu in VirtualBox - Clericpy&#39;s Blog</title>
+  <meta property="og:title" content="Headless Ubuntu in VirtualBox - Clericpy&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="
+
+策略
+
+
+无头虚拟机 &#43; SSH
+
+
+VirtualBox Headless
+
+
+Ubuntu Server LTS
+
+
+Mobaxterms（SSH）
+
+
+
+
+空闲时资源占用：内存 60~200MB，磁盘 550MB
+
+
+
+
+步骤
+
+
+安装 VBOX
+
+https://www.virtualbox.org/wiki/Downloads
+
+
+
+安装Ubuntu
+
+下载服务器 LTS 版本镜像 ISO
+
+https://cn.ubuntu.com/server
+
+
+
+
+
+VBOX 新建虚拟机
+
+
+选择镜像
+
+
+自动安装
+
+
+① 设置个简单的用户名、密码
+
+
+② 其他默认即可
+
+
+
+
+磁盘20GB足以，动态扩容（我配的80GB）
+
+
+内存2GB 足以，随时可调整（我分配了8GB）
+
+
+CPU 2 核够用，随时可调整（我分配了4）
+
+
+如果选中 - 安装增强功能，可能会导致什么失败
+
+如果不选中，共享文件夹可能不好用
+
+
+
+点下一步，就会进入自动安装
+
+安装完毕的时候可能看不出来，自己按几下回车发现可以输入命令就表示结束了
+
+
+
+
+
+关机 - 正常关机
+
+
+修改网络设置
+
+
+右键虚拟机 - 设置 - 网络 - 继续使用 NAT
+
+
+端口转发
+
+
+名称：ssh
+
+
+协议：TCP
+
+
+主机IP：127.0.0.1
+
+
+主机端口：10022
+
+
+子系统IP：不填
+
+
+子系统端口：22
+
+
+
+
+
+
+启动 ssh 服务
+
+
+双击虚拟机开机
+
+
+输入帐号，密码
+
+
+安装 ssh-server
+
+
+sudo apt update" />
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="/blog/css/index.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Clericpy&#39;s Blog">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150991415-1"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag("js", new Date());  gtag("config", "UA-150991415-1");</script>
+</head>
+
+
+<body>
+    <article class="post Chinese" id="article">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                <div class="site-header">
+                    
+<header>
+  <div class="signatures site-title">
+    <a href="/blog/">Clericpy&#39;s Blog</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+                </div>
+                <header class="post-header">
+                    <h1 class="post-title">Headless Ubuntu in VirtualBox</h1>
+                    
+                    <div class="row post-desc">
+                        <div class="col-xs-2">
+                            
+                            <time class="post-date" datetime="2025-11-22 11:28:55 CST">
+                                22 Nov 2025
+                            </time>
+                            
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="/blog/categories/python"><b
+                                    style="text-decoration:underline">Python</b></a>
+                        </div>
+                        <div class="col-xs-6">
+                            
+                            <div class="post-author">
+                                <a target="_blank" href="https://github.com/ClericPy">@Clericpy</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="toc" class="well col-md-12 col-sm-10" style="font-size: 0.8em; border: 1px dashed rgb(194, 194, 194); margin: 15px; padding: 15px;">
+                        <h3>Table of Contents</h3>
+                        <nav id="TableOfContents"></nav>
+                    </div>
+                </header>
+                <div class="post-content markdown-body">
+                    <ul>
+<li>
+<p>策略</p>
+<ul>
+<li>
+<p>无头虚拟机 + SSH</p>
+<ul>
+<li>
+<p>VirtualBox Headless</p>
+</li>
+<li>
+<p>Ubuntu Server LTS</p>
+</li>
+<li>
+<p>Mobaxterms（SSH）</p>
+</li>
+</ul>
+</li>
+<li>
+<p>空闲时资源占用：内存 60~200MB，磁盘 550MB</p>
+</li>
+</ul>
+</li>
+<li>
+<p>步骤</p>
+<ul>
+<li>
+<p>安装 VBOX</p>
+<ul>
+<li><a href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></li>
+</ul>
+</li>
+<li>
+<p>安装Ubuntu</p>
+<ul>
+<li>下载服务器 LTS 版本镜像 ISO
+<ul>
+<li><a href="https://cn.ubuntu.com/server">https://cn.ubuntu.com/server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>VBOX 新建虚拟机</p>
+<ul>
+<li>
+<p>选择镜像</p>
+</li>
+<li>
+<p>自动安装</p>
+<ul>
+<li>
+<p>① 设置个简单的用户名、密码</p>
+</li>
+<li>
+<p>② 其他默认即可</p>
+</li>
+</ul>
+</li>
+<li>
+<p>磁盘20GB足以，动态扩容（我配的80GB）</p>
+</li>
+<li>
+<p>内存2GB 足以，随时可调整（我分配了8GB）</p>
+</li>
+<li>
+<p>CPU 2 核够用，随时可调整（我分配了4）</p>
+</li>
+<li>
+<p>如果选中 - 安装增强功能，可能会导致什么失败</p>
+<ul>
+<li>如果不选中，共享文件夹可能不好用</li>
+</ul>
+</li>
+<li>
+<p>点下一步，就会进入自动安装</p>
+<ul>
+<li>安装完毕的时候可能看不出来，自己按几下回车发现可以输入命令就表示结束了</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>关机 - 正常关机</p>
+</li>
+<li>
+<p>修改网络设置</p>
+<ul>
+<li>
+<p>右键虚拟机 - 设置 - 网络 - 继续使用 NAT</p>
+</li>
+<li>
+<p>端口转发</p>
+<ul>
+<li>
+<p>名称：ssh</p>
+</li>
+<li>
+<p>协议：TCP</p>
+</li>
+<li>
+<p>主机IP：127.0.0.1</p>
+</li>
+<li>
+<p>主机端口：10022</p>
+</li>
+<li>
+<p>子系统IP：不填</p>
+</li>
+<li>
+<p>子系统端口：22</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>启动 ssh 服务</p>
+<ul>
+<li>
+<p>双击虚拟机开机</p>
+</li>
+<li>
+<p>输入帐号，密码</p>
+</li>
+<li>
+<p>安装 ssh-server</p>
+<ul>
+<li>
+<p>sudo apt update</p>
+</li>
+<li>
+<p>sudo apt install openssh-server -y</p>
+</li>
+<li>
+<p>sudo systemctl enable ssh</p>
+</li>
+<li>
+<p>sudo systemctl start ssh</p>
+</li>
+<li>
+<p>sudo systemctl status ssh</p>
+</li>
+</ul>
+</li>
+<li>
+<p>关机 - 正常关机</p>
+</li>
+</ul>
+</li>
+<li>
+<p>无头模式启动虚拟机</p>
+<ul>
+<li>
+<p>右键虚拟机 - 启动 - 无界面模式启动</p>
+<ul>
+<li>
+<p>想使用的时候都用这个方式，或命令行方式启动</p>
+<ul>
+<li>关闭和上面一样，关机 - 正常关机，或者ssh的时候命令行关机
+<ul>
+<li>a. sudo poweroff</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>无头启动，不需要登录，ssh 那边用密码登录</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>通过 ssh 连接它</p>
+<ul>
+<li>
+<p>ssh 127.0.0.1 -p 10022</p>
+<ul>
+<li>上面设置的端口转发</li>
+</ul>
+</li>
+<li>
+<p>mobaxterm 设置默认 execute</p>
+<ul>
+<li>tmux a ||tmux
+<ul>
+<li>通过 tmux 保留上次登录的操作</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>uv</p>
+<ul>
+<li>curl -LsSf <a href="https://astral.sh/uv/install.sh">https://astral.sh/uv/install.sh</a> | sh</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>免密码sudo</p>
+<ul>
+<li>
+<p>以有sudo权限用户登录，执行</p>
+<ul>
+<li>
+<p>sudo visudo</p>
+</li>
+<li>
+<p>在 /etc/sudoers 文件尾部</p>
+<ul>
+<li>your_real_user_id ALL=(ALL) NOPASSWD:/bin/su</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>FAQ</p>
+<ul>
+<li>
+<p>共享文件夹在虚拟机里没权限</p>
+<ul>
+<li>
+<p>将当前用户加入vboxsf组</p>
+<ul>
+<li>
+<p>sudo usermod -aG vboxsf $(whoami)</p>
+</li>
+<li>
+<p>然后重启Linux虚拟机</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>宿主机-虚拟机互传文件</p>
+<ul>
+<li>
+<p>mobaxterm 自带的ssh旁边就有文件管理器，直接拖进去拖出来</p>
+</li>
+<li>
+<p>或者用 共享文件夹</p>
+</li>
+</ul>
+</li>
+<li>
+<p>解决国内 docker pull 的 timeout</p>
+<ul>
+<li>
+<p>当然前提是安装了 docker</p>
+<ul>
+<li>sudo apt install <a href="http://docker.io">docker.io</a></li>
+</ul>
+</li>
+<li>
+<p>/etc/docker/daemon.json</p>
+<ul>
+<li>
+<p>如果没权限，则随便写进个文件，然后 sudo mv 1.json /etc/docker/daemon.json</p>
+</li>
+<li>
+<p>{</p>
+</li>
+<li>
+<p>&ldquo;registry-mirrors&rdquo;: [</p>
+</li>
+<li>
+<p>&ldquo;<a href="https://docker.m.daocloud.io">https://docker.m.daocloud.io</a>&rdquo;</p>
+</li>
+<li>
+<p>]</p>
+</li>
+<li>
+<p>}</p>
+</li>
+</ul>
+</li>
+<li>
+<p>sudo systemctl restart docker.service</p>
+</li>
+</ul>
+</li>
+<li>
+<p>宿主机 &lt;-&gt; 虚拟机 网络互通</p>
+<ul>
+<li>
+<p>NAT 模式联网时，宿主机访问虚拟机</p>
+<ul>
+<li>端口转发进行配置：设置 - 网络 - 端口转发
+<ul>
+<li>新建一个规则，主机 IP 和子系统 IP 可以留空，直接填写两个端口号
+<ul>
+<li>就是简单的 127.0.0.1:port 就会转发到虚拟机里的网络地址</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>虚拟机访问宿主机的服务</p>
+<ul>
+<li>通过 10.0.2.2:port 即可，该 ip 是虚拟机里默认分配的 NAT 网关也就是宿主机的地址
+<ul>
+<li>即：默认宿主机的 127.0.0.1 就是虚拟机里的 10.0.2.2</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>docker 命令免 sudo</p>
+<ul>
+<li>sudo usermod -aG docker $USER
+<ul>
+<li>重启终端</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>非本机登录机器</p>
+<ul>
+<li>端口转发把 10022 那个 ssh 端口主机 IP 的 127.0.0.1 改成局域网 IP
+<ul>
+<li>或使用新端口</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>虚拟机系统迁移到其他电脑</p>
+<ul>
+<li>vbox 导出、导入</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>文章来源: <a href="https://wr5w8p13b8.feishu.cn/mindnotes/VDA9bC4v6muG7JnawlrchiGjnGd">https://wr5w8p13b8.feishu.cn/mindnotes/VDA9bC4v6muG7JnawlrchiGjnGd</a></p>
+</blockquote>
+
+                </div>
+                
+
+                
+
+
+                
+                
+                <div style="height: 50px;"></div>
+                
+                
+
+                <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="/blog/index.xml" target="_blank">RSS</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/categories/" target="_blank">Categories</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/ClericPy/blog/discussions" target="_blank">Discussions</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="/blog/about" target="_blank">About</a>
+  </div>
+  
+  
+</div>
+
+            </div>
+        </div>
+    </article>
+
+    <script src="/blog/js/highlight.pack.js"></script>
+<script src="https://cdn.staticfile.org/quicklink/2.0.0-alpha/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+    
+
+</body>
+
+</html>
