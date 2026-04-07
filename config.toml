@@ -9,10 +9,6 @@ googleAnalytics = "UA-150991415-1"
 [taxonomies]
   category = "categories"
 
-[author]
-  name = "Clericpy"
-  homepage = "https://github.com/ClericPy"
-
 [languages]
   [languages.cn]
     contentDir = "content"
@@ -21,6 +17,9 @@ googleAnalytics = "UA-150991415-1"
 
 [params]
 mainSections = ["posts"]
+  [params.author]
+    name = "Clericpy"
+    homepage = "https://github.com/ClericPy"
 headTitle = "Clericpy's Blog"
 description = "Hello world?"
 favicon = "/blog/favicon.ico"

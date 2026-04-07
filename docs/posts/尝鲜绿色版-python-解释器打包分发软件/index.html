@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.152.2">
+  <meta name="generator" content="Hugo 0.159.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Clericpy" />
-  <meta property="og:url" content="https://clericpy.github.io/blog/posts/%E5%B0%9D%E9%B2%9C%E7%BB%BF%E8%89%B2%E7%89%88-python-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91%E8%BD%AF%E4%BB%B6/" />
-  <link rel="canonical" href="https://clericpy.github.io/blog/posts/%E5%B0%9D%E9%B2%9C%E7%BB%BF%E8%89%B2%E7%89%88-python-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91%E8%BD%AF%E4%BB%B6/" /><link rel="shortcut icon" href="/blog/favicon.ico" type="image/x-png" /><script type="application/ld+json">
+  <meta property="og:url" content="http://localhost:1313/blog/posts/%E5%B0%9D%E9%B2%9C%E7%BB%BF%E8%89%B2%E7%89%88-python-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91%E8%BD%AF%E4%BB%B6/" />
+  <link rel="canonical" href="http://localhost:1313/blog/posts/%E5%B0%9D%E9%B2%9C%E7%BB%BF%E8%89%B2%E7%89%88-python-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91%E8%BD%AF%E4%BB%B6/" /><script type="application/ld+json">
   {
       "@context" : "http://schema.org",
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https:\/\/clericpy.github.io\/blog\/"
+           "@id": "http:\/\/localhost:1313\/blog\/"
       },
       "articleSection" : "posts",
       "name" : "尝鲜绿色版解释器, 以及打包分发 Python 软件",
@@ -29,7 +29,7 @@
       "copyrightYear" : "2023",
       "datePublished": "2023-06-03 12:27:12 \u002b0800 CST",
       "dateModified" : "2023-06-03 12:27:12 \u002b0800 CST",
-      "url" : "https:\/\/clericpy.github.io\/blog\/posts\/%E5%B0%9D%E9%B2%9C%E7%BB%BF%E8%89%B2%E7%89%88-python-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91%E8%BD%AF%E4%BB%B6\/",
+      "url" : "http:\/\/localhost:1313\/blog\/posts\/%E5%B0%9D%E9%B2%9C%E7%BB%BF%E8%89%B2%E7%89%88-python-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91%E8%BD%AF%E4%BB%B6\/",
       "keywords" : [  ]
   }
 </script>
@@ -38,7 +38,7 @@
   <meta property="og:type" content="article" />
   <meta name="description" content="python-build-standalone &#43;PyOxy &#43;zipapps" />
 
-  <link rel="stylesheet" href="https://cdn.staticfile.org/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" />
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
   <link rel="stylesheet" href="/blog/css/index.css">
@@ -52,7 +52,7 @@
     (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
   </script>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150991415-1"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag("js", new Date());  gtag("config", "UA-150991415-1");</script>
+  
 </head>
 
 
@@ -64,7 +64,7 @@
                     
 <header>
   <div class="signatures site-title">
-    <a href="/blog/">Clericpy&#39;s Blog</a>
+    <a href="/blog/">Clericpy</a>
   </div>
 </header>
 <div class="row end-xs">
@@ -218,7 +218,7 @@
 <p>script.py</p>
 <ol>
 <li>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
 </span></span></code></pre></div><p>print(requests.get(&lsquo;<a href="http://bing.com">http://bing.com</a>&rsquo;).text)
 time.sleep(3)</p>
@@ -231,7 +231,7 @@ time.sleep(3)</p>
 <p>目录结构</p>
 <ol>
 <li>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">└─</span>python
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">└─</span>python
 </span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">├─</span>DLLs
 </span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">├─</span>include
 </span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">│</span>  <span style="color:#960050;background-color:#1e0010">├─</span>cpython
@@ -277,7 +277,7 @@ time.sleep(3)</p>
 <p>测试代码</p>
 <ol>
 <li>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> sys
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> sys
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> timeit <span style="color:#f92672">import</span> timeit
 </span></span></code></pre></div><p>def fib(n):
 if n &lt;= 1:
@@ -296,7 +296,7 @@ fib(10)</p>
 <p>测试结果</p>
 <ol>
 <li>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span># 官方 CPython3.11
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-md" data-lang="md"><span style="display:flex;"><span># 官方 CPython3.11
 </span></span><span style="display:flex;"><span>D:\python311\python3.exe 1.178743
 </span></span><span style="display:flex;"><span># 绿色版 Python3.11
 </span></span><span style="display:flex;"><span>D:\downloads\python3\3.11\python.exe 1.143648
@@ -362,13 +362,13 @@ fib(10)</p>
     </article>
 
     <script src="/blog/js/highlight.pack.js"></script>
-<script src="https://cdn.staticfile.org/quicklink/2.0.0-alpha/quicklink.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0-alpha/dist/quicklink.umd.js"></script>
 
 <script>
   hljs.initHighlightingOnLoad();
   
   var posts = document.getElementById('posts-list');
-  posts && quicklink({
+  posts && quicklink.listen({
     el: posts,
     priority: true,
   });

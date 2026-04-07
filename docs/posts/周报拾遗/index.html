@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.152.2">
+  <meta name="generator" content="Hugo 0.159.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Clericpy" />
-  <meta property="og:url" content="https://clericpy.github.io/blog/posts/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97/" />
-  <link rel="canonical" href="https://clericpy.github.io/blog/posts/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97/" /><link rel="shortcut icon" href="/blog/favicon.ico" type="image/x-png" /><script type="application/ld+json">
+  <meta property="og:url" content="http://localhost:1313/blog/posts/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97/" />
+  <link rel="canonical" href="http://localhost:1313/blog/posts/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97/" /><script type="application/ld+json">
   {
       "@context" : "http://schema.org",
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https:\/\/clericpy.github.io\/blog\/"
+           "@id": "http:\/\/localhost:1313\/blog\/"
       },
       "articleSection" : "posts",
       "name" : "Python 周报拾遗(持续更新 2024.3.3)",
@@ -29,7 +29,7 @@
       "copyrightYear" : "2024",
       "datePublished": "2024-03-03 00:00:00 \u002b0800 CST",
       "dateModified" : "2024-03-03 00:00:00 \u002b0800 CST",
-      "url" : "https:\/\/clericpy.github.io\/blog\/posts\/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97\/",
+      "url" : "http:\/\/localhost:1313\/blog\/posts\/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97\/",
       "keywords" : [  ]
   }
 </script>
@@ -38,7 +38,7 @@
   <meta property="og:type" content="article" />
   <meta name="description" content="Python 周报回忆录" />
 
-  <link rel="stylesheet" href="https://cdn.staticfile.org/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" />
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
   <link rel="stylesheet" href="/blog/css/index.css">
@@ -52,7 +52,7 @@
     (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
   </script>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150991415-1"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag("js", new Date());  gtag("config", "UA-150991415-1");</script>
+  
 </head>
 
 
@@ -64,7 +64,7 @@
                     
 <header>
   <div class="signatures site-title">
-    <a href="/blog/">Clericpy&#39;s Blog</a>
+    <a href="/blog/">Clericpy</a>
   </div>
 </header>
 <div class="row end-xs">
@@ -156,7 +156,7 @@
 </blockquote>
 <h2 id="2024年4月9日">2024年4月9日</h2>
 <h3 id="抑制某些报错-比-try-更简洁">抑制某些报错, 比 try 更简洁</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> contextlib <span style="color:#f92672">import</span> suppress
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> contextlib <span style="color:#f92672">import</span> suppress
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> suppress(<span style="color:#a6e22e">FileNotFoundError</span>):
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;file.txt&#39;</span>, <span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">as</span> file:
 </span></span><span style="display:flex;"><span>        contents <span style="color:#f92672">=</span> file<span style="color:#f92672">.</span>read()
@@ -170,7 +170,7 @@
 '*********** 16.67% ***********'
 </code></pre>
 <p>还有一些其他格式化的东西, 例如 <a href="https://docs.python.org/3/library/textwrap.html">https://docs.python.org/3/library/textwrap.html</a></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> textwrap <span style="color:#f92672">import</span> shorten
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> textwrap <span style="color:#f92672">import</span> shorten
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> inspect <span style="color:#f92672">import</span> cleandoc
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> textwrap <span style="color:#f92672">import</span> dedent
 </span></span></code></pre></div><h2 id="2022年8月6日">2022年8月6日</h2>
@@ -370,13 +370,13 @@
     </article>
 
     <script src="/blog/js/highlight.pack.js"></script>
-<script src="https://cdn.staticfile.org/quicklink/2.0.0-alpha/quicklink.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0-alpha/dist/quicklink.umd.js"></script>
 
 <script>
   hljs.initHighlightingOnLoad();
   
   var posts = document.getElementById('posts-list');
-  posts && quicklink({
+  posts && quicklink.listen({
     el: posts,
     priority: true,
   });

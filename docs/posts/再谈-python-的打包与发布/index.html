@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.152.2">
+  <meta name="generator" content="Hugo 0.159.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Clericpy" />
-  <meta property="og:url" content="https://clericpy.github.io/blog/posts/%E5%86%8D%E8%B0%88-python-%E7%9A%84%E6%89%93%E5%8C%85%E4%B8%8E%E5%8F%91%E5%B8%83/" />
-  <link rel="canonical" href="https://clericpy.github.io/blog/posts/%E5%86%8D%E8%B0%88-python-%E7%9A%84%E6%89%93%E5%8C%85%E4%B8%8E%E5%8F%91%E5%B8%83/" /><link rel="shortcut icon" href="/blog/favicon.ico" type="image/x-png" /><script type="application/ld+json">
+  <meta property="og:url" content="http://localhost:1313/blog/posts/%E5%86%8D%E8%B0%88-python-%E7%9A%84%E6%89%93%E5%8C%85%E4%B8%8E%E5%8F%91%E5%B8%83/" />
+  <link rel="canonical" href="http://localhost:1313/blog/posts/%E5%86%8D%E8%B0%88-python-%E7%9A%84%E6%89%93%E5%8C%85%E4%B8%8E%E5%8F%91%E5%B8%83/" /><script type="application/ld+json">
   {
       "@context" : "http://schema.org",
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https:\/\/clericpy.github.io\/blog\/"
+           "@id": "http:\/\/localhost:1313\/blog\/"
       },
       "articleSection" : "posts",
       "name" : "再谈 Python 的打包与发布『zipapps』",
@@ -29,7 +29,7 @@
       "copyrightYear" : "2021",
       "datePublished": "2021-05-07 22:10:51 \u002b0800 CST",
       "dateModified" : "2021-05-07 22:10:51 \u002b0800 CST",
-      "url" : "https:\/\/clericpy.github.io\/blog\/posts\/%E5%86%8D%E8%B0%88-python-%E7%9A%84%E6%89%93%E5%8C%85%E4%B8%8E%E5%8F%91%E5%B8%83\/",
+      "url" : "http:\/\/localhost:1313\/blog\/posts\/%E5%86%8D%E8%B0%88-python-%E7%9A%84%E6%89%93%E5%8C%85%E4%B8%8E%E5%8F%91%E5%B8%83\/",
       "keywords" : [  ]
   }
 </script>
@@ -38,7 +38,7 @@
   <meta property="og:type" content="article" />
   <meta name="description" content="时隔一年, 再随便聊聊 Python 打包和发布遇到的那些事儿" />
 
-  <link rel="stylesheet" href="https://cdn.staticfile.org/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" />
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
   <link rel="stylesheet" href="/blog/css/index.css">
@@ -52,7 +52,7 @@
     (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
   </script>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150991415-1"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag("js", new Date());  gtag("config", "UA-150991415-1");</script>
+  
 </head>
 
 
@@ -64,7 +64,7 @@
                     
 <header>
   <div class="signatures site-title">
-    <a href="/blog/">Clericpy&#39;s Blog</a>
+    <a href="/blog/">Clericpy</a>
   </div>
 </header>
 <div class="row end-xs">
@@ -322,13 +322,13 @@
     </article>
 
     <script src="/blog/js/highlight.pack.js"></script>
-<script src="https://cdn.staticfile.org/quicklink/2.0.0-alpha/quicklink.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0-alpha/dist/quicklink.umd.js"></script>
 
 <script>
   hljs.initHighlightingOnLoad();
   
   var posts = document.getElementById('posts-list');
-  posts && quicklink({
+  posts && quicklink.listen({
     el: posts,
     priority: true,
   });

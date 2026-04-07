@@ -2,88 +2,88 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://clericpy.github.io/blog/categories/</loc>
+    <loc>http://localhost:1313/blog/categories/</loc>
     <lastmod>2026-04-06T23:53:45+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/</loc>
+    <loc>http://localhost:1313/blog/</loc>
     <lastmod>2026-04-06T23:53:45+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/</loc>
+    <loc>http://localhost:1313/blog/posts/</loc>
     <lastmod>2026-04-06T23:53:45+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/categories/python/</loc>
+    <loc>http://localhost:1313/blog/categories/python/</loc>
     <lastmod>2026-04-06T23:53:45+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/%E9%AB%98%E8%B4%A8%E9%87%8F-python-%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%AA%A8%E6%9E%B6/</loc>
+    <loc>http://localhost:1313/blog/posts/%E9%AB%98%E8%B4%A8%E9%87%8F-python-%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%AA%A8%E6%9E%B6/</loc>
     <lastmod>2026-04-06T23:53:45+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/headless-ubuntu-in-virtualbox/</loc>
+    <loc>http://localhost:1313/blog/posts/headless-ubuntu-in-virtualbox/</loc>
     <lastmod>2025-11-22T11:28:55+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/%E8%AF%BB%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81%E7%9A%84%E8%AE%BE%E8%AE%A1/</loc>
+    <loc>http://localhost:1313/blog/posts/%E8%AF%BB%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81%E7%9A%84%E8%AE%BE%E8%AE%A1/</loc>
     <lastmod>2025-11-16T21:49:21+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97/</loc>
+    <loc>http://localhost:1313/blog/posts/%E5%91%A8%E6%8A%A5%E6%8B%BE%E9%81%97/</loc>
     <lastmod>2024-03-03T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/pip.pyz----%E7%BB%BF%E8%89%B2%E7%89%88-pip/</loc>
+    <loc>http://localhost:1313/blog/posts/pip.pyz----%E7%BB%BF%E8%89%B2%E7%89%88-pip/</loc>
     <lastmod>2023-11-26T21:40:11+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/%E5%B0%9D%E9%B2%9C%E7%BB%BF%E8%89%B2%E7%89%88-python-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91%E8%BD%AF%E4%BB%B6/</loc>
+    <loc>http://localhost:1313/blog/posts/%E5%B0%9D%E9%B2%9C%E7%BB%BF%E8%89%B2%E7%89%88-python-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91%E8%BD%AF%E4%BB%B6/</loc>
     <lastmod>2023-06-03T12:27:12+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/nuitka-%E6%89%93%E5%8C%85%E5%BC%84%E4%B8%AA%E7%AE%80%E5%8D%95-gui-%E7%9C%81%E7%82%B9%E5%BF%83/</loc>
+    <loc>http://localhost:1313/blog/posts/nuitka-%E6%89%93%E5%8C%85%E5%BC%84%E4%B8%AA%E7%AE%80%E5%8D%95-gui-%E7%9C%81%E7%82%B9%E5%BF%83/</loc>
     <lastmod>2022-10-23T11:47:39+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/hadoop-streaming-%E9%80%90%E8%A1%8C%E5%88%86%E7%BB%84%E7%94%9F%E6%88%90%E5%99%A8/</loc>
+    <loc>http://localhost:1313/blog/posts/hadoop-streaming-%E9%80%90%E8%A1%8C%E5%88%86%E7%BB%84%E7%94%9F%E6%88%90%E5%99%A8/</loc>
     <lastmod>2022-03-14T23:53:36+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/hadoop-%E5%8F%82%E6%95%B0%E5%B0%8F%E5%9D%91/</loc>
+    <loc>http://localhost:1313/blog/posts/hadoop-%E5%8F%82%E6%95%B0%E5%B0%8F%E5%9D%91/</loc>
     <lastmod>2022-02-03T19:13:28+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/%E5%86%8D%E8%B0%88-python-%E7%9A%84%E6%89%93%E5%8C%85%E4%B8%8E%E5%8F%91%E5%B8%83/</loc>
+    <loc>http://localhost:1313/blog/posts/%E5%86%8D%E8%B0%88-python-%E7%9A%84%E6%89%93%E5%8C%85%E4%B8%8E%E5%8F%91%E5%B8%83/</loc>
     <lastmod>2021-05-07T22:10:51+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/categories/tools/</loc>
+    <loc>http://localhost:1313/blog/categories/tools/</loc>
     <lastmod>2020-05-04T16:42:54+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/%E5%B0%86%E6%9C%AC%E5%9C%B0%E6%BC%AB%E7%94%BB%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6%E5%A4%B9%E8%BD%AC%E4%B8%BA-html/</loc>
+    <loc>http://localhost:1313/blog/posts/%E5%B0%86%E6%9C%AC%E5%9C%B0%E6%BC%AB%E7%94%BB%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6%E5%A4%B9%E8%BD%AC%E4%B8%BA-html/</loc>
     <lastmod>2020-05-04T16:42:54+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/20200402142224/</loc>
+    <loc>http://localhost:1313/blog/posts/20200402142224/</loc>
     <lastmod>2020-04-02T14:22:24+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/categories/github/</loc>
+    <loc>http://localhost:1313/blog/categories/github/</loc>
     <lastmod>2020-03-31T17:12:12+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/20200331171211/</loc>
+    <loc>http://localhost:1313/blog/posts/20200331171211/</loc>
     <lastmod>2020-03-31T17:12:12+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/20200114151137/</loc>
+    <loc>http://localhost:1313/blog/posts/20200114151137/</loc>
     <lastmod>2020-01-14T15:11:38+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/20191221143647/</loc>
+    <loc>http://localhost:1313/blog/posts/20191221143647/</loc>
     <lastmod>2019-12-21T14:36:47+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/categories/coding/</loc>
+    <loc>http://localhost:1313/blog/categories/coding/</loc>
     <lastmod>2019-12-21T00:14:06+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/20191221001405/</loc>
+    <loc>http://localhost:1313/blog/posts/20191221001405/</loc>
     <lastmod>2019-12-21T00:14:06+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/20191212204823/</loc>
+    <loc>http://localhost:1313/blog/posts/20191212204823/</loc>
     <lastmod>2019-12-12T20:48:24+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/about/</loc>
+    <loc>http://localhost:1313/blog/about/</loc>
     <lastmod>2019-10-27T12:29:53+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/20191027113439/</loc>
+    <loc>http://localhost:1313/blog/posts/20191027113439/</loc>
     <lastmod>2019-10-27T11:34:40+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/20191025183222/</loc>
+    <loc>http://localhost:1313/blog/posts/20191025183222/</loc>
     <lastmod>2019-10-25T18:32:22+08:00</lastmod>
   </url><url>
-    <loc>https://clericpy.github.io/blog/posts/20191024220923/</loc>
+    <loc>http://localhost:1313/blog/posts/20191024220923/</loc>
     <lastmod>2019-10-24T22:09:23+08:00</lastmod>
   </url>
 </urlset>

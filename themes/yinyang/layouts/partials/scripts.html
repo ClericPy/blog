@@ -1,5 +1,5 @@
 <script src="{{ "js/highlight.pack.js" | relURL }}"></script>
-<script src="https://cdn.staticfile.org/quicklink/2.0.0-alpha/quicklink.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0-alpha/dist/quicklink.umd.js"></script>
 {{ if and .Site.Params.lazyImage (not .IsHome) -}}
 <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@10.19.0/dist/lazyload.min.js"></script>
 <script>
@@ -12,7 +12,7 @@
   hljs.initHighlightingOnLoad();
   
   var posts = document.getElementById('posts-list');
-  posts && quicklink({
+  posts && quicklink.listen({
     el: posts,
     priority: true,
   });
