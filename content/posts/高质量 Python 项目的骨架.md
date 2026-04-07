@@ -2,7 +2,7 @@
 title: "高质量 Python 项目的骨架"
 date: 2026-04-06T23:53:45+08:00
 description: "总结构建现代、可维护 Python 项目的核心工程化实践指南。"
-categories: ["Python", "工程化"]
+categories: Python
 draft: false
 ---
 
